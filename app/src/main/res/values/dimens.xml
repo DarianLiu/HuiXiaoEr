@@ -1,0 +1,46 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <!-- Title高度 -->
+    <dimen name="title_height">45dp</dimen>
+
+    <!-- PaddingSize -->
+    <dimen name="all_padding">15dp</dimen>
+
+    <dimen name="default_margin">15dp</dimen>
+
+    <!--Button TextSize -->
+    <dimen name="btn_text_size">16sp</dimen>
+
+    <!--EditText TextSize -->
+    <dimen name="edit_text_size">15sp</dimen>
+
+    <!--Option TextSize -->
+    <dimen name="option_text_size">14.5sp</dimen>
+
+    <!--Toolbar TextSize -->
+    <dimen name="toolbar_text_size">16sp</dimen>
+
+    <!-- TextSize -->
+    <dimen name="t10">10sp</dimen>
+    <dimen name="t11">11sp</dimen>
+    <dimen name="t12">12sp</dimen>
+    <dimen name="t13">13sp</dimen>
+    <dimen name="t14">14sp</dimen>
+    <dimen name="t15">15sp</dimen>
+    <dimen name="t16">16sp</dimen>
+    <dimen name="t18">18sp</dimen>
+    <dimen name="t20">20sp</dimen>
+    <dimen name="t22">22sp</dimen>
+    <dimen name="t24">24sp</dimen>
+    <dimen name="t28">28sp</dimen>
+
+</resources>

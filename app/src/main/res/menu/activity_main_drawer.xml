@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_recovery"
+            android:icon="@drawable/ic_action_recovery"
+            android:title="功能模块一" />
+        <item
+            android:id="@+id/nav_housewifery"
+            android:icon="@drawable/ic_action_housewifery"
+            android:title="功能模块二" />
+        <item
+            android:id="@+id/nav_supermarket"
+            android:icon="@drawable/ic_action_supermarket"
+            android:title="功能模块三" />
+        <item
+            android:id="@+id/nav_dining"
+            android:icon="@drawable/ic_action_dining"
+            android:title="功能模块四" />
+
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_action_dining"
+            android:title="功能模块五" />
+
+        <item android:title="设置中心">
+
+            <menu>
+
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@android:drawable/ic_menu_help"
+                    android:orderInCategory="100"
+                    android:title="帮助" />
+
+                <item
+                    android:id="@+id/nav_directions"
+                    android:icon="@android:drawable/ic_menu_compass"
+                    android:orderInCategory="200"
+                    android:title="关于惠小二" />
+
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@android:drawable/ic_menu_share"
+                    android:orderInCategory="90"
+                    android:title="分享" />
+
+            </menu>
+
+        </item>
+
+    </group>
+
+</menu>

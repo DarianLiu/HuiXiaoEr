@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6069e1</color>
+    <color name="colorPrimaryDark">#616ae2</color>
+    <color name="colorAccent">#747df6</color>
+
+    <!--*********字体颜色-start********-->
+    <!--标题颜色-->
+    <color name="color_title_text">#fefefe</color>
+
+    <!--背景为主色调时-->
+    <color name="color_edit_text_reg">#ffffff</color>
+    <color name="color_hint_text_reg">#eaecff</color>
+    <color name="color_text_reg">#eaecff</color>
+    <color name="color_text_white">#ffffff</color>
+    <color name="color_text_dark_reg">#b9b9b9</color>
+
+    <!--当背景颜色为白色时-->
+    <color name="color_text_guide">#7169d5</color>
+    <color name="color_btn_text_primary">#6069e1</color>
+    <color name="color_hint_text">#666666</color>
+    <color name="color_tab_text_normal">#666666</color>
+    <color name="color_tab_text_selected">#5d67da</color>
+    <color name="color_text_caption">#333333</color>
+    <color name="color_text_label">#666666</color>
+    <color name="color_text_body">#999999</color>
+    <color name="color_text_prompt">#aaaaaa</color>
+    <color name="color_text_black">#000000</color>
+    <color name="color_option_text">#4c4c4c</color>
+    <color name="color_text_6060">#606060</color>
+    <!--*********字体颜色-end********-->
+
+    <!--基础颜色色值-->
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="transparent">#00000000</color>
+    <color name="color_selector">#e9e9e9</color>
+    <color name="gray">#ababab</color>
+
+
+</resources>
