@@ -5,7 +5,7 @@ package com.geek.huixiaoer.storage.entity;
  * Created by Administrator on 2018/2/9.
  */
 
-public class Category {
+public class CategoryBean {
     private int id;
     private String name;
     private String grade;//级别

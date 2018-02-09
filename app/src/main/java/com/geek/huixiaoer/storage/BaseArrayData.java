@@ -13,6 +13,8 @@ public class BaseArrayData<T> {
 
     @SerializedName(value = "pageData", alternate = {"productCategories"})
     private List<T> pageData;
+    private int pageSize;
+    private int pageNumber;
 
     public void setPageData(List<T> pageData) {
         this.pageData = pageData;
@@ -20,5 +22,21 @@ public class BaseArrayData<T> {
 
     public List<T> getPageData() {
         return pageData;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
     }
 }

@@ -26,7 +26,7 @@ import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
-import com.geek.huixiaoer.storage.entity.Banner;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
@@ -44,8 +44,8 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View,
         NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.title)
-    TextView title;
+    @BindView(R.id.tv_toolbar_title)
+    TextView toolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     //    @BindView(R.id.fl_content)
@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     //轮播图底部滑动图片
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
     //轮播图图片
-    private List<Banner> mBanners = new ArrayList<>();
+    private List<BannerBean> mBannerBeen = new ArrayList<>();
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -117,9 +117,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    public void setBanner(List<Banner> banners) {
-        mBanners = banners;
-        addScrollImage(banners.size());
+    public void setBanner(List<BannerBean> bannerBeen) {
+        mBannerBeen = bannerBeen;
+        addScrollImage(bannerBeen.size());
         initAutoScrollViewPager();
     }
 
@@ -216,7 +216,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             View view = getLayoutInflater().inflate(R.layout.include_image, null);
             ImageView ivBanner = view.findViewById(R.id.imageView);
 
-            GlideArms.with(ivBanner.getContext()).load(mBanners.get(position).getPath())
+            GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .error(R.mipmap.ic_launcher).into(ivBanner);
             container.addView(view);
             return view;
@@ -305,6 +305,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.tv_function7:
                 break;
             case R.id.tv_function8:
+                launchActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 break;
         }
     }

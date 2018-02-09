@@ -3,7 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.model;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.Category;
+import com.geek.huixiaoer.storage.entity.CategoryBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
@@ -30,7 +30,7 @@ public class ShopModel extends BaseModel implements ShopContract.Model {
     }
 
     @Override
-    public Observable<BaseResponse<BaseArrayData<Category>>> goodsCategoryRoot() {
+    public Observable<BaseResponse<BaseArrayData<CategoryBean>>> goodsCategoryRoot() {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsCategoryRoot();
     }
 }

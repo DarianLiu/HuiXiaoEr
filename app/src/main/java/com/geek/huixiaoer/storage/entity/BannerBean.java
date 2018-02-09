@@ -1,11 +1,11 @@
 package com.geek.huixiaoer.storage.entity;
 
-public class Banner {
-    public String articleId;//banner的id
-    public String title;//banner标题
-    public String path;//banner图片地址
-    public String url;//活动网页地址
-    public int linkcategory;//banner类型
+public class BannerBean {
+    private String articleId;//banner的id
+    private String title;//banner标题
+    private String path;//banner图片地址
+    private String url;//活动网页地址
+    private int linkcategory;//banner类型
 
     public void setArticleId(String articleId) {
         this.articleId = articleId;

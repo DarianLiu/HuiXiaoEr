@@ -34,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.supermarket.ui.activity.ShopActivity"></activity>
+        <activity android:name=".mvp.supermarket.ui.activity.ShopActivity" />
+        <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity" />
+        <activity android:name=".mvp.common.ui.activity.RegisterActivity"></activity>
     </application>
 
 </manifest>

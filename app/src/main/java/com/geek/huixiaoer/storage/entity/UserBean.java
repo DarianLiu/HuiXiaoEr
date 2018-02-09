@@ -5,5 +5,5 @@ package com.geek.huixiaoer.storage.entity;
  * Created by Administrator on 2018/2/1.
  */
 
-public class User {
+public class UserBean {
 }

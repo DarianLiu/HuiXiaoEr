@@ -2,7 +2,7 @@ package com.geek.huixiaoer.mvp.common.presenter;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
-import com.geek.huixiaoer.storage.entity.Banner;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -15,8 +15,6 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 import javax.inject.Inject;
 
 import com.geek.huixiaoer.mvp.common.contract.MainContract;
-
-import java.util.List;
 
 
 @ActivityScope
@@ -38,9 +36,9 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
         mModel.articleBanner().retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<Banner>>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull BaseArrayData<Banner> bannerArray) {
+                    public void onNext(@NonNull BaseArrayData<BannerBean> bannerArray) {
                         mRootView.setBanner(bannerArray.getPageData());
                     }
                 });

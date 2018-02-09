@@ -44,7 +44,7 @@ public interface APIs {
     /**
      * 商品详情地址
      */
-    String GOODS_URL = "http://" + IP + PORT + "/" + "goods/mobile/";
+    String GOODS_URL = "http://" + IP + PORT + "/" + PROJECT + "/" + "goods/mobile/";
 
     /**
      * 文章分享地址

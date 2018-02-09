@@ -1,5 +1,39 @@
 <resources>
     <string name="app_name">慧小二</string>
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
+
+    <string name="title_shop">网上商城</string>
+
+    <string name="favorite_add">收藏该商品</string>
+    <string name="favorite_delete">取消收藏</string>
+
+    <!--Button Text-->
+    <string name="btn_next_step">下一步</string>
+    <string name="btn_sure">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_add_shopping_cart">加入购物车</string>
+
+    <!--Hint_Text-->
+    <string name="hint_mobile_number">手机号码</string>
+    <string name="hint_mobile_captcha">手机验证码</string>
+    <string name="hint_login_password">登录密码</string>
+    <string name="hint_password_old">旧密码</string>
+    <string name="hint_password_new">新密码</string>
+    <string name="hint_password_confirm">确认密码</string>
+
+    <!--错误提示-->
+    <string name="error_password_null">密码不能为空</string>
+    <string name="error_password_old_null">原密码不能为空</string>
+    <string name="error_password_new_null">新密码不能为空</string>
+    <string name="error_captcha_null">验证码不能为空</string>
+    <string name="error_password_confirm_null">确认密码不能为空</string>
+    <string name="error_mobile_null">手机号不能为空</string>
+    <string name="error_password_not_equals">输入的新密码不一致</string>
+
+    <!--提示-->
+    <string name="prompt_dialog_title">温馨提示</string>
+    <string name="prompt_password_rule">密码由6&#8211;12位字母、数字或符号组成</string>
+    <string name="prompt_security_password">我们将通过%1$s 给您发送验证码</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -9,7 +43,7 @@
     <string name="action_housewifery">家政</string>
     <string name="action_supermarket">超市</string>
     <string name="action_dining">餐饮</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">设置</string>
 
     <!-- Strings related to Settings -->
 

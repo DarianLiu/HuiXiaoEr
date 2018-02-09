@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6069e1</color>
     <color name="colorPrimaryDark">#616ae2</color>
-    <color name="colorAccent">#ff0000</color>
+    <color name="colorAccent">#EB4443</color>
     <!--<color name="colorAccent">#747df6</color>-->
 
     <!--*********字体颜色-start********-->
@@ -29,6 +29,8 @@
     <color name="color_text_black">#000000</color>
     <color name="color_option_text">#4c4c4c</color>
     <color name="color_text_6060">#606060</color>
+    <color name="color_text_red">#ff0000</color>
+    <color name="color_text_gray">#ACB4BB</color>
     <!--*********字体颜色-end********-->
 
     <!--基础颜色色值-->

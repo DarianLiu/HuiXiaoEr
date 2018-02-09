@@ -5,15 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.widget.adapter.DefaultStatePagerAdapter;
@@ -22,7 +17,7 @@ import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.ShopPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.fragment.GoodsFragment;
-import com.geek.huixiaoer.storage.entity.Category;
+import com.geek.huixiaoer.storage.entity.CategoryBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -37,8 +32,8 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopContract.View {
 
-    @BindView(R.id.title)
-    TextView title;
+    @BindView(R.id.tv_toolbar_title)
+    TextView toolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabLayout)
@@ -66,6 +61,8 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbarTitle.setText(R.string.title_shop);
 
         mPresenter.getGoodsCategorys();
 
@@ -106,21 +103,21 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 
 
     @Override
-    public void setViewPager(List<Category> categoryList) {
+    public void setViewPager(List<CategoryBean> categoryBeanList) {
         List<Fragment> fragmentList = new ArrayList<>();
         List<String> titles = new ArrayList<>();
-        if (categoryList != null) {
+        if (categoryBeanList != null) {
             GoodsFragment goodsFragment;
-            for (int i = 0; i < categoryList.size(); i++) {
-                Category category = categoryList.get(i);
+            for (int i = 0; i < categoryBeanList.size(); i++) {
+                CategoryBean categoryBean = categoryBeanList.get(i);
                 //设置TabLayout的模式
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 goodsFragment = new GoodsFragment();
                 Bundle args = new Bundle();
-                args.putInt("id", category.getId());
+                args.putInt("id", categoryBean.getId());
                 goodsFragment.setArguments(args);
                 fragmentList.add(goodsFragment);
-                titles.add(category.getName());
+                titles.add(categoryBean.getName());
 
             }
             DefaultStatePagerAdapter pagerAdapter = new DefaultStatePagerAdapter(

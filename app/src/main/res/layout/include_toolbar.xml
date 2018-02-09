@@ -9,11 +9,13 @@
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="@dimen/toolbar_text_size"
-        android:textColor="@color/color_text_white"/>
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/toolbar_text_size" />
 
 </android.support.v7.widget.Toolbar>

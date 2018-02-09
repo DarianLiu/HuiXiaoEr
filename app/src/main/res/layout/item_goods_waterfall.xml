@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/goodsImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goodsImg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text=""
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/t16" />
+
+    <TextView
+        android:id="@+id/captionTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameTV"
+        android:maxLines="3"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text=""
+        android:textColor="@color/color_text_caption"
+        android:textSize="@dimen/t14" />
+
+    <TextView
+        android:id="@+id/priceTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/captionTV"
+        android:layout_marginBottom="10dp"
+        android:layout_toLeftOf="@+id/marketPriceTV"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:text=""
+        android:textColor="@color/color_text_red"
+        android:textSize="@dimen/t16" />
+
+    <TextView
+        android:id="@+id/marketPriceTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/priceTV"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"
+        android:text=""
+        android:textColor="@color/color_text_gray"
+        android:textSize="@dimen/t14" />
+
+</RelativeLayout>
