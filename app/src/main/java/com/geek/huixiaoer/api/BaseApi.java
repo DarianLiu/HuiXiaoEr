@@ -3,9 +3,9 @@ package com.geek.huixiaoer.api;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.Banner;
+import com.geek.huixiaoer.storage.entity.Category;
+import com.geek.huixiaoer.storage.entity.Goods;
 import com.geek.huixiaoer.storage.entity.User;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -60,5 +60,17 @@ public interface BaseApi {
      */
     @GET(APIs.API.carouselList)
     Observable<BaseResponse<BaseArrayData<Banner>>> articleBanner();
+
+    /**
+     * 获取所有根节点的货品类别列表
+     */
+    @GET(APIs.API.goodsCategoryRoot)
+    Observable<BaseResponse<BaseArrayData<Category>>> goodsCategoryRoot();
+
+    /**
+     * 获取所有根节点的货品类别列表
+     */
+    @GET(APIs.API.goodsList)
+    Observable<BaseResponse<BaseArrayData<Goods>>> goodsList();
 
 }

@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#6069e1</color>
     <color name="colorPrimaryDark">#616ae2</color>
-    <color name="colorAccent">#747df6</color>
+    <color name="colorAccent">#ff0000</color>
+    <!--<color name="colorAccent">#747df6</color>-->
 
     <!--*********字体颜色-start********-->
     <!--标题颜色-->

@@ -1,5 +1,7 @@
 package com.geek.huixiaoer.storage;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
  */
 public class BaseArrayData<T> {
 
+    @SerializedName(value = "pageData", alternate = {"productCategories"})
     private List<T> pageData;
 
     public void setPageData(List<T> pageData) {

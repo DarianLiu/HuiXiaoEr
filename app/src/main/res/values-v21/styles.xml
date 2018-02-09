@@ -2,8 +2,6 @@
 <resources>
 
     <style name="AppTheme" parent="BaseThem">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 

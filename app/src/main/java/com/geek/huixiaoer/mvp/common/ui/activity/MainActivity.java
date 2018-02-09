@@ -25,6 +25,7 @@ import com.geek.huixiaoer.mvp.common.contract.MainContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.storage.entity.Banner;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -289,6 +290,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_function1:
+                launchActivity(new Intent(MainActivity.this, ShopActivity.class));
                 break;
             case R.id.tv_function2:
                 break;

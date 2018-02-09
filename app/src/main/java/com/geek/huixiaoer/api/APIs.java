@@ -85,5 +85,15 @@ public interface APIs {
          */
         String carouselList = "member/article/carouselList.jhtml";
 
+        /**
+         * 获取所有根节点的货品类别列表
+         */
+        String goodsCategoryRoot = "goods/productCategoryRoot.jhtml";
+
+        /**
+         * 获取指定类别的货品列表
+         */
+        String goodsList = "goods/list/";
+
     }
 }
