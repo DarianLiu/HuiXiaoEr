@@ -47,6 +47,8 @@ public class Constants {
      * Intent Key
      * ================================================
      */
+    public static final String INTENT_TYPE = "type";
+    public static final String INTENT_MOBILE = "mobile";
     public static final String INTENT_GOODS_NAME = "goods_name";
     public static final String INTENT_GOODS_SN = "goods_sn";
     public static final String INTENT_GOODS_URL = "goods_url";

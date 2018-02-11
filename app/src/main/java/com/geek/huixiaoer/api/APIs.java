@@ -63,22 +63,22 @@ public interface APIs {
         /**
          * 登录
          */
-        String login = "login/submit.jhtml?";
+        String login = "login/submit.jhtml";
 
         /**
          * 注册
          */
-        String register = "register/submit.jhtml?";
+        String register = "register/submit.jhtml";
 
         /**
          * 获取短信验证码
          */
-        String verification_code = "common/verification_code.jhtml?";
+        String verification_code = "common/verification_code.jhtml";
 
         /**
          * 检查短信验证码
          */
-        String check_code = "common/check_code.jhtml?";
+        String check_code = "common/check_code.jhtml";
 
         /**
          * 文章轮播图列表

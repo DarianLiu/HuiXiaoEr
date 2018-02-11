@@ -173,7 +173,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     /**
      * 轮播图底部的滑动的下划线
      *
-     * @param size
+     * @param size 轮播图数量
      */
     private void addScrollImage(int size) {
         autoScrollIndicator.removeAllViews();
@@ -305,7 +305,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.tv_function7:
                 break;
             case R.id.tv_function8:
-                launchActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                launchActivity(new Intent(MainActivity.this, CaptchaActivity.class));
                 break;
         }
     }

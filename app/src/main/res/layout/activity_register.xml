@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/btn_selector_blue"
-        android:text="@string/btn_next_step"
+        android:text="@string/btn_register"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/btn_text_size" />
 

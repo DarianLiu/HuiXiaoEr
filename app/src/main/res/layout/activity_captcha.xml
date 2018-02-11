@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <EditText
+        android:id="@+id/etMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line_bottom_bg"
+        android:digits="0123456789"
+        android:hint="@string/hint_mobile_number"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:padding="15dp"
+        android:textColor="@color/color_text_black"
+        android:textColorHint="@color/color_hint_text"
+        android:textSize="@dimen/t15" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etCaptcha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="numberDecimal"
+            android:background="@null"
+            android:hint="@string/hint_mobile_captcha"
+            android:maxLength="6"
+            android:padding="15dp"
+            android:textColorHint="@color/color_hint_text"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t15" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/line_default_color" />
+
+        <TextView
+            android:id="@+id/tvSend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/btn_send_captcha"
+            android:textSize="@dimen/t15" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/btn_selector_blue"
+        android:text="@string/btn_next_step"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/btn_text_size" />
+
+</LinearLayout>
+
