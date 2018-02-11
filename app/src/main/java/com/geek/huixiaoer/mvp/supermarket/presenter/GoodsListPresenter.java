@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 import android.support.v7.widget.RecyclerView;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
+import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.GoodsBean;
 import com.jess.arms.integration.AppManager;
@@ -17,23 +18,22 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.supermarket.contract.GoodsContract;
 import com.jess.arms.utils.RxLifecycleUtils;
 
 import java.util.List;
 
 
 @ActivityScope
-public class GoodsPresenter extends BasePresenter<GoodsContract.Model, GoodsContract.View> {
+public class GoodsListPresenter extends BasePresenter<GoodsListContract.Model, GoodsListContract.View> {
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
     private RecyclerView.Adapter mAdapter;
     private List<GoodsBean> mList;
 
     @Inject
-    GoodsPresenter(GoodsContract.Model model, GoodsContract.View rootView
+    GoodsListPresenter(GoodsListContract.Model model, GoodsListContract.View rootView
             , RxErrorHandler handler, AppManager appManager, RecyclerView.Adapter adapter,
-                   List<GoodsBean> goodsList) {
+                       List<GoodsBean> goodsList) {
         super(model, rootView);
         this.mErrorHandler = handler;
         this.mAppManager = appManager;

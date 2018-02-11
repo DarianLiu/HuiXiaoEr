@@ -16,7 +16,7 @@ import com.geek.huixiaoer.mvp.supermarket.contract.ShopContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.ShopPresenter;
-import com.geek.huixiaoer.mvp.supermarket.ui.fragment.GoodsFragment;
+import com.geek.huixiaoer.mvp.supermarket.ui.fragment.GoodsListFragment;
 import com.geek.huixiaoer.storage.entity.CategoryBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -107,16 +107,16 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
         List<Fragment> fragmentList = new ArrayList<>();
         List<String> titles = new ArrayList<>();
         if (categoryBeanList != null) {
-            GoodsFragment goodsFragment;
+            GoodsListFragment goodsListFragment;
             for (int i = 0; i < categoryBeanList.size(); i++) {
                 CategoryBean categoryBean = categoryBeanList.get(i);
                 //设置TabLayout的模式
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-                goodsFragment = new GoodsFragment();
+                goodsListFragment = new GoodsListFragment();
                 Bundle args = new Bundle();
                 args.putInt("id", categoryBean.getId());
-                goodsFragment.setArguments(args);
-                fragmentList.add(goodsFragment);
+                goodsListFragment.setArguments(args);
+                fragmentList.add(goodsListFragment);
                 titles.add(categoryBean.getName());
 
             }

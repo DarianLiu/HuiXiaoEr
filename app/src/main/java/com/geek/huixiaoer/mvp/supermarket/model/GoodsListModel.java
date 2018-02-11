@@ -11,15 +11,15 @@ import com.jess.arms.di.scope.ActivityScope;
 
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.supermarket.contract.GoodsContract;
+import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
 
 import io.reactivex.Observable;
 
 @ActivityScope
-public class GoodsModel extends BaseModel implements GoodsContract.Model {
+public class GoodsListModel extends BaseModel implements GoodsListContract.Model {
 
     @Inject
-    GoodsModel(IRepositoryManager repositoryManager) {
+    GoodsListModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 

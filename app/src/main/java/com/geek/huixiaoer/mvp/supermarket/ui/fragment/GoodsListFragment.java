@@ -14,10 +14,10 @@ import com.geek.huixiaoer.api.APIs;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
-import com.geek.huixiaoer.mvp.supermarket.contract.GoodsContract;
-import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsComponent;
-import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsModule;
-import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsPresenter;
+import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
+import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsListComponent;
+import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsListModule;
+import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsListPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
 import com.geek.huixiaoer.storage.entity.GoodsBean;
@@ -37,7 +37,7 @@ import butterknife.BindView;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class GoodsFragment extends BaseFragment<GoodsPresenter> implements GoodsContract.View {
+public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implements GoodsListContract.View {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -51,10 +51,10 @@ public class GoodsFragment extends BaseFragment<GoodsPresenter> implements Goods
 
     @Override
     public void setupFragmentComponent(AppComponent appComponent) {
-        DaggerGoodsComponent //如找不到该类,请编译一下项目
+        DaggerGoodsListComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .goodsModule(new GoodsModule(this))
+                .goodsListModule(new GoodsListModule(this))
                 .build()
                 .inject(this);
     }
