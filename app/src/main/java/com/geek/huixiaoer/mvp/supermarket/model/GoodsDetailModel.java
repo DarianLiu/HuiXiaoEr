@@ -39,8 +39,8 @@ public class GoodsDetailModel extends BaseModel implements GoodsDetailContract.M
     }
 
     @Override
-    public Observable<BaseResponse<GoodsBean>> cartAdd(String token, String goods_sn) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).cartAdd(token, goods_sn);
+    public Observable<BaseResponse<GoodsBean>> cartAdd(String token, String goods_sn, int quantity) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).cartAdd(token, goods_sn,quantity);
     }
 
     @Override

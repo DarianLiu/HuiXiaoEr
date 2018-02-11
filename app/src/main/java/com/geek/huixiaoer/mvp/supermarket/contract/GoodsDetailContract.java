@@ -22,6 +22,6 @@ public interface GoodsDetailContract {
 
         Observable<BaseResponse<SingleResultBean>> goodsFavoriteDelete(String token, String goods_sn);
 
-        Observable<BaseResponse<GoodsBean>> cartAdd(String token, String goods_sn);
+        Observable<BaseResponse<GoodsBean>> cartAdd(String token, String goods_sn, int quantity);
     }
 }

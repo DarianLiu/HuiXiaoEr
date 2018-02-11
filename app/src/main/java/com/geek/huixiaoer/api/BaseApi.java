@@ -88,7 +88,7 @@ public interface BaseApi {
      */
     @GET(APIs.API.goodsHasFavorite)
     Observable<BaseResponse<SingleResultBean>> goodsHasFavorite(@Query("token") String token,
-                                                         @Query("sn") String goods_sn);
+                                                                @Query("sn") String goods_sn);
 
     /**
      * 商品添加收藏
@@ -98,7 +98,7 @@ public interface BaseApi {
      */
     @POST(APIs.API.goodsFavoriteAdd)
     Observable<BaseResponse<SingleResultBean>> goodsFavoriteAdd(@Query("token") String token,
-                                                         @Query("sn") String goods_sn);
+                                                                @Query("sn") String goods_sn);
 
     /**
      * 商品删除收藏
@@ -108,7 +108,7 @@ public interface BaseApi {
      */
     @POST(APIs.API.goodsFavoriteDelete)
     Observable<BaseResponse<SingleResultBean>> goodsFavoriteDelete(@Query("token") String token,
-                                                            @Query("sn") String goods_sn);
+                                                                   @Query("sn") String goods_sn);
 
     /**
      * 添加购物车
@@ -118,7 +118,8 @@ public interface BaseApi {
      */
     @POST(APIs.API.cartAdd)
     Observable<BaseResponse<GoodsBean>> cartAdd(@Query("token") String token,
-                                                @Query("sn") String goods_sn);
+                                                @Query("sn") String goods_sn,
+                                                @Query("quantity") int quantity);
 
     /**
      * 购物车列表

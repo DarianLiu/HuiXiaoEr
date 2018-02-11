@@ -105,11 +105,12 @@ public class GoodsDetailPresenter extends BasePresenter<GoodsDetailContract.Mode
     /**
      * 添加购物车
      *
+     * @param quantity 商品数量
      * @param goods_sn 商品SN号
      */
-    public void addCart(String goods_sn) {
+    public void addCart(String goods_sn, int quantity) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
-        mModel.cartAdd(token, goods_sn).retryWhen(new RetryWithDelay(3, 2))
+        mModel.cartAdd(token, goods_sn, quantity).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<GoodsBean>(mErrorHandler) {

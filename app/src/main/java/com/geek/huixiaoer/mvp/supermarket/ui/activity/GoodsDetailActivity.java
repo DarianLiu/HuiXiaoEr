@@ -136,7 +136,7 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
 //                mPresenter.favorite(goods_sn);
                 break;
             case R.id.tv_add_cart:
-                mPresenter.addCart(goods_sn);
+//                mPresenter.addCart(goods_sn);
                 break;
         }
     }
