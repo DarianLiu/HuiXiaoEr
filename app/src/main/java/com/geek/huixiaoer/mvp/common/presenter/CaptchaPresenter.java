@@ -99,6 +99,14 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
                         intent.putExtra(Constants.INTENT_MOBILE, mobile);
                         mRootView.launchActivity(intent);
                     }
+
+                    @Override
+                    public void onError(@NonNull Throwable t) {
+                        super.onError(t);
+                        Intent intent = new Intent(mAppManager.getTopActivity(), RegisterActivity.class);
+                        intent.putExtra(Constants.INTENT_MOBILE, mobile);
+                        mRootView.launchActivity(intent);
+                    }
                 });
     }
 

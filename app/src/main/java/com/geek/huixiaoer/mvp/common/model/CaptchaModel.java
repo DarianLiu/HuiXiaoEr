@@ -1,11 +1,8 @@
 package com.geek.huixiaoer.mvp.common.model;
 
-import android.app.Application;
-
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.CaptchaBean;
-import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
@@ -22,7 +19,7 @@ import io.reactivex.Observable;
 public class CaptchaModel extends BaseModel implements CaptchaContract.Model {
 
     @Inject
-    public CaptchaModel(IRepositoryManager repositoryManager) {
+    CaptchaModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 

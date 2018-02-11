@@ -26,17 +26,20 @@
     <string name="hint_password_old">旧密码</string>
     <string name="hint_password_new">新密码</string>
     <string name="hint_password_confirm">确认密码</string>
+    <string name="hint_nickname">昵称</string>
+    <string name="hint_invitation_code">邀请码（选填、区分大小写）</string>
 
     <!--错误提示-->
     <string name="error_password_null">密码不能为空</string>
-    <string name="error_password_old_null">原密码不能为空</string>
-    <string name="error_password_new_null">新密码不能为空</string>
+    <string name="error_password_old_null">旧密码不能为空</string>
+    <string name="error_password_new_null">密码不能为空</string>
     <string name="error_captcha_null">验证码不能为空</string>
     <string name="error_captcha">验证码不正确</string>
     <string name="error_password_confirm_null">确认密码不能为空</string>
     <string name="error_mobile_null">手机号码不能为空</string>
     <string name="error_mobile_regex">手机号码格式不正确</string>
-    <string name="error_password_not_equals">输入的新密码不一致</string>
+    <string name="error_password_not_equals">两次输入的密码不一致</string>
+    <string name="error_nickname">密码不能为空</string>
 
     <!--提示-->
     <string name="prompt_dialog_title">温馨提示</string>
