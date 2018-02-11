@@ -20,9 +20,11 @@
             android:id="@+id/et_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_nickname"
+            android:hint="@string/hint_username"
             android:inputType="text"
             android:maxLength="20"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t15" />
@@ -46,6 +48,8 @@
             android:hint="@string/hint_password_new"
             android:inputType="textPassword"
             android:maxLength="18"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t15" />
@@ -69,6 +73,8 @@
             android:hint="@string/hint_password_confirm"
             android:inputType="textPassword"
             android:maxLength="18"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t15" />
@@ -91,6 +97,8 @@
             android:hint="@string/hint_invitation_code"
             android:inputType="text"
             android:maxLength="20"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t15" />

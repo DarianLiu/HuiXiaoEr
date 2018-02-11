@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.geek.huixiaoer.api.exception.ApiException;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.utils.ArmsUtils;
@@ -68,15 +69,13 @@ public class RxUtil {
             @Override
             public ObservableSource<T> apply(@NonNull BaseResponse<T> tBaseResponse) throws Exception {
                 if (TextUtils.equals(tBaseResponse.getResult(), "1")) {
-
                     return createData(tBaseResponse.getData());
                 } else {
                     if (TextUtils.equals(tBaseResponse.getResult(), "2")) {
-                        DataHelper.removeSF(context, Constants.SP_MID);
-                        DataHelper.removeSF(context, Constants.SP_MCH_KEY);
+                        DataHelper.removeSF(context, Constants.SP_TOKEN);
                         DataHelper.removeSF(context, Constants.SP_USER_INFO);
                         ArmsUtils.killAll();
-//                        context.startActivity(new Intent(context, LoginActivity.class));
+                        context.startActivity(new Intent(context, LoginActivity.class));
                     }
                     return Observable.error(new ApiException(tBaseResponse.getMsg(), tBaseResponse.getResult()));
                 }
@@ -84,7 +83,7 @@ public class RxUtil {
         });
     }
 
-    public static <T> Observable<T> createData(final T t) {
+    private static <T> Observable<T> createData(final T t) {
         return Observable.create(emitter -> {
             try {
                 emitter.onNext(t);

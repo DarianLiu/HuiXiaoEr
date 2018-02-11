@@ -95,5 +95,45 @@ public interface APIs {
          */
         String goodsList = "goods/list/";
 
+        /**
+         * 查看商品是否收藏
+         */
+        String goodsHasFavorite = "member/favorite/app/hasFavorite.jhtml";
+
+        /**
+         * 商品添加收藏
+         */
+        String goodsFavoriteAdd =  "member/favorite/app/add.jhtml";
+
+        /**
+         * 商品删除收藏
+         */
+        String goodsFavoriteDelete =  "member/favorite/app/delete.jhtml";
+
+        /**
+         * 添加购物车
+         */
+        String cartAdd = "cart/add.jhtml";
+
+        /**
+         * 购物车列表
+         */
+        String cartList = "cart/app/list.jhtml";
+
+        /**
+         * 编辑购物车项
+         */
+        String cartEdit = "cart/edit.jhtml";
+
+        /**
+         * 删除购物车项
+         */
+        String cartDelete = "cart/delete.jhtml";
+
+        /**
+         * 清空购物车项
+         */
+        String cartClear = "cart/clear.jhtml";
+
     }
 }

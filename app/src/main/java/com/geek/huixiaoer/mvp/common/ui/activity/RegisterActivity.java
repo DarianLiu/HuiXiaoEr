@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.MD5Utils;
+import com.geek.huixiaoer.common.utils.RegexUtils;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.common.contract.RegisterContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerRegisterComponent;
@@ -54,6 +55,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindView(R.id.btn_register)
     Button btnRegister;
 
+    @BindString(R.string.error_nickname_null)
+    String error_nickname_null;
     @BindString(R.string.error_nickname)
     String error_nickname;
     @BindString(R.string.error_password_new_null)
@@ -126,9 +129,13 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
      */
     private boolean validateNickname(String nickname) {
         if (TextUtils.isEmpty(nickname)) {
+            showError(tilNickname, error_nickname_null);
+            return false;
+        } else if (!RegexUtils.isUsername(nickname)) {
             showError(tilNickname, error_nickname);
             return false;
         }
+        tilNickname.setErrorEnabled(false);
         return true;
     }
 
@@ -148,20 +155,19 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             showError(tilConfirmPassword, error_password_not_equals);
             return false;
         }
+        tilNewPassword.setErrorEnabled(false);
+        tilConfirmPassword.setErrorEnabled(false);
         return true;
     }
 
     /**
-     * 显示错误提示，并获取焦点
+     * 显示错误提示
      *
      * @param textInputLayout 对应控件
      * @param error           错误信息
      */
     private void showError(TextInputLayout textInputLayout, String error) {
         textInputLayout.setError(error);
-        textInputLayout.getEditText().setFocusable(true);
-        textInputLayout.getEditText().setFocusableInTouchMode(true);
-        textInputLayout.getEditText().requestFocus();
     }
 
     @OnClick(R.id.btn_register)
@@ -170,6 +176,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         String password = etNewPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
         String code = etInvitationCode.getText().toString();
+        tilNickname.setErrorEnabled(true);
+        tilNewPassword.setErrorEnabled(true);
+        tilConfirmPassword.setErrorEnabled(true);
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)) {
             mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), mobile, MD5Utils.compute(password), code);
         }

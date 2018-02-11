@@ -31,9 +31,9 @@ public class Constants {
      */
     public static final String SP_USER_INFO = "user_info";
 
-    public static final String SP_MID = "mid";
+    public static final String SP_TOKEN = "token";
 
-    public static final String SP_MCH_KEY = "mch_key";
+//    public static final String SP_MCH_KEY = "mch_key";
 
     public static final String SP_LANGUAGE = "language";
 

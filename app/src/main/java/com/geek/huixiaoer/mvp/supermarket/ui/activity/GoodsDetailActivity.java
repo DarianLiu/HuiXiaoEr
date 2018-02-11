@@ -41,6 +41,8 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     @BindView(R.id.tv_add_cart)
     TextView tvAddCart;
 
+    private String goods_sn;
+
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
         DaggerGoodsDetailComponent //如找不到该类,请编译一下项目
@@ -65,12 +67,14 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
 
         String goods_name = getIntent().getStringExtra(Constants.INTENT_GOODS_NAME);
         String goods_url = getIntent().getStringExtra(Constants.INTENT_GOODS_URL);
-        String goods_sn = getIntent().getStringExtra(Constants.INTENT_GOODS_SN);
+        goods_sn = getIntent().getStringExtra(Constants.INTENT_GOODS_SN);
 
         Timber.d("========goods_url：" + goods_url);
 
         toolbarTitle.setText(goods_name == null ? "" : goods_name);
         initWebView(goods_url);
+
+//        mPresenter.goodsHasFavorite(goods_sn);
     }
 
 
@@ -128,9 +132,17 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_favorite:
+                showMessage("该功能暂未开放");
+//                mPresenter.favorite(goods_sn);
                 break;
             case R.id.tv_add_cart:
+                mPresenter.addCart(goods_sn);
                 break;
         }
+    }
+
+    @Override
+    public void updateFavoriteState(boolean isFavorite) {
+
     }
 }

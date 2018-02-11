@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
-import com.geek.huixiaoer.storage.entity.CaptchaBean;
+import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -49,9 +49,9 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
         mModel.verificationCode(mobile, type).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<CaptchaBean>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull CaptchaBean captchaBean) {
+                    public void onNext(@NonNull SingleResultBean singleResultBean) {
                         Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
                                 .take(Constants.SMS_MAX_TIME)
                                 .map(aLong -> Constants.SMS_MAX_TIME - (aLong + 1))
@@ -92,9 +92,9 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
         mModel.checkCode(captcha).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<CaptchaBean>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull CaptchaBean captchaBean) {
+                    public void onNext(@NonNull SingleResultBean singleResultBean) {
                         Intent intent = new Intent(mAppManager.getTopActivity(), RegisterActivity.class);
                         intent.putExtra(Constants.INTENT_MOBILE, mobile);
                         mRootView.launchActivity(intent);

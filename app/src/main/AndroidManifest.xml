@@ -34,13 +34,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".mvp.supermarket.ui.activity.ShopActivity" />
+
         <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity" />
+
         <activity android:name=".mvp.common.ui.activity.RegisterActivity" />
+
         <activity
             android:name=".mvp.common.ui.activity.CaptchaActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-        <activity android:name=".mvp.common.ui.activity.LoginActivity"></activity>
+
+        <activity
+            android:name=".mvp.common.ui.activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+
     </application>
 
 </manifest>

@@ -1,35 +1,46 @@
 package com.geek.huixiaoer.mvp.common.presenter;
 
-import android.app.Application;
-
+import com.geek.huixiaoer.api.utils.RxUtil;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.http.imageloader.ImageLoader;
 
+import io.reactivex.annotations.NonNull;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
+import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 import javax.inject.Inject;
 
 import com.geek.huixiaoer.mvp.common.contract.LoginContract;
-
+import com.jess.arms.utils.DataHelper;
 
 @ActivityScope
 public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginContract.View> {
     private RxErrorHandler mErrorHandler;
-    private Application mApplication;
-    private ImageLoader mImageLoader;
     private AppManager mAppManager;
 
     @Inject
-    public LoginPresenter(LoginContract.Model model, LoginContract.View rootView
-            , RxErrorHandler handler, Application application
-            , ImageLoader imageLoader, AppManager appManager) {
+    LoginPresenter(LoginContract.Model model, LoginContract.View rootView
+            , RxErrorHandler handler, AppManager appManager) {
         super(model, rootView);
         this.mErrorHandler = handler;
-        this.mApplication = application;
-        this.mImageLoader = imageLoader;
         this.mAppManager = appManager;
+    }
+
+    public void login(String account, String md5Password) {
+        mModel.login(account, md5Password)
+                .retryWhen(new RetryWithDelay(3, 2))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<UserBean>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull UserBean userBean) {
+                        DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
+                    }
+                });
     }
 
     @Override
@@ -37,8 +48,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
         super.onDestroy();
         this.mErrorHandler = null;
         this.mAppManager = null;
-        this.mImageLoader = null;
-        this.mApplication = null;
     }
 
 }

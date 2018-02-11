@@ -305,7 +305,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.tv_function7:
                 break;
             case R.id.tv_function8:
-                launchActivity(new Intent(MainActivity.this, CaptchaActivity.class));
+                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }
     }

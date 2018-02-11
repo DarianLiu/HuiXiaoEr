@@ -11,8 +11,8 @@ public class StringUtils {
     public static String stringUTF8(String str) {
         String strUTF8 = null;
         try {
-            strUTF8 = URLEncoder.encode(str, "GBK");
-//            strUTF8 = URLEncoder.encode(str, "UTF-8");
+//            String strGBK = URLEncoder.encode(str, "GBK");
+            strUTF8 = URLEncoder.encode(str, "UTF-8");
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
