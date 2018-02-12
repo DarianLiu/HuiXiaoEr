@@ -43,7 +43,8 @@
         <activity
             android:name=".mvp.common.ui.activity.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleListActivity"></activity>
+        <activity android:name=".mvp.recycle.ui.activity.RecycleListActivity" />
+        <activity android:name=".mvp.recycle.ui.activity.RecycleAddActivity"></activity>
     </application>
 
 </manifest>
