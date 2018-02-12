@@ -1,27 +1,20 @@
-package com.geek.huixiaoer.mvp.supermarket.ui.fragment;
+package com.geek.huixiaoer.mvp.recycle.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.api.APIs;
-import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.common.utils.DateUtil;
-import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
-import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
-import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsListComponent;
-import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsListModule;
-import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsListPresenter;
-import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
-import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
-import com.jess.arms.base.BaseFragment;
+import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
+import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleListComponent;
+import com.geek.huixiaoer.mvp.recycle.di.module.RecycleListModule;
+import com.geek.huixiaoer.mvp.recycle.presenter.RecycleListPresenter;
+import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -36,8 +29,12 @@ import butterknife.BindView;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
-public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implements GoodsListContract.View {
+public class RecycleListActivity extends BaseActivity<RecycleListPresenter> implements RecycleListContract.View {
 
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
@@ -49,26 +46,29 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
     RecyclerView.Adapter mAdapter;
 
     @Override
-    public void setupFragmentComponent(AppComponent appComponent) {
-        DaggerGoodsListComponent //如找不到该类,请编译一下项目
+    public void setupActivityComponent(AppComponent appComponent) {
+        DaggerRecycleListComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .goodsListModule(new GoodsListModule(this))
+                .recycleListModule(new RecycleListModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
-    public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.include_recyclerview, container, false);
+    public int initView(Bundle savedInstanceState) {
+        return R.layout.activity_recycle_list; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        int category_id = getArguments().getInt("id");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> finish());
+        tvToolbarTitle.setText(R.string.title_recycle);
 
         initRecycleView();
-
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         refreshLayout.setDisableContentWhenRefresh(true);//刷新的时候禁止列表的操作
@@ -76,17 +76,18 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
         refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                mPresenter.getGoodsList(false, category_id);
+                mPresenter.getRecycleList(false);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                mPresenter.getGoodsList(true, category_id);
+                mPresenter.getRecycleList(true);
             }
         });
 
         // 自动刷新
         refreshLayout.autoRefresh();
+
     }
 
     /**
@@ -94,26 +95,9 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
      */
     private void initRecycleView() {
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 15, true));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(mAdapter);
-
-        GoodsAdapter goodsAdapter = (GoodsAdapter) mAdapter;
-        goodsAdapter.setOnItemClickListener((view, viewType, data, position) -> {
-            GoodsBean goods = (GoodsBean) data;
-            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-            intent.putExtra(Constants.INTENT_GOODS_NAME, goods.getName());
-            intent.putExtra(Constants.INTENT_GOODS_SN, goods.getSn());
-            intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
-                    DateUtil.getDateYMToString(goods.getCreateDate()) + "/" + +goods.getId()
-                    + ".html");
-            launchActivity(intent);
-        });
-    }
-
-    @Override
-    public void setData(Object data) {
-
     }
 
     @Override
@@ -140,12 +124,12 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
 
     @Override
     public void killMyself() {
-
+        finish();
     }
 
     @Override
-    public Activity getContext() {
-        return getActivity();
+    public Activity getActivity() {
+        return RecycleListActivity.this;
     }
 
     @Override
@@ -158,4 +142,10 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
         refreshLayout.finishLoadmore();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAdapter = null;
+        mLayoutManager = null;
+    }
 }

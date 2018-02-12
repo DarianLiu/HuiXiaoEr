@@ -85,6 +85,7 @@ public interface APIs {
          */
         String carouselList = "member/article/carouselList.jhtml";
 
+        /*--------商城模块---------*/
         /**
          * 获取所有根节点的货品类别列表
          */
@@ -134,6 +135,18 @@ public interface APIs {
          * 清空购物车项
          */
         String cartClear = "cart/clear.jhtml";
+
+
+        /*--------垃圾回收模块---------*/
+        /**
+         * 文章列表
+         */
+        String articleList = "member/article/list.jhtml";
+
+        /**
+         * 评论添加
+         */
+        String addReviewLike = "member/article/addReview.jhtml";
 
     }
 }

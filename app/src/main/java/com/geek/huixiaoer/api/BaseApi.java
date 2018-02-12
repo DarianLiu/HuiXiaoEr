@@ -7,6 +7,7 @@ import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.CategoryBean;
 import com.geek.huixiaoer.storage.entity.GoodsBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
+import com.geek.huixiaoer.storage.entity.article.ArticleBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -157,4 +158,29 @@ public interface BaseApi {
     @POST(APIs.API.cartClear)
     Observable<BaseResponse<GoodsBean>> cartClear(@Query("token") String token);
 
+    /**
+     * 文章列表//@param token 用户Token
+     *
+     * @param pageNumber 页数
+     * @param pageSize   每页数量
+     * @param type       排序类型（createDate）
+     * @param category   文章类型（mood）
+     */
+    @GET(APIs.API.articleList)
+    Observable<BaseResponse<BaseArrayData<ArticleBean>>> articleList(@Query("pageNumber") int pageNumber,
+                                                      @Query("pageSize") int pageSize,
+                                                      @Query("type") String type,
+                                                      @Query("category") String category);
+
+    /**
+     * 文章添加评论
+     *
+     * @param token     用户Token
+     * @param articleId 文章ID
+     * @param content   评论内容
+     */
+    @POST(APIs.API.addReviewLike)
+    Observable<BaseResponse<GoodsBean>> addReviewLike(@Query("token") String token,
+                                                      @Query("articleId") String articleId,
+                                                      @Query("content") String content);
 }

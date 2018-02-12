@@ -100,9 +100,9 @@ public class ConstUtils {
      */
     public static final String REGEX_ZH = "^[\\u4e00-\\u9fa5]+$";
     /**
-     * 正则：用户名，取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位
+     * 正则：用户名，取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是3-16位
      */
-    public static final String REGEX_USERNAME = "^[\\w\\u4e00-\\u9fa5]{6,20}(?<!_)$";
+    public static final String REGEX_USERNAME = "^[\\w\\u4e00-\\u9fa5]{3,16}(?<!_)$";
     /**
      * 正则：密码，取值范围为含有小写字母、大写字母、数字、特殊符号的两种及以上,必须是6-16位
      */
