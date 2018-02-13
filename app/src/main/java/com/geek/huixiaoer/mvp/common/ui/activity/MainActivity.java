@@ -25,6 +25,7 @@ import com.geek.huixiaoer.mvp.common.contract.MainContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
+import com.geek.huixiaoer.mvp.person.ui.activity.PersonCenterActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
@@ -297,17 +298,22 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 launchActivity(new Intent(MainActivity.this, RecycleListActivity.class));
                 break;
             case R.id.tv_function3:
+//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.tv_function4:
+//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.tv_function5:
+                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.tv_function6:
+//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.tv_function7:
+                launchActivity(new Intent(MainActivity.this, PersonCenterActivity.class));
                 break;
             case R.id.tv_function8:
-                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }
     }

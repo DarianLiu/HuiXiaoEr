@@ -44,7 +44,12 @@
             android:name=".mvp.common.ui.activity.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity android:name=".mvp.recycle.ui.activity.RecycleListActivity" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleAddActivity"></activity>
+        <activity android:name=".mvp.recycle.ui.activity.RecycleAddActivity" />
+        <activity android:name=".mvp.supermarket.ui.activity.ShoppingCartActivity" />
+        <activity android:name=".mvp.supermarket.ui.activity.OrderCreateActivity" />
+        <activity android:name=".mvp.common.ui.activity.ForgetPasswordActivity" />
+        <activity android:name=".mvp.person.ui.activity.MyOrderActivity" />
+        <activity android:name=".mvp.person.ui.activity.PersonCenterActivity"></activity>
     </application>
 
 </manifest>

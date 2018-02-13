@@ -21,16 +21,16 @@
         <com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager
             android:id="@+id/autoScrollViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/autoScrollIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal" />
 
     </RelativeLayout>
 
@@ -42,7 +42,7 @@
         android:layout_marginRight="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块一"
+        android:text="超级商场"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="0"
@@ -59,7 +59,7 @@
         android:layout_marginRight="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块二"
+        android:text="垃圾回收"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="1"
@@ -75,7 +75,7 @@
         android:layout_marginLeft="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块三"
+        android:text="家政服务"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="2"
@@ -91,7 +91,7 @@
         android:layout_marginRight="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块四"
+        android:text="餐饮服务"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="0"
@@ -109,7 +109,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块五"
+        android:text="会员登录"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="1"
@@ -125,7 +125,7 @@
         android:layout_marginLeft="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块六"
+        android:text="关于惠小二"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="2"
@@ -142,7 +142,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块七"
+        android:text="个人中心"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="0"
@@ -160,7 +160,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/color_text_guide"
         android:gravity="center"
-        android:text="功能模块八"
+        android:text="未定模块"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16"
         app:layout_column="2"

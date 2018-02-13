@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.mvp.recycle.ui.activity;
+package com.geek.huixiaoer.mvp.person.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,33 +8,33 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
-import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleAddComponent;
-import com.geek.huixiaoer.mvp.recycle.di.module.RecycleAddModule;
-import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
-import com.geek.huixiaoer.mvp.recycle.presenter.RecycleAddPresenter;
+import com.geek.huixiaoer.mvp.person.di.component.DaggerPersonCenterComponent;
+import com.geek.huixiaoer.mvp.person.di.module.PersonCenterModule;
+import com.geek.huixiaoer.mvp.person.contract.PersonCenterContract;
+import com.geek.huixiaoer.mvp.person.presenter.PersonCenterPresenter;
 
-import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.mvp.person.R;
 
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implements RecycleAddContract.View {
+public class PersonCenterActivity extends BaseActivity<PersonCenterPresenter> implements PersonCenterContract.View {
 
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
-        DaggerRecycleAddComponent //如找不到该类,请编译一下项目
+        DaggerPersonCenterComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .recycleAddModule(new RecycleAddModule(this))
+                .personCenterModule(new PersonCenterModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        return R.layout.activity_recycle_add; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_person_center; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override

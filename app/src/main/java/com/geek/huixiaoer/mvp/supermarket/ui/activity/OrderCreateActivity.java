@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.mvp.recycle.ui.activity;
+package com.geek.huixiaoer.mvp.supermarket.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
-import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleAddComponent;
-import com.geek.huixiaoer.mvp.recycle.di.module.RecycleAddModule;
-import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
-import com.geek.huixiaoer.mvp.recycle.presenter.RecycleAddPresenter;
+import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerOrderCreateComponent;
+import com.geek.huixiaoer.mvp.supermarket.di.module.OrderCreateModule;
+import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
+import com.geek.huixiaoer.mvp.supermarket.presenter.OrderCreatePresenter;
 
 import com.geek.huixiaoer.R;
 
@@ -19,22 +19,22 @@ import com.geek.huixiaoer.R;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implements RecycleAddContract.View {
+public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> implements OrderCreateContract.View {
 
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
-        DaggerRecycleAddComponent //如找不到该类,请编译一下项目
+        DaggerOrderCreateComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .recycleAddModule(new RecycleAddModule(this))
+                .orderCreateModule(new OrderCreateModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        return R.layout.activity_recycle_add; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_order_create; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override

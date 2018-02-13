@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.mvp.recycle.ui.activity;
+package com.geek.huixiaoer.mvp.common.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
-import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleAddComponent;
-import com.geek.huixiaoer.mvp.recycle.di.module.RecycleAddModule;
-import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
-import com.geek.huixiaoer.mvp.recycle.presenter.RecycleAddPresenter;
+import com.geek.huixiaoer.mvp.common.di.component.DaggerForgetPasswordComponent;
+import com.geek.huixiaoer.mvp.common.di.module.ForgetPasswordModule;
+import com.geek.huixiaoer.mvp.common.contract.ForgetPasswordContract;
+import com.geek.huixiaoer.mvp.common.presenter.ForgetPasswordPresenter;
 
 import com.geek.huixiaoer.R;
 
@@ -19,22 +19,22 @@ import com.geek.huixiaoer.R;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implements RecycleAddContract.View {
+public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter> implements ForgetPasswordContract.View {
 
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
-        DaggerRecycleAddComponent //如找不到该类,请编译一下项目
+        DaggerForgetPasswordComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .recycleAddModule(new RecycleAddModule(this))
+                .forgetPasswordModule(new ForgetPasswordModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        return R.layout.activity_recycle_add; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_forget_password; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override
