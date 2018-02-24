@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:hint="@string/hint_say_something"
+        android:inputType="text"
+        android:minHeight="100dp"
+        android:padding="15dp"
+        android:textColor="@color/color_text_caption"
+        android:textColorHint="@color/color_hint_text"
+        android:textSize="@dimen/t15" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="45dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp" />
 
 </LinearLayout>

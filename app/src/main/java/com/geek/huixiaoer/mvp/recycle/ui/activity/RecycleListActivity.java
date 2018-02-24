@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -61,6 +63,22 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -95,7 +113,7 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
      */
     private void initRecycleView() {
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(mAdapter);
     }

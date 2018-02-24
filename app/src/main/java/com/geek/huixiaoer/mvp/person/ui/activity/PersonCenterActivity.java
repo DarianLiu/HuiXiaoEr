@@ -13,7 +13,7 @@ import com.geek.huixiaoer.mvp.person.di.module.PersonCenterModule;
 import com.geek.huixiaoer.mvp.person.contract.PersonCenterContract;
 import com.geek.huixiaoer.mvp.person.presenter.PersonCenterPresenter;
 
-import com.geek.huixiaoer.mvp.person.R;
+import com.geek.huixiaoer.R;
 
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;

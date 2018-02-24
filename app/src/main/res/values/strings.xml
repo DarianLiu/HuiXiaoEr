@@ -8,6 +8,10 @@
     <string name="title_recycle">垃圾回收</string>
     <string name="title_register">注册</string>
     <string name="title_login">登录</string>
+    <string name="title_release">发布信息</string>
+
+    <string name="action_add">添加</string>
+    <string name="action_release">发布</string>
 
     <!--Button Text-->
     <string name="btn_login">登录</string>
@@ -30,6 +34,7 @@
     <string name="hint_username">用户名</string>
     <string name="hint_account">用户名/手机号码</string>
     <string name="hint_invitation_code">邀请码（选填、区分大小写）</string>
+    <string name="hint_say_something">说点什么&#8230;</string>
 
     <!--错误提示-->
     <string name="error_account_null">账号不能为空</string>
