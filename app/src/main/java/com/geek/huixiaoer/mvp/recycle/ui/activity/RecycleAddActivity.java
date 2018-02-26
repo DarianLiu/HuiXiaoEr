@@ -19,6 +19,10 @@ import com.geek.huixiaoer.mvp.recycle.ui.adpater.GridAdapter;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +75,20 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         mAdapter = new GridAdapter(this, mImageList);
         recyclerView.setAdapter(mAdapter);
 
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper()
+
         mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onAddClick(int position) {
+                PictureSelector.create(RecycleAddActivity.this)
+                        .openGallery(PictureMimeType.ofImage())
+                        .maxSelectNum(9)
+                        .imageSpanCount(4)
+                        .previewImage(true)
+                        .isCamera(true)
+//                        .compress(true)
+                        .glideOverride(400, 400)
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
 
             }
 
@@ -82,6 +97,30 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                    for (int i = 0; i < selectList.size(); i++) {
+                        mImageList.add(selectList.get(i).getCompressPath());
+                        // 例如 LocalMedia 里面返回三种path
+                        // 1.media.getPath(); 为原图path
+                        // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                        // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                        // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
+
+                    }
+
+                    mAdapter.addData(mImageList);
+                    break;
+            }
+        }
     }
 
     @Override

@@ -71,6 +71,7 @@ dependencies {
         exclude module: 'butterknife-annotations'
     }
     compile rootProject.ext.dependencies["smartRefreshLayout"]
+    compile rootProject.ext.dependencies["pictureSelector"]
 
     //tools
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
@@ -81,6 +82,5 @@ dependencies {
     debugCompile rootProject.ext.dependencies["canary-debug"]
     releaseCompile rootProject.ext.dependencies["canary-release"]
     testCompile rootProject.ext.dependencies["canary-release"]
-//    testCompile rootProject.ext.dependencies["junit"]
 
 }
