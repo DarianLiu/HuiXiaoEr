@@ -3,14 +3,20 @@ package com.geek.huixiaoer.mvp.recycle.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
+import com.geek.huixiaoer.common.widget.recyclerview.MoveCallBack;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleAddComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleAddModule;
@@ -42,6 +48,8 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     EditText etContent;
     @BindView(R.id.rv_image)
     RecyclerView recyclerView;
+    @BindView(R.id.tv_delete)
+    TextView tvDelete;
 
     private List<String> mImageList = new ArrayList<>();
     private GridAdapter mAdapter;
@@ -71,12 +79,66 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 10, false));
         mAdapter = new GridAdapter(this, mImageList);
         recyclerView.setAdapter(mAdapter);
 
-//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper()
+        //RecyclerView设置拖拽排序和拖到底部删除
+        MoveCallBack callBack = new MoveCallBack(mAdapter, mImageList);
+        callBack.setDragListener(new MoveCallBack.DragListener() {
+            @Override
+            public void deleteState(boolean delete) {
+                if (delete){
+                    tvDelete.setAlpha(0.6f);
+                }else {
+                    tvDelete.setAlpha(0.8f);
+                }
+            }
 
+            @Override
+            public void dragState(boolean start) {
+                if (start){
+                    tvDelete.setVisibility(View.VISIBLE);
+                }else {
+                    tvDelete.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void clearView() {
+
+            }
+        });
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callBack);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            //长按事件
+            @Override
+            public void onLongPress(MotionEvent e) {
+                super.onLongPress(e);
+                View childView = recyclerView.findChildViewUnder(e.getX(), e.getY());
+                if (childView != null) {
+                    int position = recyclerView.getChildLayoutPosition(childView);
+                    //设置添加按钮不能拖动
+                    if (mAdapter.getItemViewType(position) == 1) {
+                        itemTouchHelper.startDrag(recyclerView.getChildViewHolder(childView));
+                    }
+                }
+            }
+        });
+
+        //触摸事件监听
+        recyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return gestureDetector.onTouchEvent(e);
+            }
+
+        });
+
+        //item点击事件监听
         mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onAddClick(int position) {
@@ -108,7 +170,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
                     // 图片选择结果回调
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
                     for (int i = 0; i < selectList.size(); i++) {
-                        mImageList.add(selectList.get(i).getCompressPath());
+                        mImageList.add(selectList.get(i).getPath());
                         // 例如 LocalMedia 里面返回三种path
                         // 1.media.getPath(); 为原图path
                         // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
@@ -117,7 +179,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
 
                     }
 
-                    mAdapter.addData(mImageList);
+                    mAdapter.notifyDataSetChanged();
                     break;
             }
         }

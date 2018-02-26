@@ -29,6 +29,8 @@
     <!--Toolbar TextSize -->
     <dimen name="toolbar_text_size">16sp</dimen>
 
+    <dimen name="article_post_delete">46dp</dimen>
+
     <!-- TextSize -->
     <dimen name="t10">10sp</dimen>
     <dimen name="t11">11sp</dimen>

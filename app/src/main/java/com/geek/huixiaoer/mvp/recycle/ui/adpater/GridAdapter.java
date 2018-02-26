@@ -34,14 +34,14 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_with_delete, null);
+        int itemWidth = (int) (DeviceUtils.getScreenWidth(mContext) -
+                DeviceUtils.dpToPixel(mContext, 60) - 30) / 4;
+        view.setLayoutParams(new RelativeLayout.LayoutParams(itemWidth, itemWidth));
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        int itemWidth = (int) (DeviceUtils.getScreenWidth(mContext) -
-                DeviceUtils.dpToPixel(mContext, 60) - 20) / 3;
-        holder.image.setLayoutParams(new RelativeLayout.LayoutParams(itemWidth, itemWidth));
         switch (getItemViewType(position)) {
             case TYPE_IMAGE:
                 GlideArms.with(mContext).load(result.get(position)).centerCrop().into(holder.image);
@@ -50,25 +50,25 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
             case TYPE_ADD:
                 holder.image.setImageResource(R.drawable.icon_add_image);
                 holder.image_close.setVisibility(View.GONE);
+                holder.image.setOnClickListener(v -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onAddClick(position);
+                }
+            });
                 break;
         }
-        holder.image.setOnClickListener(v -> {
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onAddClick(position);
-            }
-        });
 
-        holder.image_close.setOnClickListener(v -> {
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onRemoveClick(position);
-            }
-        });
+//        holder.image_close.setOnClickListener(v -> {
+//            if (mOnItemClickListener != null) {
+//                mOnItemClickListener.onRemoveClick(position);
+//            }
+//        });
     }
 
-    public void addData(List<String> list){
-        result.addAll(list);
-        notifyDataSetChanged();
-    }
+//    public void addData(List<String> list){
+//        result.addAll(list);
+//        notifyDataSetChanged();
+//    }
 
     @Override
     public int getItemCount() {
