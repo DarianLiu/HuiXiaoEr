@@ -3,7 +3,6 @@ package com.geek.huixiaoer.mvp.common.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -25,7 +25,6 @@ import com.geek.huixiaoer.mvp.common.contract.MainContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
-import com.geek.huixiaoer.mvp.person.ui.activity.PersonCenterActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
@@ -42,7 +41,6 @@ import butterknife.OnClick;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
-
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View,
         NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,10 +48,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView toolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    //    @BindView(R.id.fl_content)
-//    FrameLayout flContent;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     @BindView(R.id.drawer_layout)
@@ -62,22 +56,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.autoScrollIndicator)
     LinearLayout autoScrollIndicator;
-    @BindView(R.id.tv_function1)
-    TextView tvFunction1;
-    @BindView(R.id.tv_function2)
-    TextView tvFunction2;
-    @BindView(R.id.tv_function3)
-    TextView tvFunction3;
-    @BindView(R.id.tv_function4)
-    TextView tvFunction4;
-    @BindView(R.id.tv_function5)
-    TextView tvFunction5;
-    @BindView(R.id.tv_function6)
-    TextView tvFunction6;
-    @BindView(R.id.tv_function7)
-    TextView tvFunction7;
-    @BindView(R.id.tv_function8)
-    TextView tvFunction8;
+    @BindView(R.id.rl_recycle)
+    RelativeLayout rlRecycle;
+    @BindView(R.id.rl_housewifery)
+    RelativeLayout rlHousewifery;
+    @BindView(R.id.rl_supermarket)
+    RelativeLayout rlSupermarket;
+    @BindView(R.id.rl_dinning)
+    RelativeLayout rlDinning;
+    @BindView(R.id.tv_member_login)
+    TextView tv_member_login;
 
     //轮播图底部滑动图片
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
@@ -287,34 +275,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         finish();
     }
 
-    @OnClick({R.id.tv_function1, R.id.tv_function2, R.id.tv_function3, R.id.tv_function4,
-            R.id.tv_function5, R.id.tv_function6, R.id.tv_function7, R.id.tv_function8})
+    @OnClick({R.id.rl_supermarket, R.id.rl_recycle, R.id.rl_housewifery, R.id.rl_dinning,
+            R.id.tv_member_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_function1:
+            case R.id.rl_supermarket:
                 launchActivity(new Intent(MainActivity.this, ShopActivity.class));
                 break;
-            case R.id.tv_function2:
+            case R.id.rl_recycle:
                 launchActivity(new Intent(MainActivity.this, RecycleListActivity.class));
                 break;
-            case R.id.tv_function3:
-//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+            case R.id.rl_housewifery:
+//                launchActivity(new Intent(MainActivity.this, HouseWiferyActivity.class));
                 break;
-            case R.id.tv_function4:
-//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+            case R.id.rl_dinning:
+//                launchActivity(new Intent(MainActivity.this, DinningActivity.class));
                 break;
-            case R.id.tv_function5:
+            case R.id.tv_member_login:
                 launchActivity(new Intent(MainActivity.this, LoginActivity.class));
-                break;
-            case R.id.tv_function6:
-//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
-                break;
-            case R.id.tv_function7:
-                launchActivity(new Intent(MainActivity.this, PersonCenterActivity.class));
-                break;
-            case R.id.tv_function8:
-//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }
     }
+
 }

@@ -29,6 +29,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.PictureFileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 10, false));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 15, false));
         mAdapter = new GridAdapter(this, mImageList);
         recyclerView.setAdapter(mAdapter);
 
@@ -89,18 +90,20 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         callBack.setDragListener(new MoveCallBack.DragListener() {
             @Override
             public void deleteState(boolean delete) {
-                if (delete){
+                if (delete) {
                     tvDelete.setAlpha(0.6f);
-                }else {
+                    tvDelete.setText(R.string.loose_hand_can_be_deleted);
+                } else {
                     tvDelete.setAlpha(0.8f);
+                    tvDelete.setText(R.string.drag_to_delete_here);
                 }
             }
 
             @Override
             public void dragState(boolean start) {
-                if (start){
+                if (start) {
                     tvDelete.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     tvDelete.setVisibility(View.GONE);
                 }
             }
@@ -148,14 +151,16 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
                         .imageSpanCount(4)
                         .previewImage(true)
                         .isCamera(true)
-//                        .compress(true)
+                        .compress(true)
+                        .minimumCompressSize(100)// 小于100kb的图片不压缩
                         .glideOverride(400, 400)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
 
             }
 
+            //图片预览
             @Override
-            public void onRemoveClick(int position) {
+            public void onPreviewClick(List<String> images, int position) {
 
             }
         });
@@ -170,13 +175,18 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
                     // 图片选择结果回调
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
                     for (int i = 0; i < selectList.size(); i++) {
-                        mImageList.add(selectList.get(i).getPath());
                         // 例如 LocalMedia 里面返回三种path
                         // 1.media.getPath(); 为原图path
                         // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
                         // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                         // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
-
+                        if (selectList.get(i).isCompressed()) {
+                            mImageList.add(selectList.get(i).getCompressPath());
+                        } else if (selectList.get(i).isCut()) {
+                            mImageList.add(selectList.get(i).getCutPath());
+                        } else {
+                            mImageList.add(selectList.get(i).getPath());
+                        }
                     }
 
                     mAdapter.notifyDataSetChanged();
@@ -205,6 +215,13 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     public void launchActivity(@NonNull Intent intent) {
         checkNotNull(intent);
         ArmsUtils.startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //包括裁剪和压缩后的缓存，要在上传成功后调用
+        PictureFileUtils.deleteCacheDirFile(RecycleAddActivity.this);
     }
 
     @Override

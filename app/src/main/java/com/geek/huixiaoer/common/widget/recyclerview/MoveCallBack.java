@@ -7,10 +7,11 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.geek.huixiaoer.R;
-import com.jess.arms.utils.DeviceUtils;
 
 import java.util.Collections;
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * RecyclerView拖拽排序，拖动到底部删除
@@ -32,10 +33,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 设置item是否处理拖拽事件和滑动事件，以及拖拽和滑动操作的方向
-     *
-     * @param recyclerView
-     * @param viewHolder
-     * @return
      */
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
@@ -49,26 +46,26 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 当用户从item原来的位置拖动可以拖动的item到新位置的过程中调用
-     *
-     * @param recyclerView
-     * @param viewHolder
-     * @param target
-     * @return
      */
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         int fromPosition = viewHolder.getAdapterPosition();//得到item原来的position
         int toPosition = target.getAdapterPosition();//得到目标position
-        if (toPosition == images.size() - 1 || images.size() - 1 == fromPosition) {
-            return true;
+
+        if (toPosition >= images.size()) {
+            toPosition = images.size() - 1;
         }
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
                 Collections.swap(images, i, i + 1);
+                Timber.d("======fromPosition：" + fromPosition + " =====toPosition：" + toPosition);
+                Timber.d("======移动：" + i + " 到：" + (i + 1));
             }
         } else {
             for (int i = fromPosition; i > toPosition; i--) {
                 Collections.swap(images, i, i - 1);
+                Timber.d("======fromPosition：" + fromPosition + " =====toPosition：" + toPosition);
+                Timber.d("======移动：" + i + " 到：" + (i - 1));
             }
         }
         adapter.notifyItemMoved(fromPosition, toPosition);
@@ -77,8 +74,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 设置是否支持长按拖拽
-     *
-     * @return
      */
     @Override
     public boolean isLongPressDragEnabled() {
@@ -86,8 +81,7 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
     }
 
     /**
-     * @param viewHolder
-     * @param direction
+     * 滑动
      */
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
@@ -96,9 +90,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 当用户与item的交互结束并且item也完成了动画时调用
-     *
-     * @param recyclerView
-     * @param viewHolder
      */
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
@@ -123,14 +114,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 自定义拖动与滑动交互
-     *
-     * @param c
-     * @param recyclerView
-     * @param viewHolder
-     * @param dX
-     * @param dY
-     * @param actionState
-     * @param isCurrentlyActive
      */
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
@@ -138,9 +121,21 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
             return;
         }
 
-        if (dY >= (recyclerView.getHeight()
-                - viewHolder.itemView.getBottom()//item底部距离recyclerView顶部高度
-                - DeviceUtils.dpToPixel(viewHolder.itemView.getContext(), R.dimen.article_post_delete))) {//拖到删除处
+        //RecyclerView高度
+        float rvHeight = recyclerView.getHeight();
+//        Timber.d("======RecyclerView高度：" + rvHeight);
+        //item底部距离recyclerView顶部高度
+        float itemBottom = viewHolder.itemView.getBottom();
+//        Timber.d("======item底部距离recyclerView顶部高度：" + itemBottom);
+        //删除控件的高度
+        float deleteHeight = viewHolder.itemView.getContext().getResources()
+                .getDimensionPixelSize(R.dimen.article_post_delete);
+//        Timber.d("======删除处的高度：" + deleteHeight);
+        //拖到删除处所需要拖拽的偏移量
+        float needDragHeight = rvHeight - itemBottom - deleteHeight;
+//        Timber.d("=========拖到删除处需要拖拽的偏移量" + needDragHeight);
+//        Timber.d("======拖拽Y轴偏移量：" + dY);
+        if (dY >= needDragHeight) {//拖到删除处
             dragListener.deleteState(true);
             if (up) {//在删除处放手，则删除item
                 viewHolder.itemView.setVisibility(View.INVISIBLE);//先设置不可见，如果不设置的话，会看到viewHolder返回到原位置时才消失，因为remove会在viewHolder动画执行完成后才将viewHolder删除
@@ -160,9 +155,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 当长按选中item的时候（拖拽开始的时候）调用
-     *
-     * @param viewHolder
-     * @param actionState
      */
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
@@ -174,12 +166,6 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
 
     /**
      * 设置手指离开后ViewHolder的动画时间，在用户手指离开后调用
-     *
-     * @param recyclerView
-     * @param animationType
-     * @param animateDx
-     * @param animateDy
-     * @return
      */
     @Override
     public long getAnimationDuration(RecyclerView recyclerView, int animationType, float animateDx, float animateDy) {
@@ -188,18 +174,14 @@ public class MoveCallBack extends ItemTouchHelper.Callback {
         return super.getAnimationDuration(recyclerView, animationType, animateDx, animateDy);
     }
 
-   public interface DragListener {
+    public interface DragListener {
         /**
          * 用户是否将 item拖动到删除处，根据状态改变颜色
-         *
-         * @param delete
          */
         void deleteState(boolean delete);
 
         /**
          * 是否于拖拽状态
-         *
-         * @param start
          */
         void dragState(boolean start);
 

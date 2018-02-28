@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6069e1</color>
-    <color name="colorPrimaryDark">#616ae2</color>
-    <color name="colorAccent">#EB4443</color>
+    <color name="colorPrimary">#F4C400</color>
+    <color name="colorPrimaryDark">#CFB53B</color>
+    <color name="colorAccent">#CFB53B</color>
     <color name="colorWindowBackGround">#f5f5f5</color>
 
     <!--*********字体颜色-start********-->
@@ -18,10 +18,10 @@
 
     <!--当背景颜色为白色时-->
     <color name="color_text_guide">#7169d5</color>
-    <color name="color_btn_text_primary">#6069e1</color>
+    <color name="color_btn_text_primary">#F4C400</color>
     <color name="color_hint_text">#666666</color>
     <color name="color_tab_text_normal">#666666</color>
-    <color name="color_tab_text_selected">#5d67da</color>
+    <color name="color_tab_text_selected">#F4C400</color>
     <color name="color_text_caption">#333333</color>
     <color name="color_text_label">#666666</color>
     <color name="color_text_body">#999999</color>
@@ -33,6 +33,11 @@
     <color name="color_text_gray">#ACB4BB</color>
     <!--*********字体颜色-end********-->
 
+    <!--背景颜色-->
+    <color name="bg_color_white">#ffffff</color>
+    <color name="bg_main_color">#F5F5F5</color>
+    <color name="bg_hui_color">#d2d2d2</color>
+
     <!--基础颜色色值-->
     <color name="white">#ffffff</color>
     <color name="red">#ff0000</color>
@@ -41,6 +46,6 @@
     <color name="gray">#ababab</color>
 
     <!--线条颜色-->
-    <color name="line_default_color">#dedede</color>
+    <color name="line_default_color">#f0f0f0</color>
 
 </resources>

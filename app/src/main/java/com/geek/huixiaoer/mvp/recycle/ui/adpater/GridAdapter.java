@@ -15,7 +15,7 @@ import com.jess.arms.utils.DeviceUtils;
 import java.util.List;
 
 //适配器
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     private List<String> result;
     private Context mContext;
@@ -24,18 +24,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
     private final int TYPE_ADD = 0;//添加
     private final int TYPE_IMAGE = 1;//图片
 
-
     public GridAdapter(Context context, List<String> result) {
         this.result = result;
         this.mContext = context;
     }
 
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_with_delete, null);
         int itemWidth = (int) (DeviceUtils.getScreenWidth(mContext) -
-                DeviceUtils.dpToPixel(mContext, 60) - 30) / 4;
+                DeviceUtils.dpToPixel(mContext, 60) - 45) / 4;
         view.setLayoutParams(new RelativeLayout.LayoutParams(itemWidth, itemWidth));
         return new ViewHolder(view);
     }
@@ -46,29 +44,23 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
             case TYPE_IMAGE:
                 GlideArms.with(mContext).load(result.get(position)).centerCrop().into(holder.image);
                 holder.image_close.setVisibility(View.VISIBLE);
+                holder.image.setOnClickListener(v -> {
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onPreviewClick(result, position);
+                    }
+                });
                 break;
             case TYPE_ADD:
                 holder.image.setImageResource(R.drawable.icon_add_image);
                 holder.image_close.setVisibility(View.GONE);
                 holder.image.setOnClickListener(v -> {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onAddClick(position);
-                }
-            });
+                    if (mOnItemClickListener != null) {
+                        mOnItemClickListener.onAddClick(position);
+                    }
+                });
                 break;
         }
-
-//        holder.image_close.setOnClickListener(v -> {
-//            if (mOnItemClickListener != null) {
-//                mOnItemClickListener.onRemoveClick(position);
-//            }
-//        });
     }
-
-//    public void addData(List<String> list){
-//        result.addAll(list);
-//        notifyDataSetChanged();
-//    }
 
     @Override
     public int getItemCount() {
@@ -108,7 +100,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder>  {
     public interface OnRecyclerViewItemClickListener {
         void onAddClick(int position);
 
-        void onRemoveClick(int position);
+        void onPreviewClick(List<String> images, int position);
     }
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
