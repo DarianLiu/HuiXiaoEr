@@ -43,7 +43,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         switch (getItemViewType(position)) {
             case TYPE_IMAGE:
                 GlideArms.with(mContext).load(result.get(position)).centerCrop().into(holder.image);
-                holder.image_close.setVisibility(View.VISIBLE);
+//                holder.image_close.setVisibility(View.VISIBLE);
                 holder.image.setOnClickListener(v -> {
                     if (mOnItemClickListener != null) {
                         mOnItemClickListener.onPreviewClick(result, position);
@@ -52,7 +52,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
                 break;
             case TYPE_ADD:
                 holder.image.setImageResource(R.drawable.icon_add_image);
-                holder.image_close.setVisibility(View.GONE);
+//                holder.image_close.setVisibility(View.GONE);
                 holder.image.setOnClickListener(v -> {
                     if (mOnItemClickListener != null) {
                         mOnItemClickListener.onAddClick(position);
@@ -88,12 +88,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image, image_close;
+        ImageView image;
 
         private ViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.iv_location);
-            image_close = itemView.findViewById(R.id.iv_delete);
+//            image_close = itemView.findViewById(R.id.iv_delete);
         }
     }
 

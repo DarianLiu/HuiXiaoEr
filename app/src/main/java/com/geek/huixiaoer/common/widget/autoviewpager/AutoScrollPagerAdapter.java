@@ -41,14 +41,12 @@ public class AutoScrollPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        wrappedAdapter.destroyItem(container, position, object);
+//        wrappedAdapter.destroyItem(container, position, object);
     }
 
     @Override
     public boolean isViewFromObject(View view, Object o) {
         return wrappedAdapter.isViewFromObject(view, o);
     }
-
-
 
 }

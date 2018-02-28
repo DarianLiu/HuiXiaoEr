@@ -4,19 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -48,24 +44,24 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView toolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.nav_view)
-    NavigationView navigationView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+    //    @BindView(R.id.nav_view)
+//    NavigationView navigationView;
     @BindView(R.id.autoScrollViewPager)
     AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.autoScrollIndicator)
     LinearLayout autoScrollIndicator;
-    @BindView(R.id.rl_recycle)
-    RelativeLayout rlRecycle;
-    @BindView(R.id.rl_housewifery)
-    RelativeLayout rlHousewifery;
-    @BindView(R.id.rl_supermarket)
-    RelativeLayout rlSupermarket;
-    @BindView(R.id.rl_dinning)
-    RelativeLayout rlDinning;
-    @BindView(R.id.tv_member_login)
-    TextView tv_member_login;
+    @BindView(R.id.iv_recycle)
+    ImageView ivRecycle;
+    @BindView(R.id.iv_housewifery)
+    ImageView ivHousewifery;
+    @BindView(R.id.iv_supermarket)
+    ImageView ivSupermarket;
+    @BindView(R.id.iv_dinning)
+    ImageView ivDinning;
+    @BindView(R.id.linear_member_login)
+    LinearLayout linearLogin;
 
     //轮播图底部滑动图片
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
@@ -87,20 +83,22 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         return R.layout.activity_main; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
     @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbarTitle.setText(R.string.app_name);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawerLayout.setDrawerListener(toggle);
+//        toggle.syncState();
+//        navigationView.setNavigationItemSelectedListener(this);
 
         //获取轮播图
         mPresenter.getBanner();
@@ -170,11 +168,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mScrollImageViews.clear();
 
         for (int i = 0; i < size; i++) {
-            ImageView iv = new ImageView(this);
-            iv.setPadding(10, 0, 10, 0);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            ImageView iv = new ImageView(this.getApplicationContext());
+            iv.setPadding(10, 0, 10, 20);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(40, 40);
             if (i != 0) {
                 iv.setImageResource(R.drawable.icon_indicator_normal);
             } else {
@@ -207,7 +203,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             ImageView ivBanner = view.findViewById(R.id.imageView);
 
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
-                    .error(R.mipmap.ic_launcher).into(ivBanner);
+                    .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
             return view;
         }
@@ -218,25 +214,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     };
 
-    @OnClick(R.id.fab)
-    public void fabOnClick() {
-        showMessage("Replace with your own action");
-    }
+//    @OnClick(R.id.fab)
+//    public void fabOnClick() {
+//        showMessage("Replace with your own action");
+//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_recovery:
-                break;
-            case R.id.nav_housewifery:
-                break;
-            case R.id.nav_supermarket:
-                break;
-            case R.id.nav_dining:
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+//        switch (item.getItemId()) {
+//            case R.id.nav_recovery:
+//                break;
+//            case R.id.nav_housewifery:
+//                break;
+//            case R.id.nav_supermarket:
+//                break;
+//            case R.id.nav_dining:
+//                break;
+//        }
+//        drawerLayout.closeDrawer(GravityCompat.START);
+//        return true;
+        return false;
     }
 
     @Override
@@ -263,11 +260,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
+//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     @Override
@@ -275,23 +273,23 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         finish();
     }
 
-    @OnClick({R.id.rl_supermarket, R.id.rl_recycle, R.id.rl_housewifery, R.id.rl_dinning,
-            R.id.tv_member_login})
+    @OnClick({R.id.iv_supermarket, R.id.iv_recycle, R.id.iv_housewifery, R.id.iv_dinning,
+            R.id.linear_member_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.rl_supermarket:
+            case R.id.iv_supermarket:
                 launchActivity(new Intent(MainActivity.this, ShopActivity.class));
                 break;
-            case R.id.rl_recycle:
+            case R.id.iv_recycle:
                 launchActivity(new Intent(MainActivity.this, RecycleListActivity.class));
                 break;
-            case R.id.rl_housewifery:
+            case R.id.iv_housewifery:
 //                launchActivity(new Intent(MainActivity.this, HouseWiferyActivity.class));
                 break;
-            case R.id.rl_dinning:
+            case R.id.iv_dinning:
 //                launchActivity(new Intent(MainActivity.this, DinningActivity.class));
                 break;
-            case R.id.tv_member_login:
+            case R.id.linear_member_login:
                 launchActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }

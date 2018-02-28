@@ -13,16 +13,48 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/linear_member_login" />
+
+        <LinearLayout
+            android:id="@+id/linear_member_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="2dp"
+                android:drawableRight="@drawable/icon_main_login"
+                android:gravity="center"
+                android:text="@string/member_login"
+                android:textColor="@color/color_text_white"
+                android:textSize="@dimen/t16" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center|end"-->
-        <!--android:visibility="gone"-->
-        <!--android:layout_marginBottom="46dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
+    <!--android:id="@+id/fab"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center|end"-->
+    <!--android:visibility="gone"-->
+    <!--android:layout_marginBottom="46dp"-->
+    <!--android:layout_marginRight="15dp"-->
+    <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
 </android.support.design.widget.CoordinatorLayout>

@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -40,7 +42,6 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implements RecycleAddContract.View {
 
-
     @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar)
@@ -71,6 +72,22 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_upload, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_upload:
+//                launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -78,6 +95,10 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.title_release);
 
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -116,6 +137,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callBack);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        //长按点击事件处理
         GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             //长按事件
             @Override
@@ -145,6 +167,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onAddClick(int position) {
+                //打开相册
                 PictureSelector.create(RecycleAddActivity.this)
                         .openGallery(PictureMimeType.ofImage())
                         .maxSelectNum(9)

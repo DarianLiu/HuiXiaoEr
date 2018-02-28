@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">慧小二</string>
+    <string name="app_name">智慧生活</string>
     <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
     <!--Title Text-->
-    <string name="title_shop">网上商城</string>
+    <string name="title_shop">商超</string>
     <string name="title_get_captcha">获取验证码</string>
     <string name="title_recycle">垃圾回收</string>
     <string name="title_register">注册</string>
@@ -71,7 +71,7 @@
     <string name="loose_hand_can_be_deleted">松手即可删除</string>
 
     <!--会员相关-->
-    <string name="member_login">会员登录@</string>
+    <string name="member_login">会员登录</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
