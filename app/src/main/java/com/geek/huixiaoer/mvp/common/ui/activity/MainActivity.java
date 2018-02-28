@@ -52,6 +52,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.autoScrollIndicator)
     LinearLayout autoScrollIndicator;
+    @BindView(R.id.tv_notice)
+    TextView tvNotice;
     @BindView(R.id.iv_recycle)
     ImageView ivRecycle;
     @BindView(R.id.iv_housewifery)
@@ -102,6 +104,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
         //获取轮播图
         mPresenter.getBanner();
+
+        tvNotice.setSelected(true);
     }
 
     @Override

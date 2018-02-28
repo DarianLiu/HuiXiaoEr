@@ -32,6 +32,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_main_message"
+            android:drawablePadding="5dp"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="公告："
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:id="@+id/tv_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="震惊全国，三个嘎嘎嘎被卖了，买家666，卖家赚翻了！       人民日报发来贺电，夸我长得好看！"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
