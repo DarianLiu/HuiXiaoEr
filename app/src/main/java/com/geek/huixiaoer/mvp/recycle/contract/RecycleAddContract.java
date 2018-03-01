@@ -1,7 +1,11 @@
 package com.geek.huixiaoer.mvp.recycle.contract;
 
-import com.jess.arms.mvp.IView;
+import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.article.ArticleBean;
 import com.jess.arms.mvp.IModel;
+import com.jess.arms.mvp.IView;
+
+import io.reactivex.Observable;
 
 
 public interface RecycleAddContract {
@@ -12,6 +16,6 @@ public interface RecycleAddContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
-
+        Observable<BaseResponse<ArticleBean>> recycleAdd(String token,String category,String content);
     }
 }

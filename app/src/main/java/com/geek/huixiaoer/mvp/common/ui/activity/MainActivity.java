@@ -299,4 +299,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        autoScrollViewPager.startAutoScroll();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        autoScrollViewPager.stopAutoScroll();
+    }
 }

@@ -83,6 +83,15 @@ public class RecycleListPresenter extends BasePresenter<RecycleListContract.Mode
                 });
     }
 
+    /**
+     * 顶部插入一条数据
+     *
+     */
+    public void recycleAdd(ArticleBean articleBean) {
+        mList.add(0, articleBean);
+        mAdapter.notifyItemInserted(0);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

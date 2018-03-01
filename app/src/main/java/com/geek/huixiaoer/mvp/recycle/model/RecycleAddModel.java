@@ -1,35 +1,33 @@
 package com.geek.huixiaoer.mvp.recycle.model;
 
-import android.app.Application;
-
-import com.google.gson.Gson;
+import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
+import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
-import com.jess.arms.di.scope.ActivityScope;
-
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
+import io.reactivex.Observable;
 
 
 @ActivityScope
 public class RecycleAddModel extends BaseModel implements RecycleAddContract.Model {
-    private Gson mGson;
-    private Application mApplication;
 
     @Inject
-    public RecycleAddModel(IRepositoryManager repositoryManager, Gson gson, Application application) {
+    RecycleAddModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
-        this.mGson = gson;
-        this.mApplication = application;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.mGson = null;
-        this.mApplication = null;
     }
 
+    @Override
+    public Observable<BaseResponse<ArticleBean>> recycleAdd(String token,String category,String content) {
+        return  mRepositoryManager.obtainRetrofitService(BaseApi.class).articleAdd(token, category, content);
+    }
 }

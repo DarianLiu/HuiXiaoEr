@@ -139,9 +139,14 @@ public interface APIs {
 
         /*--------垃圾回收模块---------*/
         /**
-         * 文章列表
+         * 垃圾回收列表
          */
         String articleList = "member/article/list.jhtml";
+
+        /**
+         * 垃圾回收列表
+         */
+        String articleAdd = "member/article/appArticle.jhtml";
 
         /**
          * 评论添加

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.common.utils.MD5Utils;
 import com.geek.huixiaoer.common.utils.RegexUtils;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.common.contract.RegisterContract;
@@ -180,7 +179,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         tilNewPassword.setErrorEnabled(true);
         tilConfirmPassword.setErrorEnabled(true);
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)) {
-            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), mobile, MD5Utils.compute(password), code);
+            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), mobile, ArmsUtils.encodeToMD5(password), code);
         }
     }
 

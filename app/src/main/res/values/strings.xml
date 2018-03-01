@@ -49,6 +49,8 @@
     <string name="error_password_not_equals">两次输入的密码不一致</string>
     <string name="error_nickname_null">昵称不能为空</string>
     <string name="error_nickname">格式错误（昵称为3至16位中英文和“_”组成，不能以“_”结尾）</string>
+    <string name="error_content_null">您还没有说点什么哦！</string>
+    <string name="error_image_null">您还没有选择图片哦！</string>
 
     <!--提示-->
     <string name="prompt_dialog_title">温馨提示</string>

@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.common.utils.MD5Utils;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.common.contract.LoginContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerLoginComponent;
@@ -152,7 +151,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         switch (view.getId()) {
             case R.id.btn_login:
                 if (validateAccount(account) && validatePassword(password)) {
-                    mPresenter.login(StringUtils.stringUTF8(account), MD5Utils.compute(password));
+                    mPresenter.login(StringUtils.stringUTF8(account), ArmsUtils.encodeToMD5(password));
                 }
                 break;
             case R.id.tv_register:

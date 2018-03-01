@@ -1,5 +1,9 @@
 package com.geek.huixiaoer.common.utils;
 
+import android.graphics.Bitmap;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -18,5 +22,16 @@ public class StringUtils {
             e.printStackTrace();
         }
         return strUTF8;
+    }
+
+    /**
+     * Bitmap转String，并进行压缩
+     **/
+    public static String bitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] bytes = baos.toByteArray();
+        bitmap.recycle();
+        return Base64.encodeToString(bytes, Base64.NO_WRAP);
     }
 }

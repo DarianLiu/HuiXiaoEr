@@ -54,7 +54,8 @@
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
             android:singleLine="true"
-            android:text="震惊全国，三个嘎嘎嘎被卖了，买家666，卖家赚翻了！       人民日报发来贺电，夸我长得好看！"
+            android:text="[*]震惊全国，三个嘎嘎嘎被卖了，买家666，卖家赚翻了！
+            [*]人民日报发来贺电，夸我长得好看！"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/t14" />
 

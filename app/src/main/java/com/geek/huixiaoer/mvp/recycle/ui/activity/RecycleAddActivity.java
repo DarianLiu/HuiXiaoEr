@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -52,6 +54,11 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     RecyclerView recyclerView;
     @BindView(R.id.tv_delete)
     TextView tvDelete;
+
+    @BindString(R.string.error_content_null)
+    String errorContentNull;
+    @BindString(R.string.error_image_null)
+    String errorImageNull;
 
     private List<String> mImageList = new ArrayList<>();
     private GridAdapter mAdapter;
@@ -81,7 +88,14 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_upload:
-//                launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                String content = etContent.getText().toString();
+                if (TextUtils.isEmpty(content)) {
+                    showMessage(errorContentNull);
+                } else if (mImageList.size() <= 0) {
+                    showMessage(errorImageNull);
+                } else {
+                    mPresenter.recycleAdd(content, mImageList);
+                }
                 break;
         }
         return true;

@@ -12,10 +12,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.config.EventBusTags;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleListComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleListModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.RecycleListPresenter;
+import com.geek.huixiaoer.storage.entity.article.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -24,6 +26,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
+
+import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
 
@@ -60,6 +64,11 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
     @Override
     public int initView(Bundle savedInstanceState) {
         return R.layout.activity_recycle_list; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+    @Subscriber(tag = EventBusTags.Tag_Recycle)
+    private void onEventVersion(ArticleBean recycle) {
+        mPresenter.recycleAdd(recycle);
     }
 
     @Override

@@ -3,13 +3,15 @@ package com.geek.huixiaoer.api;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
-import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.CategoryBean;
 import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.article.ArticleBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -168,9 +170,18 @@ public interface BaseApi {
      */
     @GET(APIs.API.articleList)
     Observable<BaseResponse<BaseArrayData<ArticleBean>>> articleList(@Query("pageNumber") int pageNumber,
-                                                      @Query("pageSize") int pageSize,
-                                                      @Query("type") String type,
-                                                      @Query("category") String category);
+                                                                     @Query("pageSize") int pageSize,
+                                                                     @Query("type") String type,
+                                                                     @Query("category") String category);
+
+    /**
+     * 垃圾回收添加
+     */
+    @FormUrlEncoded
+    @POST(APIs.API.articleAdd)
+    Observable<BaseResponse<ArticleBean>> articleAdd(@Field("token") String token,
+                                                     @Field("category") String category,
+                                                     @Field("content") String content);
 
     /**
      * 文章添加评论

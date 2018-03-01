@@ -67,7 +67,7 @@ public class RecycleItemHolder extends BaseHolder<ArticleBean> {
             int width;
             if (imageSize == 1) {
                 spanCount = 1;
-                width = (int) rvImageWidth;
+                width = (int) rvImageWidth / 2;
             } else {
                 if (imageSize == 2 || imageSize == 4) {
                     spanCount = 2;
