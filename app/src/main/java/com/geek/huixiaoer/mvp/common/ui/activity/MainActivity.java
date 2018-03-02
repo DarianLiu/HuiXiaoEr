@@ -174,13 +174,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         for (int i = 0; i < size; i++) {
             ImageView iv = new ImageView(this.getApplicationContext());
             iv.setPadding(10, 0, 10, 20);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(40, 40);
             if (i != 0) {
                 iv.setImageResource(R.drawable.icon_indicator_normal);
             } else {
                 iv.setImageResource(R.drawable.icon_indicator_selected);
             }
-            iv.setLayoutParams(params);
+            iv.setLayoutParams(new ViewGroup.LayoutParams(30, 30));
             autoScrollIndicator.addView(iv);// 将图片加到一个布局里
             mScrollImageViews.add(iv);
         }

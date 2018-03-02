@@ -1,55 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/bg_color_white"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/iv_user_head"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_user_name_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center_vertical"
-        android:lineSpacingMultiplier="1.2"
-        android:text="评论人反对法发发的发房贷发放发放\n2016-3-12 12:12:12"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_user_head"
-        app:layout_constraintLeft_toRightOf="@+id/iv_user_head"
-        app:layout_constraintTop_toTopOf="@+id/iv_user_head" />
+        <ImageView
+            android:id="@+id/iv_user_head"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="我发不了一条垃圾回收消息，呼叫队友支援！！！"
-        android:textColor="@color/color_text_caption"
-        android:textSize="@dimen/t15"
-        app:layout_constraintBottom_toTopOf="@+id/rv_image"
-        app:layout_constraintLeft_toLeftOf="@id/tv_user_name_date"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_user_head" />
+        <TextView
+            android:id="@+id/tv_user_name_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_user_head"
+            android:layout_alignTop="@+id/iv_user_head"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_user_head"
+            android:gravity="center_vertical"
+            android:lineSpacingMultiplier="1.2"
+            android:text="评论人反对法发发的发房贷发放发放\n2016-3-12 12:12:12" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_user_head"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
+            android:text="我发不了一条垃圾回收消息，呼叫队友支援！！！"
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t15" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_image"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/tv_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="47dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.StringUtils;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.LoginContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerLoginComponent;
 import com.geek.huixiaoer.mvp.common.di.module.LoginModule;
@@ -54,6 +55,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @BindString(R.string.error_password_null)
     String error_password_null;
 
+    private CircleProgressDialog loadingDialog;
+
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
         DaggerLoginComponent //如找不到该类,请编译一下项目
@@ -78,15 +81,29 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         tvToolbarTitle.setText(R.string.title_login);
     }
 
-
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.adapter.DefaultStatePagerAdapter;
 import com.geek.huixiaoer.mvp.supermarket.contract.ShopContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
@@ -40,6 +41,8 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+
+    private CircleProgressDialog loadingDialog;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -76,12 +79,27 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

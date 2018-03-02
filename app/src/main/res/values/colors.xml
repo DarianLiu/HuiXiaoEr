@@ -50,4 +50,7 @@
     <color name="line_default_color">#f0f0f0</color>
     <color name="line_color">#d2d2d2</color>
 
+    <!--列表间距颜色-->
+    <color name="divider_color">#EDEDEF</color>
+
 </resources>

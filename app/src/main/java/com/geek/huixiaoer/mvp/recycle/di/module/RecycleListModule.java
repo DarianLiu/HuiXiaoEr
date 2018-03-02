@@ -56,6 +56,6 @@ public class RecycleListModule {
     @ActivityScope
     @Provides
     RecyclerView.Adapter providerAdapter(List<ArticleBean> list) {
-        return new RecycleAdapter(list);
+        return new RecycleAdapter(list, view.getActivity());
     }
 }

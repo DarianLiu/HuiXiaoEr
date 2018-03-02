@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsDetailContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsDetailComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsDetailModule;
@@ -40,6 +41,8 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     TextView tvFavorite;
     @BindView(R.id.tv_add_cart)
     TextView tvAddCart;
+
+    private CircleProgressDialog loadingDialog;
 
     private String goods_sn;
 
@@ -99,15 +102,29 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
         webView.loadUrl(url);
     }
 
-
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

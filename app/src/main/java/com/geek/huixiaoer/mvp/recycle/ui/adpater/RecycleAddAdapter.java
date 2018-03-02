@@ -15,7 +15,7 @@ import com.jess.arms.utils.DeviceUtils;
 import java.util.List;
 
 //适配器
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
+public class RecycleAddAdapter extends RecyclerView.Adapter<RecycleAddAdapter.ViewHolder> {
 
     private List<String> result;
     private Context mContext;
@@ -24,7 +24,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
     private final int TYPE_ADD = 0;//添加
     private final int TYPE_IMAGE = 1;//图片
 
-    public GridAdapter(Context context, List<String> result) {
+    public RecycleAddAdapter(Context context, List<String> result) {
         this.result = result;
         this.mContext = context;
     }

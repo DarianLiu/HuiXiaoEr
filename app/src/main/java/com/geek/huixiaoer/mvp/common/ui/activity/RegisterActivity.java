@@ -14,6 +14,7 @@ import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.RegexUtils;
 import com.geek.huixiaoer.common.utils.StringUtils;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.RegisterContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerRegisterComponent;
 import com.geek.huixiaoer.mvp.common.di.module.RegisterModule;
@@ -67,6 +68,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
     private String mobile;
 
+    private CircleProgressDialog loadingDialog;
+
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
         DaggerRegisterComponent //如找不到该类,请编译一下项目
@@ -93,15 +96,29 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         mobile = getIntent().getStringExtra(Constants.INTENT_MOBILE);
     }
 
-
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

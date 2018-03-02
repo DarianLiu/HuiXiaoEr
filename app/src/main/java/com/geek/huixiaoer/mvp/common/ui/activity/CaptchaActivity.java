@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.RegexUtils;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.CaptchaContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerCaptchaComponent;
 import com.geek.huixiaoer.mvp.common.di.module.CaptchaModule;
@@ -57,6 +58,7 @@ public class CaptchaActivity extends BaseActivity<CaptchaPresenter> implements C
     String error_captcha;
 
     private int type;
+    private CircleProgressDialog loadingDialog;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -84,15 +86,29 @@ public class CaptchaActivity extends BaseActivity<CaptchaPresenter> implements C
         type = getIntent().getIntExtra(Constants.INTENT_TYPE, 0);
     }
 
-
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

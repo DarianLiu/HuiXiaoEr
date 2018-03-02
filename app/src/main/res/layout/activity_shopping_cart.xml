@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-</LinearLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relayoutCart"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ExpandableListView
+                android:id="@+id/cartEListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/divider_color"
+                android:dividerHeight="1dp" />
+
+            <TextView
+                android:id="@+id/emptyView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/relayoutCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_bg_line_top"
+        android:gravity="center_vertical"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:id="@+id/totalTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvBuy"
+            android:layout_alignTop="@+id/tvBuy"
+            android:gravity="center"
+            android:text="总金额："
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:id="@+id/tvBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/selector_btn_default"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="去结算"
+            android:textColor="@color/bg_color_white"
+            android:textSize="@dimen/t16" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

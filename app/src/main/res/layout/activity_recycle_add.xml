@@ -12,6 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/all_padding"
+        android:paddingLeft="@dimen/all_padding"
+        android:paddingRight="45dp"
+        android:paddingTop="110dp"
+        android:scrollbars="none" />
+
     <EditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
@@ -28,20 +42,6 @@
         android:textColor="@color/color_text_caption"
         android:textColorHint="@color/color_hint_text"
         android:textSize="@dimen/t15" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingBottom="@dimen/all_padding"
-        android:paddingLeft="@dimen/all_padding"
-        android:paddingRight="45dp"
-        android:paddingTop="110dp"
-        android:scrollbars="none" />
 
     <TextView
         android:id="@+id/tv_delete"

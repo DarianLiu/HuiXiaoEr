@@ -4,23 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.mvp.common.contract.ForgetPasswordContract;
+import com.geek.huixiaoer.mvp.common.di.component.DaggerForgetPasswordComponent;
+import com.geek.huixiaoer.mvp.common.di.module.ForgetPasswordModule;
+import com.geek.huixiaoer.mvp.common.presenter.ForgetPasswordPresenter;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
-
-import com.geek.huixiaoer.mvp.common.di.component.DaggerForgetPasswordComponent;
-import com.geek.huixiaoer.mvp.common.di.module.ForgetPasswordModule;
-import com.geek.huixiaoer.mvp.common.contract.ForgetPasswordContract;
-import com.geek.huixiaoer.mvp.common.presenter.ForgetPasswordPresenter;
-
-import com.geek.huixiaoer.R;
-
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
 public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter> implements ForgetPasswordContract.View {
 
+    private CircleProgressDialog loadingDialog;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -45,12 +44,27 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
 
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

@@ -73,6 +73,7 @@ public class RecycleAddPresenter extends BasePresenter<RecycleAddContract.Model,
                         if (articleBean != null) {
                             EventBus.getDefault().post(articleBean, EventBusTags.Tag_Recycle);
                         }
+                        mRootView.showMessage("发布成功");
                     }
                 });
     }

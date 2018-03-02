@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/btn_selector_blue"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_next_step"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/btn_text_size" />

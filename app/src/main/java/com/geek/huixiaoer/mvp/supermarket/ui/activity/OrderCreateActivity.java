@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -21,6 +22,7 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> implements OrderCreateContract.View {
 
+    private CircleProgressDialog loadingDialog;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -42,15 +44,29 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
 
     }
 
-
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

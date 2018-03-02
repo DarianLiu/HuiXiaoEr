@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,9 +14,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include
             layout="@layout/content_main"
@@ -23,29 +25,7 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/linear_member_login" />
 
-        <LinearLayout
-            android:id="@+id/linear_member_login"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="2dp"
-                android:drawableRight="@drawable/icon_main_login"
-                android:gravity="center"
-                android:text="@string/member_login"
-                android:textColor="@color/color_text_white"
-                android:textSize="@dimen/t16" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
+    </android.support.v4.widget.NestedScrollView>
 
     <!--<android.support.design.widget.FloatingActionButton-->
     <!--android:id="@+id/fab"-->

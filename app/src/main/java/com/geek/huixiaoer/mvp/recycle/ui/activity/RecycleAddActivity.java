@@ -18,13 +18,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
 import com.geek.huixiaoer.common.widget.recyclerview.MoveCallBack;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleAddComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleAddModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.RecycleAddPresenter;
-import com.geek.huixiaoer.mvp.recycle.ui.adpater.GridAdapter;
+import com.geek.huixiaoer.mvp.recycle.ui.adpater.RecycleAddAdapter;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -61,7 +62,9 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
     String errorImageNull;
 
     private List<String> mImageList = new ArrayList<>();
-    private GridAdapter mAdapter;
+    private RecycleAddAdapter mAdapter;
+
+    private CircleProgressDialog loadingDialog;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -109,6 +112,12 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.title_release);
 
+//        etContent.setOnClickListener(v ->{
+//            etContent.setFocusable(true);
+//            etContent.setFocusableInTouchMode(true);
+//            etContent.requestFocus();
+//        });
+
         initRecyclerView();
     }
 
@@ -117,7 +126,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 15, false));
-        mAdapter = new GridAdapter(this, mImageList);
+        mAdapter = new RecycleAddAdapter(this, mImageList);
         recyclerView.setAdapter(mAdapter);
 
         //RecyclerView设置拖拽排序和拖到底部删除
@@ -178,7 +187,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         });
 
         //item点击事件监听
-        mAdapter.setOnItemClickListener(new GridAdapter.OnRecyclerViewItemClickListener() {
+        mAdapter.setOnItemClickListener(new RecycleAddAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onAddClick(int position) {
                 //打开相册
@@ -232,14 +241,22 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         }
     }
 
+
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
@@ -259,6 +276,9 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         super.onDestroy();
         //包括裁剪和压缩后的缓存，要在上传成功后调用
         PictureFileUtils.deleteCacheDirFile(RecycleAddActivity.this);
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

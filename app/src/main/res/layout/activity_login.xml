@@ -71,7 +71,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/btn_selector_blue"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_login"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/btn_text_size" />

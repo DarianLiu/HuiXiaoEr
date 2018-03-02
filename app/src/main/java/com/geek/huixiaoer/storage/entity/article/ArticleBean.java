@@ -53,7 +53,7 @@ public class ArticleBean {
     private String addressName;
     private String storeName;
     private String member_headUrl;
-    private int member_id;
+    private String member_id;
     private String content;
     private int hits;
     private int isLike;
@@ -197,11 +197,11 @@ public class ArticleBean {
         this.member_headUrl = member_headUrl;
     }
 
-    public int getMember_id() {
+    public String getMember_id() {
         return member_id;
     }
 
-    public void setMember_id(int member_id) {
+    public void setMember_id(String member_id) {
         this.member_id = member_id;
     }
 
