@@ -1,11 +1,16 @@
 package com.geek.huixiaoer.mvp.supermarket.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,13 +19,20 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsDetailContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsDetailComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsDetailModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsDetailPresenter;
+import com.geek.huixiaoer.mvp.supermarket.ui.fragment.ProductSelectFragment;
+import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,7 +56,7 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
 
     private CircleProgressDialog loadingDialog;
 
-    private String goods_sn;
+    private ArrayList<SpecificationBean> specificationList;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -70,16 +82,36 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
 
         String goods_name = getIntent().getStringExtra(Constants.INTENT_GOODS_NAME);
         String goods_url = getIntent().getStringExtra(Constants.INTENT_GOODS_URL);
-        goods_sn = getIntent().getStringExtra(Constants.INTENT_GOODS_SN);
+        String goods_sn = getIntent().getStringExtra(Constants.INTENT_GOODS_SN);
 
         Timber.d("========goods_url：" + goods_url);
 
-        toolbarTitle.setText(goods_name == null ? "" : goods_name);
+        toolbarTitle.setText(goods_name == null ? "商品详情" : goods_name);
         initWebView(goods_url);
 
-//        mPresenter.goodsHasFavorite(goods_sn);
+        mPresenter.goodsSpecification(goods_sn);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_shopping_cart, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_shopping_cart:
+                String token = DataHelper.getStringSF(GoodsDetailActivity.this, Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    launchActivity(new Intent(GoodsDetailActivity.this, LoginActivity.class));
+                } else {
+                    launchActivity(new Intent(GoodsDetailActivity.this, ShoppingCartActivity.class));
+                }
+                break;
+        }
+        return true;
+    }
 
     /**
      * 初始化WebView
@@ -153,7 +185,24 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
 //                mPresenter.favorite(goods_sn);
                 break;
             case R.id.tv_add_cart:
-//                mPresenter.addCart(goods_sn);
+                String token = DataHelper.getStringSF(GoodsDetailActivity.this, Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    launchActivity(new Intent(GoodsDetailActivity.this, LoginActivity.class));
+                } else {
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    String TAG = "dialog_specification";
+                    Fragment fragment = getFragmentManager().findFragmentByTag(TAG);
+                    if (null != fragment) {
+                        ft.remove(fragment);
+                    }
+                    ProductSelectFragment dialogFragment = new ProductSelectFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("specification", specificationList);
+                    dialogFragment.setArguments(bundle);
+                    dialogFragment.setOnClickListener((productId, quantity) ->
+                            mPresenter.addCart(productId, quantity));
+                    dialogFragment.show(getSupportFragmentManager(), TAG);
+                }
                 break;
         }
     }
@@ -161,5 +210,10 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     @Override
     public void updateFavoriteState(boolean isFavorite) {
 
+    }
+
+    @Override
+    public void updateView(List<SpecificationBean> specificationList) {
+        this.specificationList = (ArrayList<SpecificationBean>) specificationList;
     }
 }

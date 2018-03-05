@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -49,7 +50,7 @@ public class GridImageAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_image, null);
-            convertView.setLayoutParams(new RelativeLayout.LayoutParams(itemWidth,itemWidth));
+            convertView.setLayoutParams(new AbsListView.LayoutParams(itemWidth,itemWidth));
             viewHolder.img = convertView.findViewById(R.id.iv_image);
             convertView.setTag(viewHolder);
         } else {

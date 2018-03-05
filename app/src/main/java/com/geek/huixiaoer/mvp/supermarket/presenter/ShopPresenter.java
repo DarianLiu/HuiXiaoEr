@@ -2,7 +2,7 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
-import com.geek.huixiaoer.storage.entity.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;

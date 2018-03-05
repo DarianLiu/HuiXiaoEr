@@ -3,7 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.ui.adapter;
 import android.view.View;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseHolder;
 import com.jess.arms.base.DefaultAdapter;
 

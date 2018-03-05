@@ -5,7 +5,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
 import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.di.scope.ActivityScope;
 
 import dagger.Module;

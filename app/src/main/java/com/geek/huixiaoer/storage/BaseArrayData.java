@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class BaseArrayData<T> {
 
-    @SerializedName(value = "pageData", alternate = {"productCategories"})
+    @SerializedName(value = "pageData", alternate = {"productCategories","specificationList"})
     private List<T> pageData;
     private int pageSize;
     private int pageNumber;

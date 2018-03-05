@@ -97,6 +97,12 @@ public interface APIs {
         String goodsList = "goods/list/";
 
         /**
+         * 商品规格检索
+         */
+        String goodsSpecification = "goods/specification/";
+
+
+        /**
          * 查看商品是否收藏
          */
         String goodsHasFavorite = "member/favorite/app/hasFavorite.jhtml";

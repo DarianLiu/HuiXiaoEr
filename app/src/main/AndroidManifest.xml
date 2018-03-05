@@ -28,29 +28,67 @@
         <activity
             android:name=".mvp.common.ui.activity.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.supermarket.ui.activity.ShopActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity" />
-        <activity android:name=".mvp.common.ui.activity.RegisterActivity" />
+
+        <activity
+            android:name=".mvp.supermarket.ui.activity.ShopActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <activity
+            android:name=".mvp.common.ui.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.common.ui.activity.CaptchaActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
         <activity
             android:name=".mvp.common.ui.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleListActivity" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleAddActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.ShoppingCartActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.OrderCreateActivity" />
-        <activity android:name=".mvp.common.ui.activity.ForgetPasswordActivity" />
-        <activity android:name=".mvp.person.ui.activity.MyOrderActivity" />
-        <activity android:name=".mvp.person.ui.activity.PersonCenterActivity"></activity>
+
+        <activity
+            android:name=".mvp.recycle.ui.activity.RecycleListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.recycle.ui.activity.RecycleAddActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.supermarket.ui.activity.ShoppingCartActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.supermarket.ui.activity.OrderCreateActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.common.ui.activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.person.ui.activity.MyOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.person.ui.activity.PersonCenterActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

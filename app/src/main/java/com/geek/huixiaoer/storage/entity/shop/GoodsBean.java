@@ -1,4 +1,6 @@
-package com.geek.huixiaoer.storage.entity;
+package com.geek.huixiaoer.storage.entity.shop;
+
+import com.geek.huixiaoer.storage.entity.MediumImageBean;
 
 /**
  * 商品

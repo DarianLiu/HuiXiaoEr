@@ -7,21 +7,28 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.adapter.DefaultStatePagerAdapter;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleAddActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.ShopContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.ShopPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.fragment.GoodsListFragment;
-import com.geek.huixiaoer.storage.entity.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +78,31 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_searchview, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_searchview, menu);
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_shopping_cart, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_shopping_cart:
+                String token = DataHelper.getStringSF(ShopActivity.this, Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    launchActivity(new Intent(ShopActivity.this, LoginActivity.class));
+                } else {
+                    launchActivity(new Intent(ShopActivity.this, ShoppingCartActivity.class));
+                }
+                break;
+        }
+        return true;
     }
 
     @Override

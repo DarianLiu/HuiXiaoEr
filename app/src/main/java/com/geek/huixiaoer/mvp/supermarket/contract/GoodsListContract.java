@@ -4,11 +4,9 @@ import android.app.Activity;
 
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 

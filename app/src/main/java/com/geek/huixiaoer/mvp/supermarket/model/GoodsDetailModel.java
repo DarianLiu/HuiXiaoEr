@@ -1,9 +1,11 @@
 package com.geek.huixiaoer.mvp.supermarket.model;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
+import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 
@@ -36,6 +38,11 @@ public class GoodsDetailModel extends BaseModel implements GoodsDetailContract.M
     @Override
     public Observable<BaseResponse<SingleResultBean>> goodsFavoriteDelete(String token, String goods_sn) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsFavoriteDelete(token, goods_sn);
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<SpecificationBean>>> goodsSpecification(String goods_sn) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsSpecification(goods_sn);
     }
 
     @Override

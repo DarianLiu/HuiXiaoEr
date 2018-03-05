@@ -20,7 +20,7 @@ import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsListModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsListPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;

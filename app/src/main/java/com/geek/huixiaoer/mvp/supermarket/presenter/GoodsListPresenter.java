@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;

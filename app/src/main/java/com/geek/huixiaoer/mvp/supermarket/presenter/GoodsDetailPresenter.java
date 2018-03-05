@@ -4,8 +4,10 @@ import android.text.TextUtils;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.BaseArrayData;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
+import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -103,14 +105,31 @@ public class GoodsDetailPresenter extends BasePresenter<GoodsDetailContract.Mode
     }
 
     /**
+     * 商品规格检索
+     *
+     * @param goods_sn 商品SN号
+     */
+    public void goodsSpecification(String goods_sn) {
+        mModel.goodsSpecification(goods_sn).retryWhen(new RetryWithDelay(3, 2))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .safeSubscribe(new ErrorHandleSubscriber<BaseArrayData<SpecificationBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<SpecificationBean> arrayData) {
+                        mRootView.updateView(arrayData.getPageData());
+                    }
+                });
+    }
+
+    /**
      * 添加购物车
      *
      * @param quantity 商品数量
-     * @param goods_sn 商品SN号
+     * @param productId 产品ID
      */
-    public void addCart(String goods_sn, int quantity) {
+    public void addCart(String productId, int quantity) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
-        mModel.cartAdd(token, goods_sn, quantity).retryWhen(new RetryWithDelay(3, 2))
+        mModel.cartAdd(token, productId, quantity).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<GoodsBean>(mErrorHandler) {

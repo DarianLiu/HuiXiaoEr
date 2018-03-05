@@ -3,7 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.model;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
 

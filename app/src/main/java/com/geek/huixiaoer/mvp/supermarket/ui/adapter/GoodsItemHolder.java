@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseHolder;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.DeviceUtils;
@@ -52,9 +52,9 @@ public class GoodsItemHolder extends BaseHolder<GoodsBean> {
         GlideArms.with(goodsImg.getContext()).load(data.getMediumImage().getUrl()).into(goodsImg);
         nameTV.setText(data.getName());
         captionTV.setText(data.getCaption());
-        String price = new BigDecimal(data.getPrice()).setScale(4, BigDecimal.ROUND_HALF_DOWN).toString();
+        String price = new BigDecimal(data.getPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).toString();
         priceTV.setText(String.format("￥%s", price));
-        String marketPrice = new BigDecimal(data.getMarketPrice()).setScale(4, BigDecimal.ROUND_HALF_DOWN).toString();
+        String marketPrice = new BigDecimal(data.getMarketPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).toString();
         marketPriceTV.setText(String.format("￥%s", marketPrice));
         marketPriceTV.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }

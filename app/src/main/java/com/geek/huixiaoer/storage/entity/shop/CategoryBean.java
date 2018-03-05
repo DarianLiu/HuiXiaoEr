@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.storage.entity;
+package com.geek.huixiaoer.storage.entity.shop;
 
 /**
  * 分类

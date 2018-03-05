@@ -2,7 +2,7 @@ package com.geek.huixiaoer.mvp.supermarket.contract;
 
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
 

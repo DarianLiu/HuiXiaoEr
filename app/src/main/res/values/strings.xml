@@ -24,6 +24,8 @@
     <string name="btn_sure">确定</string>
     <string name="btn_cancel">取消</string>
     <string name="btn_add_shopping_cart">加入购物车</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_reduce">—</string>
 
     <!--Hint_Text-->
     <string name="hint_mobile_number">手机号码</string>
@@ -59,10 +61,16 @@
     <string name="prompt_security_password">我们将通过%1$s 给您发送验证码</string>
 
     <!--Use-->
-    <string name="immediate_registration">立即注册</string>
+    <!--~~~~~~商超模块~~~~~~-->
     <string name="forget_password">忘记密码</string>
     <string name="favorite_add">收藏该商品</string>
     <string name="favorite_delete">取消收藏</string>
+    <string name="add_shopping_cart">加入购物车</string>
+    <string name="product_buy_quantity">购买数量</string>
+    <string name="product_buy_notice">请选择商品规格</string>
+    <string name="product_inventory">库存%1$d件</string>
+    <string name="product_price">￥</string>
+
 
     <string name="action_settings">Settings</string>
     <string name="action_recovery">垃圾回收</string>
@@ -75,6 +83,8 @@
 
     <!--会员相关-->
     <string name="member_login">会员登录</string>
+    <string name="immediate_registration">立即注册</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -3,11 +3,13 @@ package com.geek.huixiaoer.api;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
-import com.geek.huixiaoer.storage.entity.CategoryBean;
-import com.geek.huixiaoer.storage.entity.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderBean;
+import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -84,6 +86,14 @@ public interface BaseApi {
                                                                  @Query("pageNumber") int pageNum);
 
     /**
+     * 商品规格检索
+     *
+     * @param goods_sn 商品SN号
+     */
+    @GET(APIs.API.goodsSpecification + "{goods_sn}" + ".jhtml")
+    Observable<BaseResponse<BaseArrayData<SpecificationBean>>> goodsSpecification(@Path("goods_sn") String goods_sn);
+
+    /**
      * 查看商品是否收藏
      *
      * @param token    用户Token
@@ -116,12 +126,13 @@ public interface BaseApi {
     /**
      * 添加购物车
      *
-     * @param token    用户Token
-     * @param goods_sn 商品SN号
+     * @param token     用户Token
+     * @param productId 产品ID
+     * @param quantity  数量
      */
     @POST(APIs.API.cartAdd)
     Observable<BaseResponse<GoodsBean>> cartAdd(@Query("token") String token,
-                                                @Query("sn") String goods_sn,
+                                                @Query("productId") String productId,
                                                 @Query("quantity") int quantity);
 
     /**
@@ -130,7 +141,7 @@ public interface BaseApi {
      * @param token 用户Token
      */
     @GET(APIs.API.cartList)
-    Observable<BaseResponse<BaseArrayData<GoodsBean>>> cartList(@Query("token") String token);
+    Observable<BaseResponse<BaseArrayData<OrderBean>>> cartList(@Query("token") String token);
 
     /**
      * 编辑购物车项
