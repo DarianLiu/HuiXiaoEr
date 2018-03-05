@@ -110,12 +110,12 @@ public interface APIs {
         /**
          * 商品添加收藏
          */
-        String goodsFavoriteAdd =  "member/favorite/app/add.jhtml";
+        String goodsFavoriteAdd = "member/favorite/app/add.jhtml";
 
         /**
          * 商品删除收藏
          */
-        String goodsFavoriteDelete =  "member/favorite/app/delete.jhtml";
+        String goodsFavoriteDelete = "member/favorite/app/delete.jhtml";
 
         /**
          * 添加购物车
@@ -141,6 +141,37 @@ public interface APIs {
          * 清空购物车项
          */
         String cartClear = "cart/clear.jhtml";
+
+        /**
+         * 获取当前会员的默认收货地址
+         */
+        String receiverDefault = "member/receiver/defaultReceiver.jhtml";
+
+        /**
+         * 提交普通订单需要获取的数据
+         */
+        String orderCheckout = "shop/order/app/checkout.jhtml";
+
+        /**
+         * 订单金额计算接口
+         */
+        String orderCalculate = "shop/order/calculate.jhtml";
+
+        /**
+         * 支付宝支付方式的接口(购物车入口)
+         */
+        String paymentSubmitNo = "payment/plugin_submit_no.jhtml";
+
+        /**
+         * 支付宝支付方式的接口(订单列表入口)
+         */
+        String paymentSubmitSn = "payment/plugin_submit_sn.jhtml";
+
+        /**
+         * 生成订单
+         */
+        String orderCreate = "shop/order/create.jhtml";
+
 
 
         /*--------垃圾回收模块---------*/

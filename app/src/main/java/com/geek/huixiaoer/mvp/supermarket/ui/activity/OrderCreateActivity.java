@@ -3,6 +3,8 @@ package com.geek.huixiaoer.mvp.supermarket.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -49,17 +52,17 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     @BindView(R.id.tv_order_submit)
     TextView tvOrderSubmit;
 
-    /**
-     * 头部视图（收货地址相关信息）
-     */
-    private View headView;
+    //头部视图
     private TextView tvReceiveUser, tvReceivePhone, tvReceiveAddress;
 
-    /**
-     * 尾部视图（）
-     */
-    private View footView;
-
+    //底部视图
+    private TextView tvBalance;//余额
+    private SwitchCompat switchBalance;//余额开关
+    private TextView tvPoint;//积分
+    private AppCompatSpinner spinnerCoupon;//优惠券下拉框2
+    private TextView tvRate;//税率、税金
+    private SwitchCompat switchInvoice;//发票开关
+    private TextView tvInvoice;//发票抬头
 
     private CircleProgressDialog loadingDialog;
 
@@ -122,12 +125,29 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
         elvCart.setOnGroupClickListener((parent, v, groupPosition, id) -> true);
 
         //添加头部视图
-        headView = LayoutInflater.from(OrderCreateActivity.this).inflate(R.layout.include_receive_address, null);
+        /*
+      头部视图（收货地址相关信息）
+     */
+        View headView = LayoutInflater.from(OrderCreateActivity.this).inflate(R.layout.include_receive_address, null);
         tvReceiveUser = headView.findViewById(R.id.tv_receive_user);
         tvReceivePhone = headView.findViewById(R.id.tv_receive_phone);
         tvReceiveAddress = headView.findViewById(R.id.tv_receive_address);
-
         elvCart.addHeaderView(headView);
+
+        //添加尾部视图
+        /*
+      尾部视图（）
+     */
+        View footView = LayoutInflater.from(OrderCreateActivity.this).inflate(R.layout.include_order_set, null);
+        tvBalance = footView.findViewById(R.id.tv_balance);
+        switchBalance = footView.findViewById(R.id.switch_balance);
+        tvPoint = footView.findViewById(R.id.tv_point);
+        spinnerCoupon = footView.findViewById(R.id.spinner_coupon);
+        tvRate = footView.findViewById(R.id.tv_rate);
+        switchInvoice = footView.findViewById(R.id.switch_invoice);
+        tvInvoice = footView.findViewById(R.id.tv_invoice);
+        elvCart.addFooterView(footView);
+
         elvCart.setAdapter(new OrderCreateAdapter(OrderCreateActivity.this, cartList));
         //展开所有组
         expandAllGroup(cartList);

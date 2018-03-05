@@ -56,47 +56,54 @@
         android:textColor="@color/color_text_label"
         android:textSize="@dimen/t14" />
 
-    <View
-        android:id="@+id/view_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/iv_product"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/line_default_color" />
-
-    <TextView
-        android:id="@+id/tv_create_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/view_line"
-        android:text="2018-03-05 15:30"
-        android:textColor="@color/color_text_label"
-        android:textSize="@dimen/t14" />
-
-    <TextView
-        android:id="@+id/tv_total_amount"
+    <RelativeLayout
+        android:id="@+id/rl_footView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_line"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/tv_create_data"
-        android:gravity="end"
-        android:text="合计：￥0.04"
-        android:textColor="@color/color_text_label"
-        android:textSize="@dimen/t14" />
+        android:layout_below="@+id/iv_product">
 
-    <TextView
-        android:id="@+id/tv_memo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_total_amount"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/btn_bg_gray"
-        android:padding="6dp"
-        android:text="订单补充说明..."
-        android:textColor="@color/color_text_label"
-        android:textSize="@dimen/t13" />
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/line_default_color" />
+
+        <TextView
+            android:id="@+id/tv_create_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/view_line"
+            android:text="2018-03-05 15:30"
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:id="@+id/tv_total_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/tv_create_data"
+            android:gravity="end"
+            android:text="共15件商品，合计100000.04元"
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:id="@+id/tv_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_total_amount"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/btn_bg_gray"
+            android:padding="6dp"
+            android:text="订单补充说明..."
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t13" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

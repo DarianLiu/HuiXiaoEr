@@ -23,6 +23,8 @@ import retrofit2.http.Query;
 public interface BaseApi {
 
     /**
+     * ********************** 公 共（ 登 录 注 册 ）模 块 *************************
+     * <p>
      * 获取短信验证码
      *
      * @param mobile 手机号码
@@ -70,7 +72,10 @@ public interface BaseApi {
     @GET(APIs.API.carouselList)
     Observable<BaseResponse<BaseArrayData<BannerBean>>> articleBanner();
 
+
     /**
+     * ********************** 商 超 模 块 *************************
+     * <p>
      * 获取所有根节点的货品类别列表
      */
     @GET(APIs.API.goodsCategoryRoot)
@@ -173,7 +178,93 @@ public interface BaseApi {
     Observable<BaseResponse<CartEditResultBean>> cartClear(@Query("token") String token);
 
     /**
-     * 文章列表//@param token 用户Token
+     * 获取默认收获地址
+     *
+     * @param token 用户Token
+     */
+    @POST(APIs.API.receiverDefault)
+    Observable<BaseResponse<CartEditResultBean>> receiverDefault(@Query("token") String token);
+
+    /**
+     * 获取普通订单的详细数据
+     *
+     * @param token 用户Token
+     */
+    @POST(APIs.API.orderCheckout)
+    Observable<BaseResponse<CartEditResultBean>> orderCheckout(@Query("token") String token);
+
+    /**
+     * 订单金额计算接口（使用优惠券/发票）
+     *
+     * @param token            用户Token
+     * @param receiverId       收货地址ID
+     * @param paymentMethodId  支付方式ID（默认为“1”）
+     * @param shippingMethodId 快递方式ID（默认为“1”）
+     * @param code             优惠码
+     * @param invoiceTitle     发票title
+     * @param useBalance       使用余额(0：不使用/1：使用)
+     * @param memo             附言
+     */
+    @POST(APIs.API.orderCalculate)
+    Observable<BaseResponse<CartEditResultBean>> orderCalculate(@Query("token") String token,
+                                                                @Query("receiverId") String receiverId,
+                                                                @Query("paymentMethodId") String paymentMethodId,
+                                                                @Query("shippingMethodId") String shippingMethodId,
+                                                                @Query("code") String code,
+                                                                @Query("invoiceTitle") String invoiceTitle,
+                                                                @Query("useBalance") String useBalance,
+                                                                @Query("memo") String memo);
+
+    /**
+     * 支付宝支付方式的接口(购物车入口)
+     *
+     * @param token           用户Token
+     * @param paymentPluginId 支付方式(移动端默认为：alipayMobilePaymentPlugin)
+     * @param outTradeNo      交易流水号
+     * @param amount          交易金额
+     */
+    @POST(APIs.API.paymentSubmitNo)
+    Observable<BaseResponse<CartEditResultBean>> paymentSubmitNo(@Query("token") String token,
+                                                                 @Query("paymentPluginId") String paymentPluginId,
+                                                                 @Query("outTradeNo") String outTradeNo,
+                                                                 @Query("amount") String amount);
+
+    /**
+     * 支付宝支付方式的接口(订单列表入口)
+     *
+     * @param token           用户Token
+     * @param paymentPluginId 支付方式(移动端默认为：alipayMobilePaymentPlugin)
+     * @param order_sn        订单SN号
+     * @param amount          订单金额
+     */
+    @POST(APIs.API.paymentSubmitSn)
+    Observable<BaseResponse<CartEditResultBean>> paymentSubmitSn(@Query("token") String token,
+                                                                 @Query("paymentPluginId") String paymentPluginId,
+                                                                 @Query("sn") String order_sn,
+                                                                 @Query("amount") String amount);
+
+    /**
+     * 生成订单
+     *
+     * @param token        用户Token
+     * @param receiverId   收货地址ID
+     * @param code         优惠码
+     * @param invoiceTitle 发票title
+     * @param useBalance   使用余额(0：不使用/1：使用)
+     * @param memo         附言
+     */
+    @POST(APIs.API.orderCreate)
+    Observable<BaseResponse<CartEditResultBean>> orderCreate(@Query("token") String token,
+                                                             @Query("receiverId") String receiverId,
+                                                             @Query("code") String code,
+                                                             @Query("invoiceTitle") String invoiceTitle,
+                                                             @Query("useBalance") String useBalance,
+                                                             @Query("memo") String memo);
+
+    /**
+     * ********************** 垃 圾 回 收 模 块 *************************
+     * <p>
+     * 垃圾回收列表//@param token 用户Token
      *
      * @param pageNumber 页数
      * @param pageSize   每页数量
