@@ -34,6 +34,7 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartContract.Mo
         this.mAppManager = appManager;
     }
 
+
     public void getGoodsList(boolean isRefresh, int category_id) {
         if (isRefresh) page_no = 0;
         mModel.goodsList(category_id, page_no + 1).retryWhen(new RetryWithDelay(3, 2))
