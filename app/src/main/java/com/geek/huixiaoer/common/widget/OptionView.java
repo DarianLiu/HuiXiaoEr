@@ -60,14 +60,14 @@ public class OptionView extends RelativeLayout {
                 option_left.setTextColor(titleTextColor);
             }
 
-            //设置右边图片icon
-//            int rightImageViewDrawable = attributes.getResourceId(R.styleable.
-//                    OptionView_option_right_ImageView_drawable, R.drawable.icon_next);
-//            if (rightImageViewDrawable != -1) {
-//                Drawable img = context.getResources().getDrawable(rightImageViewDrawable);
-//                img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
-//                option_right.setCompoundDrawables(null, null, img, null); //设置左图标
-//            }
+//            设置右边图片icon
+            int rightImageViewDrawable = attributes.getResourceId(R.styleable.
+                    OptionView_option_right_ImageView_drawable, R.drawable.icon_next);
+            if (rightImageViewDrawable != -1) {
+                Drawable img = context.getResources().getDrawable(rightImageViewDrawable);
+                img.setBounds(0, 0, img.getMinimumWidth(), img.getMinimumHeight());
+                option_right.setCompoundDrawables(null, null, img, null); //设置右图标
+            }
             attributes.recycle();
         }
     }

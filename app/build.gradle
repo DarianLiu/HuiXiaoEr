@@ -72,6 +72,7 @@ dependencies {
     }
     compile rootProject.ext.dependencies["smartRefreshLayout"]
     compile rootProject.ext.dependencies["pictureSelector"]
+    compile rootProject.ext.dependencies["glide-transformations"]
 
     //tools
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]

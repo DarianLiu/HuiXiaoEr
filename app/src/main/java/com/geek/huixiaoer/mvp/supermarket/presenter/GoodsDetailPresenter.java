@@ -4,23 +4,22 @@ import android.text.TextUtils;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.supermarket.contract.GoodsDetailContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
-import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
-import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.DataHelper;
+
+import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
-
-import javax.inject.Inject;
-
-import com.geek.huixiaoer.mvp.supermarket.contract.GoodsDetailContract;
-import com.jess.arms.utils.DataHelper;
 
 @ActivityScope
 public class GoodsDetailPresenter extends BasePresenter<GoodsDetailContract.Model, GoodsDetailContract.View> {
@@ -131,11 +130,11 @@ public class GoodsDetailPresenter extends BasePresenter<GoodsDetailContract.Mode
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
         mModel.cartAdd(token, productId, quantity).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
-                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .compose(RxUtil.handleBaseResultShowMessage(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<GoodsBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull GoodsBean goodsBean) {
-                        mRootView.showMessage("成功加入购物车");
+//                        mRootView.showMessage("成功加入购物车");
                     }
                 });
     }

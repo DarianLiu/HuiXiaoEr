@@ -3,24 +3,63 @@ package com.geek.huixiaoer.mvp.supermarket.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
 
+import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
+import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerOrderCreateComponent;
+import com.geek.huixiaoer.mvp.supermarket.di.module.OrderCreateModule;
+import com.geek.huixiaoer.mvp.supermarket.presenter.OrderCreatePresenter;
+import com.geek.huixiaoer.mvp.supermarket.ui.adapter.OrderCreateAdapter;
+import com.geek.huixiaoer.storage.entity.shop.MerchantBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
-import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerOrderCreateComponent;
-import com.geek.huixiaoer.mvp.supermarket.di.module.OrderCreateModule;
-import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
-import com.geek.huixiaoer.mvp.supermarket.presenter.OrderCreatePresenter;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.geek.huixiaoer.R;
-
+import butterknife.BindView;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
-
+/**
+ * 创建订单
+ */
 public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> implements OrderCreateContract.View {
+
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.elv_cart)
+    ExpandableListView elvCart;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.tv_order_amount)
+    TextView tvOrderAmount;
+    @BindView(R.id.tv_order_submit)
+    TextView tvOrderSubmit;
+
+    /**
+     * 头部视图（收货地址相关信息）
+     */
+    private View headView;
+    private TextView tvReceiveUser, tvReceivePhone, tvReceiveAddress;
+
+    /**
+     * 尾部视图（）
+     */
+    private View footView;
+
 
     private CircleProgressDialog loadingDialog;
 
@@ -41,7 +80,67 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
 
     @Override
     public void initData(Bundle savedInstanceState) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> finish());
+        tvToolbarTitle.setText(R.string.title_order_submit);
 
+        @SuppressWarnings("unchecked")
+        List<MerchantBean> mCartList = (ArrayList<MerchantBean>) getIntent().getExtras()
+                .getSerializable(Constants.INTENT_CART_LIST);
+
+        intRefreshLayout();
+        initCartExpendableListView(mCartList);
+    }
+
+    /**
+     * 初始化刷新控件
+     */
+    private void intRefreshLayout() {
+        refreshLayout.setRefreshHeader(new ClassicsHeader(OrderCreateActivity.this));
+//        refreshLayout.setRefreshFooter(new ClassicsFooter(getContext()));
+        refreshLayout.setDisableContentWhenRefresh(true);//刷新的时候禁止列表的操作
+//        refreshLayout.setDisableContentWhenLoading(true);//加载更多的时候禁止列表的操作
+        refreshLayout.setOnRefreshListener(refreshlayout ->
+                        showMessage("刷新")
+//                mPresenter.cartList(true)
+        );
+
+        // 自动刷新
+//        refreshLayout.autoRefresh();
+    }
+
+    /**
+     * 初始化购物车列表
+     */
+    private void initCartExpendableListView(List<MerchantBean> cartList) {
+        //隐藏expandableListView自带的图标
+        elvCart.setGroupIndicator(null);
+
+        //expandableListView的组项点击事件监听,返回值为true则点击后group不收缩
+        elvCart.setOnGroupClickListener((parent, v, groupPosition, id) -> true);
+
+        //添加头部视图
+        headView = LayoutInflater.from(OrderCreateActivity.this).inflate(R.layout.include_receive_address, null);
+        tvReceiveUser = headView.findViewById(R.id.tv_receive_user);
+        tvReceivePhone = headView.findViewById(R.id.tv_receive_phone);
+        tvReceiveAddress = headView.findViewById(R.id.tv_receive_address);
+
+        elvCart.addHeaderView(headView);
+        elvCart.setAdapter(new OrderCreateAdapter(OrderCreateActivity.this, cartList));
+        //展开所有组
+        expandAllGroup(cartList);
+    }
+
+    /**
+     * 展开所有组
+     */
+    private void expandAllGroup(List<MerchantBean> cartList) {
+        //展开所有组的item
+        for (int i = 0; i < cartList.size(); i++) {
+            elvCart.expandGroup(i);
+        }
     }
 
     @Override
@@ -85,6 +184,5 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     public void killMyself() {
         finish();
     }
-
 
 }

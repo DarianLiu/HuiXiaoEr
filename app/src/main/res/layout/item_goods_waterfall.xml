@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -20,10 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/goodsImg"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:text=""
+        android:layout_margin="10dp"
+        android:text="商品"
         android:textColor="@color/color_text_black"
         android:textSize="@dimen/t16" />
 
@@ -32,11 +29,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameTV"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
         android:maxLines="3"
-        android:paddingBottom="8dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
         android:text=""
         android:textColor="@color/color_text_caption"
         android:textSize="@dimen/t14" />
@@ -47,9 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/captionTV"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/marketPriceTV"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/color_text_red"
         android:textSize="@dimen/t16" />
@@ -60,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/priceTV"
         android:layout_alignParentRight="true"
-        android:paddingRight="10dp"
+        android:layout_marginRight="10dp"
         android:text=""
         android:textColor="@color/color_text_gray"
         android:textSize="@dimen/t14" />

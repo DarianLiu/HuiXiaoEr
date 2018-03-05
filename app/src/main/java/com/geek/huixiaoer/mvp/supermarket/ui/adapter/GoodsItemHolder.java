@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.mvp.supermarket.ui.adapter;
 
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -51,7 +52,11 @@ public class GoodsItemHolder extends BaseHolder<GoodsBean> {
 
         GlideArms.with(goodsImg.getContext()).load(data.getMediumImage().getUrl()).into(goodsImg);
         nameTV.setText(data.getName());
-        captionTV.setText(data.getCaption());
+        if (TextUtils.isEmpty(data.getCaption())){
+            captionTV.setVisibility(View.GONE);
+        }else {
+            captionTV.setText(data.getCaption());
+        }
         String price = new BigDecimal(data.getPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).toString();
         priceTV.setText(String.format("￥%s", price));
         String marketPrice = new BigDecimal(data.getMarketPrice()).setScale(2, BigDecimal.ROUND_HALF_DOWN).toString();

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/nav_shopping_cart"
+            android:icon="@drawable/icon_mine_shopping_cart"
+            android:title="@string/title_shopping_cart" />
+
+        <item
+            android:id="@+id/nav_coupon"
+            android:icon="@drawable/ic_action_supermarket"
+            android:title="@string/title_coupon" />
+
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/icon_mine_order"
+            android:title="@string/title_order" />
+
+    </group>
+
+</menu>

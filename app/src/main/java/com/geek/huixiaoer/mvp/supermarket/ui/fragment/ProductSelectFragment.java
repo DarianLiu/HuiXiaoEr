@@ -56,8 +56,8 @@ public class ProductSelectFragment extends DialogFragment {
     @BindView(R.id.btnBuy)
     Button btnBuy;
 
-    @BindString(R.string.product_price)
-    String product_price;
+    @BindString(R.string.product_price_unit)
+    String product_price_unit;
     @BindString(R.string.product_inventory)
     String product_inventory;
 
@@ -91,7 +91,7 @@ public class ProductSelectFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = inflater.inflate(R.layout.activity_product_select, container, false);
+        View view = inflater.inflate(R.layout.dialog_product_select, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -199,7 +199,7 @@ public class ProductSelectFragment extends DialogFragment {
     private void setStockAndPrice(String imageUrl, int stock, String price) {
         GlideArms.with(ProductSelectFragment.this).load(imageUrl).centerCrop().into(imgGoods);
         tvStock.setText(String.format(product_inventory, stock));
-        tvPrice.setText(String.format("%s%s", product_price, price));
+        tvPrice.setText(String.format("%s%s", product_price_unit, price));
     }
 
     /**

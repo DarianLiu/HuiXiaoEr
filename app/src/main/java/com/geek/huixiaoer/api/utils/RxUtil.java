@@ -83,6 +83,32 @@ public class RxUtil {
         });
     }
 
+    /**
+     * 统一返回结果处理
+     *
+     * @param <T> 泛型
+     * @return ObservableTransformer
+     */
+    public static <T> ObservableTransformer<BaseResponse<T>, T> handleBaseResultShowMessage(Context context) {
+        return observable -> observable.flatMap(new Function<BaseResponse<T>, ObservableSource<T>>() {
+            @Override
+            public ObservableSource<T> apply(@NonNull BaseResponse<T> tBaseResponse) throws Exception {
+                if (TextUtils.equals(tBaseResponse.getResult(), "1")) {
+                    ArmsUtils.snackbarTextWithLong(tBaseResponse.getMsg());
+                    return createData(tBaseResponse.getData());
+                } else {
+                    if (TextUtils.equals(tBaseResponse.getResult(), "2")) {
+                        DataHelper.removeSF(context, Constants.SP_TOKEN);
+                        DataHelper.removeSF(context, Constants.SP_USER_INFO);
+                        ArmsUtils.killAll();
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                    }
+                    return Observable.error(new ApiException(tBaseResponse.getMsg(), tBaseResponse.getResult()));
+                }
+            }
+        });
+    }
+
     private static <T> Observable<T> createData(final T t) {
         return Observable.create(emitter -> {
             try {

@@ -52,6 +52,7 @@ public class Constants {
     public static final String INTENT_GOODS_NAME = "goods_name";
     public static final String INTENT_GOODS_SN = "goods_sn";
     public static final String INTENT_GOODS_URL = "goods_url";
+    public static final String INTENT_CART_LIST = "cart_list";
 
     /**
      * ================================================

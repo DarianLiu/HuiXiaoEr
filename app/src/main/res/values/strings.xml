@@ -10,9 +10,13 @@
     <string name="title_login">登录</string>
     <string name="title_release">发布信息</string>
     <string name="title_shopping_cart">购物车</string>
+    <string name="title_order_submit">提交订单</string>
+    <string name="title_order">我的订单</string>
+    <string name="title_coupon">优惠券</string>
 
     <string name="action_add">添加</string>
     <string name="action_release">发布</string>
+    <string name="action_clear">清空</string>
 
     <!--Button Text-->
     <string name="btn_login">登录</string>
@@ -24,6 +28,8 @@
     <string name="btn_sure">确定</string>
     <string name="btn_cancel">取消</string>
     <string name="btn_add_shopping_cart">加入购物车</string>
+    <string name="btn_pay">去结算</string>
+    <string name="btn_order_submit">提交订单</string>
     <string name="btn_plus">+</string>
     <string name="btn_reduce">—</string>
 
@@ -54,6 +60,7 @@
     <string name="error_nickname">格式错误（昵称为3至16位中英文和“_”组成，不能以“_”结尾）</string>
     <string name="error_content_null">您还没有说点什么哦！</string>
     <string name="error_image_null">您还没有选择图片哦！</string>
+    <string name="error_shopping_cart_null">您购物车已经是空的哦！</string>
 
     <!--提示-->
     <string name="prompt_dialog_title">温馨提示</string>
@@ -69,7 +76,9 @@
     <string name="product_buy_quantity">购买数量</string>
     <string name="product_buy_notice">请选择商品规格</string>
     <string name="product_inventory">库存%1$d件</string>
-    <string name="product_price">￥</string>
+    <string name="product_price_unit">￥</string>
+    <string name="total_amount">总金额：￥</string>
+    <string name="total_order_amount">订单金额：￥</string>
 
 
     <string name="action_settings">Settings</string>

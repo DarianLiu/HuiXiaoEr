@@ -1,14 +1,15 @@
 package com.geek.huixiaoer.api;
 
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.CartEditResultBean;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
-import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
-import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.article.ArticleBean;
-import com.geek.huixiaoer.storage.entity.shop.OrderBean;
+import com.geek.huixiaoer.storage.entity.shop.CartBean;
+import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
 import io.reactivex.Observable;
@@ -141,7 +142,7 @@ public interface BaseApi {
      * @param token 用户Token
      */
     @GET(APIs.API.cartList)
-    Observable<BaseResponse<BaseArrayData<OrderBean>>> cartList(@Query("token") String token);
+    Observable<BaseResponse<CartBean>> cartList(@Query("token") String token);
 
     /**
      * 编辑购物车项
@@ -151,8 +152,8 @@ public interface BaseApi {
      * @param quantity 数量
      */
     @POST(APIs.API.cartEdit)
-    Observable<BaseResponse<GoodsBean>> cartEdit(@Query("token") String token, @Query("id") String id,
-                                                 @Query("quantity") int quantity);
+    Observable<BaseResponse<CartEditResultBean>> cartEdit(@Query("token") String token, @Query("id") String id,
+                                                          @Query("quantity") int quantity);
 
     /**
      * 删除购物车项
@@ -161,15 +162,15 @@ public interface BaseApi {
      * @param id    购物车项ID
      */
     @POST(APIs.API.cartDelete)
-    Observable<BaseResponse<GoodsBean>> cartDelete(@Query("token") String token, @Query("id") String id);
+    Observable<BaseResponse<CartEditResultBean>> cartDelete(@Query("token") String token, @Query("id") String id);
 
     /**
-     * 清空购物车项
+     * 清空购物车
      *
      * @param token 用户Token
      */
     @POST(APIs.API.cartClear)
-    Observable<BaseResponse<GoodsBean>> cartClear(@Query("token") String token);
+    Observable<BaseResponse<CartEditResultBean>> cartClear(@Query("token") String token);
 
     /**
      * 文章列表//@param token 用户Token

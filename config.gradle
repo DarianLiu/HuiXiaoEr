@@ -21,6 +21,7 @@ ext {
             espressoSdkVersion      : "3.0.1",
             canarySdkVersion        : "1.5.4",
             smartRefreshSdkVersion  : "1.0.3",
+            glideTransformations    : "3.1.1"
     ]
 
     dependencies = [
@@ -45,8 +46,12 @@ ext {
             "okhttp-urlconnection"     : "com.squareup.okhttp:okhttp-urlconnection:2.0.0",
             "glide"                    : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
             "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "glide-transformations"    : "jp.wasabeef:glide-transformations:${version["glideTransformations"]}",
+            // If you want to use the GPU Filters
+//            "gpuimage"                 : "jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1",
+
             "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
-            "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
+//            "picasso"                  : "com.squareup.picasso:picasso:2.5.2",
 
             //view
             "autolayout"               : "com.zhy:autolayout:1.4.5",

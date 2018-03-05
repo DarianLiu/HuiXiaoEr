@@ -15,17 +15,20 @@ import com.jess.arms.http.imageloader.glide.GlideArms;
 
 import java.util.List;
 
-public class CartExpandableListAdapter extends BaseExpandableListAdapter {
+/**
+ * 创建订单列表适配器
+ * Created by Administrator on 2018/3/5.
+ */
+
+public class OrderCreateAdapter extends BaseExpandableListAdapter {
 
     private LayoutInflater mInflater;
     private Context mContext;
     private List<MerchantBean> modelList;
-    private CartEditControl cartEditControl;
 
-    public CartExpandableListAdapter(Context context, CartEditControl cartEditControl, List<MerchantBean> list) {
+    public OrderCreateAdapter(Context context, List<MerchantBean> list) {
         mContext = context;
         modelList = list;
-        this.cartEditControl = cartEditControl;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -89,18 +92,18 @@ public class CartExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final ChildViewHolder holder;
+        ChildViewHolder holder;
         if (convertView == null) {
             holder = new ChildViewHolder();
-            convertView = mInflater.inflate(R.layout.item_shop_cart, null);
+            convertView = mInflater.inflate(R.layout.item_shop_order, null);
             holder.ivProduct = convertView.findViewById(R.id.iv_product);
             holder.tvProductName = convertView.findViewById(R.id.tv_product_name);
-            holder.tvProductSpecifications = convertView.findViewById(R.id.tv_product_specifications);
-            holder.ivDelete = convertView.findViewById(R.id.iv_delete);
+//            holder.tvProductSpecifications = convertView.findViewById(R.id.tv_product_specifications);
+//            holder.ivDelete = convertView.findViewById(R.id.iv_delete);
             holder.tvProductPrice = convertView.findViewById(R.id.tv_product_price);
             holder.tvQuantity = convertView.findViewById(R.id.tvQuantity);
-            holder.tvPlus = convertView.findViewById(R.id.tv_plus);
-            holder.tvReduce = convertView.findViewById(R.id.tv_reduce);
+//            holder.tvPlus = convertView.findViewById(R.id.tv_plus);
+//            holder.tvReduce = convertView.findViewById(R.id.tv_reduce);
             convertView.setTag(holder);
         } else {
             holder = (ChildViewHolder) convertView.getTag();
@@ -111,62 +114,22 @@ public class CartExpandableListAdapter extends BaseExpandableListAdapter {
         GlideArms.with(mContext).load(productInfo.getGoods_image()).centerCrop().into(holder.ivProduct);
 
         holder.tvProductName.setText(productInfo.getGoods_name());
-        if (productInfo.getSpecifications() == null || productInfo.getSpecifications().size() == 0) {
-            holder.tvProductSpecifications.setText("");
-        } else {
-            holder.tvProductSpecifications.setText(productInfo.getSpecification());
-        }
+//        if (productInfo.getSpecifications() == null || productInfo.getSpecifications().size() == 0) {
+//            holder.tvProductSpecifications.setText("");
+//        } else {
+//            holder.tvProductSpecifications.setText(productInfo.getSpecification());
+//        }
 //        holder.mTvCaption.setText(productInfo.getGoods_caption());
         holder.tvProductPrice.setText(String.format("￥%s", productInfo.getPrice()));
         holder.tvQuantity.setText(String.valueOf(modelList.get(groupPosition).getItems()
                 .get(childPosition).getQuantity()));
-        holder.tvPlus.setOnClickListener(new MyListener(groupPosition, childPosition));
-        holder.tvReduce.setOnClickListener(new MyListener(groupPosition, childPosition));
-        holder.ivDelete.setOnClickListener(new MyListener(groupPosition, childPosition));
+
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    private class MyListener implements View.OnClickListener {
-
-        int groupPosition;
-        int childPosition;
-
-        MyListener(int groupPosition, int childPosition) {
-            this.groupPosition = groupPosition;
-            this.childPosition = childPosition;
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.tv_plus:
-                    cartEditControl.plus(groupPosition, childPosition);
-                    break;
-                case R.id.tv_reduce:
-                    cartEditControl.reduce(groupPosition, childPosition);
-                    break;
-                case R.id.iv_delete:
-                    cartEditControl.delete(groupPosition, childPosition);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-    }
-
-    //加减方法内部接口
-    public interface CartEditControl {
-        void plus(int groupPosition, int childPosition);
-
-        void reduce(int groupPosition, int childPosition);
-
-        void delete(int groupPosition, int childPosition);
     }
 
     private class GroupViewHolder {
@@ -178,13 +141,12 @@ public class CartExpandableListAdapter extends BaseExpandableListAdapter {
     private class ChildViewHolder {
         private ImageView ivProduct;
         private TextView tvProductName;//商品名
-        private TextView tvProductSpecifications;
+//        private TextView tvProductSpecifications;
         private TextView tvProductPrice; // 售价
         //        private TextView mTvCaption; // 介绍
+//        private TextView tvReduce;
+//        private TextView tvPlus;
         private TextView tvQuantity;//数量
-        private TextView tvReduce;
-        private TextView tvPlus;
-        private ImageView ivDelete;
 
     }
 }

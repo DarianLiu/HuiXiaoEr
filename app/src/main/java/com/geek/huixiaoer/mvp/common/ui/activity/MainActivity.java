@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShoppingCartActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -46,8 +49,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     Toolbar toolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    //    @BindView(R.id.nav_view)
-//    NavigationView navigationView;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
     @BindView(R.id.autoScrollViewPager)
     AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.autoScrollIndicator)
@@ -96,11 +99,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbarTitle.setText(R.string.app_name);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawerLayout.setDrawerListener(toggle);
-//        toggle.syncState();
-//        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
 
         //获取轮播图
         mPresenter.getBanner();
@@ -224,19 +227,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.nav_recovery:
-//                break;
-//            case R.id.nav_housewifery:
-//                break;
-//            case R.id.nav_supermarket:
-//                break;
-//            case R.id.nav_dining:
-//                break;
-//        }
-//        drawerLayout.closeDrawer(GravityCompat.START);
-//        return true;
-        return false;
+        switch (item.getItemId()) {
+            case R.id.nav_shopping_cart:
+                launchActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
+                break;
+            case R.id.nav_coupon:
+                break;
+            case R.id.nav_order:
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -264,11 +265,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-//            drawerLayout.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

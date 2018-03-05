@@ -49,13 +49,15 @@
 
         <TextView
             android:id="@+id/totalTv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/tvBuy"
             android:layout_alignTop="@+id/tvBuy"
-            android:gravity="center"
-            android:text="总金额："
-            android:textSize="@dimen/t14" />
+            android:layout_toLeftOf="@+id/tvBuy"
+            android:gravity="center|start"
+            android:text="@string/total_amount"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t16" />
 
         <TextView
             android:id="@+id/tvBuy"
@@ -67,9 +69,9 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
-            android:text="去结算"
+            android:text="@string/btn_pay"
             android:textColor="@color/bg_color_white"
-            android:textSize="@dimen/t16" />
+            android:textSize="@dimen/t15" />
 
     </RelativeLayout>
 
