@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.RegexUtils;
-import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.CaptchaContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerCaptchaComponent;
 import com.geek.huixiaoer.mvp.common.di.module.CaptchaModule;

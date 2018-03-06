@@ -23,14 +23,15 @@ public class MerchantBean implements Serializable {
     @SerializedName(value = "merchantName")
     private String name;
     @SerializedName(value = "merchantId")
-    private int id;
+    private String id;
     private List<CartGoodsBean> items;
+    private String memo;
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -56,5 +57,13 @@ public class MerchantBean implements Serializable {
 
     public List<CartGoodsBean> getItems() {
         return items;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public String getMemo() {
+        return memo;
     }
 }

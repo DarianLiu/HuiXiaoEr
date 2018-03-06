@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.StringUtils;
-import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.LoginContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerLoginComponent;
 import com.geek.huixiaoer.mvp.common.di.module.LoginModule;
@@ -104,6 +104,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
+        loadingDialog = null;
     }
 
     @Override

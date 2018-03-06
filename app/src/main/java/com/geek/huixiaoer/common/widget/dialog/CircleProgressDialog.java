@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.common.widget;
+package com.geek.huixiaoer.common.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

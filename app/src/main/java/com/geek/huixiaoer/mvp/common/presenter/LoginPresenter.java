@@ -2,20 +2,19 @@ package com.geek.huixiaoer.mvp.common.presenter;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.contract.LoginContract;
 import com.geek.huixiaoer.storage.entity.UserBean;
-import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.DataHelper;
+
+import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
-
-import javax.inject.Inject;
-
-import com.geek.huixiaoer.mvp.common.contract.LoginContract;
-import com.jess.arms.utils.DataHelper;
 
 @ActivityScope
 public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginContract.View> {
@@ -30,6 +29,12 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
         this.mAppManager = appManager;
     }
 
+    /**
+     * 登录
+     *
+     * @param account     用户名、手机号
+     * @param md5Password 密码
+     */
     public void login(String account, String md5Password) {
         mModel.login(account, md5Password)
                 .retryWhen(new RetryWithDelay(3, 2))

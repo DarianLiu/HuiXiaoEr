@@ -14,11 +14,9 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.adapter.DefaultStatePagerAdapter;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
-import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleAddActivity;
-import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.ShopContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;

@@ -47,12 +47,18 @@ public class Constants {
      * Intent Key
      * ================================================
      */
+    public static final String INTENT_DIALOG_TITLE = "dialog_title";
+    public static final String INTENT_DIALOG_MESSAGE = "dialog_message";
+    public static final String INTENT_DIALOG_POSITIVE_TEXT = "dialog_positive_text";
+    public static final String INTENT_DIALOG_NEGATIVE_TEXT = "dialog_negative_text";
+
     public static final String INTENT_TYPE = "type";
     public static final String INTENT_MOBILE = "mobile";
     public static final String INTENT_GOODS_NAME = "goods_name";
     public static final String INTENT_GOODS_SN = "goods_sn";
     public static final String INTENT_GOODS_URL = "goods_url";
     public static final String INTENT_CART_LIST = "cart_list";
+
 
     /**
      * ================================================

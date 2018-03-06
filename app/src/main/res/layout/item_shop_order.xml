@@ -26,7 +26,7 @@
         android:lineSpacingMultiplier="1.1"
         android:maxLines="2"
         android:text="产品名称(产品规格)"
-        android:textColor="@color/color_text_caption"
+        android:textColor="@color/color_text_black"
         android:textSize="@dimen/t14" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_toRightOf="@+id/iv_product"
         android:maxLines="1"
         android:text="￥15.00"
-        android:textColor="@color/color_text_caption"
+        android:textColor="@color/color_text_black"
         android:textSize="@dimen/t14" />
 
     <TextView
@@ -100,7 +100,7 @@
             android:layout_marginTop="6dp"
             android:background="@drawable/btn_bg_gray"
             android:padding="6dp"
-            android:text="订单补充说明..."
+            android:text="@string/hint_order_memo"
             android:textColor="@color/color_text_label"
             android:textSize="@dimen/t13" />
 

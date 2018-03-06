@@ -16,7 +16,7 @@
 //import com.geek.huixiaoer.R;
 //import com.geek.huixiaoer.common.utils.Constants;
 //import com.geek.huixiaoer.common.widget.AdaptiveViewGroup;
-//import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+//import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 //import com.geek.huixiaoer.mvp.supermarket.contract.ProductSelectContract;
 //import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerProductSelectComponent;
 //import com.geek.huixiaoer.mvp.supermarket.di.module.ProductSelectModule;

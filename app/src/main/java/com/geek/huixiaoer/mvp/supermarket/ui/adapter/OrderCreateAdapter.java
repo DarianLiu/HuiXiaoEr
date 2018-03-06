@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.storage.entity.shop.MerchantBean;
 import com.geek.huixiaoer.storage.entity.shop.ProductBean;
 import com.jess.arms.http.imageloader.glide.GlideArms;
@@ -25,6 +27,8 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
     private LayoutInflater mInflater;
     private Context mContext;
     private List<MerchantBean> modelList;
+
+    private MemoOnClickListener memoOnClickListener;
 
     public OrderCreateAdapter(Context context, List<MerchantBean> list) {
         mContext = context;
@@ -98,12 +102,12 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
             convertView = mInflater.inflate(R.layout.item_shop_order, null);
             holder.ivProduct = convertView.findViewById(R.id.iv_product);
             holder.tvProductName = convertView.findViewById(R.id.tv_product_name);
-//            holder.tvProductSpecifications = convertView.findViewById(R.id.tv_product_specifications);
-//            holder.ivDelete = convertView.findViewById(R.id.iv_delete);
             holder.tvProductPrice = convertView.findViewById(R.id.tv_product_price);
             holder.tvQuantity = convertView.findViewById(R.id.tvQuantity);
-//            holder.tvPlus = convertView.findViewById(R.id.tv_plus);
-//            holder.tvReduce = convertView.findViewById(R.id.tv_reduce);
+            holder.tvCreateData = convertView.findViewById(R.id.tv_create_data);
+            holder.tvTotalAmount = convertView.findViewById(R.id.tv_total_amount);
+            holder.tvMemo = convertView.findViewById(R.id.tv_memo);
+            holder.rlFootView = convertView.findViewById(R.id.rl_footView);
             convertView.setTag(holder);
         } else {
             holder = (ChildViewHolder) convertView.getTag();
@@ -112,17 +116,40 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
         ProductBean productInfo = modelList.get(groupPosition).getItems().get(childPosition).getProduct();
 
         GlideArms.with(mContext).load(productInfo.getGoods_image()).centerCrop().into(holder.ivProduct);
-
-        holder.tvProductName.setText(productInfo.getGoods_name());
-//        if (productInfo.getSpecifications() == null || productInfo.getSpecifications().size() == 0) {
-//            holder.tvProductSpecifications.setText("");
-//        } else {
-//            holder.tvProductSpecifications.setText(productInfo.getSpecification());
-//        }
-//        holder.mTvCaption.setText(productInfo.getGoods_caption());
+        if (productInfo.getSpecifications() == null || productInfo.getSpecifications().size() == 0) {
+            holder.tvProductName.setText(productInfo.getGoods_name());
+        } else {
+            holder.tvProductName.setText(productInfo.getGoods_name() + "（"
+                    + productInfo.getSpecification() + "）");
+        }
         holder.tvProductPrice.setText(String.format("￥%s", productInfo.getPrice()));
-        holder.tvQuantity.setText(String.valueOf(modelList.get(groupPosition).getItems()
-                .get(childPosition).getQuantity()));
+        holder.tvQuantity.setText(String.format("x %s", String.valueOf(modelList.get(groupPosition)
+                .getItems().get(childPosition).getQuantity())));
+
+        if (childPosition == (getChildrenCount(groupPosition) - 1)) {
+            holder.rlFootView.setVisibility(View.VISIBLE);
+            holder.tvCreateData.setText(DateUtil.getDateTimeToString(modelList.get(groupPosition)
+                    .getItems().get(childPosition).getCreateDate()));
+            int size = getChildrenCount(groupPosition);
+            int totalQuantity = 0;
+            double totalPrice = 0;
+            for (int i = 0; i < size; i++) {
+                totalQuantity = totalQuantity + modelList.get(groupPosition).getItems()
+                        .get(childPosition).getQuantity();
+                totalPrice = totalPrice + (modelList.get(groupPosition).getItems().get(i)
+                        .getProduct().getPrice() * modelList.get(groupPosition).getItems()
+                        .get(childPosition).getQuantity());
+            }
+            holder.tvTotalAmount.setText("共" + totalQuantity + "件商品，合计" + totalPrice + "元");
+            holder.tvMemo.setOnClickListener(v -> {
+                if (memoOnClickListener != null) {
+                    memoOnClickListener.editMemo(groupPosition, childPosition,
+                            modelList.get(groupPosition).getMemo(),modelList.get(groupPosition).getId());
+                }
+            });
+        } else {
+            holder.rlFootView.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
@@ -139,14 +166,22 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
     }
 
     private class ChildViewHolder {
-        private ImageView ivProduct;
-        private TextView tvProductName;//商品名
-//        private TextView tvProductSpecifications;
-        private TextView tvProductPrice; // 售价
-        //        private TextView mTvCaption; // 介绍
-//        private TextView tvReduce;
-//        private TextView tvPlus;
-        private TextView tvQuantity;//数量
 
+        ImageView ivProduct;
+        TextView tvProductName;//商品名
+        TextView tvProductPrice; // 售价
+        TextView tvQuantity;//数量
+        TextView tvCreateData;
+        TextView tvTotalAmount;
+        TextView tvMemo;
+        RelativeLayout rlFootView;
+    }
+
+    public void setMemoOnClickListener(MemoOnClickListener memoOnClickListener) {
+        this.memoOnClickListener = memoOnClickListener;
+    }
+
+    public interface MemoOnClickListener {
+        void editMemo(int groupPosition, int childPosition, String memo,String merchantId);
     }
 }

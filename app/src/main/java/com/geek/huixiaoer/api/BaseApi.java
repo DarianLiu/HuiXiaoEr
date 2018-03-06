@@ -10,6 +10,7 @@ import com.geek.huixiaoer.storage.entity.article.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
 import io.reactivex.Observable;
@@ -182,7 +183,7 @@ public interface BaseApi {
      *
      * @param token 用户Token
      */
-    @POST(APIs.API.receiverDefault)
+    @GET(APIs.API.receiverDefault)
     Observable<BaseResponse<CartEditResultBean>> receiverDefault(@Query("token") String token);
 
     /**
@@ -190,8 +191,8 @@ public interface BaseApi {
      *
      * @param token 用户Token
      */
-    @POST(APIs.API.orderCheckout)
-    Observable<BaseResponse<CartEditResultBean>> orderCheckout(@Query("token") String token);
+    @GET(APIs.API.orderCheckout)
+    Observable<BaseResponse<OrderCheckResultBean>> orderCheckout(@Query("token") String token);
 
     /**
      * 订单金额计算接口（使用优惠券/发票）

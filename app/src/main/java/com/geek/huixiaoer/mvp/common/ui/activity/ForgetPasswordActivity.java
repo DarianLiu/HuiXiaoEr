@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.ForgetPasswordContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerForgetPasswordComponent;
 import com.geek.huixiaoer.mvp.common.di.module.ForgetPasswordModule;

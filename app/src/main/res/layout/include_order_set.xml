@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="账户余额：￥"
+            android:text="@string/tip_balance"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/t14" />
 
@@ -26,8 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textColor="@color/color_text_body"
-            android:textOff="不使用"
-            android:textOn="使用"
             android:textSize="@dimen/t14" />
 
     </RelativeLayout>
@@ -45,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="赠送积分："
+            android:text="@string/tip_reward_point"
             android:textColor="@color/color_text_label"
             android:textSize="@dimen/t14" />
 
@@ -65,13 +63,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/line_bottom_bg"
         android:gravity="center_vertical"
-        android:padding="10dp">
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="优惠券："
+            android:text="@string/tip_coupon"
             android:textColor="@color/color_text_label"
             android:textSize="@dimen/t14" />
 
@@ -94,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="开具发票："
+            android:text="@string/tip_invoice"
             android:textColor="@color/color_text_label"
             android:textSize="@dimen/t14" />
 
@@ -111,7 +112,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/line_top_bg"
-        android:hint="请输入发票抬头"
+        android:hint="@string/hint_invoice"
         android:paddingBottom="10dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"

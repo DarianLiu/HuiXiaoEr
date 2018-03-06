@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.mvp.common.contract.MainContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
@@ -31,6 +33,7 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -227,14 +230,19 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_shopping_cart:
-                launchActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
-                break;
-            case R.id.nav_coupon:
-                break;
-            case R.id.nav_order:
-                break;
+        String token = DataHelper.getStringSF(MainActivity.this, Constants.SP_TOKEN);
+        if (TextUtils.isEmpty(token)) {
+            launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+        } else {
+            switch (item.getItemId()) {
+                case R.id.nav_shopping_cart:
+                    launchActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
+                    break;
+                case R.id.nav_coupon:
+                    break;
+                case R.id.nav_order:
+                    break;
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.common.widget.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsDetailContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsDetailComponent;
