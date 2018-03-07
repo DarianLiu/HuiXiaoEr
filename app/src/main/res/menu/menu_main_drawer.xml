@@ -9,7 +9,7 @@
 
         <item
             android:id="@+id/nav_coupon"
-            android:icon="@drawable/ic_action_supermarket"
+            android:icon="@drawable/icon_mine_coupon"
             android:title="@string/title_coupon" />
 
         <item

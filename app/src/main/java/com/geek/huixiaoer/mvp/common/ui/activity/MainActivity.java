@@ -30,6 +30,7 @@ import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShoppingCartActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
@@ -107,12 +108,36 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+
+        initNavigationView();
 
         //获取轮播图
         mPresenter.getBanner();
 
         tvNotice.setSelected(true);
+    }
+
+    /**
+     * 初始化NavigationView
+     */
+    private void initNavigationView() {
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+
+        View navigationHeaderView = navigationView.getHeaderView(0);
+        ImageView ivHeader = navigationHeaderView.findViewById(R.id.iv_user_head);
+        ImageView ivSet = navigationHeaderView.findViewById(R.id.iv_set);
+        TextView tvName = navigationHeaderView.findViewById(R.id.tv_user_name);
+        TextView tvSign = navigationHeaderView.findViewById(R.id.tv_user_sign);
+
+        UserBean userBean = DataHelper.getDeviceData(MainActivity.this, Constants.SP_USER_INFO);
+        if (userBean != null) {
+            GlideArms.with(MainActivity.this).load(userBean.getHeadimgurl()).circleCrop()
+                    .error(R.drawable.icon_user_head).into(ivHeader);
+            tvName.setText(userBean.getUserInfo().getNickname() == null ?
+                    userBean.getUserInfo().getUsername() : userBean.getUserInfo().getNickname());
+            tvSign.setText(userBean.getUserInfo().getUsersign());
+        }
     }
 
     @Override
