@@ -77,8 +77,24 @@
         <activity
             android:name=".mvp.person.ui.activity.PersonCenterActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.housewifery.mvp.ui.activity.HomeSevicesActivity" />
-        <activity android:name=".mvp.housewifery.ui.activity.HomeServicesActivity"></activity>
+
+        <activity android:name=".mvp.housewifery.ui.activity.HomeServicesActivity" />
+
+
+        <!--支付宝-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
 </manifest>
