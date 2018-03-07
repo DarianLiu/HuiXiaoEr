@@ -6,7 +6,7 @@ import com.geek.huixiaoer.common.utils.BitmapUtils;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;

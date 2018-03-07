@@ -1,10 +1,12 @@
 package com.geek.huixiaoer.common.widget.dialog;
 
 import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -33,6 +35,9 @@ public class SimpleEditDialogFragment extends DialogFragment {
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
             dialog.getWindow().setLayout((int) (dm.widthPixels * 0.75), ViewGroup.LayoutParams.WRAP_CONTENT);
+            // 这里用透明颜色替换掉系统自带背景
+            int color = ContextCompat.getColor(getActivity(), android.R.color.transparent);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(color));
         }
     }
 
@@ -71,10 +76,12 @@ public class SimpleEditDialogFragment extends DialogFragment {
         tvCancel.setOnClickListener(v -> dismiss());
 
         tvSure.setOnClickListener(v -> {
-            if (dialogClickListener != null) {
-                dialogClickListener.onConfirmClick(etContent.getText().toString());
+            if (!TextUtils.isEmpty(etContent.getText().toString())) {
+                if (dialogClickListener != null) {
+                    dialogClickListener.onConfirmClick(etContent.getText().toString());
+                }
+                dismiss();
             }
-            dismiss();
         });
         return dialogView;
     }

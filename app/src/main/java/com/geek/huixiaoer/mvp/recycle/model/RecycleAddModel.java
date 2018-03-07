@@ -3,7 +3,7 @@ package com.geek.huixiaoer.mvp.recycle.model;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
 import com.geek.huixiaoer.storage.BaseResponse;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;

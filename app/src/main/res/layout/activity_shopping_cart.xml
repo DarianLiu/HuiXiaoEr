@@ -45,7 +45,10 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/line_top_bg"
         android:gravity="center_vertical"
-        android:padding="@dimen/all_padding">
+        android:paddingBottom="8dp"
+        android:paddingLeft="@dimen/all_padding"
+        android:paddingRight="@dimen/all_padding"
+        android:paddingTop="8dp">
 
         <TextView
             android:id="@+id/totalTv"
@@ -57,7 +60,7 @@
             android:gravity="center|start"
             android:text="@string/total_amount"
             android:textColor="@color/color_text_black"
-            android:textSize="@dimen/t16" />
+            android:textSize="@dimen/t14" />
 
         <TextView
             android:id="@+id/tvBuy"
@@ -71,7 +74,7 @@
             android:paddingTop="5dp"
             android:text="@string/btn_pay"
             android:textColor="@color/bg_color_white"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t14" />
 
     </RelativeLayout>
 

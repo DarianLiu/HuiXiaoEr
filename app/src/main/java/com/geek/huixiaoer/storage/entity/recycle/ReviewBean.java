@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.storage.entity.article;
+package com.geek.huixiaoer.storage.entity.recycle;
 
 public class ReviewBean {
         /**

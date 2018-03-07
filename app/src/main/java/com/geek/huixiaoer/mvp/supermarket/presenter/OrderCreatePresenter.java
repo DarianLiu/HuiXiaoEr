@@ -4,7 +4,9 @@ import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.CartEditResultBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
@@ -68,34 +70,13 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<CartEditResultBean>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<OrderCalculateResultBean>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull CartEditResultBean resultBean) {
-
+                    public void onNext(@NonNull OrderCalculateResultBean resultBean) {
+                        mRootView.updateOrder(resultBean);
                     }
                 })
         ;
-    }
-
-    /**
-     * 支付宝支付
-     * 支付方式(移动端默认为：alipayMobilePaymentPlugin)
-     *
-     * @param outTradeNo 交易流水号
-     * @param amount     交易金额
-     */
-    public void paymentSubmitNo(String outTradeNo, String amount) {
-        String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
-        mModel.paymentSubmitNo(token, "alipayMobilePaymentPlugin", outTradeNo, amount)
-                .retryWhen(new RetryWithDelay(3, 2))
-                .compose(RxUtil.applySchedulers(mRootView))
-                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<CartEditResultBean>(mErrorHandler) {
-                    @Override
-                    public void onNext(@NonNull CartEditResultBean resultBean) {
-
-                    }
-                });
     }
 
     /**
@@ -110,6 +91,27 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
     public void orderCreate(String receiverId, String code, String invoiceTitle, String useBalance, String memo) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
         mModel.orderCreate(token, receiverId, code, invoiceTitle, useBalance, memo)
+                .retryWhen(new RetryWithDelay(3, 2))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull OrderCreateResultBean resultBean) {
+//                        paymentSubmitNo(resultBean.getOutTradeNo(),);
+                    }
+                });
+    }
+
+    /**
+     * 支付宝支付
+     * 支付方式(移动端默认为：alipayMobilePaymentPlugin)
+     *
+     * @param outTradeNo 交易流水号
+     * @param amount     交易金额
+     */
+    public void paymentSubmitNo(String outTradeNo, String amount) {
+        String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
+        mModel.paymentSubmitNo(token, "alipayMobilePaymentPlugin", outTradeNo, amount)
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))

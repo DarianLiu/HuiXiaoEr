@@ -17,7 +17,7 @@ import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleListComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleListModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.RecycleListPresenter;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;

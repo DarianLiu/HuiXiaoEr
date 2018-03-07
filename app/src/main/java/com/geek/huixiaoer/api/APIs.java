@@ -190,5 +190,11 @@ public interface APIs {
          */
         String addReviewLike = "member/article/addReview.jhtml";
 
+        /*-----------家政模块--------*/
+        /**
+         * 家政服务列表
+         */
+        String homeServiceList = "homeservice/listAll.jhtml";
+
     }
 }

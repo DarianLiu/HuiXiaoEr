@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
     <RelativeLayout
@@ -13,9 +14,11 @@
 
         <TextView
             android:id="@+id/tv_balance"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/switch_balance"
             android:text="@string/tip_balance"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/t14" />
@@ -51,6 +54,7 @@
             android:id="@+id/tv_point"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
             android:layout_weight="1"
             android:gravity="end"
             android:textColor="@color/color_text_black"
@@ -92,10 +96,13 @@
 
         <TextView
             android:id="@+id/tv_rate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/tip_invoice"
+            android:layout_alignBottom="@+id/switch_invoice"
+            android:layout_alignTop="@+id/switch_invoice"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/switch_invoice"
+            android:gravity="center_vertical"
             android:textColor="@color/color_text_label"
             android:textSize="@dimen/t14" />
 
@@ -105,20 +112,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_invoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/switch_invoice"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_bg_gray"
+            android:gravity="end"
+            android:hint="@string/hint_invoice"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="8dp"
+            android:text="@string/hint_invoice"
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t13"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tv_invoice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/line_top_bg"
-        android:hint="@string/hint_invoice"
-        android:paddingBottom="10dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="10dp"
-        android:textColor="@color/color_text_label"
-        android:textSize="@dimen/t14"
-        android:visibility="visible" />
+    </RelativeLayout>
 
 </LinearLayout>

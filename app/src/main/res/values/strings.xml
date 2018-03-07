@@ -13,6 +13,7 @@
     <string name="title_order_submit">提交订单</string>
     <string name="title_order">我的订单</string>
     <string name="title_coupon">优惠券</string>
+    <string name="title_home_service">家政服务</string>
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>
@@ -66,6 +67,8 @@
     <string name="error_content_null">您还没有说点什么哦！</string>
     <string name="error_image_null">您还没有选择图片哦！</string>
     <string name="error_shopping_cart_null">您购物车已经是空的哦！</string>
+    <string name="error_receiver_null">收货地址不能为空！</string>
+    <string name="error_invoice_title_null">发票抬头不能为空！</string>
 
     <!--提示-->
     <string name="prompt_dialog_title">温馨提示</string>
@@ -90,6 +93,7 @@
     <string name="tip_invoice">开具发票：</string>
     <string name="tip_rate">税率：</string>
     <string name="tip_tax">税金：</string>
+    <string name="freight">运费</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_recovery">垃圾回收</string>
@@ -99,6 +103,8 @@
     <string name="title_activity_settings">设置</string>
     <string name="drag_to_delete_here">拖动到此处删除</string>
     <string name="loose_hand_can_be_deleted">松手即可删除</string>
+
+    <string name="housekeeping_service">进入家政客服</string>
 
     <!--会员相关-->
     <string name="member_login">会员登录</string>

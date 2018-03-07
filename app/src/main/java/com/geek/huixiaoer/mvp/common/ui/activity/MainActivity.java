@@ -25,6 +25,7 @@ import com.geek.huixiaoer.mvp.common.contract.MainContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
+import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShoppingCartActivity;
@@ -296,7 +297,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 launchActivity(new Intent(MainActivity.this, RecycleListActivity.class));
                 break;
             case R.id.iv_housewifery:
-//                launchActivity(new Intent(MainActivity.this, HouseWiferyActivity.class));
+                launchActivity(new Intent(MainActivity.this, HomeServicesActivity.class));
                 break;
             case R.id.iv_dinning:
 //                launchActivity(new Intent(MainActivity.this, DinningActivity.class));

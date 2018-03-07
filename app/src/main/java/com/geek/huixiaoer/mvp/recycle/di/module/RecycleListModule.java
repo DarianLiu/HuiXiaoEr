@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.mvp.recycle.model.RecycleListModel;
 import com.geek.huixiaoer.mvp.recycle.ui.adpater.RecycleAdapter;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.di.scope.ActivityScope;
 
 import java.util.ArrayList;

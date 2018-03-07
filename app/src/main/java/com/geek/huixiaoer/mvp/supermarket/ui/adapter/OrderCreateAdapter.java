@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.mvp.supermarket.ui.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,9 +145,14 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
             holder.tvMemo.setOnClickListener(v -> {
                 if (memoOnClickListener != null) {
                     memoOnClickListener.editMemo(groupPosition, childPosition,
-                            modelList.get(groupPosition).getMemo(),modelList.get(groupPosition).getId());
+                            modelList.get(groupPosition).getMemo(), modelList.get(groupPosition).getId());
                 }
             });
+            if (TextUtils.isEmpty(modelList.get(groupPosition).getMemo())) {
+                holder.tvMemo.setText(R.string.hint_order_memo);
+            } else {
+                holder.tvMemo.setText(modelList.get(groupPosition).getMemo());
+            }
         } else {
             holder.rlFootView.setVisibility(View.GONE);
         }
@@ -182,6 +188,6 @@ public class OrderCreateAdapter extends BaseExpandableListAdapter {
     }
 
     public interface MemoOnClickListener {
-        void editMemo(int groupPosition, int childPosition, String memo,String merchantId);
+        void editMemo(int groupPosition, int childPosition, String memo, String merchantId);
     }
 }

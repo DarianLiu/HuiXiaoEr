@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;

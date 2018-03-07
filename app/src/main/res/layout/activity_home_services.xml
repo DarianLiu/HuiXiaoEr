@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/refreshLayout"
+        layout="@layout/include_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_housekeeping_service"
+        android:layout_below="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_housekeeping_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/selector_btn_buy"
+        android:gravity="center"
+        android:padding="@dimen/all_padding"
+        android:text="@string/housekeeping_service"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t14" />
+
+</RelativeLayout>

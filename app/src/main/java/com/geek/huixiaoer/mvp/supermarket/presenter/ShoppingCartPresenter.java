@@ -18,6 +18,7 @@ import io.reactivex.annotations.NonNull;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
+import timber.log.Timber;
 
 
 @ActivityScope
@@ -40,7 +41,7 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartContract.Mo
      */
     public void cartList(boolean isRefresh) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
-
+        Timber.d("======token："+token);
         mModel.cartList(token).retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())

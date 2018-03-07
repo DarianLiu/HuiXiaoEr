@@ -4,7 +4,9 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.CartEditResultBean;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -33,7 +35,7 @@ public class OrderCreateModel extends BaseModel implements OrderCreateContract.M
     }
 
     @Override
-    public Observable<BaseResponse<CartEditResultBean>> orderCalculate(
+    public Observable<BaseResponse<OrderCalculateResultBean>> orderCalculate(
             String token, String receiverId, String paymentMethodId, String shippingMethodId,
             String code, String invoiceTitle, String useBalance, String memo) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).orderCalculate(
@@ -49,7 +51,7 @@ public class OrderCreateModel extends BaseModel implements OrderCreateContract.M
     }
 
     @Override
-    public Observable<BaseResponse<CartEditResultBean>> orderCreate(
+    public Observable<BaseResponse<OrderCreateResultBean>> orderCreate(
             String token, String receiverId, String code, String invoiceTitle,
             String useBalance, String memo) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).orderCreate(

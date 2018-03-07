@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.AndroidUtil;
 import com.geek.huixiaoer.common.utils.DateUtil;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DeviceUtils;

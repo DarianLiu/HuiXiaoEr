@@ -6,11 +6,14 @@ import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
-import com.geek.huixiaoer.storage.entity.article.ArticleBean;
+import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
 import io.reactivex.Observable;
@@ -206,15 +209,15 @@ public interface BaseApi {
      * @param useBalance       使用余额(0：不使用/1：使用)
      * @param memo             附言
      */
-    @POST(APIs.API.orderCalculate)
-    Observable<BaseResponse<CartEditResultBean>> orderCalculate(@Query("token") String token,
-                                                                @Query("receiverId") String receiverId,
-                                                                @Query("paymentMethodId") String paymentMethodId,
-                                                                @Query("shippingMethodId") String shippingMethodId,
-                                                                @Query("code") String code,
-                                                                @Query("invoiceTitle") String invoiceTitle,
-                                                                @Query("useBalance") String useBalance,
-                                                                @Query("memo") String memo);
+    @GET(APIs.API.orderCalculate)
+    Observable<BaseResponse<OrderCalculateResultBean>> orderCalculate(@Query("token") String token,
+                                                                      @Query("receiverId") String receiverId,
+                                                                      @Query("paymentMethodId") String paymentMethodId,
+                                                                      @Query("shippingMethodId") String shippingMethodId,
+                                                                      @Query("code") String code,
+                                                                      @Query("invoiceTitle") String invoiceTitle,
+                                                                      @Query("useBalance") String useBalance,
+                                                                      @Query("memo") String memo);
 
     /**
      * 支付宝支付方式的接口(购物车入口)
@@ -255,12 +258,12 @@ public interface BaseApi {
      * @param memo         附言
      */
     @POST(APIs.API.orderCreate)
-    Observable<BaseResponse<CartEditResultBean>> orderCreate(@Query("token") String token,
-                                                             @Query("receiverId") String receiverId,
-                                                             @Query("code") String code,
-                                                             @Query("invoiceTitle") String invoiceTitle,
-                                                             @Query("useBalance") String useBalance,
-                                                             @Query("memo") String memo);
+    Observable<BaseResponse<OrderCreateResultBean>> orderCreate(@Query("token") String token,
+                                                                @Query("receiverId") String receiverId,
+                                                                @Query("code") String code,
+                                                                @Query("invoiceTitle") String invoiceTitle,
+                                                                @Query("useBalance") String useBalance,
+                                                                @Query("memo") String memo);
 
     /**
      * ********************** 垃 圾 回 收 模 块 *************************
@@ -298,4 +301,12 @@ public interface BaseApi {
     Observable<BaseResponse<GoodsBean>> addReviewLike(@Query("token") String token,
                                                       @Query("articleId") String articleId,
                                                       @Query("content") String content);
+
+    /**
+     * ********************** 家 政 模 块 *************************
+     * 家政服务项目列表
+     * <p>
+     */
+    @GET(APIs.API.homeServiceList)
+    Observable<BaseResponse<BaseArrayData<HomeServiceBean>>> homeServiceList();
 }
