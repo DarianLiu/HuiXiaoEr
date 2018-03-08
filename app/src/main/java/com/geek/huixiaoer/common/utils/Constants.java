@@ -49,6 +49,7 @@ public class Constants {
      */
     public static final String INTENT_DIALOG_TITLE = "dialog_title";
     public static final String INTENT_DIALOG_MESSAGE = "dialog_message";
+    public static final String INTENT_DIALOG_INPUT_TYPE = "dialog_InputType";
     public static final String INTENT_DIALOG_POSITIVE_TEXT = "dialog_positive_text";
     public static final String INTENT_DIALOG_NEGATIVE_TEXT = "dialog_negative_text";
 
@@ -65,13 +66,7 @@ public class Constants {
      * RequestCode
      * ================================================
      */
-    public static final int REQUEST_CODE_CAMERA = 100;
-
-    public static final int REQUEST_CODE_ALBUM = 101;
-
-    public static final int REQUEST_CODE_CROP = 102;
-
-    public static final String KEY_LANGUAGE = "language";
+    public static final int REQUEST_CODE_ALIPAY = 101;
 
 
     /**

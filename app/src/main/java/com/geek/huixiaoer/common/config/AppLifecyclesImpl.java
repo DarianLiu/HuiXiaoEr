@@ -20,12 +20,14 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.geek.huixiaoer.BuildConfig;
+import com.geek.huixiaoer.mvp.housewifery.ui.plugin.ALiPayModule;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
+import io.rong.imkit.RongExtensionManager;
 import io.rong.imkit.RongIM;
 import timber.log.Timber;
 
@@ -48,6 +50,8 @@ public class AppLifecyclesImpl implements AppLifecycles {
     @Override
     public void onCreate(Application application) {
         RongIM.init(application);//融云初始化
+        RongExtensionManager.getInstance().registerExtensionModule(new ALiPayModule());
+
         if (LeakCanary.isInAnalyzerProcess(application)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.

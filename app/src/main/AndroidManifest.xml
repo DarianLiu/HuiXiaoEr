@@ -93,7 +93,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".mvp.housewifery.ui.activity.CustomerServiceActivity"
+            android:name=".mvp.housewifery.ui.activity.ConversationListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
@@ -110,7 +110,7 @@
 
         <!--会话界面-->
         <activity
-            android:name=".mvp.housewifery.ui.activity.ConversationActivity"
+            android:name=".mvp.housewifery.ui.activity.CustomerServiceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
 

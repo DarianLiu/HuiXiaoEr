@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.widget.MoneyValueFilter;
 
 /**
  * 带输入框的Dialog
@@ -54,6 +56,7 @@ public class SimpleEditDialogFragment extends DialogFragment {
 
         String title = getArguments().getString(Constants.INTENT_DIALOG_TITLE);
         String content = getArguments().getString(Constants.INTENT_DIALOG_MESSAGE);
+        int input_type = getArguments().getInt(Constants.INTENT_DIALOG_INPUT_TYPE, -1);
         String negative_text = getArguments().getString(Constants.INTENT_DIALOG_NEGATIVE_TEXT);
         String positive_text = getArguments().getString(Constants.INTENT_DIALOG_POSITIVE_TEXT);
 
@@ -63,6 +66,11 @@ public class SimpleEditDialogFragment extends DialogFragment {
 
         if (!TextUtils.isEmpty(content)) {
             etContent.setText(content);
+        }
+
+        if (input_type != -1) {
+            etContent.setInputType(input_type);
+            etContent.setFilters(new InputFilter[]{new MoneyValueFilter()});
         }
 
         if (!TextUtils.isEmpty(negative_text)) {
