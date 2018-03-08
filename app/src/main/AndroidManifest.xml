@@ -20,6 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.geek.huixiaoer.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
+
         <!-- arms配置 -->
         <meta-data
             android:name="com.geek.huixiaoer.common.config.GlobalConfiguration"
@@ -78,9 +88,25 @@
             android:name=".mvp.person.ui.activity.PersonCenterActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".mvp.housewifery.ui.activity.HomeServicesActivity" />
+        <activity
+            android:name=".mvp.housewifery.ui.activity.HomeServicesActivity"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".mvp.housewifery.ui.activity.CustomerServiceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.geek.huixiaoer"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
         <!--支付宝-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

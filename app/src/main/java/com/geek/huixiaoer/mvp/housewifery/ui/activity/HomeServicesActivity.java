@@ -112,6 +112,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
 
     @OnClick(R.id.tv_housekeeping_service)
     public void onViewClicked() {
+        launchActivity(new Intent(HomeServicesActivity.this,CustomerServiceActivity.class));
     }
 
     @Override

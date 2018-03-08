@@ -12,9 +12,12 @@ import com.jess.arms.utils.DataHelper;
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
+import timber.log.Timber;
 
 @ActivityScope
 public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginContract.View> {
@@ -43,9 +46,26 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                 .subscribeWith(new ErrorHandleSubscriber<UserBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull UserBean userBean) {
-                        DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
-                        DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
-                        mRootView.killMyself();
+                        RongIM.connect("UoqcO71icrCpb2aRubbU660smSRKzKHs9r/mkUK7p82r9QuY+Y86a9gabBMQ/N4tNXuN0dQSH0ls0FehJidD8w== "
+                                , new RongIMClient.ConnectCallback() {
+                                    @Override
+                                    public void onTokenIncorrect() {
+
+                                    }
+
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
+                                        DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
+                                        mRootView.killMyself();
+                                    }
+
+                                    @Override
+                                    public void onError(RongIMClient.ErrorCode errorCode) {
+                                        Timber.d("=====融云errorCode：" + errorCode);
+                                    }
+                                });
+
                     }
                 });
     }

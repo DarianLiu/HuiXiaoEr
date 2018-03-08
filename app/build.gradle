@@ -23,6 +23,7 @@ android {
             enabled true
         }
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
 
@@ -40,6 +41,13 @@ android {
 //            shrinkResources true
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main{
+            jni.srcDirs =[]
+            jniLibs.srcDirs = ['libs']
         }
     }
 
@@ -72,6 +80,7 @@ dependencies {
     compile rootProject.ext.dependencies["smartRefreshLayout"]
     compile rootProject.ext.dependencies["pictureSelector"]
     compile rootProject.ext.dependencies["glide-transformations"]
+    compile rootProject.ext.dependencies["multidex"]
     //tools
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     compile rootProject.ext.dependencies["progressmanager"]
@@ -81,5 +90,8 @@ dependencies {
     debugCompile rootProject.ext.dependencies["canary-debug"]
     releaseCompile rootProject.ext.dependencies["canary-release"]
     testCompile rootProject.ext.dependencies["canary-release"]
+    testCompile rootProject.ext.dependencies["junit"]
     compile files('libs/alipaySdk-20170922.jar')
+    compile project(':IMKit')
+//    compile project(':IMLib')
 }
