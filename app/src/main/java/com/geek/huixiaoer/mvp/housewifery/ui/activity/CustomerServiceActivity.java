@@ -3,12 +3,10 @@ package com.geek.huixiaoer.mvp.housewifery.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
 
 import com.geek.huixiaoer.R;
 
 import io.rong.imkit.RongIM;
-import io.rong.imkit.fragment.ConversationFragment;
 import io.rong.imlib.model.CSCustomServiceInfo;
 
 /**
@@ -21,7 +19,7 @@ public class CustomerServiceActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_service);
+        setContentView(R.layout.activity_conversation_list);
 //首先需要构造使用客服者的用户信息
         CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
         CSCustomServiceInfo csInfo = csBuilder.nickName("测试用户").build();
@@ -37,16 +35,4 @@ public class CustomerServiceActivity extends FragmentActivity {
         RongIM.getInstance().startCustomerServiceChat(this, "KEFU151979576246757", "家政客服", csInfo);
     }
 
-    @Override
-    public void onBackPressed() {
-        ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
-        if (!fragment.onBackPressed()) {
-            finish();
-        }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
-    }
 }
