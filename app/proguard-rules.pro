@@ -43,3 +43,17 @@
 -keep class com.alipay.tscenter.** { *; }
 -keep class com.ta.utdid2.** { *;}
 -keep class com.ut.device.** { *;}
+
+-keepattributes Exceptions,InnerClasses
+
+-keepattributes Signature
+
+# RongCloud SDK
+-keep class io.rong.** {*;}
+-keep class * implements io.rong.imlib.model.MessageContent {*;}
+-dontwarn io.rong.push.**
+-dontnote com.xiaomi.**
+-dontnote com.google.android.gms.gcm.**
+-dontnote io.rong.**
+
+-ignorewarnings

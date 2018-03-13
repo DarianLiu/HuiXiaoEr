@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -70,8 +71,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     ImageView ivSupermarket;
     @BindView(R.id.iv_dinning)
     ImageView ivDinning;
-    @BindView(R.id.linear_member_login)
-    LinearLayout linearLogin;
 
     //轮播图底部滑动图片
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
@@ -109,12 +108,23 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
+        setBannerHeight();
         initNavigationView();
 
         //获取轮播图
         mPresenter.getBanner();
 
         tvNotice.setSelected(true);
+    }
+
+    /**
+     * 设置banner控件的高度
+     */
+    private void setBannerHeight() {
+        int screenWidth = ArmsUtils.getScreenWidth(MainActivity.this);
+        int height = (int) (screenWidth * 0.53);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(screenWidth, height);
+        autoScrollViewPager.setLayoutParams(params);
     }
 
     /**
@@ -138,6 +148,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     userBean.getUserInfo().getUsername() : userBean.getUserInfo().getNickname());
             tvSign.setText(userBean.getUserInfo().getUsersign());
         }
+        ivHeader.setOnClickListener(v -> {
+            if (userBean == null) {
+                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+        tvName.setOnClickListener(v -> {
+            if (userBean == null) {
+                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+        ivSet.setOnClickListener(v -> ArmsUtils.makeText(MainActivity.this, "设置"));
     }
 
     @Override
@@ -211,7 +232,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             } else {
                 iv.setImageResource(R.drawable.icon_indicator_selected);
             }
-            iv.setLayoutParams(new ViewGroup.LayoutParams(30, 30));
+            iv.setLayoutParams(new ViewGroup.LayoutParams(40, 40));
             autoScrollIndicator.addView(iv);// 将图片加到一个布局里
             mScrollImageViews.add(iv);
         }
@@ -311,8 +332,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         finish();
     }
 
-    @OnClick({R.id.iv_supermarket, R.id.iv_recycle, R.id.iv_housewifery, R.id.iv_dinning,
-            R.id.linear_member_login})
+    @OnClick({R.id.iv_supermarket, R.id.iv_recycle, R.id.iv_housewifery, R.id.iv_dinning})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_supermarket:
@@ -327,9 +347,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.iv_dinning:
 //                launchActivity(new Intent(MainActivity.this, DinningActivity.class));
                 break;
-            case R.id.linear_member_login:
-                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
-                break;
+//            case R.id.linear_member_login:
+//                launchActivity(new Intent(MainActivity.this, LoginActivity.class));
+//                break;
         }
     }
 

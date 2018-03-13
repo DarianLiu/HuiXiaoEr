@@ -20,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import io.rong.imkit.RongIM;
 
 /**
  * ================================================
@@ -72,6 +73,7 @@ public class RxUtil {
                     return createData(tBaseResponse.getData());
                 } else {
                     if (TextUtils.equals(tBaseResponse.getResult(), "2")) {
+                        RongIM.getInstance().logout();
                         DataHelper.removeSF(context, Constants.SP_TOKEN);
                         DataHelper.removeSF(context, Constants.SP_USER_INFO);
                         context.startActivity(new Intent(context, LoginActivity.class));

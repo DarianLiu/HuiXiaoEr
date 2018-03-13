@@ -22,6 +22,9 @@ android {
         jackOptions {
             enabled true
         }
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }

@@ -46,15 +46,16 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                 .subscribeWith(new ErrorHandleSubscriber<UserBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull UserBean userBean) {
-                        RongIM.connect("UoqcO71icrCpb2aRubbU660smSRKzKHs9r/mkUK7p82r9QuY+Y86a9gabBMQ/N4tNXuN0dQSH0ls0FehJidD8w== "
+                        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw="
                                 , new RongIMClient.ConnectCallback() {
                                     @Override
                                     public void onTokenIncorrect() {
-
+                                        Timber.d("=====融云TokenIncorrect");
                                     }
 
                                     @Override
                                     public void onSuccess(String s) {
+                                        Timber.d("=====融云Success：" + s);
                                         DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
                                         DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
                                         mRootView.killMyself();

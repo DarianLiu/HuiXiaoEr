@@ -50,6 +50,17 @@ public class AppLifecyclesImpl implements AppLifecycles {
     @Override
     public void onCreate(Application application) {
         RongIM.init(application);//融云初始化
+//        RongPushClient.registerHWPush(application);
+//        RongPushClient.registerMiPush(application, "2882303761517473625", "5451747338625");
+//        try {
+//            Timber.w("======registerGCM=====");
+//            RongPushClient.registerGCM(application);
+//        } catch (RongException e) {
+//            Timber.w("======registerGCM===error==");
+//            e.printStackTrace();
+//        }
+
+
         RongExtensionManager.getInstance().registerExtensionModule(new ALiPayModule());
 
         if (LeakCanary.isInAnalyzerProcess(application)) {

@@ -10,7 +10,7 @@
     <dimen name="text_margin">16dp</dimen>
 
     <!-- Title高度 -->
-    <dimen name="title_height">45dp</dimen>
+    <dimen name="title_height">40dp</dimen>
 
     <!-- PaddingSize -->
     <dimen name="all_padding">15dp</dimen>
