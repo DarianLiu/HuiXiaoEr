@@ -91,13 +91,13 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
     public void orderCreate(String receiverId, String code, String invoiceTitle, String useBalance, String memo) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
         mModel.orderCreate(token, receiverId, code, invoiceTitle, useBalance, memo)
-                .retryWhen(new RetryWithDelay(3, 2))
+                .retryWhen(new RetryWithDelay(0, 0))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCreateResultBean resultBean) {
-//                        paymentSubmitNo(resultBean.getOutTradeNo(),);
+                        paymentSubmitNo(resultBean.getOutTradeNo(),"99");
                     }
                 });
     }
