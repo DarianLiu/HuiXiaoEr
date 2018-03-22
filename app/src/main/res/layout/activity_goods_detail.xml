@@ -18,14 +18,15 @@
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_favorite"
+        <Button
+            android:id="@+id/btn_favorite"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
@@ -33,10 +34,11 @@
             android:textColor="@color/color_text_caption"
             android:textSize="@dimen/t16" />
 
-        <TextView
-            android:id="@+id/tv_add_cart"
+        <Button
+            android:id="@+id/btn_add_cart"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"

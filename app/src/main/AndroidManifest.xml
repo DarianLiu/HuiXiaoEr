@@ -30,6 +30,16 @@
                 android:resource="@xml/rc_file_path" />
         </provider>
 
+        <provider
+            android:name="com.geek.huixiaoer.common.utils.MyFileProvider"
+            android:authorities="com.geek.huixiaoer.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
+
         <!-- arms配置 -->
         <meta-data
             android:name="com.geek.huixiaoer.common.config.GlobalConfiguration"
