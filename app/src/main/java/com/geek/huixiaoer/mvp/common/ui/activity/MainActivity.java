@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
         tvNotice.setSelected(true);
 
-        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw=",null);
+        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw=", null);
     }
 
     /**
@@ -161,7 +161,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 launchActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
-        ivSet.setOnClickListener(v -> ArmsUtils.makeText(MainActivity.this, "设置"));
+        ivSet.setOnClickListener(v -> {
+            ArmsUtils.makeText(MainActivity.this, "设置");
+            DataHelper.clearShareprefrence(MainActivity.this);
+        });
     }
 
     @Override

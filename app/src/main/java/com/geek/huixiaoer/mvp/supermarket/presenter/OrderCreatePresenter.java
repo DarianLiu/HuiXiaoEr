@@ -1,5 +1,9 @@
 package com.geek.huixiaoer.mvp.supermarket.presenter;
 
+import android.text.TextUtils;
+
+import com.alipay.sdk.app.PayTask;
+import com.geek.huixiaoer.api.exception.ApiException;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
@@ -10,13 +14,23 @@ import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.RxLifecycleUtils;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
@@ -97,7 +111,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCreateResultBean resultBean) {
-                        paymentSubmitNo(resultBean.getOutTradeNo(),"99");
+                        paymentSubmitNo(resultBean.getOutTradeNo(), "99");
                     }
                 });
     }
@@ -115,10 +129,33 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<CartEditResultBean>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull CartEditResultBean resultBean) {
+                    public void onNext(@NonNull OrderCreateResultBean resultBean) {
 
+                    }
+                });
+    }
+
+
+    /**
+     * 唤起支付宝支付
+     *
+     * @param orderStr 支付宝支付所需字符串
+     */
+    private void toALiPay(String orderStr) {
+        Observable.create((ObservableOnSubscribe<Map<String, String>>) emitter -> {
+            PayTask aLiPayTask = new PayTask(mAppManager.getTopActivity());
+            Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
+            emitter.onNext(resultMap);
+            emitter.onComplete();
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxLifecycleUtils.bindToLifecycle(mRootView))
+                .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull Map<String, String> stringStringMap) {
+                        ArmsUtils.makeText(mAppManager.getTopActivity(), "支付成功");
                     }
                 });
     }

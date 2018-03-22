@@ -29,7 +29,7 @@ public interface OrderCreateContract {
                 String token, String receiverId, String paymentMethodId, String shippingMethodId,
                 String code, String invoiceTitle, String useBalance, String memo);
 
-        Observable<BaseResponse<CartEditResultBean>> paymentSubmitNo(
+        Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(
                 String token, String paymentPluginId, String outTradeNo, String amount);
 
         Observable<BaseResponse<OrderCreateResultBean>> orderCreate(

@@ -44,7 +44,7 @@ public class OrderCreateModel extends BaseModel implements OrderCreateContract.M
     }
 
     @Override
-    public Observable<BaseResponse<CartEditResultBean>> paymentSubmitNo(
+    public Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(
             String token, String paymentPluginId, String outTradeNo, String amount) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).paymentSubmitNo(
                 token, paymentPluginId, outTradeNo, amount);

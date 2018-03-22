@@ -228,7 +228,7 @@ public interface BaseApi {
      * @param amount          交易金额
      */
     @POST(APIs.API.paymentSubmitNo)
-    Observable<BaseResponse<CartEditResultBean>> paymentSubmitNo(@Query("token") String token,
+    Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(@Query("token") String token,
                                                                  @Query("paymentPluginId") String paymentPluginId,
                                                                  @Query("outTradeNo") String outTradeNo,
                                                                  @Query("amount") String amount);
