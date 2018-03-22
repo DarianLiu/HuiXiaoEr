@@ -14,7 +14,7 @@ public interface APIs {
     /**
      * 服务器IP地址
      */
-    String IP = RELEASE_VERSION ? "www.yanfumall.com" : "182.254.223.66";
+    String IP = RELEASE_VERSION ? "www.yanfumall.com" : "47.94.227.16";
 
     /**
      * 端口号

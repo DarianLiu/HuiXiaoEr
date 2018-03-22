@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -49,10 +50,10 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     Toolbar toolbar;
     @BindView(R.id.goodsWebView)
     WebView webView;
-    @BindView(R.id.tv_favorite)
-    TextView tvFavorite;
-    @BindView(R.id.tv_add_cart)
-    TextView tvAddCart;
+    @BindView(R.id.btn_favorite)
+    Button btnFavorite;
+    @BindView(R.id.btn_add_cart)
+    Button btnAddCart;
 
     private CircleProgressDialog loadingDialog;
 
@@ -180,11 +181,11 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     @OnClick({R.id.tv_favorite, R.id.tv_add_cart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_favorite:
+            case R.id.btn_favorite:
                 showMessage("该功能暂未开放");
 //                mPresenter.favorite(goods_sn);
                 break;
-            case R.id.tv_add_cart:
+            case R.id.btn_add_cart:
                 String token = DataHelper.getStringSF(GoodsDetailActivity.this, Constants.SP_TOKEN);
                 if (TextUtils.isEmpty(token)) {
                     launchActivity(new Intent(GoodsDetailActivity.this, LoginActivity.class));

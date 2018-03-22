@@ -43,6 +43,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -115,6 +116,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         mPresenter.getBanner();
 
         tvNotice.setSelected(true);
+
+        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw=",null);
     }
 
     /**
@@ -198,6 +201,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
             }
         });
+        autoScrollViewPager.startAutoScroll();
     }
 
     /**
