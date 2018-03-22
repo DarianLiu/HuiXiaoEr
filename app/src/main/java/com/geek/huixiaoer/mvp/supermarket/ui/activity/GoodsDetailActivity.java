@@ -178,7 +178,7 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
     }
 
 
-    @OnClick({R.id.tv_favorite, R.id.tv_add_cart})
+    @OnClick({R.id.btn_favorite, R.id.btn_add_cart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_favorite:
