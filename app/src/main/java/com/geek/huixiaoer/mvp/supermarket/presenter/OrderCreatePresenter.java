@@ -2,6 +2,7 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 
 import android.text.TextUtils;
 
+import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
@@ -142,6 +143,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
      */
     private void toALiPay(String orderStr) {
         Observable.create((ObservableOnSubscribe<Map<String, String>>) emitter -> {
+            EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
             PayTask aLiPayTask = new PayTask(mAppManager.getTopActivity());
             Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
             emitter.onNext(resultMap);
