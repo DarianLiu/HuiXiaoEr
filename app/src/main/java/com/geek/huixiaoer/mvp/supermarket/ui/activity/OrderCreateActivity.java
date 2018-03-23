@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.alipay.sdk.app.EnvUtils;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
@@ -115,6 +117,12 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
                 .orderCreateModule(new OrderCreateModule(this))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
