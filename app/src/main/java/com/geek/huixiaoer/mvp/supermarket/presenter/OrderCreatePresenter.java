@@ -165,6 +165,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
         super.onDestroy();
         this.mErrorHandler = null;
         this.mAppManager = null;
+        this.amount = null;
     }
 
 }
