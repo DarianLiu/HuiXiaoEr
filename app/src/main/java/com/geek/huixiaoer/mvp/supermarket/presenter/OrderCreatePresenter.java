@@ -3,11 +3,9 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
-import com.geek.huixiaoer.api.exception.ApiException;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
-import com.geek.huixiaoer.mvp.supermarket.ui.activity.CartEditResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
@@ -23,13 +21,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
@@ -40,6 +34,7 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Model, OrderCreateContract.View> {
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
+    private String amount;
 
     @Inject
     OrderCreatePresenter(OrderCreateContract.Model model, OrderCreateContract.View rootView
@@ -87,6 +82,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<OrderCalculateResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCalculateResultBean resultBean) {
+                        amount = resultBean.getAmount();
                         mRootView.updateOrder(resultBean);
                     }
                 })
@@ -111,7 +107,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCreateResultBean resultBean) {
-                        paymentSubmitNo(resultBean.getOutTradeNo(), "99");
+                        paymentSubmitNo(resultBean.getOutTradeNo(), amount);
                     }
                 });
     }
