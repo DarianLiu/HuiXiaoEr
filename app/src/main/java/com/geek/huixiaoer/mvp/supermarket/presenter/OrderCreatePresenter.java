@@ -59,6 +59,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<OrderCheckResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCheckResultBean resultBean) {
+                        amount = String.valueOf(resultBean.getAmount());
                         mRootView.updateView(resultBean);
                     }
                 });
