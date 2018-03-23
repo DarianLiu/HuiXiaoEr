@@ -30,7 +30,7 @@ public class ShopPresenter extends BasePresenter<ShopContract.Model, ShopContrac
     }
 
     public void getGoodsCategorys() {
-        mModel.goodsCategoryRoot().retryWhen(new RetryWithDelay(3, 2))
+        mModel.goodsCategoryRoot().retryWhen(new RetryWithDelay(0, 30))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<CategoryBean>>(mErrorHandler) {

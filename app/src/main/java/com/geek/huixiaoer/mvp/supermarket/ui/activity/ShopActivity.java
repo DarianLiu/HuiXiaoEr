@@ -152,7 +152,8 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
         List<String> titles = new ArrayList<>();
         if (categoryBeanList != null) {
             GoodsListFragment goodsListFragment;
-            for (int i = 0; i < categoryBeanList.size(); i++) {
+//            for (int i = 0; i < categoryBeanList.size(); i++) {
+            for (int i = 0; i < 1; i++) {
                 CategoryBean categoryBean = categoryBeanList.get(i);
                 //设置TabLayout的模式
                 tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
