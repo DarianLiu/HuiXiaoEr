@@ -239,7 +239,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             } else {
                 iv.setImageResource(R.drawable.icon_indicator_selected);
             }
-            iv.setLayoutParams(new ViewGroup.LayoutParams(40, 40));
+            iv.setLayoutParams(new ViewGroup.LayoutParams(35, 35));
             autoScrollIndicator.addView(iv);// 将图片加到一个布局里
             mScrollImageViews.add(iv);
         }

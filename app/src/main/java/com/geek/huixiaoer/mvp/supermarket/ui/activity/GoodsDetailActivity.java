@@ -127,7 +127,8 @@ public class GoodsDetailActivity extends BaseActivity<GoodsDetailPresenter> impl
         webView.getSettings().setLoadWithOverviewMode(true);//设置网页充满全屏
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+//        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.setInitialScale(100);
         webView.requestFocus();
