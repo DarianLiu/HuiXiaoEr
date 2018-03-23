@@ -132,7 +132,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull OrderCreateResultBean resultBean) {
-
+                        toALiPay(resultBean.getOutTradeNo());
                     }
                 });
     }
@@ -154,8 +154,12 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                 .compose(RxLifecycleUtils.bindToLifecycle(mRootView))
                 .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull Map<String, String> stringStringMap) {
-                        ArmsUtils.makeText(mAppManager.getTopActivity(), "支付成功");
+                    public void onNext(@NonNull Map<String, String> resultMap) {
+                        if (TextUtils.equals(resultMap.get("resultStatus"), "9000")) {
+                            ArmsUtils.makeText(mAppManager.getTopActivity(), resultMap.get("memo"));
+                        } else {
+                            ArmsUtils.makeText(mAppManager.getTopActivity(), resultMap.get("memo"));
+                        }
                     }
                 });
     }
