@@ -123,7 +123,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
     public void paymentSubmitNo(String outTradeNo, String amount) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
         mModel.paymentSubmitNo(token, "alipayMobilePaymentPlugin", outTradeNo, amount)
-                .retryWhen(new RetryWithDelay(3, 2))
+                .retryWhen(new RetryWithDelay(0, 30))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<OrderCreateResultBean>(mErrorHandler) {
