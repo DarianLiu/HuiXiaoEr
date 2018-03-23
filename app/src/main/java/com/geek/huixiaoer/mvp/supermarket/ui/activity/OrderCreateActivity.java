@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -107,7 +108,9 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     private String mCouponCode = "";//优惠码
     private Map<String, String> memoMap = new HashMap<>();//附言列表
     private List<MerchantBean> mCartList; //购物车列表
-    private OrderCreateAdapter mAdapter;
+    private OrderCreateAdapter mAdapter;//订单列表适配器
+    private List<CouponCodeBean> mCouponList;//优惠券列表
+    private ArrayAdapter<CouponCodeBean> mCouponAdapter;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -146,7 +149,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
 
         initCartExpendableListView();
         intRefreshLayout();
-
+        initSpinnerCoupon();
     }
 
     /**
@@ -235,6 +238,36 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     }
 
     /**
+     * 设置默认优惠券列表
+     */
+    private void initSpinnerCoupon() {
+        mCouponList = new ArrayList<>();
+        CouponCodeBean couponCodeBean = new CouponCodeBean();
+        couponCodeBean.setName("不使用优惠券");
+        couponCodeBean.setValue("");
+        mCouponList.add(0, couponCodeBean);
+        mCouponAdapter = new ArrayAdapter<>(OrderCreateActivity.this,
+                R.layout.item_spinner_coupon, R.id.tv_name, mCouponList);
+        mCouponAdapter.setDropDownViewResource(R.layout.item_spinner_coupon);
+        spinnerCoupon.setAdapter(mCouponAdapter);
+
+        spinnerCoupon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mCouponCode = mCouponList.get(position).getValue();
+                mPresenter.orderCalculate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
+                        new Gson().toJson(memoMap));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    /**
      * 更新头部跟尾部数据(收获地址、订单相关信息)
      */
     @Override
@@ -256,7 +289,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
         tvRate.setText(tip_invoice + "（" + tip_rate + resultBean.getTaxRate() + "%）");
         tvInvoice.setOnClickListener(v ->
                 showEditDialog(dialog_title_invoice, mInvoiceTitle, "", -1));
-        setSpinnerCouponData(resultBean.getCouponCodeList());
+        addSpinnerCouponData(resultBean.getCouponCodeList());
 
     }
 
@@ -292,21 +325,9 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
      *
      * @param couponList 优惠券列表
      */
-    private void setSpinnerCouponData(List<CouponCodeBean> couponList) {
-        CouponCodeBean couponCodeBean = new CouponCodeBean();
-        couponCodeBean.setName("不使用优惠券");
-        couponCodeBean.setValue("");
-        couponList.add(0, couponCodeBean);
-        ArrayAdapter<CouponCodeBean> adapter = new ArrayAdapter<>(OrderCreateActivity.this,
-                R.layout.item_spinner_coupon, R.id.tv_name, couponList);
-        adapter.setDropDownViewResource(R.layout.item_spinner_coupon);
-        spinnerCoupon.setAdapter(adapter);
-
-        spinnerCoupon.setOnItemClickListener((parent, view, position, id) -> {
-            mCouponCode = couponList.get(position).getValue();
-            mPresenter.orderCalculate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
-                    new Gson().toJson(memoMap));
-        });
+    private void addSpinnerCouponData(List<CouponCodeBean> couponList) {
+        mCouponList.addAll(couponList);
+        mCouponAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -393,6 +414,10 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mCouponList = null;
+        mCouponAdapter = null;
+        mAdapter = null;
+        mCartList = null;
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
