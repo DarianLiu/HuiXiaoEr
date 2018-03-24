@@ -99,6 +99,10 @@
             android:name=".mvp.housewifery.ui.activity.HomeServicesActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mvp.person.ui.activity.MyReceiverActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".mvp.housewifery.ui.activity.ConversationListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -143,7 +147,7 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".mvp.person.ui.activity.MyReceiverActivity"></activity>
+
     </application>
 
 </manifest>
