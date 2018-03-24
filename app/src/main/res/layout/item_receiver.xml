@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="@dimen/all_padding">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_receive_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:drawableLeft="@drawable/icon_receive_user"
+            android:drawablePadding="5dp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:id="@+id/tv_receive_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/icon_receive_phone"
+            android:drawablePadding="5dp"
+            android:gravity="center|start"
+            android:text=""
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_receive_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/icon_receive_address"
+        android:drawablePadding="5dp"
+        android:gravity="center|start"
+        android:text=""
+        android:textColor="@color/color_text_caption"
+        android:textSize="@dimen/t14" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_receive_address"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/line_default_color" />
+
+    <RadioButton
+        android:id="@+id/rb_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_line"
+        android:text="@string/default_receiver"
+        android:textColor="@color/color_text_caption"
+        android:textSize="@dimen/t14" />
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rb_default"
+        android:layout_alignTop="@+id/rb_default"
+        android:layout_toLeftOf="@+id/tv_delete"
+        android:drawableLeft="@drawable/icon_delete"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/btn_edit"
+        android:textColor="@color/color_text_label"
+        android:textSize="@dimen/t14" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rb_default"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/rb_default"
+        android:drawableLeft="@drawable/icon_edit"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/btn_delete"
+        android:textColor="@color/color_text_label"
+        android:textSize="@dimen/t14" />
+
+</RelativeLayout>

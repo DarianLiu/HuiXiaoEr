@@ -143,11 +143,6 @@ public interface APIs {
         String cartClear = "cart/clear.jhtml";
 
         /**
-         * 获取当前会员的默认收货地址
-         */
-        String receiverDefault = "member/receiver/defaultReceiver.jhtml";
-
-        /**
          * 提交普通订单需要获取的数据
          */
         String orderCheckout = "shop/order/app/checkout.jhtml";
@@ -195,6 +190,38 @@ public interface APIs {
          * 家政服务列表
          */
         String homeServiceList = "homeservice/listAll.jhtml";
+
+
+         /*-----------用户模块--------*/
+        /**
+         * 收货地址列表
+         */
+        String receiverList = "member/receiver/list.jhtml";
+
+        /**
+         * 收货地址添加保存
+         */
+        String receiverSave = "member/receiver/save.jhtml";
+
+        /**
+         * 收货地址更新
+         */
+        String receiverUpdate = "member/receiver/update.jhtml";
+
+        /**
+         * 指定收货地址
+         */
+        String receiverEdit = "member/receiver/edit.jhtml";
+
+        /**
+         * 获取当前会员的默认收货地址
+         */
+        String receiverDefault = "member/receiver/defaultReceiver.jhtml";
+
+        /**
+         * 删除收货地址
+         */
+        String receiverDelete = "member/receiver/delete.jhtml";
 
     }
 }

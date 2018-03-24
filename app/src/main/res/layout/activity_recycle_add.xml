@@ -41,7 +41,7 @@
         android:paddingTop="@dimen/all_padding"
         android:textColor="@color/color_text_caption"
         android:textColorHint="@color/color_hint_text"
-        android:textSize="@dimen/t15" />
+        android:textSize="@dimen/t16" />
 
     <TextView
         android:id="@+id/tv_delete"

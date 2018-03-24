@@ -18,7 +18,7 @@ public class ReceiverBean {
 
     private String id;
     private String phone;
-    private int area_id;
+    private String area_id;
     private String areaName;
     private String address;
     private boolean isDefault;
@@ -42,11 +42,11 @@ public class ReceiverBean {
         this.phone = phone;
     }
 
-    public int getArea_id() {
+    public String getArea_id() {
         return area_id;
     }
 
-    public void setArea_id(int area_id) {
+    public void setArea_id(String area_id) {
         this.area_id = area_id;
     }
 

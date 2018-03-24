@@ -19,7 +19,7 @@
         android:padding="15dp"
         android:textColor="@color/color_text_black"
         android:textColorHint="@color/color_hint_text"
-        android:textSize="@dimen/t15" />
+        android:textSize="@dimen/t16" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:padding="15dp"
             android:textColorHint="@color/color_hint_text"
             android:textColor="@color/color_text_black"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
         <View
             android:layout_width="1dp"
@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/btn_send_captcha"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
     </LinearLayout>
 

@@ -84,21 +84,15 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_clear, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_clear:
-                if (mCartList.size() == 0) {
-                    showMessage(error_shopping_cart_null);
-                } else {
-                    mPresenter.cartClear();
-                }
-                break;
-        }
-        return true;
+        final MenuItem item = menu.findItem(R.id.action_clear);
+        item.getActionView().setOnClickListener(v -> {
+            if (mCartList.size() == 0) {
+                showMessage(error_shopping_cart_null);
+            } else {
+                mPresenter.cartClear();
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -194,6 +188,7 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         }
         mCartList.addAll(cartBean.getDatas());
         expandAllGroup(cartBean.getDatas());
+        mAdapter.notifyDataSetChanged();
 
         totalTv.setText(MessageFormat.format("{0}{1}", total_amount, cartBean.getEffectivePrice()));
     }

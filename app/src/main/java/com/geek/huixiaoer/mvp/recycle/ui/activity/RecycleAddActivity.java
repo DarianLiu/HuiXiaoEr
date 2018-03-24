@@ -279,6 +279,7 @@ public class RecycleAddActivity extends BaseActivity<RecycleAddPresenter> implem
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
+        loadingDialog = null;
     }
 
     @Override

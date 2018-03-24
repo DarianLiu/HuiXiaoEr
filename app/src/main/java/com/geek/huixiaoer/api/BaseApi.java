@@ -14,6 +14,7 @@ import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
+import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
 import io.reactivex.Observable;
@@ -161,7 +162,8 @@ public interface BaseApi {
      * @param quantity 数量
      */
     @POST(APIs.API.cartEdit)
-    Observable<BaseResponse<CartEditResultBean>> cartEdit(@Query("token") String token, @Query("id") String id,
+    Observable<BaseResponse<CartEditResultBean>> cartEdit(@Query("token") String token,
+                                                          @Query("id") String id,
                                                           @Query("quantity") int quantity);
 
     /**
@@ -171,7 +173,8 @@ public interface BaseApi {
      * @param id    购物车项ID
      */
     @POST(APIs.API.cartDelete)
-    Observable<BaseResponse<CartEditResultBean>> cartDelete(@Query("token") String token, @Query("id") String id);
+    Observable<BaseResponse<CartEditResultBean>> cartDelete(@Query("token") String token,
+                                                            @Query("id") String id);
 
     /**
      * 清空购物车
@@ -229,9 +232,9 @@ public interface BaseApi {
      */
     @POST(APIs.API.paymentSubmitNo)
     Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(@Query("token") String token,
-                                                                 @Query("paymentPluginId") String paymentPluginId,
-                                                                 @Query("outTradeNo") String outTradeNo,
-                                                                 @Query("amount") String amount);
+                                                                    @Query("paymentPluginId") String paymentPluginId,
+                                                                    @Query("outTradeNo") String outTradeNo,
+                                                                    @Query("amount") String amount);
 
     /**
      * 支付宝支付方式的接口(订单列表入口)
@@ -305,8 +308,52 @@ public interface BaseApi {
     /**
      * ********************** 家 政 模 块 *************************
      * 家政服务项目列表
-     * <p>
      */
     @GET(APIs.API.homeServiceList)
     Observable<BaseResponse<BaseArrayData<HomeServiceBean>>> homeServiceList();
+
+    /**
+     * ********************** 用 户 模 块 *************************
+     * 收货地址列表
+     */
+    @GET(APIs.API.receiverList)
+    Observable<BaseResponse<BaseArrayData<ReceiverBean>>> receiverList(@Query("pageNumber") int pageNumber,
+                                                                       @Query("token") String token);
+
+    /**
+     * 保存新的收货地址
+     */
+    @POST(APIs.API.receiverSave)
+    Observable<BaseResponse<ReceiverBean>> receiverSave(@Query("token") String token,
+                                                        @Query("consignee") String consignee,
+                                                        @Query("areaName") String areaName,
+                                                        @Query("address") String address,
+                                                        @Query("zipCode") String zipCode,
+                                                        @Query("phone") String phone,
+                                                        @Query("isDefault") boolean isDefault,
+                                                        @Query("areaId") String areaId);
+
+    /**
+     * 更新收货地址
+     */
+    @POST(APIs.API.receiverUpdate)
+    Observable<BaseResponse<ReceiverBean>> receiverUpdate(@Query("token") String token,
+                                                          @Query("consignee") String consignee,
+                                                          @Query("areaName") String areaName,
+                                                          @Query("address") String address,
+                                                          @Query("zipCode") String zipCode,
+                                                          @Query("phone") String phone,
+                                                          @Query("isDefault") boolean isDefault,
+                                                          @Query("areaId") String areaId,
+                                                          @Query("id") String id,
+                                                          @Query("oId") String oId);
+
+    /**
+     * 删除收货地址
+     */
+    @POST(APIs.API.receiverDelete)
+    Observable<BaseResponse<ReceiverBean>> receiverDelete(@Query("token") String token,
+                                                          @Query("id") String id);
+
+
 }

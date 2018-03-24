@@ -13,6 +13,7 @@
     <string name="title_order_submit">提交订单</string>
     <string name="title_order">我的订单</string>
     <string name="title_coupon">优惠券</string>
+    <string name="title_receiver">收货地址</string>
     <string name="title_home_service">家政服务</string>
 
     <string name="dialog_title_memo">订单附言</string>
@@ -39,6 +40,8 @@
     <string name="btn_order_submit">提交订单</string>
     <string name="btn_plus">+</string>
     <string name="btn_reduce">—</string>
+    <string name="btn_edit">编辑</string>
+    <string name="btn_delete">删除</string>
 
     <!--Hint_Text-->
     <string name="hint_mobile_number">手机号码</string>
@@ -97,6 +100,7 @@
     <string name="tip_rate">税率：</string>
     <string name="tip_tax">税金：</string>
     <string name="freight">运费</string>
+    <string name="default_receiver">【默认地址】</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_recovery">垃圾回收</string>

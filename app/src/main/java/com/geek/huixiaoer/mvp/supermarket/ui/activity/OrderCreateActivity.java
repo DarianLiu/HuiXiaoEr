@@ -20,6 +20,7 @@ import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.dialog.SimpleEditDialogFragment;
+import com.geek.huixiaoer.mvp.person.ui.activity.MyReceiverActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerOrderCreateComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.OrderCreateModule;
@@ -186,6 +187,8 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
         tvReceiveUser = headView.findViewById(R.id.tv_receive_user);
         tvReceivePhone = headView.findViewById(R.id.tv_receive_phone);
         tvReceiveAddress = headView.findViewById(R.id.tv_receive_address);
+        headView.setOnClickListener(v ->
+                launchActivity(new Intent(OrderCreateActivity.this, MyReceiverActivity.class)));
         elvCart.addHeaderView(headView);
 
         //添加尾部视图
@@ -309,7 +312,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
     }
 
     /**
-     * 更新收获信息
+     * 更新收货信息
      *
      * @param receiverBean 收货地址
      */

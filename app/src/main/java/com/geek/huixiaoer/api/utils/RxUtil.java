@@ -101,7 +101,7 @@ public class RxUtil {
                     if (TextUtils.equals(tBaseResponse.getResult(), "2")) {
                         DataHelper.removeSF(context, Constants.SP_TOKEN);
                         DataHelper.removeSF(context, Constants.SP_USER_INFO);
-                        ArmsUtils.killAll();
+//                        ArmsUtils.killAll();
                         context.startActivity(new Intent(context, LoginActivity.class));
                     }
                     return Observable.error(new ApiException(tBaseResponse.getMsg(), tBaseResponse.getResult()));

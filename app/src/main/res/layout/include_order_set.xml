@@ -127,7 +127,7 @@
             android:paddingTop="8dp"
             android:text="@string/hint_invoice"
             android:textColor="@color/color_text_caption"
-            android:textSize="@dimen/t13"
+            android:textSize="@dimen/t14"
             android:visibility="gone" />
 
     </RelativeLayout>

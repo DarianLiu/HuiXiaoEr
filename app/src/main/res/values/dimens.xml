@@ -33,11 +33,11 @@
 
     <!-- TextSize -->
     <dimen name="t10">10sp</dimen>
-    <dimen name="t11">11sp</dimen>
+    <!--<dimen name="t11">11sp</dimen>-->
     <dimen name="t12">12sp</dimen>
-    <dimen name="t13">13sp</dimen>
+    <!--<dimen name="t13">13sp</dimen>-->
     <dimen name="t14">14sp</dimen>
-    <dimen name="t15">15sp</dimen>
+    <!--<dimen name="t15">15sp</dimen>-->
     <dimen name="t16">16sp</dimen>
     <dimen name="t18">18sp</dimen>
     <dimen name="t20">20sp</dimen>

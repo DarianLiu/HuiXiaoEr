@@ -27,7 +27,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -77,7 +77,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -101,7 +101,7 @@
             android:paddingRight="15dp"
             android:textColor="@color/color_text_black"
             android:textColorHint="@color/color_hint_text"
-            android:textSize="@dimen/t15" />
+            android:textSize="@dimen/t16" />
 
     </android.support.design.widget.TextInputLayout>
 
