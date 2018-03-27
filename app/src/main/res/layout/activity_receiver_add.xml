@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/receiver_name"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/et_receive_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/hint_receiver_name"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/receiver_phone"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/et_receive_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/hint_receiver_phone"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <com.geek.huixiaoer.common.widget.OptionView
+        android:id="@+id/option_receiver_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/all_padding"
+        android:paddingTop="@dimen/all_padding"
+        app:option_background="@drawable/line_bottom_bg"
+        app:option_title_text="@string/receiver_area"
+        app:option_title_text_color="@color/color_text_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/receiver_address"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/et_receive_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/hint_receiver_address"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/receiver_postal_code"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/et_postal_code"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="@string/hint_receiver_postal_code"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingLeft="@dimen/all_padding"
+        android:paddingRight="@dimen/all_padding"
+        android:paddingTop="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/receiver_set_default"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t14"
+            tools:ignore="RelativeOverlap" />
+
+        <CheckBox
+            android:id="@+id/cb_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_sure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/all_padding"
+        android:background="@drawable/selector_btn_default"
+        android:text="@string/btn_sure"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/t16" />
+
+</LinearLayout>

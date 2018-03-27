@@ -56,6 +56,11 @@
     <string name="hint_say_something">说点什么&#8230;</string>
     <string name="hint_invoice">请输入发票抬头&#8230;</string>
     <string name="hint_order_memo">订单补充说明&#8230;</string>
+    <string name="hint_receiver_name">请输入收货人姓名</string>
+    <string name="hint_receiver_phone">请输入手机号码</string>
+    <string name="hint_receiver_area">请选择所在地区</string>
+    <string name="hint_receiver_address">请输入详细地址</string>
+    <string name="hint_receiver_postal_code">请输入邮政编码</string>
 
     <!--错误提示-->
     <string name="error_account_null">账号不能为空</string>
@@ -101,6 +106,12 @@
     <string name="tip_tax">税金：</string>
     <string name="freight">运费</string>
     <string name="default_receiver">【默认地址】</string>
+    <string name="receiver_name">收货人：</string>
+    <string name="receiver_phone">联系方式：</string>
+    <string name="receiver_area">所在地区：</string>
+    <string name="receiver_address">详细地址：</string>
+    <string name="receiver_postal_code">邮政编码：</string>
+    <string name="receiver_set_default">设为默认地址：</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_recovery">垃圾回收</string>

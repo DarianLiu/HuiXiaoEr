@@ -56,8 +56,13 @@
     </style>
 
     <style name="BottomToTopAnim" parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/bottomview_anim_enter</item>
-        <item name="@android:windowExitAnimation">@anim/bottomview_anim_exit</item>
+        <item name="@android:windowEnterAnimation">@anim/dialog_anim_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_anim_exit</item>
+    </style>
+
+    <style name="anim_push_bottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
 </resources>

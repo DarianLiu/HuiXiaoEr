@@ -73,7 +73,7 @@ dependencies {
     compile rootProject.ext.dependencies["constraint-layout"]
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["arms"]
-    compile rootProject.ext.dependencies["gridlayout"]
+//    compile rootProject.ext.dependencies["gridlayout"]
     //    compile 'com.android.support:gridlayout-v7:27.0.2'
     //view
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {

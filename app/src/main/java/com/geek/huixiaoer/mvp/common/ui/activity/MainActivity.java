@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             }
         });
         ivSet.setOnClickListener(v -> {
-            ArmsUtils.makeText(MainActivity.this, "设置");
+//            ArmsUtils.makeText(MainActivity.this, "设置");
             DataHelper.clearShareprefrence(MainActivity.this);
         });
     }

@@ -18,7 +18,6 @@ import com.geek.huixiaoer.mvp.person.di.component.DaggerMyReceiverComponent;
 import com.geek.huixiaoer.mvp.person.di.module.MyReceiverModule;
 import com.geek.huixiaoer.mvp.person.presenter.MyReceiverPresenter;
 import com.geek.huixiaoer.mvp.person.ui.adapter.ReceiverItemHolder;
-import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleAddActivity;
 import com.geek.huixiaoer.storage.event.ReceiverEvent;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -79,7 +78,7 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                launchActivity(new Intent(MyReceiverActivity.this, RecycleAddActivity.class));
+                launchActivity(new Intent(MyReceiverActivity.this, ReceiverAddActivity.class));
                 break;
         }
         return true;

@@ -21,7 +21,8 @@ ext {
             espressoSdkVersion      : "3.0.1",
             canarySdkVersion        : "1.5.4",
             smartRefreshSdkVersion  : "1.0.3",
-            glideTransformations    : "3.1.1"
+            glideTransformations    : "3.1.1",
+            wheelPickerSdkVersion   : "1.5.5"
     ]
 
     dependencies = [
@@ -65,6 +66,7 @@ ext {
             "vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
             "smartRefreshLayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartRefreshSdkVersion"]}",
             "pictureSelector"          : "com.github.LuckSiege.PictureSelector:picture_library:v2.1.9",
+//            "WheelPicker"              : "cn.qqtheme.framework:WheelPicker:${version["wheelPickerSdkVersion"]}",//三级联动选择器
 
             //rx2
             "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.0.1",

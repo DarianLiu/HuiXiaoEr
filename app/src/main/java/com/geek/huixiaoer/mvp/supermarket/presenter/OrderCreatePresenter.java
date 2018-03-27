@@ -1,5 +1,6 @@
 package com.geek.huixiaoer.mvp.supermarket.presenter;
 
+import android.app.Application;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
@@ -34,14 +35,16 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Model, OrderCreateContract.View> {
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
+    private Application mApplication;
     private String amount;
 
     @Inject
     OrderCreatePresenter(OrderCreateContract.Model model, OrderCreateContract.View rootView
-            , RxErrorHandler handler, AppManager appManager) {
+            , RxErrorHandler handler, AppManager appManager, Application application) {
         super(model, rootView);
         this.mErrorHandler = handler;
         this.mAppManager = appManager;
+        this.mApplication = application;
     }
 
     /**
@@ -153,9 +156,9 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
                     @Override
                     public void onNext(@NonNull Map<String, String> resultMap) {
                         if (TextUtils.equals(resultMap.get("resultStatus"), "9000")) {
-                            ArmsUtils.makeText(mAppManager.getTopActivity(), resultMap.get("memo"));
+                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
                         } else {
-                            ArmsUtils.makeText(mAppManager.getTopActivity(), resultMap.get("memo"));
+                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
                         }
                     }
                 });
@@ -167,6 +170,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
         this.mErrorHandler = null;
         this.mAppManager = null;
         this.amount = null;
+        this.mApplication = null;
     }
 
 }

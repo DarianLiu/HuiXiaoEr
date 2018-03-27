@@ -209,7 +209,7 @@ public interface APIs {
         String receiverUpdate = "member/receiver/update.jhtml";
 
         /**
-         * 指定收货地址
+         * 获取指定收货地址
          */
         String receiverEdit = "member/receiver/edit.jhtml";
 

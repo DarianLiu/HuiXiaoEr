@@ -58,4 +58,6 @@
     <!--列表间距颜色-->
     <color name="divider_color">#EDEDEF</color>
 
+    <color name="color_wheel_bg">#c4e5f7</color>
+
 </resources>

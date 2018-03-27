@@ -4,7 +4,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
@@ -15,9 +14,8 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -30,23 +28,20 @@ public class AndroidUtil {
      * 从assets读取文件
      *
      * @param fileName
-     * @param resource
      * @return
      */
-    public static String getFromAssets(String fileName, Resources resource) {
+    public static String readAssert(Context context,  String fileName){
+        String jsonString="";
+        String resultString="";
         try {
-            InputStreamReader inputReader = new InputStreamReader(resource.getAssets().open(fileName));
-            BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
-            String Result = "";
-            while ((line = bufReader.readLine()) != null)
-                Result += line;
-            inputReader.close();
-            bufReader.close();
-            return Result;
+            InputStream inputStream=context.getResources().getAssets().open(fileName);
+            byte[] buffer=new byte[inputStream.available()];
+            inputStream.read(buffer);
+            resultString=new String(buffer,"utf-8");
         } catch (Exception e) {
-            return "";
+            e.printStackTrace();
         }
+        return resultString;
     }
 
     /**
