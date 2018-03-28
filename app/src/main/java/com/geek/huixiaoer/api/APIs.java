@@ -145,12 +145,12 @@ public interface APIs {
         /**
          * 提交普通订单需要获取的数据
          */
-        String orderCheckout = "shop/order/app/checkout.jhtml";
+        String shopOrderCheckout = "shop/order/app/checkout.jhtml";
 
         /**
          * 订单金额计算接口
          */
-        String orderCalculate = "shop/order/calculate.jhtml";
+        String shopOrderCalculate = "shop/order/calculate.jhtml";
 
         /**
          * 支付宝支付方式的接口(购物车入口)
@@ -165,7 +165,7 @@ public interface APIs {
         /**
          * 生成订单
          */
-        String orderCreate = "shop/order/create.jhtml";
+        String shopOrderCreate = "shop/order/create.jhtml";
 
 
 
@@ -222,6 +222,26 @@ public interface APIs {
          * 删除收货地址
          */
         String receiverDelete = "member/receiver/delete.jhtml";
+
+        /**
+         * 购物订单列表
+         */
+        String shopOrderList = "member/order/listStatus.jhtml";
+
+        /**
+         * 取消购物订单
+         */
+        String shopOrderCancel = "member/order/cancel.jhtml";
+
+        /**
+         * 购物订单详情(订单列表入口)
+         */
+        String shopOrderViewSn = "member/order/viewSn.jhtml";
+
+        /**
+         * 购物订单确认收货
+         */
+        String shopOrderReceive = "member/order/receive.jhtml";
 
     }
 }

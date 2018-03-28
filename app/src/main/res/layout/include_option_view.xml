@@ -8,7 +8,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
         android:drawablePadding="11dp"
-        android:textSize="15sp" />
+        android:textSize="@dimen/t14" />
 
     <TextView
         android:id="@+id/option_right"
@@ -17,9 +17,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
-        android:drawablePadding="11dp"
-        android:gravity="center"
-        android:textColor="#333333"
-        android:textSize="15sp" />
+        android:maxWidth="230dp"
+        android:drawablePadding="8dp"
+        android:ellipsize="end"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/color_hint_text"
+        android:textSize="@dimen/t14" />
 
 </merge>

@@ -90,7 +90,7 @@
             android:name=".mvp.common.ui.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.person.ui.activity.MyOrderActivity"
+            android:name=".mvp.person.ui.activity.MyShopOrderActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.person.ui.activity.PersonCenterActivity"

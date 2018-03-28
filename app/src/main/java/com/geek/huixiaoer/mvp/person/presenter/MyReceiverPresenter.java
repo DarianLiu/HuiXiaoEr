@@ -1,11 +1,14 @@
 package com.geek.huixiaoer.mvp.person.presenter;
 
 import android.app.Application;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.person.contract.MyReceiverContract;
+import com.geek.huixiaoer.mvp.person.ui.adapter.ReceiverAdapter;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleAddActivity;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
 import com.jess.arms.di.scope.ActivityScope;
@@ -76,6 +79,7 @@ public class MyReceiverPresenter extends BasePresenter<MyReceiverContract.Model,
                     public void onNext(@NonNull BaseArrayData<ReceiverBean> arrayData) {
                         if (arrayData.getPageData() != null && arrayData.getPageData().size() != 0) {
 //                            page_no = arrayData.getPageNumber();
+
                             if (isRefresh) {
                                 mList.clear();
                                 mList.addAll(arrayData.getPageData());
@@ -86,6 +90,14 @@ public class MyReceiverPresenter extends BasePresenter<MyReceiverContract.Model,
                                 mAdapter.notifyItemRangeInserted(current_position,
                                         arrayData.getPageData().size());
                             }
+
+                            ((ReceiverAdapter) mAdapter).setOnItemClickListener((view, viewType, data, position) -> {
+                                Intent intent = new Intent(mAppManager.getTopActivity(), RecycleAddActivity.class);
+                                intent.putExtra(Constants.INTENT_TYPE, "update");
+                                intent.putExtra(Constants.INTENT_LIST_POSITION, position);
+                                intent.putExtra(Constants.INTENT_RECEIVER, mList.get(position));
+                                mRootView.launchActivity(intent);
+                            });
                         }
                     }
                 });
@@ -140,6 +152,22 @@ public class MyReceiverPresenter extends BasePresenter<MyReceiverContract.Model,
                         mAdapter.notifyItemRemoved(position);
                     }
                 });
+    }
+
+    /**
+     * 更新列表
+     *
+     * @param position     item位置
+     * @param receiverBean 收货地址
+     */
+    public void updateItem(int position, ReceiverBean receiverBean) {
+        if (position >= 0) {
+            mList.set(position, receiverBean);
+            mAdapter.notifyItemChanged(position);
+        } else {
+            mList.add(0, receiverBean);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

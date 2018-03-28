@@ -155,8 +155,6 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 //            for (int i = 0; i < categoryBeanList.size(); i++) {
             for (int i = 0; i < 1; i++) {
                 CategoryBean categoryBean = categoryBeanList.get(i);
-                //设置TabLayout的模式
-                tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
                 goodsListFragment = new GoodsListFragment();
                 Bundle args = new Bundle();
                 args.putInt("id", categoryBean.getId());
@@ -165,6 +163,8 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
                 titles.add(categoryBean.getName());
 
             }
+            //设置TabLayout的模式
+            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
             DefaultStatePagerAdapter pagerAdapter = new DefaultStatePagerAdapter(
                     getSupportFragmentManager(), fragmentList, titles);
             viewPager.setAdapter(pagerAdapter);

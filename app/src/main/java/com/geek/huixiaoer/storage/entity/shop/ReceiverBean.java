@@ -1,9 +1,11 @@
 package com.geek.huixiaoer.storage.entity.shop;
 
+import java.io.Serializable;
+
 /**
  * 收货地址
  */
-public class ReceiverBean {
+public class ReceiverBean implements Serializable{
     /**
      * id : 82
      * phone : 13918175465

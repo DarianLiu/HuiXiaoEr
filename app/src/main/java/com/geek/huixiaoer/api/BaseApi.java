@@ -11,6 +11,7 @@ import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
@@ -197,7 +198,7 @@ public interface BaseApi {
      *
      * @param token 用户Token
      */
-    @GET(APIs.API.orderCheckout)
+    @GET(APIs.API.shopOrderCheckout)
     Observable<BaseResponse<OrderCheckResultBean>> orderCheckout(@Query("token") String token);
 
     /**
@@ -212,7 +213,7 @@ public interface BaseApi {
      * @param useBalance       使用余额(0：不使用/1：使用)
      * @param memo             附言
      */
-    @GET(APIs.API.orderCalculate)
+    @GET(APIs.API.shopOrderCalculate)
     Observable<BaseResponse<OrderCalculateResultBean>> orderCalculate(@Query("token") String token,
                                                                       @Query("receiverId") String receiverId,
                                                                       @Query("paymentMethodId") String paymentMethodId,
@@ -245,10 +246,10 @@ public interface BaseApi {
      * @param amount          订单金额
      */
     @POST(APIs.API.paymentSubmitSn)
-    Observable<BaseResponse<CartEditResultBean>> paymentSubmitSn(@Query("token") String token,
-                                                                 @Query("paymentPluginId") String paymentPluginId,
-                                                                 @Query("sn") String order_sn,
-                                                                 @Query("amount") String amount);
+    Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitSn(@Query("token") String token,
+                                                                    @Query("paymentPluginId") String paymentPluginId,
+                                                                    @Query("sn") String order_sn,
+                                                                    @Query("amount") String amount);
 
     /**
      * 生成订单
@@ -260,7 +261,7 @@ public interface BaseApi {
      * @param useBalance   使用余额(0：不使用/1：使用)
      * @param memo         附言
      */
-    @POST(APIs.API.orderCreate)
+    @POST(APIs.API.shopOrderCreate)
     Observable<BaseResponse<OrderCreateResultBean>> orderCreate(@Query("token") String token,
                                                                 @Query("receiverId") String receiverId,
                                                                 @Query("code") String code,
@@ -286,6 +287,10 @@ public interface BaseApi {
 
     /**
      * 垃圾回收添加
+     *
+     * @param token    token
+     * @param category 文章类型
+     * @param content  内容
      */
     @FormUrlEncoded
     @POST(APIs.API.articleAdd)
@@ -315,6 +320,9 @@ public interface BaseApi {
     /**
      * ********************** 用 户 模 块 *************************
      * 收货地址列表
+     *
+     * @param pageNumber 当前页数
+     * @param token      token
      */
     @GET(APIs.API.receiverList)
     Observable<BaseResponse<BaseArrayData<ReceiverBean>>> receiverList(@Query("pageNumber") int pageNumber,
@@ -322,6 +330,15 @@ public interface BaseApi {
 
     /**
      * 保存新的收货地址
+     *
+     * @param token     token
+     * @param consignee 收货人
+     * @param areaName  地区名字
+     * @param address   详细地址
+     * @param zipCode   邮政编码
+     * @param phone     手机号码
+     * @param isDefault 是否默认
+     * @param areaId    地区ID
      */
     @POST(APIs.API.receiverSave)
     Observable<BaseResponse<ReceiverBean>> receiverSave(@Query("token") String token,
@@ -335,6 +352,17 @@ public interface BaseApi {
 
     /**
      * 更新收货地址
+     *
+     * @param token     token
+     * @param consignee 收货人
+     * @param areaName  地区名字
+     * @param address   详细地址
+     * @param zipCode   邮政编码
+     * @param phone     手机号码
+     * @param isDefault 是否默认
+     * @param areaId    地区ID
+     * @param id        收货地址ID
+     * @param oId       收货地址ID
      */
     @POST(APIs.API.receiverUpdate)
     Observable<BaseResponse<ReceiverBean>> receiverUpdate(@Query("token") String token,
@@ -355,5 +383,40 @@ public interface BaseApi {
     Observable<BaseResponse<ReceiverBean>> receiverDelete(@Query("token") String token,
                                                           @Query("id") String id);
 
+    /**
+     * 购物订单列表
+     *
+     * @param token      token
+     * @param pageNumber 当前页数
+     * @param pageSize   每页数量
+     * @param status     订单状态
+     * @param type       （默认：general）
+     */
+    @GET(APIs.API.shopOrderList)
+    Observable<BaseResponse<BaseArrayData<OrderBean>>> shopOrderList(@Query("token") String token,
+                                                                     @Query("pageNumber") int pageNumber,
+                                                                     @Query("pageSize") int pageSize,
+                                                                     @Query("status") String status,
+                                                                     @Query("type") String type);
+
+    /**
+     * 购物订单（取消）
+     *
+     * @param token token
+     * @param sn    订单SN号
+     */
+    @POST(APIs.API.shopOrderCancel)
+    Observable<BaseResponse<OrderBean>> shopOrderCancel(@Query("token") String token,
+                                                        @Query("sn") String sn);
+
+    /**
+     * 购物订单（用户确认收货）
+     *
+     * @param token token
+     * @param sn    订单SN号
+     */
+    @POST(APIs.API.shopOrderReceive)
+    Observable<BaseResponse<OrderBean>> shopOrderReceive(@Query("token") String token,
+                                                         @Query("sn") String sn);
 
 }

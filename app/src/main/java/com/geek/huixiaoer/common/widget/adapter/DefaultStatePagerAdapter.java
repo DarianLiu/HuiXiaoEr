@@ -2,14 +2,14 @@ package com.geek.huixiaoer.common.widget.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
 /**
  * 商品列表适配器
  */
-public class DefaultStatePagerAdapter extends FragmentStatePagerAdapter {
+public class DefaultStatePagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> list_fragment;                         //fragment列表
     private List<String> titles;                              //tab名的列表

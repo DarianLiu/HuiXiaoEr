@@ -149,7 +149,7 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
             Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
             emitter.onNext(resultMap);
             emitter.onComplete();
-        }).subscribeOn(Schedulers.io())
+        }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(RxLifecycleUtils.bindToLifecycle(mRootView))
                 .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {

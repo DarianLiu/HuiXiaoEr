@@ -59,6 +59,8 @@ public class Constants {
     public static final String INTENT_GOODS_SN = "goods_sn";
     public static final String INTENT_GOODS_URL = "goods_url";
     public static final String INTENT_CART_LIST = "cart_list";
+    public static final String INTENT_LIST_POSITION = "position";
+    public static final String INTENT_RECEIVER = "receiver";
 
 
     /**

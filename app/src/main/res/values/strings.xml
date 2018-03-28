@@ -14,7 +14,11 @@
     <string name="title_order">我的订单</string>
     <string name="title_coupon">优惠券</string>
     <string name="title_receiver">收货地址</string>
+    <string name="title_receiver_add">添加收货地址</string>
+    <string name="title_receiver_update">更新收货地址</string>
     <string name="title_home_service">家政服务</string>
+    <string name="title_my_order">我的订单</string>
+
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>
@@ -80,6 +84,11 @@
     <string name="error_shopping_cart_null">您购物车已经是空的哦！</string>
     <string name="error_receiver_null">收货地址不能为空！</string>
     <string name="error_invoice_title_null">发票抬头不能为空！</string>
+    <string name="error_receiver_name">收货人姓名不能为空</string>
+    <string name="error_receiver_phone">手机号码格式不正确</string>
+    <string name="error_receiver_area">尚未选择所在地区</string>
+    <string name="error_receiver_address">详细地址不能为空</string>
+    <string name="error_receiver_postal_code">邮政编码不正确</string>
 
     <!--提示-->
     <string name="prompt_dialog_title">温馨提示</string>
@@ -105,6 +114,8 @@
     <string name="tip_rate">税率：</string>
     <string name="tip_tax">税金：</string>
     <string name="freight">运费</string>
+
+    <!--*收货地址*-->
     <string name="default_receiver">【默认地址】</string>
     <string name="receiver_name">收货人：</string>
     <string name="receiver_phone">联系方式：</string>
@@ -112,6 +123,13 @@
     <string name="receiver_address">详细地址：</string>
     <string name="receiver_postal_code">邮政编码：</string>
     <string name="receiver_set_default">设为默认地址：</string>
+
+    <!--订单状态-->
+    <string name="order_state_all">全部</string>
+    <string name="order_state_payment">待付款</string>
+    <string name="order_state_shipment">待发货</string>
+    <string name="order_state_receive">待收货</string>
+    <string name="order_state_completed">已完成</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_recovery">垃圾回收</string>

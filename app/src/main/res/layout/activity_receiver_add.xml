@@ -60,6 +60,7 @@
             android:layout_weight="2"
             android:background="@null"
             android:hint="@string/hint_receiver_phone"
+            android:inputType="phone"
             android:textColor="@color/color_text_caption"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t14" />
@@ -125,7 +126,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:background="@null"
+            android:digits="0123456789"
             android:hint="@string/hint_receiver_postal_code"
+            android:inputType="number"
             android:textColor="@color/color_text_caption"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t14" />

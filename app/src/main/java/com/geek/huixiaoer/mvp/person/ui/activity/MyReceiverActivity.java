@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.person.contract.MyReceiverContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerMyReceiverComponent;
@@ -78,7 +79,9 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                launchActivity(new Intent(MyReceiverActivity.this, ReceiverAddActivity.class));
+                Intent intent = new Intent(MyReceiverActivity.this, ReceiverAddActivity.class);
+                intent.putExtra(Constants.INTENT_TYPE, "add");
+                launchActivity(intent);
                 break;
         }
         return true;
@@ -90,18 +93,21 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
     }
 
     @Subscriber()
-    private void onReceiveSelect(ReceiverEvent event) {
+    private void onReceiveUpdate(ReceiverEvent event) {
         switch (event.getEventType()) {
             case 0://保存
                 break;
-            case 1://更新
+            case 1://设为默认地址
                 if (event.isChange()) {
                     mPresenter.receiverUpdate(mSelectedPos, event.getSelectedPos());
                 } else {
                     mSelectedPos = event.getSelectedPos();
                 }
                 break;
-            case 2://删除
+            case 2://收货地址更新
+                mPresenter.updateItem(event.getSelectedPos(),event.getReceiverBean());
+                    break;
+            case 3://删除
                 mPresenter.receiverDelete(event.getSelectedPos());
                 break;
             default:

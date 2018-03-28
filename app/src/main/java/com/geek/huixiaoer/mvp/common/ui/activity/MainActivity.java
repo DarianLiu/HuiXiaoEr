@@ -27,6 +27,7 @@ import com.geek.huixiaoer.mvp.common.di.component.DaggerMainComponent;
 import com.geek.huixiaoer.mvp.common.di.module.MainModule;
 import com.geek.huixiaoer.mvp.common.presenter.MainPresenter;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
+import com.geek.huixiaoer.mvp.person.ui.activity.MyShopOrderActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShoppingCartActivity;
@@ -295,6 +296,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 case R.id.nav_coupon:
                     break;
                 case R.id.nav_order:
+                    launchActivity(new Intent(MainActivity.this, MyShopOrderActivity.class));
                     break;
             }
         }

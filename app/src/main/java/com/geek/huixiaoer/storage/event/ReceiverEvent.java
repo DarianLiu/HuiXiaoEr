@@ -1,19 +1,29 @@
 package com.geek.huixiaoer.storage.event;
 
+import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
+
 /**
  * 收货地址Event
  * Created by Administrator on 2018/3/24.
  */
 
 public class ReceiverEvent {
-    private int eventType;//0：保存；1：更新；2：删除
+    private int eventType;//0：保存；1：设为默认；2：更新收货地址；3：删除
     private int selectedPos;
-    private boolean isChange;
+    private boolean isChange;//判断设置为默认
+    private ReceiverBean receiverBean;
 
-    public ReceiverEvent(int eventType,int selectedPos, boolean isChange) {
+    public ReceiverEvent(int eventType, int selectedPos, boolean isChange) {
         this.eventType = eventType;
         this.selectedPos = selectedPos;
         this.isChange = isChange;
+    }
+
+    public ReceiverEvent(int eventType, int selectedPos, boolean isChange, ReceiverBean receiverBean) {
+        this.eventType = eventType;
+        this.selectedPos = selectedPos;
+        this.isChange = isChange;
+        this.receiverBean = receiverBean;
     }
 
     public void setEventType(int eventType) {
@@ -38,5 +48,13 @@ public class ReceiverEvent {
 
     public boolean isChange() {
         return isChange;
+    }
+
+    public void setReceiverBean(ReceiverBean receiverBean) {
+        this.receiverBean = receiverBean;
+    }
+
+    public ReceiverBean getReceiverBean() {
+        return receiverBean;
     }
 }
