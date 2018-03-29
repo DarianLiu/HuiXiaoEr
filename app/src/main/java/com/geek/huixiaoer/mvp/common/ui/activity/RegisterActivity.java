@@ -30,6 +30,9 @@ import butterknife.OnClick;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
+/**
+ * 注册页面
+ */
 public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View {
 
     @BindView(R.id.tv_toolbar_title)

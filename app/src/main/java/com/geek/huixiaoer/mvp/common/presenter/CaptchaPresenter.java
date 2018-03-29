@@ -4,11 +4,17 @@ import android.content.Intent;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.contract.CaptchaContract;
 import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
-import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
+import com.jess.arms.utils.RxLifecycleUtils;
+
+import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -19,13 +25,6 @@ import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
-
-import javax.inject.Inject;
-
-import com.geek.huixiaoer.mvp.common.contract.CaptchaContract;
-import com.jess.arms.utils.RxLifecycleUtils;
-
-import java.util.concurrent.TimeUnit;
 
 
 @ActivityScope
@@ -98,14 +97,7 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
                         Intent intent = new Intent(mAppManager.getTopActivity(), RegisterActivity.class);
                         intent.putExtra(Constants.INTENT_MOBILE, mobile);
                         mRootView.launchActivity(intent);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable t) {
-                        super.onError(t);
-                        Intent intent = new Intent(mAppManager.getTopActivity(), RegisterActivity.class);
-                        intent.putExtra(Constants.INTENT_MOBILE, mobile);
-                        mRootView.launchActivity(intent);
+//                        mRootView.killMyself();
                     }
                 });
     }

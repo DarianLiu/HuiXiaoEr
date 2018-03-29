@@ -29,6 +29,9 @@ import butterknife.OnClick;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
+/**
+ * 登录页面
+ */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.tv_toolbar_title)

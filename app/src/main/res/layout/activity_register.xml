@@ -11,8 +11,8 @@
         android:id="@+id/til_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:background="@color/white"
+        android:paddingTop="15dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
 

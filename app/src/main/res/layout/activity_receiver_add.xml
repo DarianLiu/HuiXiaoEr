@@ -61,6 +61,7 @@
             android:background="@null"
             android:hint="@string/hint_receiver_phone"
             android:inputType="phone"
+            android:maxLength="11"
             android:textColor="@color/color_text_caption"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t14" />

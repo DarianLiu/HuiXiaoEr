@@ -31,6 +31,9 @@ import butterknife.OnClick;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
+/**
+ * 发送验证码
+ */
 public class CaptchaActivity extends BaseActivity<CaptchaPresenter> implements CaptchaContract.View {
 
     @BindView(R.id.tv_toolbar_title)

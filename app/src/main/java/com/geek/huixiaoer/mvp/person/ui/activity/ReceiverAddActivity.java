@@ -77,7 +77,7 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
 
     private String type;//保存新的收货地址/更新收货地址
     private String mReceiverId;//收货地址ID（更新时用到）
-    private int mPostion;//列表选中项（更新时用到）
+    private int mPosition;//列表选中项（更新时用到）
 
     private String mAreaName;
     private String mAreaId;
@@ -112,13 +112,14 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
         } else {
             tvToolbarTitle.setText(R.string.title_receiver_update);
 
-            mPostion = getIntent().getIntExtra(Constants.INTENT_LIST_POSITION, -1);
+            mPosition = getIntent().getIntExtra(Constants.INTENT_LIST_POSITION, -1);
             ReceiverBean receiverBean = (ReceiverBean) getIntent().getSerializableExtra(Constants.INTENT_RECEIVER);
             mReceiverId = receiverBean.getId();
 
             etReceiveName.setText(receiverBean.getConsignee());
             etReceivePhone.setText(receiverBean.getPhone());
-            optionReceiverArea.setRightText(receiverBean.getConsignee());
+            mAreaId = receiverBean.getArea_id();
+            optionReceiverArea.setRightText(receiverBean.getAreaName());
             etReceiveAddress.setText(receiverBean.getAddress());
             etPostalCode.setText(receiverBean.getZipCode());
             cbDefault.setChecked(receiverBean.isIsDefault());
@@ -212,7 +213,7 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
         } else if (TextUtils.equals(type, "add")) {
             mPresenter.receiverSave(name, mAreaName, address, postal_code, phone, isDefault, mAreaId);
         } else {
-            mPresenter.receiverUpdate(mPostion, name, mAreaName, address, postal_code, phone, isDefault, mAreaId, mReceiverId, mReceiverId);
+            mPresenter.receiverUpdate(mPosition, name, mAreaName, address, postal_code, phone, isDefault, mAreaId, mReceiverId, mReceiverId);
         }
     }
 
