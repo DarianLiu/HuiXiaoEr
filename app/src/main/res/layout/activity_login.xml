@@ -14,7 +14,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:src="@mipmap/ic_launcher" />
 
     <android.support.design.widget.TextInputLayout
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/selector_btn_default"
         android:text="@string/btn_login"
         android:textColor="@color/color_text_white"

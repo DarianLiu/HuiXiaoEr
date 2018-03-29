@@ -7,12 +7,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.config.EventBusTags;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleListComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleListModule;
@@ -21,6 +24,7 @@ import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -66,10 +70,10 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
         return R.layout.activity_recycle_list; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
-    @Subscriber(tag = EventBusTags.Tag_Recycle)
-    private void onEventVersion(ArticleBean recycle) {
-        mPresenter.recycleAdd(recycle);
-    }
+//    @Subscriber(tag = EventBusTags.Tag_Recycle)
+//    private void onEventVersion(ArticleBean recycle) {
+//        mPresenter.recycleAdd(recycle);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,7 +85,12 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                String token = DataHelper.getStringSF(RecycleListActivity.this, Constants.SP_TOKEN);
+                if (!TextUtils.isEmpty(token)){
+                    launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                }else {
+                    launchActivity(new Intent(RecycleListActivity.this, LoginActivity.class));
+                }
                 break;
         }
         return true;

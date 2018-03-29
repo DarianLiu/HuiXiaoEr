@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.person.contract.MyReceiverContract;
+import com.geek.huixiaoer.mvp.person.ui.activity.ReceiverAddActivity;
 import com.geek.huixiaoer.mvp.person.ui.adapter.ReceiverAdapter;
-import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleAddActivity;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
 import com.jess.arms.di.scope.ActivityScope;
@@ -92,7 +92,7 @@ public class MyReceiverPresenter extends BasePresenter<MyReceiverContract.Model,
                             }
 
                             ((ReceiverAdapter) mAdapter).setOnItemClickListener((view, viewType, data, position) -> {
-                                Intent intent = new Intent(mAppManager.getTopActivity(), RecycleAddActivity.class);
+                                Intent intent = new Intent(mAppManager.getTopActivity(), ReceiverAddActivity.class);
                                 intent.putExtra(Constants.INTENT_TYPE, "update");
                                 intent.putExtra(Constants.INTENT_LIST_POSITION, position);
                                 intent.putExtra(Constants.INTENT_RECEIVER, mList.get(position));

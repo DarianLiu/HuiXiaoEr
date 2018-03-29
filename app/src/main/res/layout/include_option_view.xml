@@ -22,7 +22,7 @@
         android:ellipsize="end"
         android:gravity="end"
         android:maxLines="1"
-        android:textColor="@color/color_hint_text"
+        android:textColor="@color/color_text_caption"
         android:textSize="@dimen/t14" />
 
 </merge>

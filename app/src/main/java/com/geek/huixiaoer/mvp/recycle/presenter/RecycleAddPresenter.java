@@ -70,9 +70,9 @@ public class RecycleAddPresenter extends BasePresenter<RecycleAddContract.Model,
                 .subscribeWith(new ErrorHandleSubscriber<ArticleBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull ArticleBean articleBean) {
-                        if (articleBean != null) {
-                            EventBus.getDefault().post(articleBean, EventBusTags.Tag_Recycle);
-                        }
+//                        if (articleBean != null) {
+//                            EventBus.getDefault().post(articleBean, EventBusTags.Tag_Recycle);
+//                        }
                         mRootView.showMessage("发布成功");
                     }
                 });

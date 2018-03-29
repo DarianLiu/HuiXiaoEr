@@ -2,6 +2,11 @@
     <string name="app_name">慧小二</string>
     <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 
+    <string name="tab_home">首页</string>
+    <string name="tab_message">消息</string>
+    <string name="tab_order">订单</string>
+    <string name="tab_mine">我的</string>
+
     <!--Title Text-->
     <string name="title_shop">商超</string>
     <string name="title_get_captcha">获取验证码</string>

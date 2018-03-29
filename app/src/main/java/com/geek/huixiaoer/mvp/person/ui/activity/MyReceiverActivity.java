@@ -196,7 +196,7 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
                     recyclerView.findViewHolderForAdapterPosition(mSelectedPos);
             //当item不可见时ViewHolder为空
             if (receiverItemHolder != null) {
-                receiverItemHolder.rbDefault.setChecked(true);
+                receiverItemHolder.rbDefault.setChecked(false);
             } else {
                 mAdapter.notifyItemChanged(mSelectedPos);
             }

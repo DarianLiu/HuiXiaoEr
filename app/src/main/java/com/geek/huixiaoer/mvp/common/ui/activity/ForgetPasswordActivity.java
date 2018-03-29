@@ -17,6 +17,9 @@ import com.jess.arms.utils.ArmsUtils;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
+/**
+ * 忘记密码
+ */
 public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter> implements ForgetPasswordContract.View {
 
     private CircleProgressDialog loadingDialog;
