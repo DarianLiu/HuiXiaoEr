@@ -20,14 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="com.geek.huixiaoer.FileProvider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/rc_file_path" />
-    </provider>
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.geek.huixiaoer.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
         <provider
             android:name=".common.utils.MyFileProvider"
             android:authorities="com.geek.huixiaoer.FileProvider"
@@ -55,52 +55,67 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".mvp.supermarket.ui.activity.ShopActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.common.ui.activity.RegisterActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.common.ui.activity.CaptchaActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".mvp.common.ui.activity.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.recycle.ui.activity.RecycleListActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.recycle.ui.activity.RecycleAddActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.supermarket.ui.activity.ShoppingCartActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.supermarket.ui.activity.OrderCreateActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.common.ui.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.person.ui.activity.MyShopOrderActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.person.ui.activity.PersonCenterActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.housewifery.ui.activity.HomeServicesActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".mvp.person.ui.activity.MyReceiverActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".mvp.person.ui.activity.ReceiverAddActivity"
-            android:screenOrientation="portrait" />
+
+        <activity android:name=".mvp.person.ui.activity.ReceiverAddActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".mvp.housewifery.ui.activity.ConversationListActivity"
             android:screenOrientation="portrait"
@@ -133,7 +148,7 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
-         支付宝
+        <!-- 支付宝 -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
@@ -146,6 +161,7 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
     </application>
 
 </manifest>
