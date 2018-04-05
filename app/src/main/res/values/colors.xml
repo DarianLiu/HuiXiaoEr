@@ -15,16 +15,15 @@
     <color name="color_title_text">#fefefe</color>
 
     <!--背景为主色调时-->
-    <color name="color_edit_text_reg">#ffffff</color>
-    <color name="color_hint_text_reg">#eaecff</color>
-    <color name="color_text_reg">#eaecff</color>
     <color name="color_text_white">#ffffff</color>
-    <color name="color_text_dark_reg">#b9b9b9</color>
 
     <!--当背景颜色为白色时-->
     <color name="color_text_guide">#7169d5</color>
     <color name="color_btn_text_primary">#F4C400</color>
     <color name="color_hint_text">#666666</color>
+
+    <color name="color_text_module">#7c7c7c</color>
+    <color name="color_text_ignore">#E6E6E6</color>
 
     <color name="color_text_caption">#333333</color>
     <color name="color_text_label">#666666</color>
@@ -33,7 +32,7 @@
     <color name="color_text_black">#000000</color>
     <color name="color_option_text">#4c4c4c</color>
     <color name="color_text_6060">#606060</color>
-    <color name="color_text_red">#EB4443</color>
+    <color name="color_text_red">#E23F29</color>
     <color name="color_text_gray">#ACB4BB</color>
     <color name="color_btn_text_normal">#000000</color>
     <color name="color_btn_text_selected">#ff7700</color>
@@ -46,7 +45,8 @@
 
     <!--基础颜色色值-->
     <color name="white">#ffffff</color>
-    <color name="red">#ff0000</color>
+    <color name="red">#FB3E09</color>
+    <color name="blue">#5AD4FC</color>
     <color name="transparent">#00000000</color>
     <color name="color_selector">#e9e9e9</color>
     <color name="gray">#ababab</color>

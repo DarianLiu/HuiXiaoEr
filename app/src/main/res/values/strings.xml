@@ -6,6 +6,13 @@
     <string name="tab_message">消息</string>
     <string name="tab_order">订单</string>
     <string name="tab_mine">我的</string>
+    
+    <string name="module_environment_protect">享环保</string>
+    <string name="module_help_you">帮你忙</string>
+    <string name="module_discount_store">折扣店</string>
+    <string name="module_specialty">招牌菜</string>
+    <string name="module_title_environment_protect">享环保热帖</string>
+    <string name="module_title_help_you">帮你忙服务</string>
 
     <!--Title Text-->
     <string name="title_shop">商超</string>
@@ -23,7 +30,6 @@
     <string name="title_receiver_update">更新收货地址</string>
     <string name="title_home_service">家政服务</string>
     <string name="title_my_order">我的订单</string>
-
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>
@@ -101,7 +107,7 @@
     <string name="prompt_security_password">我们将通过%1$s 给您发送验证码</string>
 
     <!--Use-->
-    <!--~~~~~~商超模块~~~~~~-->
+    <!--~~~~~~折扣店模块~~~~~~-->
     <string name="forget_password">忘记密码</string>
     <string name="favorite_add">收藏该商品</string>
     <string name="favorite_delete">取消收藏</string>
@@ -119,6 +125,12 @@
     <string name="tip_rate">税率：</string>
     <string name="tip_tax">税金：</string>
     <string name="freight">运费</string>
+    <string name="cost_price">原价</string>
+
+    <!--帮你忙服务模块-->
+    <string name="clear_daily">日常保洁</string>
+    <string name="clear_room">空房保洁</string>
+    <string name="clear_deep">深度保洁</string>
 
     <!--*收货地址*-->
     <string name="default_receiver">【默认地址】</string>
@@ -146,6 +158,8 @@
     <string name="loose_hand_can_be_deleted">松手即可删除</string>
 
     <string name="housekeeping_service">进入家政客服</string>
+
+
 
     <!--会员相关-->
     <string name="member_login">会员登录</string>

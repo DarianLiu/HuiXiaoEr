@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.storage.entity.shop;
 
 import com.geek.huixiaoer.storage.entity.MediumImageBean;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * 商品
@@ -29,6 +30,7 @@ public class GoodsBean {
     private double price;
     private int MonthSales;
     private String name;
+    @SerializedName(value = "mediumImage", alternate = {"largeImage"})
     private MediumImageBean mediumImage;
     private int score;
     private String caption;

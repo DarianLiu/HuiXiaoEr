@@ -29,6 +29,54 @@ import retrofit2.http.Query;
 public interface BaseApi {
 
     /**
+     * 环保热帖
+     *
+     * @param pageNumber 当前页数
+     * @param pageSize   每页显示数量
+     */
+    @GET(APIs.API.hotspotList)
+    Observable<BaseResponse<BaseArrayData<ArticleBean>>> hotspotList(@Query("pageNumber") int pageNumber,
+                                                       @Query("pageSize") int pageSize);
+
+    /**
+     * 折扣店和招牌菜爆款
+     *
+     * @param pageNumber 当前页数
+     * @param pageSize   每页显示数量
+     * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款)
+     */
+    @GET(APIs.API.goods_explosion)
+    Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(@Query("pageNumber") int pageNumber,
+                                                       @Query("pageSize") int pageSize,
+                                                       @Query("tagId") int tagId);
+
+    /**
+     * 折扣店列表
+     *
+     * @param pageNumber 当前页数
+     * @param pageSize   每页显示数量
+     * @param orderType  排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
+     */
+    @GET(APIs.API.goods_list)
+    Observable<BaseResponse<GoodsBean>> goodsList(@Query("pageNumber") int pageNumber,
+                                                  @Query("pageSize") int pageSize,
+                                                  @Query("orderType") String orderType);
+
+    /**
+     * 折扣店列表
+     *
+     * @param pageNumber 当前页数
+     * @param pageSize   每页显示数量
+     * @param orderType  排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
+     */
+    @GET(APIs.API.dish_list)
+    Observable<BaseResponse<GoodsBean>> dishList(@Query("pageNumber") int pageNumber,
+                                                  @Query("pageSize") int pageSize,
+                                                  @Query("orderType") String orderType);
+
+
+
+    /**
      * ********************** 公 共（ 登 录 注 册 ）模 块 *************************
      * <p>
      * 获取短信验证码

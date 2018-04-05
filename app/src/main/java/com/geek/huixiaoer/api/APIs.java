@@ -60,6 +60,33 @@ public interface APIs {
      * 服务器请求接口
      */
     interface API {
+
+        /**
+         * 环保热贴
+         */
+        String hotspotList ="member/article/hotspotList.jhtml";
+
+        /**
+         * 折扣店和招牌菜爆款
+         */
+        String goods_explosion = "goods/explosion.jhtml";
+
+        /**
+         * 折扣店列表
+         */
+        String goods_list = "goods/list/248.jhtml";
+
+        /**
+         * 招牌菜列表
+         */
+        String dish_list = "goods/list/254.jhtml";
+
+
+
+
+
+
+
         /**
          * 登录
          */
@@ -85,7 +112,9 @@ public interface APIs {
          */
         String carouselList = "member/article/carouselList.jhtml";
 
-        /*--------商城模块---------*/
+
+
+
         /**
          * 获取所有根节点的货品类别列表
          */
