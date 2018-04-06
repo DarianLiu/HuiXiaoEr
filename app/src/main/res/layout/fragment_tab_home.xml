@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/icon_main_dish"
+                android:drawableTop="@drawable/icon_main_discount_store"
                 android:gravity="center"
                 android:text="@string/module_specialty"
                 android:textColor="@color/color_text_module"
