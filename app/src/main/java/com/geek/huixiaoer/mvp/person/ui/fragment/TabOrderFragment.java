@@ -6,29 +6,43 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.widget.OptionView;
+import com.geek.huixiaoer.mvp.person.contract.TabOrderContract;
+import com.geek.huixiaoer.mvp.person.di.component.DaggerTabOrderComponent;
+import com.geek.huixiaoer.mvp.person.di.module.TabOrderModule;
+import com.geek.huixiaoer.mvp.person.presenter.TabOrderPresenter;
+import com.geek.huixiaoer.mvp.person.ui.activity.MyShopOrderActivity;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
-import com.geek.huixiaoer.mvp.person.di.component.DaggerTabOrderComponent;
-import com.geek.huixiaoer.mvp.person.di.module.TabOrderModule;
-import com.geek.huixiaoer.mvp.person.contract.TabOrderContract;
-import com.geek.huixiaoer.mvp.person.presenter.TabOrderPresenter;
-
-import com.geek.huixiaoer.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
 public class TabOrderFragment extends BaseFragment<TabOrderPresenter> implements TabOrderContract.View {
 
+    @BindView(R.id.option_order_discount_store)
+    OptionView optionOrderDiscountStore;
+    @BindView(R.id.option_order_specialty)
+    OptionView optionOrderSpecialty;
+    @BindView(R.id.option_order_help_you)
+    OptionView optionOrderHelpYou;
+
     public static TabOrderFragment newInstance() {
-        TabOrderFragment fragment = new TabOrderFragment();
-        return fragment;
+        return new TabOrderFragment();
     }
 
     @Override
@@ -51,42 +65,6 @@ public class TabOrderFragment extends BaseFragment<TabOrderPresenter> implements
 
     }
 
-    /**
-     * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
-     * 建议在有多个需要与外界交互的方法时, 统一传 {@link Message}, 通过 what 字段来区分不同的方法, 在 {@link #setData(Object)}
-     * 方法中就可以 {@code switch} 做不同的操作, 这样就可以用统一的入口方法做多个不同的操作, 可以起到分发的作用
-     * <p>
-     * 调用此方法时请注意调用时 Fragment 的生命周期, 如果调用 {@link #setData(Object)} 方法时 {@link Fragment#onCreate(Bundle)} 还没执行
-     * 但在 {@link #setData(Object)} 里却调用了 Presenter 的方法, 是会报空的, 因为 Dagger 注入是在 {@link Fragment#onCreate(Bundle)} 方法中执行的
-     * 然后才创建的 Presenter, 如果要做一些初始化操作,可以不必让外部调用 {@link #setData(Object)}, 在 {@link #initData(Bundle)} 中初始化就可以了
-     * <p>
-     * Example usage:
-     * <pre>
-     * public void setData(@Nullable Object data) {
-     *     if (data != null && data instanceof Message) {
-     *         switch (((Message) data).what) {
-     *             case 0:
-     *                 loadData(((Message) data).arg1);
-     *                 break;
-     *             case 1:
-     *                 refreshUI();
-     *                 break;
-     *             default:
-     *                 //do something
-     *                 break;
-     *         }
-     *     }
-     * }
-     *
-     * // call setData(Object):
-     * Message data = new Message();
-     * data.what = 0;
-     * data.arg1 = 1;
-     * fragment.setData(data);
-     * </pre>
-     *
-     * @param data 当不需要参数时 {@code data} 可以为 {@code null}
-     */
     @Override
     public void setData(@Nullable Object data) {
 
@@ -117,5 +95,32 @@ public class TabOrderFragment extends BaseFragment<TabOrderPresenter> implements
     @Override
     public void killMyself() {
 
+    }
+
+    @OnClick({R.id.option_order_discount_store, R.id.option_order_specialty, R.id.option_order_help_you})
+    public void onViewClicked(View view) {
+        if (checkToken()){
+            switch (view.getId()) {
+                case R.id.option_order_discount_store:
+                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
+                    break;
+                case R.id.option_order_specialty:
+                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
+                    break;
+                case R.id.option_order_help_you:
+                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
+                    break;
+            }
+        }
+    }
+
+    private boolean checkToken(){
+        String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+        if (TextUtils.isEmpty(token)){
+            showMessage("您还没有登录哦！");
+            return false;
+        }else {
+            return true;
+        }
     }
 }

@@ -16,7 +16,8 @@ public interface RegisterContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
-        Observable<BaseResponse<UserBean>> register(String nickname, String mobile,
-                                                    String md5Password, String refererCode);
+        Observable<BaseResponse<UserBean>> register(String nickname, String card, String cityCode, String areaCode,
+                                                    String address, String mobile, String enPassword, String dynamicCode,
+                                                    boolean volunteer);
     }
 }

@@ -29,8 +29,4 @@ public class MainModel extends BaseModel implements MainContract.Model {
         super.onDestroy();
     }
 
-    @Override
-    public Observable<BaseResponse<BaseArrayData<BannerBean>>> articleBanner() {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).articleBanner();
-    }
 }

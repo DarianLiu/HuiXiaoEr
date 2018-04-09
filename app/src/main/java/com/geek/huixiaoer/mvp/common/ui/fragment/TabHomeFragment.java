@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.mvp.common.ui.fragment;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,10 @@ import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
+import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseFragment;
@@ -86,12 +91,23 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     ImageView ivDishFive;
     @BindView(R.id.iv_dish_six)
     ImageView ivDishSix;
+    @BindView(R.id.tv_article_name_first)
+    TextView tvArticleNameFirst;
+    @BindView(R.id.tv_article_hits_first)
+    TextView tvArticleHitsFirst;
+    @BindView(R.id.tv_article_name_second)
+    TextView tvArticleNameSecond;
+    @BindView(R.id.tv_article_hits_second)
+    TextView tvArticleHitsSecond;
+    @BindView(R.id.tv_article_name_third)
+    TextView tvArticleNameThird;
+    @BindView(R.id.tv_article_hits_third)
+    TextView tvArticleHitsThird;
 
     private ImageLoader mImageLoader;
 
     public static TabHomeFragment newInstance() {
-        TabHomeFragment fragment = new TabHomeFragment();
-        return fragment;
+        return new TabHomeFragment();
     }
 
     @Override
@@ -115,7 +131,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         AppComponent mAppComponent = ArmsUtils.obtainAppComponentFromContext(getActivity());
         mImageLoader = mAppComponent.imageLoader();
 
-//        mPresenter.hotspotList(1, 3);
+        mPresenter.hotspotList(1, 3);
         mPresenter.goodsExplosion(1, 2, 2);
         mPresenter.goodsExplosion(1, 6, 3);
     }
@@ -126,13 +142,30 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     }
 
     /**
+     * 更新轮播图
+     *
+     * @param bannerBean 轮播图列表
+     */
+    @Override
+    public void updateBanner(List<BannerBean> bannerBean) {
+
+    }
+
+    /**
      * 更新享環保熱帖
      *
-     * @param hotspotList 商品列表
+     * @param hotspotList 环保热帖列表
      */
     @Override
     public void updateHotspot(List<ArticleBean> hotspotList) {
+        tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
+        tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
 
+        tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
+        tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
+
+        tvArticleNameThird.setText(hotspotList.get(2).getTitle());
+        tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
     }
 
     /**
@@ -142,7 +175,6 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateGoodsExplosion(List<GoodsBean> goodsList) {
-
         if (goodsList.get(0).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
                     .url(goodsList.get(0).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
@@ -157,7 +189,8 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             priceSB.append("/").append(goodsList.get(0).getUnit());
         }
         tvDiscountPriceOne.setText(priceSB.toString());
-        tvCostPriceOne.setText(String.format("%s元", String.valueOf(goodsList.get(0).getMarketPrice())));
+        tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsList.get(0).getMarketPrice());
+        tvCostPriceOne.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
         if (goodsList.get(1).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
@@ -174,10 +207,12 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         }
         tvDiscountPriceTwo.setText(priceSB.toString());
         tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsList.get(1).getMarketPrice() + "元");
+        tvCostPriceTwo.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
     /**
      * 更新招牌菜列表
+     *
      * @param dishList 招牌菜列表
      */
     @Override
@@ -252,18 +287,30 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     }
 
+    /**
+     * 享环保、帮你忙、折扣店、招牌菜点击事件
+     */
     @OnClick({R.id.tv_environment_protect, R.id.tv_help_you, R.id.tv_discount_store, R.id.tv_specialty})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_environment_protect:
+                launchActivity(new Intent(getActivity(), RecycleListActivity.class));
                 break;
             case R.id.tv_help_you:
+                launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
                 break;
             case R.id.tv_discount_store:
+                launchActivity(new Intent(getActivity(), ShopActivity.class));
                 break;
             case R.id.tv_specialty:
+                launchActivity(new Intent(getActivity(), ShopActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -271,7 +318,8 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     protected void onRelease() {
         mImageLoader.clear(getActivity(), ImageConfigImpl.builder()
-                .imageViews(ivGoodsOne, ivGoodsTwo)
+                .imageViews(ivGoodsOne, ivGoodsTwo, ivDishOne, ivDishTwo,
+                        ivDishThree, ivDishFour, ivDishFive, ivDishSix)
                 .build());
     }
 

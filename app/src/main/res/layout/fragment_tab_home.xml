@@ -13,8 +13,8 @@
         <RelativeLayout
             android:id="@+id/rl_banner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp">
+            android:layout_height="180dp"
+            android:background="@drawable/icon_banner_default">
 
             <com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager
                 android:id="@+id/autoScrollViewPager"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/icon_main_clear"
+                android:drawableTop="@drawable/icon_main_discount_store"
                 android:gravity="center"
                 android:text="@string/module_discount_store"
                 android:textColor="@color/color_text_module"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="8dp"
-                android:drawableTop="@drawable/icon_main_discount_store"
+                android:drawableTop="@drawable/icon_main_dish"
                 android:gravity="center"
                 android:text="@string/module_specialty"
                 android:textColor="@color/color_text_module"
@@ -98,42 +98,175 @@
             android:padding="15dp"
             android:text="@string/module_title_environment_protect" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_color_white"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:padding="15dp">
 
             <TextView
-                style="@style/TextCaptionBig"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_first"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/line_bottom_bg"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
-                android:text="@string/module_title_environment_protect" />
+                android:background="@drawable/shape_conner_red"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:text="1"
+                android:textColor="@color/color_text_white"
+                android:textSize="@dimen/t14" />
 
             <TextView
+                android:id="@+id/tv_article_name_first"
                 style="@style/TextCaptionBig"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/line_bottom_bg"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
-                android:text="@string/module_title_environment_protect" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/tv_first"
+                android:layout_toLeftOf="@+id/tv_article_hits_first"
+                android:layout_toRightOf="@+id/tv_first"
+                android:layout_toStartOf="@+id/tv_article_hits_first"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
 
             <TextView
-                style="@style/TextCaptionBig"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_article_hits_first"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/line_bottom_bg"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
-                android:text="@string/module_title_environment_protect" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/color_text_body"
+                android:textSize="@dimen/t12" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/line_default_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color_white"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tv_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_conner_blue"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:text="2"
+                android:textColor="@color/color_text_white"
+                android:textSize="@dimen/t14" />
+
+            <TextView
+                android:id="@+id/tv_article_name_second"
+                style="@style/TextCaptionBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/tv_second"
+                android:layout_toLeftOf="@+id/tv_article_hits_second"
+                android:layout_toRightOf="@+id/tv_second"
+                android:layout_toStartOf="@+id/tv_article_hits_second"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_article_hits_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/color_text_body"
+                android:textSize="@dimen/t12" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/line_default_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color_white"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tv_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_conner_blue"
+                android:gravity="center"
+                android:paddingBottom="2dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:text="3"
+                android:textColor="@color/color_text_white"
+                android:textSize="@dimen/t14" />
+
+            <TextView
+                android:id="@+id/tv_article_name_third"
+                style="@style/TextCaptionBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/tv_third"
+                android:layout_toLeftOf="@+id/tv_article_hits_third"
+                android:layout_toRightOf="@+id/tv_third"
+                android:layout_toStartOf="@+id/tv_article_hits_third"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_article_hits_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/color_text_body"
+                android:textSize="@dimen/t12" />
+
+        </RelativeLayout>
 
         <TextView
             style="@style/TextCaptionSmall"
@@ -151,7 +284,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
                 style="@style/TextCaptionBig"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -169,7 +301,6 @@
                 android:background="@color/line_default_color" />
 
             <TextView
-                android:id="@+id/textView"
                 style="@style/TextCaptionBig"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -219,7 +350,6 @@
                 android:id="@+id/iv_goods_one"
                 android:layout_width="116dp"
                 android:layout_height="76dp"
-                android:background="@color/red"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -233,7 +363,7 @@
                 android:layout_toRightOf="@+id/iv_goods_one"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="脆甜嘉兴红提" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_content_one"
@@ -247,7 +377,7 @@
                 android:layout_toRightOf="@+id/iv_goods_one"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="粉嫩外衣/脆嫩紧实/清甜多汁" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_discount_price_one"
@@ -259,7 +389,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/iv_goods_one"
                 android:layout_toRightOf="@+id/iv_goods_one"
-                android:text="5元/斤" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_cost_price_one"
@@ -271,7 +401,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/tv_discount_price_one"
                 android:layout_toRightOf="@+id/tv_discount_price_one"
-                android:text="原价：8.5/斤" />
+                android:text="" />
 
         </RelativeLayout>
 
@@ -285,7 +415,6 @@
                 android:id="@+id/iv_goods_two"
                 android:layout_width="116dp"
                 android:layout_height="76dp"
-                android:background="@color/red"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -299,7 +428,7 @@
                 android:layout_toRightOf="@+id/iv_goods_two"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="脆甜嘉兴红提" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_content_two"
@@ -313,7 +442,7 @@
                 android:layout_toRightOf="@+id/iv_goods_two"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="粉嫩外衣/脆嫩紧实/清甜多汁" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_discount_price_two"
@@ -325,7 +454,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/iv_goods_two"
                 android:layout_toRightOf="@+id/iv_goods_two"
-                android:text="5元/斤" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_cost_price_two"
@@ -337,7 +466,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/tv_discount_price_two"
                 android:layout_toRightOf="@+id/tv_discount_price_two"
-                android:text="原价：8.5/斤" />
+                android:text="" />
 
         </RelativeLayout>
 
@@ -355,17 +484,16 @@
             android:layout_height="wrap_content"
             android:background="@color/bg_color_white"
             android:orientation="horizontal"
-            android:paddingTop="15dp"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:paddingRight="15dp"
+            android:paddingTop="15dp">
             <!--图片比例241-161-->
             <ImageView
                 android:id="@+id/iv_dish_one"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_one"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -375,10 +503,9 @@
             <ImageView
                 android:id="@+id/iv_dish_two"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_two"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -388,10 +515,9 @@
             <ImageView
                 android:id="@+id/iv_dish_three"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_three"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
@@ -409,10 +535,9 @@
             <ImageView
                 android:id="@+id/iv_dish_four"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_four"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -422,10 +547,9 @@
             <ImageView
                 android:id="@+id/iv_dish_five"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_five"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -435,10 +559,9 @@
             <ImageView
                 android:id="@+id/iv_dish_six"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/red"
-                android:minHeight="80dp"
+                android:background="@drawable/icon_dish_default_six"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>

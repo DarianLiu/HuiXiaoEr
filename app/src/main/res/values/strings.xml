@@ -66,6 +66,10 @@
     <string name="hint_password_new">新密码</string>
     <string name="hint_password_confirm">确认密码</string>
     <string name="hint_username">用户名</string>
+    <string name="hint_cardNo">身份证号码</string>
+    <string name="hint_street">选择区/镇(街道)/村(社区)</string>
+    <string name="hint_address">输入**小区**楼号**门牌号</string>
+    <string name="hint_volunteer">志愿者</string>
     <string name="hint_account">用户名/手机号码</string>
     <string name="hint_invitation_code">邀请码（选填、区分大小写）</string>
     <string name="hint_say_something">说点什么&#8230;</string>
@@ -88,6 +92,9 @@
     <string name="error_mobile_null">手机号码不能为空</string>
     <string name="error_mobile_regex">手机号码格式不正确</string>
     <string name="error_password_not_equals">两次输入的密码不一致</string>
+    <string name="error_street_null">区/镇(街道)/村(社区)不能为空</string>
+    <string name="error_cardNo_null">身份证号码不能为空</string>
+    <string name="error_address_null">详细地址不能为空</string>
     <string name="error_nickname_null">昵称不能为空</string>
     <string name="error_nickname">格式错误（昵称为3至16位中英文和“_”组成，不能以“_”结尾）</string>
     <string name="error_content_null">您还没有说点什么哦！</string>

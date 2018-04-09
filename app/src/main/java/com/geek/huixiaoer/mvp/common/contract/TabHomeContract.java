@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.common.contract;
 import com.geek.huixiaoer.api.APIs;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
@@ -17,6 +18,9 @@ import retrofit2.http.GET;
 public interface TabHomeContract {
     //对于经常使用的关于UI的方法可以定义到IView中,如显示隐藏进度条,和显示文字消息
     interface View extends IView {
+
+        void updateBanner(List<BannerBean> bannerBean);
+
         void updateHotspot(List<ArticleBean> hotspotList);
 
         void updateGoodsExplosion(List<GoodsBean> goodsList);

@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -25,6 +26,7 @@ import com.jess.arms.utils.ArmsUtils;
 
 import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -55,6 +57,18 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     TextInputLayout tilInvitationCode;
     @BindView(R.id.et_invitation_code)
     TextInputEditText etInvitationCode;
+    @BindView(R.id.et_cardNo)
+    TextInputEditText etCardNo;
+    @BindView(R.id.til_cardNo)
+    TextInputLayout tilCardNo;
+    @BindView(R.id.et_address)
+    TextInputEditText etAddress;
+    @BindView(R.id.til_address)
+    TextInputLayout tilAddress;
+    @BindView(R.id.rb_yes)
+    RadioButton rbYes;
+    @BindView(R.id.rb_no)
+    RadioButton rbNo;
     @BindView(R.id.btn_register)
     Button btnRegister;
 
@@ -68,8 +82,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     String error_password_confirm_null;
     @BindString(R.string.error_password_not_equals)
     String error_password_not_equals;
+    @BindString(R.string.error_street_null)
+    String error_street_null;
+    @BindString(R.string.error_cardNo_null)
+    String error_cardNo_null;
+    @BindString(R.string.error_address_null)
+    String error_address_null;
 
-    private String mobile;
+    private String mobile, cityCode ="512", areaCode ="513";
+    boolean volunteer;//是否志愿者
 
     private CircleProgressDialog loadingDialog;
 
@@ -97,6 +118,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         tvToolbarTitle.setText(R.string.title_register);
 
         mobile = getIntent().getStringExtra(Constants.INTENT_MOBILE);
+        rbNo.setChecked(true);
     }
 
     @Override
@@ -180,6 +202,30 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     }
 
     /**
+     * 其他信息校验
+     *
+     * @param cardNo   身份证号码
+     * @param cityCode 镇（街道）code
+     * @param areaCode 村（社区）code
+     * @param address  详细地址
+     */
+    private boolean validateOther(String cardNo, String cityCode, String areaCode, String address) {
+        if (TextUtils.isEmpty(cardNo)) {
+            showError(tilCardNo, error_cardNo_null);
+            return false;
+        } else if (TextUtils.isEmpty(cityCode) || TextUtils.isEmpty(areaCode)) {
+            showMessage(error_street_null);
+            return false;
+        } else if (TextUtils.isEmpty(address)) {
+            showError(tilAddress, error_address_null);
+            return false;
+        }
+        tilCardNo.setErrorEnabled(false);
+        tilAddress.setErrorEnabled(false);
+        return true;
+    }
+
+    /**
      * 显示错误提示
      *
      * @param textInputLayout 对应控件
@@ -195,11 +241,23 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         String password = etNewPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
         String code = etInvitationCode.getText().toString();
+        String cardNo = etCardNo.getText().toString();
+        String address = etAddress.getText().toString();
+
+        if (rbYes.isChecked()) {
+            volunteer = true;
+        } else if (rbNo.isChecked()) {
+            volunteer = false;
+        }
         tilNickname.setErrorEnabled(true);
         tilNewPassword.setErrorEnabled(true);
         tilConfirmPassword.setErrorEnabled(true);
-        if (validateNickname(nickname) && validatePassword(password, confirmPassword)) {
-            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), mobile, ArmsUtils.encodeToMD5(password), code);
+        tilCardNo.setErrorEnabled(true);
+        tilAddress.setErrorEnabled(true);
+        if (validateNickname(nickname) && validatePassword(password, confirmPassword)
+                && validateOther(cardNo, cityCode, areaCode, address)) {
+            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode,
+                    address, mobile, ArmsUtils.encodeToMD5(password), "123456", volunteer);
         }
     }
 

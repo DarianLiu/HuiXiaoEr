@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     /**
      * @param lastIndex 最後選中項目
-     * @param index
+     * @param index 当前选中项
      */
     private void switchFragment(int lastIndex, int index) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -181,11 +181,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void killMyself() {
         finish();
-    }
-
-    @Override
-    public void setBanner(List<BannerBean> bannerBean) {
-
     }
 
     /**

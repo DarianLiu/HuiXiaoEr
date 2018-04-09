@@ -35,12 +35,19 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.Model, Reg
      * 注册资料提交
      *
      * @param nickname    昵称
+     * @param card        身份证号码
+     * @param cityCode    镇（街道）Code
+     * @param areaCode    村（社区）code
+     * @param address     详细地址（小区、楼号、门牌号）
      * @param mobile      手机号码
-     * @param md5Password MD5加密密码
-     * @param refererCode 邀请码
+     * @param enPassword  MD5加密密码
+     * @param dynamicCode 短信验证码
+     * @param volunteer   是否志愿者
      */
-    public void registerSubmit(String nickname, String mobile, String md5Password, String refererCode) {
-        mModel.register(nickname, mobile, md5Password, refererCode)
+    public void registerSubmit(String nickname, String card, String cityCode, String areaCode,
+                               String address, String mobile, String enPassword, String dynamicCode,
+                               boolean volunteer) {
+        mModel.register(nickname, card, cityCode, areaCode, address, mobile, enPassword, dynamicCode, volunteer)
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResultShowMessage(mAppManager.getTopActivity()))

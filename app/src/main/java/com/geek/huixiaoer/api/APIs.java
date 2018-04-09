@@ -62,6 +62,11 @@ public interface APIs {
     interface API {
 
         /**
+         * 轮播图
+         */
+        String banner= "member/article/carouselList.jhtml";
+
+        /**
          * 环保热贴
          */
         String hotspotList ="member/article/hotspotList.jhtml";
@@ -126,6 +131,7 @@ public interface APIs {
         String goodsList = "goods/list/";
 
         /**
+         *
          * 商品规格检索
          */
         String goodsSpecification = "goods/specification/";

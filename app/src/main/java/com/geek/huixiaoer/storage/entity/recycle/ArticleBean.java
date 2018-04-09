@@ -36,18 +36,18 @@ public class ArticleBean {
      * latitude :
      */
 
-    private int isAttention;
-    private int isReview;
-    private int countFavorite;
+    private String isAttention;
+    private String isReview;
+    private String countFavorite;
     private String member_username;
     private String isMore;
-    private int countLike;
-    private int id;
-    private int countReview;
+    private String countLike;
+    private String id;
+    private String countReview;
     private String title;
-    private int isFavorite;
+    private String isFavorite;
     private String member_nickname;
-    private int countShare;
+    private String countShare;
     private String longitude;
     private long createDate;
     private String addressName;
@@ -55,33 +55,33 @@ public class ArticleBean {
     private String member_headUrl;
     private String member_id;
     private String content;
-    private int hits;
-    private int isLike;
+    private String hits;
+    private String isLike;
     private String latitude;
     private List<ReviewBean> assistantContents;
     private List<String> images;
 
-    public int getIsAttention() {
+    public String getIsAttention() {
         return isAttention;
     }
 
-    public void setIsAttention(int isAttention) {
+    public void setIsAttention(String isAttention) {
         this.isAttention = isAttention;
     }
 
-    public int getIsReview() {
+    public String getIsReview() {
         return isReview;
     }
 
-    public void setIsReview(int isReview) {
+    public void setIsReview(String isReview) {
         this.isReview = isReview;
     }
 
-    public int getCountFavorite() {
+    public String getCountFavorite() {
         return countFavorite;
     }
 
-    public void setCountFavorite(int countFavorite) {
+    public void setCountFavorite(String countFavorite) {
         this.countFavorite = countFavorite;
     }
 
@@ -101,27 +101,27 @@ public class ArticleBean {
         this.isMore = isMore;
     }
 
-    public int getCountLike() {
+    public String getCountLike() {
         return countLike;
     }
 
-    public void setCountLike(int countLike) {
+    public void setCountLike(String countLike) {
         this.countLike = countLike;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getCountReview() {
+    public String getCountReview() {
         return countReview;
     }
 
-    public void setCountReview(int countReview) {
+    public void setCountReview(String countReview) {
         this.countReview = countReview;
     }
 
@@ -133,11 +133,11 @@ public class ArticleBean {
         this.title = title;
     }
 
-    public int getIsFavorite() {
+    public String getIsFavorite() {
         return isFavorite;
     }
 
-    public void setIsFavorite(int isFavorite) {
+    public void setIsFavorite(String isFavorite) {
         this.isFavorite = isFavorite;
     }
 
@@ -149,11 +149,11 @@ public class ArticleBean {
         this.member_nickname = member_nickname;
     }
 
-    public int getCountShare() {
+    public String getCountShare() {
         return countShare;
     }
 
-    public void setCountShare(int countShare) {
+    public void setCountShare(String countShare) {
         this.countShare = countShare;
     }
 
@@ -213,19 +213,19 @@ public class ArticleBean {
         this.content = content;
     }
 
-    public int getHits() {
+    public String getHits() {
         return hits;
     }
 
-    public void setHits(int hits) {
+    public void setHits(String hits) {
         this.hits = hits;
     }
 
-    public int getIsLike() {
+    public String getIsLike() {
         return isLike;
     }
 
-    public void setIsLike(int isLike) {
+    public void setIsLike(String isLike) {
         this.isLike = isLike;
     }
 

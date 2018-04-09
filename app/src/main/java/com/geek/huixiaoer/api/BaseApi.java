@@ -31,12 +31,20 @@ public interface BaseApi {
     /**
      * 环保热帖
      *
+     * @param positonId 轮播图分类（7:帮你忙轮播 8:折扣店轮播 9.招牌菜店铺轮播）
+     */
+    @GET(APIs.API.banner)
+    Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(@Query("positonId") int positonId);
+
+    /**
+     * 环保热帖
+     *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
      */
     @GET(APIs.API.hotspotList)
     Observable<BaseResponse<BaseArrayData<ArticleBean>>> hotspotList(@Query("pageNumber") int pageNumber,
-                                                       @Query("pageSize") int pageSize);
+                                                                     @Query("pageSize") int pageSize);
 
     /**
      * 折扣店和招牌菜爆款
@@ -47,19 +55,23 @@ public interface BaseApi {
      */
     @GET(APIs.API.goods_explosion)
     Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(@Query("pageNumber") int pageNumber,
-                                                       @Query("pageSize") int pageSize,
-                                                       @Query("tagId") int tagId);
+                                                                      @Query("pageSize") int pageSize,
+                                                                      @Query("tagId") int tagId);
 
     /**
      * 折扣店列表
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
+     * @param startPrice 最小价格（可以不加）
+     * @param endPrice   最高价格（可以不加）
      * @param orderType  排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
      */
     @GET(APIs.API.goods_list)
     Observable<BaseResponse<GoodsBean>> goodsList(@Query("pageNumber") int pageNumber,
                                                   @Query("pageSize") int pageSize,
+                                                  @Query("startPrice") String startPrice,
+                                                  @Query("endPrice") String endPrice,
                                                   @Query("orderType") String orderType);
 
     /**
@@ -67,14 +79,16 @@ public interface BaseApi {
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
+     * @param startPrice 最小价格（可以不加）
+     * @param endPrice   最高价格（可以不加）
      * @param orderType  排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
      */
     @GET(APIs.API.dish_list)
     Observable<BaseResponse<GoodsBean>> dishList(@Query("pageNumber") int pageNumber,
-                                                  @Query("pageSize") int pageSize,
-                                                  @Query("orderType") String orderType);
-
-
+                                                 @Query("pageSize") int pageSize,
+                                                 @Query("startPrice") String startPrice,
+                                                 @Query("endPrice") String endPrice,
+                                                 @Query("orderType") String orderType);
 
     /**
      * ********************** 公 共（ 登 录 注 册 ）模 块 *************************
@@ -100,15 +114,25 @@ public interface BaseApi {
      * 注册
      *
      * @param nickname    昵称
+     * @param card        身份证号码
+     * @param cityCode    镇（街道）Code
+     * @param areaCode    村（社区）code
+     * @param address     详细地址（小区、楼号、门牌号）
      * @param mobile      手机号码
-     * @param md5Password MD5加密密码
-     * @param refererCode 邀请码（非必填项）
+     * @param enPassword  MD5加密密码
+     * @param dynamicCode 短信验证码
+     * @param volunteer   是否志愿者
      */
     @POST(APIs.API.register)
     Observable<BaseResponse<UserBean>> register(@Query("nickname") String nickname,
+                                                @Query("card")   String card,
+                                                @Query("cityCode")  String cityCode,
+                                                @Query("areaCode")   String areaCode,
+                                                @Query("address")  String address,
                                                 @Query("mobile") String mobile,
-                                                @Query("enPassword") String md5Password,
-                                                @Query("refererCode") String refererCode);
+                                                @Query("enPassword")   String enPassword,
+                                                @Query("dynamicCode")    String dynamicCode,
+                                                @Query("volunteer")     boolean volunteer);
 
     /**
      * 登录
@@ -117,7 +141,7 @@ public interface BaseApi {
      * @param md5Password MD5加密密码
      */
     @POST(APIs.API.login)
-    Observable<BaseResponse<UserBean>> login(@Query("mobile") String mobile,
+    Observable<BaseResponse<UserBean>> login(@Query("nickname") String mobile,
                                              @Query("enPassword") String md5Password);
 
     /**
