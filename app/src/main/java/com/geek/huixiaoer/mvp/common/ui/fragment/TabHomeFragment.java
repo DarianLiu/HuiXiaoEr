@@ -21,6 +21,7 @@ import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
+import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
@@ -303,7 +304,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                 launchActivity(new Intent(getActivity(), ShopActivity.class));
                 break;
             case R.id.tv_specialty:
-                launchActivity(new Intent(getActivity(), ShopActivity.class));
+                launchActivity(new Intent(getActivity(), DinnerActivity.class));
                 break;
         }
     }

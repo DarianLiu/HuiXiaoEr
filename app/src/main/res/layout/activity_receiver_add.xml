@@ -72,8 +72,6 @@
         android:id="@+id/option_receiver_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/all_padding"
-        android:paddingTop="@dimen/all_padding"
         app:option_background="@drawable/line_bottom_bg"
         app:option_title_text="@string/receiver_area"
         app:option_title_text_color="@color/color_text_black" />

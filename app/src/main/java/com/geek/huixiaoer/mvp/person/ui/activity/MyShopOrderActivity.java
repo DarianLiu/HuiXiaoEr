@@ -48,14 +48,14 @@ public class MyShopOrderActivity extends BaseActivity<MyShopOrderPresenter> impl
 
     @BindString(R.string.order_state_all)
     String order_state_all;
-    @BindString(R.string.order_state_payment)
-    String order_state_payment;
-    @BindString(R.string.order_state_shipment)
-    String order_state_shipment;
-    @BindString(R.string.order_state_receive)
-    String order_state_receive;
-    @BindString(R.string.order_state_completed)
-    String order_state_completed;
+//    @BindString(R.string.order_state_payment)
+//    String order_state_payment;
+//    @BindString(R.string.order_state_shipment)
+//    String order_state_shipment;
+//    @BindString(R.string.order_state_receive)
+//    String order_state_receive;
+//    @BindString(R.string.order_state_completed)
+//    String order_state_completed;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -69,7 +69,7 @@ public class MyShopOrderActivity extends BaseActivity<MyShopOrderPresenter> impl
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        return R.layout.activity_viewpager; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_dinner; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override
@@ -93,20 +93,20 @@ public class MyShopOrderActivity extends BaseActivity<MyShopOrderPresenter> impl
 
         //初始化fragment
         ShopOrderFragment fragmentAll = new ShopOrderFragment();
-        ShopOrderFragment fragmentWaitPay = new ShopOrderFragment();
-        ShopOrderFragment fragmentWaitReceipt = new ShopOrderFragment();
-        ShopOrderFragment fragmentWaitDelivery = new ShopOrderFragment();
-        ShopOrderFragment fragmentComplete = new ShopOrderFragment();
+//        ShopOrderFragment fragmentWaitPay = new ShopOrderFragment();
+//        ShopOrderFragment fragmentWaitReceipt = new ShopOrderFragment();
+//        ShopOrderFragment fragmentWaitDelivery = new ShopOrderFragment();
+//        ShopOrderFragment fragmentComplete = new ShopOrderFragment();
         list_fragment.add(fragmentAll);
         titles.add(order_state_all);
-        list_fragment.add(fragmentWaitPay);
-        titles.add(order_state_payment);
-        list_fragment.add(fragmentWaitDelivery);
-        titles.add(order_state_shipment);
-        list_fragment.add(fragmentWaitReceipt);
-        titles.add(order_state_receive);
-        list_fragment.add(fragmentComplete);
-        titles.add(order_state_completed);
+//        list_fragment.add(fragmentWaitPay);
+//        titles.add(order_state_payment);
+//        list_fragment.add(fragmentWaitDelivery);
+//        titles.add(order_state_shipment);
+//        list_fragment.add(fragmentWaitReceipt);
+//        titles.add(order_state_receive);
+//        list_fragment.add(fragmentComplete);
+//        titles.add(order_state_completed);
 
 
         //给fragment绑定参数

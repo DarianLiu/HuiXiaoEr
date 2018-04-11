@@ -86,12 +86,6 @@ public interface APIs {
          */
         String dish_list = "goods/list/254.jhtml";
 
-
-
-
-
-
-
         /**
          * 登录
          */

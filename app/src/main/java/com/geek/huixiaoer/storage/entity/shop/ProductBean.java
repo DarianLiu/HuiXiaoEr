@@ -35,7 +35,7 @@ public class ProductBean implements Serializable {
     private String goods_name;
     private long createDate;
     private String goods_image;
-    private double cost;
+    private String cost;
     private List<String> specifications;
 
     public int getId() {
@@ -118,11 +118,11 @@ public class ProductBean implements Serializable {
         this.goods_image = goods_image;
     }
 
-    public double getCost() {
+    public String getCost() {
         return cost;
     }
 
-    public void setCost(double cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 

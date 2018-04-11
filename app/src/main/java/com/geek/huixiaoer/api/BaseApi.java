@@ -75,7 +75,7 @@ public interface BaseApi {
                                                   @Query("orderType") String orderType);
 
     /**
-     * 折扣店列表
+     * 招牌列表
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
@@ -84,7 +84,7 @@ public interface BaseApi {
      * @param orderType  排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
      */
     @GET(APIs.API.dish_list)
-    Observable<BaseResponse<GoodsBean>> dishList(@Query("pageNumber") int pageNumber,
+    Observable<BaseResponse<BaseArrayData<GoodsBean>>> dishList(@Query("pageNumber") int pageNumber,
                                                  @Query("pageSize") int pageSize,
                                                  @Query("startPrice") String startPrice,
                                                  @Query("endPrice") String endPrice,

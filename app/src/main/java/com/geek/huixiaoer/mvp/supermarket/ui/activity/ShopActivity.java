@@ -61,7 +61,7 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        return R.layout.activity_viewpager; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_shop; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override

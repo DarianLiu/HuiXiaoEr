@@ -15,9 +15,10 @@
     <string name="module_title_help_you">帮你忙服务</string>
 
     <!--Title Text-->
-    <string name="title_shop">商超</string>
+    <string name="title_shop">折扣店</string>
+    <string name="title_dinner">招牌菜</string>
     <string name="title_get_captcha">获取验证码</string>
-    <string name="title_recycle">垃圾回收</string>
+    <string name="title_recycle">享环保</string>
     <string name="title_register">注册</string>
     <string name="title_login">登录</string>
     <string name="title_release">发布信息</string>
@@ -28,7 +29,7 @@
     <string name="title_receiver">收货地址</string>
     <string name="title_receiver_add">添加收货地址</string>
     <string name="title_receiver_update">更新收货地址</string>
-    <string name="title_home_service">家政服务</string>
+    <string name="title_home_service">帮你忙</string>
     <string name="title_my_order">我的订单</string>
 
     <string name="dialog_title_memo">订单附言</string>

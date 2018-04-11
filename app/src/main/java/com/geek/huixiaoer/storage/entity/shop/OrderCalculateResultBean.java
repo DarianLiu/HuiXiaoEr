@@ -5,7 +5,7 @@ package com.geek.huixiaoer.storage.entity.shop;
  * Created by Administrator on 2018/3/7.
  */
 
-public class OrderCalculateResultBean {
+public class  OrderCalculateResultBean {
 
     /**
      * amount : 0.02
