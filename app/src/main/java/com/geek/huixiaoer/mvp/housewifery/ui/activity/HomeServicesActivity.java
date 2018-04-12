@@ -23,10 +23,14 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -112,7 +116,11 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
 
     @OnClick(R.id.tv_housekeeping_service)
     public void onViewClicked() {
-        launchActivity(new Intent(HomeServicesActivity.this,ConversationListActivity.class));
+//        launchActivity(new Intent(HomeServicesActivity.this,ConversationListActivity.class));
+//        Map<String, Boolean> supportedConversation  = new HashMap<String, Boolean>();
+//        supportedConversation.put(Conversation.ConversationType.PRIVATE.getName(), false);
+//        RongIM.getInstance().startConversationList(this,supportedConversation);
+        RongIM.getInstance().startConversation(this,Conversation.ConversationType.PRIVATE,"002","test");
     }
 
     @Override
