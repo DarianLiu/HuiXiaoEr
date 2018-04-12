@@ -85,10 +85,10 @@ public interface BaseApi {
      */
     @GET(APIs.API.dish_list)
     Observable<BaseResponse<BaseArrayData<GoodsBean>>> dishList(@Query("pageNumber") int pageNumber,
-                                                 @Query("pageSize") int pageSize,
-                                                 @Query("startPrice") String startPrice,
-                                                 @Query("endPrice") String endPrice,
-                                                 @Query("orderType") String orderType);
+                                                                @Query("pageSize") int pageSize,
+                                                                @Query("startPrice") String startPrice,
+                                                                @Query("endPrice") String endPrice,
+                                                                @Query("orderType") String orderType);
 
     /**
      * ********************** 公 共（ 登 录 注 册 ）模 块 *************************
@@ -125,23 +125,25 @@ public interface BaseApi {
      */
     @POST(APIs.API.register)
     Observable<BaseResponse<UserBean>> register(@Query("nickname") String nickname,
-                                                @Query("card")   String card,
-                                                @Query("cityCode")  String cityCode,
-                                                @Query("areaCode")   String areaCode,
-                                                @Query("address")  String address,
+                                                @Query("card") String card,
+                                                @Query("cityCode") String cityCode,
+                                                @Query("areaCode") String areaCode,
+                                                @Query("address") String address,
                                                 @Query("mobile") String mobile,
-                                                @Query("enPassword")   String enPassword,
-                                                @Query("dynamicCode")    String dynamicCode,
-                                                @Query("volunteer")     boolean volunteer);
+                                                @Query("enPassword") String enPassword,
+                                                @Query("dynamicCode") String dynamicCode,
+                                                @Query("volunteer") boolean volunteer);
 
     /**
      * 登录
      *
      * @param mobile      手机号码
      * @param md5Password MD5加密密码
+     * @param memberType  用户类型(会员类型传空)
      */
     @POST(APIs.API.login)
-    Observable<BaseResponse<UserBean>> login(@Query("nickname") String mobile,
+    Observable<BaseResponse<UserBean>> login(@Query("memberType") String memberType,
+                                             @Query("nickname") String mobile,
                                              @Query("enPassword") String md5Password);
 
     /**
@@ -342,9 +344,9 @@ public interface BaseApi {
                                                                 @Query("memo") String memo);
 
     /**
-     * ********************** 垃 圾 回 收 模 块 *************************
+     * ********************** 享 环 保 模 块 *************************
      * <p>
-     * 垃圾回收列表//@param token 用户Token
+     * 论坛帖子列表//@param token 用户Token
      *
      * @param pageNumber 页数
      * @param pageSize   每页数量

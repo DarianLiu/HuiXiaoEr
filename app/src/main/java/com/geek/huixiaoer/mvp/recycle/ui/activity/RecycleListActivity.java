@@ -102,7 +102,7 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
-        tvToolbarTitle.setText(R.string.title_recycle);
+        tvToolbarTitle.setText(R.string.title_recycle_forum);
 
         initRecycleView();
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));

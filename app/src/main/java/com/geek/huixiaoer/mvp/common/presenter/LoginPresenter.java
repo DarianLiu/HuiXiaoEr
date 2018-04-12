@@ -9,6 +9,8 @@ import com.jess.arms.integration.AppManager;
 import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.utils.DataHelper;
 
+import org.simple.eventbus.EventBus;
+
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
@@ -18,6 +20,8 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 import timber.log.Timber;
+
+import static com.geek.huixiaoer.common.config.EventBusTags.ISLogin;
 
 @ActivityScope
 public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginContract.View> {
@@ -48,6 +52,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                     public void onNext(@NonNull UserBean userBean) {
                         DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
                         DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
+                        EventBus.getDefault().post(true,ISLogin);
                         mRootView.killMyself();
 //                        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw="
 //                                , new RongIMClient.ConnectCallback() {

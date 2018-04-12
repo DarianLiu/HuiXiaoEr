@@ -10,7 +10,7 @@
 
     <com.geek.huixiaoer.common.widget.MyGridView
         android:id="@+id/grid_image"
-        android:layout_width="match_parent"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="47dp"
         android:layout_marginRight="20dp"

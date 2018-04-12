@@ -41,7 +41,7 @@ public class TabHomeModel extends BaseModel implements TabHomeContract.Model {
 
     @Override
     public Observable<BaseResponse<BaseArrayData<ArticleBean>>> hotspotList(int pageNumber, int pageSize) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).hotspotList(pageNumber, pageSize);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).articleList(pageNumber, pageSize, null, "mood");
     }
 
     @Override

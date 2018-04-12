@@ -2,29 +2,51 @@ package com.geek.huixiaoer.mvp.person.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.config.EventBusTags;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.widget.OptionView;
+import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
+import com.geek.huixiaoer.mvp.person.contract.TabMineContract;
+import com.geek.huixiaoer.mvp.person.di.component.DaggerTabMineComponent;
+import com.geek.huixiaoer.mvp.person.di.module.TabMineModule;
+import com.geek.huixiaoer.mvp.person.presenter.TabMinePresenter;
+import com.geek.huixiaoer.storage.entity.UserBean;
+import com.geek.huixiaoer.storage.entity.UserInfoBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
-import com.geek.huixiaoer.mvp.person.di.component.DaggerTabMineComponent;
-import com.geek.huixiaoer.mvp.person.di.module.TabMineModule;
-import com.geek.huixiaoer.mvp.person.contract.TabMineContract;
-import com.geek.huixiaoer.mvp.person.presenter.TabMinePresenter;
+import org.simple.eventbus.Subscriber;
 
-import com.geek.huixiaoer.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
 public class TabMineFragment extends BaseFragment<TabMinePresenter> implements TabMineContract.View {
+
+    @BindView(R.id.option_nickname)
+    OptionView optionNickname;
+    @BindView(R.id.option_password)
+    OptionView optionPassword;
+    @BindView(R.id.option_mobile)
+    OptionView optionMobile;
+    @BindView(R.id.btn_login_out)
+    Button btnLoginOut;
+    Unbinder unbinder;
 
     public static TabMineFragment newInstance() {
         TabMineFragment fragment = new TabMineFragment();
@@ -46,47 +68,44 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
         return inflater.inflate(R.layout.fragment_tab_mine, container, false);
     }
 
-    @Override
-    public void initData(@Nullable Bundle savedInstanceState) {
-
+    @Subscriber(tag = EventBusTags.ISLogin)
+    public void updateLoginState(boolean isLogin) {
+        if (isLogin) {
+            updateView();
+        } else {
+            hideAllView();
+        }
     }
 
-    /**
-     * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
-     * 建议在有多个需要与外界交互的方法时, 统一传 {@link Message}, 通过 what 字段来区分不同的方法, 在 {@link #setData(Object)}
-     * 方法中就可以 {@code switch} 做不同的操作, 这样就可以用统一的入口方法做多个不同的操作, 可以起到分发的作用
-     * <p>
-     * 调用此方法时请注意调用时 Fragment 的生命周期, 如果调用 {@link #setData(Object)} 方法时 {@link Fragment#onCreate(Bundle)} 还没执行
-     * 但在 {@link #setData(Object)} 里却调用了 Presenter 的方法, 是会报空的, 因为 Dagger 注入是在 {@link Fragment#onCreate(Bundle)} 方法中执行的
-     * 然后才创建的 Presenter, 如果要做一些初始化操作,可以不必让外部调用 {@link #setData(Object)}, 在 {@link #initData(Bundle)} 中初始化就可以了
-     * <p>
-     * Example usage:
-     * <pre>
-     * public void setData(@Nullable Object data) {
-     *     if (data != null && data instanceof Message) {
-     *         switch (((Message) data).what) {
-     *             case 0:
-     *                 loadData(((Message) data).arg1);
-     *                 break;
-     *             case 1:
-     *                 refreshUI();
-     *                 break;
-     *             default:
-     *                 //do something
-     *                 break;
-     *         }
-     *     }
-     * }
-     *
-     * // call setData(Object):
-     * Message data = new Message();
-     * data.what = 0;
-     * data.arg1 = 1;
-     * fragment.setData(data);
-     * </pre>
-     *
-     * @param data 当不需要参数时 {@code data} 可以为 {@code null}
-     */
+    @Override
+    public void initData(@Nullable Bundle savedInstanceState) {
+        optionPassword.setRightText("修改");
+        if (TextUtils.isEmpty(DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN))) {
+            hideAllView();
+        } else {
+            updateView();
+        }
+    }
+
+
+    private void updateView() {
+        UserBean userBean = DataHelper.getDeviceData(getActivity(), Constants.SP_USER_INFO);
+        optionNickname.setRightText(TextUtils.isEmpty(userBean.getUserInfo().getNickname()) ?
+                userBean.getUserInfo().getNickname() : userBean.getUserInfo().getUsername());
+        optionMobile.setRightText(userBean.getMobile());
+        optionNickname.setVisibility(View.VISIBLE);
+        optionPassword.setVisibility(View.VISIBLE);
+        optionMobile.setVisibility(View.VISIBLE);
+        btnLoginOut.setVisibility(View.VISIBLE);
+    }
+
+    private void hideAllView() {
+        optionNickname.setVisibility(View.GONE);
+        optionPassword.setVisibility(View.GONE);
+        optionMobile.setVisibility(View.GONE);
+        btnLoginOut.setVisibility(View.GONE);
+    }
+
     @Override
     public void setData(@Nullable Object data) {
 
@@ -117,5 +136,24 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
     @Override
     public void killMyself() {
 
+    }
+
+    @OnClick({R.id.option_nickname, R.id.option_password, R.id.option_mobile, R.id.btn_login_out})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.option_nickname:
+                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
+                break;
+            case R.id.option_password:
+                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
+                break;
+            case R.id.option_mobile:
+                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
+                break;
+            case R.id.btn_login_out:
+                DataHelper.clearShareprefrence(getActivity());
+                hideAllView();
+                break;
+        }
     }
 }

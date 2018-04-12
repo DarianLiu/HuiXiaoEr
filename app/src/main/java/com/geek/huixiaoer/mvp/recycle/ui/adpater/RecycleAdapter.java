@@ -99,7 +99,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                             ArmsUtils.getColor(mContext, R.color.color_text_body)},
                     new int[]{13, 10});
             twoHolder.tvContent.setText(data.getContent());
-            int itemWidth = (int) (gridWidth - DeviceUtils.dpToPixel(mContext, 5)) / 2;
+            int itemWidth = (int) (gridWidth - DeviceUtils.dpToPixel(mContext, 5)) / 3;
             twoHolder.gridView.setAdapter(new GridImageAdapter(mContext, data.getImages(), itemWidth));
         } else if (holder instanceof ThreeHolder) {
             ThreeHolder threeHolder = (ThreeHolder) holder;

@@ -27,7 +27,7 @@
         android:layout_below="@+id/iv_user_head"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="5dp"
-        android:text="我发不了一条垃圾回收消息，呼叫队友支援！！"
+        android:text="我发不了一条垃圾回收消息，呼叫队友请支援！"
         android:textColor="@color/color_text_caption"
         android:textSize="@dimen/t16" />
 

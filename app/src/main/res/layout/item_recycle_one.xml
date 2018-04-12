@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/image_recycle"
-        android:layout_width="208dp"
-        android:layout_height="208dp"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
         android:layout_marginLeft="47dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp" />

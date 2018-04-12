@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <com.geek.huixiaoer.common.widget.OptionView
+        android:id="@+id/option_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:option_title_text="@string/hint_message_system"
+        app:option_title_text_color="@color/color_text_caption"/>
 
 </LinearLayout>

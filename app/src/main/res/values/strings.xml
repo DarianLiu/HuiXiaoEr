@@ -6,7 +6,7 @@
     <string name="tab_message">消息</string>
     <string name="tab_order">订单</string>
     <string name="tab_mine">我的</string>
-    
+
     <string name="module_environment_protect">享环保</string>
     <string name="module_help_you">帮你忙</string>
     <string name="module_discount_store">折扣店</string>
@@ -18,7 +18,6 @@
     <string name="title_shop">折扣店</string>
     <string name="title_dinner">招牌菜</string>
     <string name="title_get_captcha">获取验证码</string>
-    <string name="title_recycle">享环保</string>
     <string name="title_register">注册</string>
     <string name="title_login">登录</string>
     <string name="title_release">发布信息</string>
@@ -31,6 +30,7 @@
     <string name="title_receiver_update">更新收货地址</string>
     <string name="title_home_service">帮你忙</string>
     <string name="title_my_order">我的订单</string>
+    <string name="title_recycle_forum">环保论坛</string>
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>
@@ -43,7 +43,7 @@
 
     <!--Button Text-->
     <string name="btn_login">登录</string>
-    <string name="btn_login_out">未登录</string>
+    <string name="btn_login_out">退出当前帐号</string>
     <string name="btn_register">注册</string>
     <string name="btn_send_captcha">发送验证码</string>
     <string name="btn_count_down">秒</string>
@@ -81,6 +81,8 @@
     <string name="hint_receiver_area">请选择所在地区</string>
     <string name="hint_receiver_address">请输入详细地址</string>
     <string name="hint_receiver_postal_code">请输入邮政编码</string>
+    <string name="hint_account_password">帐号密码</string>
+    <string name="hint_message_system">系统消息</string>
 
     <!--错误提示-->
     <string name="error_account_null">账号不能为空</string>
@@ -166,7 +168,6 @@
     <string name="loose_hand_can_be_deleted">松手即可删除</string>
 
     <string name="housekeeping_service">进入家政客服</string>
-
 
 
     <!--会员相关-->

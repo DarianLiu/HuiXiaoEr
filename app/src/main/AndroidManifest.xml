@@ -150,7 +150,8 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".mvp.dinner.ui.activity.DinnerActivity"></activity>
+        <activity android:name=".mvp.dinner.ui.activity.DinnerActivity" />
+        <activity android:name=".mvp.recycle.ui.activity.RecycleHomeActivity"></activity>
     </application>
 
 </manifest>

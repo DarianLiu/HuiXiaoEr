@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.api.APIs;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.utils.DateUtil;
+import com.geek.huixiaoer.common.widget.OptionView;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
@@ -24,6 +28,7 @@ import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
@@ -104,6 +109,24 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     TextView tvArticleNameThird;
     @BindView(R.id.tv_article_hits_third)
     TextView tvArticleHitsThird;
+    @BindView(R.id.rl_hotSport_first)
+    RelativeLayout rlHotSportFirst;
+    @BindView(R.id.rl_hotSport_second)
+    RelativeLayout rlHotSportSecond;
+    @BindView(R.id.rl_hotSport_third)
+    RelativeLayout rlHotSportThird;
+    @BindView(R.id.tv_clear_day)
+    TextView tvClearDay;
+    @BindView(R.id.tv_clear_room)
+    TextView tvClearRoom;
+    @BindView(R.id.tv_clear_deep)
+    TextView tvClearDeep;
+    @BindView(R.id.rl_goods_one)
+    RelativeLayout rlGoodsOne;
+    @BindView(R.id.rl_goods_two)
+    RelativeLayout rlGoodsTwo;
+    @BindView(R.id.option_hotSport)
+    OptionView optionHotSport;
 
     private ImageLoader mImageLoader;
 
@@ -135,6 +158,19 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         mPresenter.hotspotList(1, 3);
         mPresenter.goodsExplosion(1, 2, 2);
         mPresenter.goodsExplosion(1, 6, 3);
+
+        tvClearDay.setOnClickListener(v -> {
+            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+        });
+        tvClearRoom.setOnClickListener(v -> {
+            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+        });
+        tvClearDeep.setOnClickListener(v -> {
+            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+        });
+        optionHotSport.setRightText("查看更多");
+        optionHotSport.setOnClickListener(v ->
+                launchActivity(new Intent(getActivity(), RecycleListActivity.class)));
     }
 
     @Override
@@ -159,14 +195,17 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateHotspot(List<ArticleBean> hotspotList) {
-        tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
+        tvArticleNameFirst.setText(hotspotList.get(0).getContent());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
+//        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
+        tvArticleNameSecond.setText(hotspotList.get(1).getContent());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
+//        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameThird.setText(hotspotList.get(2).getTitle());
+        tvArticleNameThird.setText(hotspotList.get(2).getContent());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
+//        rlHotSportFirst.setOnClickListener(v -> );
     }
 
     /**
@@ -176,39 +215,60 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateGoodsExplosion(List<GoodsBean> goodsList) {
-        if (goodsList.get(0).getMediumImage() != null) {
+        GoodsBean goodsOne = goodsList.get(0);
+        if (goodsOne.getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(goodsList.get(0).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                    .url(goodsOne.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivGoodsOne).build());
         }
-        tvTitleOne.setText(goodsList.get(0).getName());
-        tvContentOne.setText(goodsList.get(0).getCaption());
+        tvTitleOne.setText(goodsOne.getName());
+        tvContentOne.setText(goodsOne.getCaption());
         StringBuilder priceSB = new StringBuilder();
-        priceSB.append(goodsList.get(0).getPrice()).append("元");
-        if (!TextUtils.isEmpty(goodsList.get(0).getUnit())) {
-            priceSB.append("/").append(goodsList.get(0).getUnit());
+        priceSB.append(goodsOne.getPrice()).append("元");
+        if (!TextUtils.isEmpty(goodsOne.getUnit())) {
+            priceSB.append("/").append(goodsOne.getUnit());
         }
         tvDiscountPriceOne.setText(priceSB.toString());
-        tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsList.get(0).getMarketPrice());
+        tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsOne.getMarketPrice());
         tvCostPriceOne.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        rlGoodsOne.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+            intent.putExtra(Constants.INTENT_GOODS_NAME, goodsOne.getName());
+            intent.putExtra(Constants.INTENT_GOODS_SN, goodsOne.getSn());
+            intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                    DateUtil.getDateYMToString(goodsOne.getCreateDate()) + "/" + +goodsOne.getId()
+                    + ".html");
+            launchActivity(intent);
+        });
 
-        if (goodsList.get(1).getMediumImage() != null) {
+
+        GoodsBean goodsTwo = goodsList.get(1);
+        if (goodsTwo.getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(goodsList.get(1).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                    .url(goodsTwo.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivGoodsTwo).build());
         }
-        tvTitleTwo.setText(goodsList.get(1).getName());
-        tvContentTwo.setText(goodsList.get(1).getCaption());
+        tvTitleTwo.setText(goodsTwo.getName());
+        tvContentTwo.setText(goodsTwo.getCaption());
         priceSB = new StringBuilder();
-        priceSB.append(goodsList.get(1).getPrice()).append("元");
-        if (!TextUtils.isEmpty(goodsList.get(1).getUnit())) {
-            priceSB.append("/").append(goodsList.get(1).getUnit());
+        priceSB.append(goodsTwo.getPrice()).append("元");
+        if (!TextUtils.isEmpty(goodsTwo.getUnit())) {
+            priceSB.append("/").append(goodsTwo.getUnit());
         }
         tvDiscountPriceTwo.setText(priceSB.toString());
-        tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsList.get(1).getMarketPrice() + "元");
+        tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsTwo.getMarketPrice() + "元");
         tvCostPriceTwo.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        rlGoodsTwo.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+            intent.putExtra(Constants.INTENT_GOODS_NAME, goodsTwo.getName());
+            intent.putExtra(Constants.INTENT_GOODS_SN, goodsTwo.getSn());
+            intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                    DateUtil.getDateYMToString(goodsTwo.getCreateDate()) + "/" + +goodsTwo.getId()
+                    + ".html");
+            launchActivity(intent);
+        });
     }
 
     /**
@@ -223,20 +283,49 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .url(dishList.get(0).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishOne).build());
+            ivDishOne.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(0).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(0).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(0).getCreateDate()) + "/" + +dishList.get(0).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
+
 
         if (dishList.get(1).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
                     .url(dishList.get(1).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishTwo).build());
+            ivDishTwo.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(1).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(1).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(1).getCreateDate()) + "/" + +dishList.get(1).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
+
 
         if (dishList.get(2).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
                     .url(dishList.get(2).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishThree).build());
+            ivDishThree.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(2).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(2).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(2).getCreateDate()) + "/" + +dishList.get(2).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
 
         if (dishList.get(3).getMediumImage() != null) {
@@ -244,6 +333,15 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .url(dishList.get(3).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFour).build());
+            ivDishFour.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(3).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(3).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(3).getCreateDate()) + "/" + +dishList.get(3).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
 
         if (dishList.get(4).getMediumImage() != null) {
@@ -251,6 +349,15 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .url(dishList.get(4).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFive).build());
+            ivDishFive.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(4).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(4).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(4).getCreateDate()) + "/" + +dishList.get(4).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
 
         if (dishList.get(5).getMediumImage() != null) {
@@ -258,6 +365,15 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .url(dishList.get(5).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishSix).build());
+            ivDishSix.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(5).getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(5).getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(dishList.get(5).getCreateDate()) + "/" + +dishList.get(5).getId()
+                        + ".html");
+                launchActivity(intent);
+            });
         }
     }
 
@@ -292,7 +408,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      * 享环保、帮你忙、折扣店、招牌菜点击事件
      */
     @OnClick({R.id.tv_environment_protect, R.id.tv_help_you, R.id.tv_discount_store, R.id.tv_specialty})
-    public void onViewClicked(View view) {
+    public void onModuleClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_environment_protect:
                 launchActivity(new Intent(getActivity(), RecycleListActivity.class));
@@ -312,16 +428,6 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    /**
-     * 釋放資源
-     */
-    protected void onRelease() {
-        mImageLoader.clear(getActivity(), ImageConfigImpl.builder()
-                .imageViews(ivGoodsOne, ivGoodsTwo, ivDishOne, ivDishTwo,
-                        ivDishThree, ivDishFour, ivDishFive, ivDishSix)
-                .build());
     }
 
 }

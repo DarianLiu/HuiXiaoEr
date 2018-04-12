@@ -33,5 +33,5 @@ public interface EventBusTags {
      * 垃圾回收
      * {@link com.geek.huixiaoer.storage.entity.recycle.ArticleBean}
      */
-    String Tag_Recycle = "recycle";
+    String ISLogin = "isLogin";
 }

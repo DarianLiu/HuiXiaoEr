@@ -13,6 +13,8 @@ import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.RxLifecycleUtils;
 
+import org.simple.eventbus.EventBus;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -21,6 +23,8 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import io.rong.imkit.RongIM;
+
+import static com.geek.huixiaoer.common.config.EventBusTags.ISLogin;
 
 /**
  * ================================================
@@ -101,6 +105,7 @@ public class RxUtil {
                     if (TextUtils.equals(tBaseResponse.getResult(), "2")) {
                         DataHelper.removeSF(context, Constants.SP_TOKEN);
                         DataHelper.removeSF(context, Constants.SP_USER_INFO);
+                        EventBus.getDefault().post(false,ISLogin);
 //                        ArmsUtils.killAll();
                         context.startActivity(new Intent(context, LoginActivity.class));
                     }

@@ -24,7 +24,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
 
     @Override
     public Observable<BaseResponse<UserBean>> login(String mobile, String md5Password) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).login(mobile, md5Password);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).login("", mobile, md5Password);
     }
 
     @Override

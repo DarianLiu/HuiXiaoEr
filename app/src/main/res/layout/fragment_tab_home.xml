@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -89,16 +90,17 @@
 
         </LinearLayout>
 
-        <TextView
+        <com.geek.huixiaoer.common.widget.OptionView
+            android:id="@+id/option_hotSport"
             style="@style/TextCaptionSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/line_bottom_bg"
-            android:padding="15dp"
-            android:text="@string/module_title_environment_protect" />
+            app:option_background="@drawable/line_bottom_bg"
+            app:option_title_text="@string/module_title_environment_protect" />
 
         <RelativeLayout
+            android:id="@+id/rl_hotSport_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_color_white"
@@ -138,8 +140,8 @@
                 android:id="@+id/tv_article_hits_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -158,6 +160,7 @@
             android:background="@color/line_default_color" />
 
         <RelativeLayout
+            android:id="@+id/rl_hotSport_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_color_white"
@@ -217,6 +220,7 @@
             android:background="@color/line_default_color" />
 
         <RelativeLayout
+            android:id="@+id/rl_hotSport_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_color_white"
@@ -284,6 +288,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_clear_day"
                 style="@style/TextCaptionBig"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -301,6 +306,7 @@
                 android:background="@color/line_default_color" />
 
             <TextView
+                android:id="@+id/tv_clear_room"
                 style="@style/TextCaptionBig"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -318,6 +324,7 @@
                 android:background="@color/line_default_color" />
 
             <TextView
+                android:id="@+id/tv_clear_deep"
                 style="@style/TextCaptionBig"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -341,6 +348,7 @@
             android:text="@string/module_discount_store" />
 
         <RelativeLayout
+            android:id="@+id/rl_goods_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/line_bottom_bg"
@@ -406,6 +414,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_goods_two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_item_bg"
