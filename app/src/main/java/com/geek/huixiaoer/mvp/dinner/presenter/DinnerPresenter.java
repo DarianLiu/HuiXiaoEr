@@ -50,7 +50,7 @@ public class DinnerPresenter extends BasePresenter<DinnerContract.Model, DinnerC
     private int current_position;//当前位置
 
     /**
-     * 获取指定类别商品列表
+     * 获取 招牌列表
      *
      * @param isRefresh   是否刷新
      * @param startPrice 最小价格（可以不加）

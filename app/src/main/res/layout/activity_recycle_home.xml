@@ -3,6 +3,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/bg_color_white">
+
+    <include layout="@layout/include_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/rl_banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/icon_banner_default">
+
+        <com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager
+            android:id="@+id/autoScrollViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/autoScrollIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:textSize="@dimen/t16"
+        android:ellipsize="marquee"
+        android:text="通知：澳洲西拉子干红葡萄酒优惠打折扣"
+        android:padding="15dp"
+        android:textColor="@color/color_text_caption"/>
+    
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_default"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16"
+        android:text="@string/btn_register"
+        />
+
+    <Button
+        android:id="@+id/btn_forum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_default"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16"
+        android:text="@string/btn_forum"
+        />
+
+    <Button  android:id="@+id/btn_integral"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_default"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16"
+        android:text="@string/btn_integral"
+        />
+
+    <Button  android:id="@+id/btn_blacklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_default"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16"
+        android:text="@string/btn_blacklist"
+        />
 
 </LinearLayout>

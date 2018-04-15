@@ -24,7 +24,7 @@ public class ALiPayPlugin implements IPluginModule{
 
     @Override
     public Drawable obtainDrawable(Context context) {
-        return ContextCompat.getDrawable(context, R.drawable.icon_audio);
+        return ContextCompat.getDrawable(context, R.drawable.selector_alipay);
     }
 
     @Override

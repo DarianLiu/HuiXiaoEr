@@ -75,7 +75,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (holder instanceof OneHolder) {
             OneHolder oneHolder = (OneHolder) holder;
             GlideArms.with(mContext).load(data.getMember_headUrl())
-                    .error(R.mipmap.ic_launcher_round)
+                    .error(R.drawable.icon_head_default)
+                    .placeholder(R.drawable.icon_head_default)
                     .circleCrop().into(oneHolder.ivUserHead);
             String name = data.getMember_nickname() == null ? data.getMember_username() : data.getMember_nickname();
             String date = DateUtil.getTime(String.valueOf(data.getCreateDate()), DateUtil.getCurrentDate());
@@ -85,12 +86,14 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     new int[]{13, 10});
             oneHolder.tvContent.setText(data.getContent());
             GlideArms.with(mContext).load(data.getImages().get(0))
-                    .error(R.mipmap.ic_launcher_round)
+//                    .error(R.drawable.icon_head_default)
+//                    .placeholder(R.drawable.icon_head_default)
                     .centerCrop().into(oneHolder.imageRecycle);
         } else if (holder instanceof TwoHolder) {
             TwoHolder twoHolder = (TwoHolder) holder;
             GlideArms.with(mContext).load(data.getMember_headUrl())
-                    .error(R.mipmap.ic_launcher_round)
+                    .error(R.drawable.icon_head_default)
+                    .placeholder(R.drawable.icon_head_default)
                     .circleCrop().into(twoHolder.ivUserHead);
             String name = data.getMember_nickname() == null ? data.getMember_username() : data.getMember_nickname();
             String date = DateUtil.getTime(String.valueOf(data.getCreateDate()), DateUtil.getCurrentDate());
@@ -104,7 +107,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (holder instanceof ThreeHolder) {
             ThreeHolder threeHolder = (ThreeHolder) holder;
             GlideArms.with(mContext).load(data.getMember_headUrl())
-                    .error(R.mipmap.ic_launcher_round)
+                    .error(R.drawable.icon_head_default)
+                    .placeholder(R.drawable.icon_head_default)
                     .circleCrop().into(threeHolder.ivUserHead);
             String name = data.getMember_nickname() == null ? data.getMember_username() : data.getMember_nickname();
             String date = DateUtil.getTime(String.valueOf(data.getCreateDate()), DateUtil.getCurrentDate());

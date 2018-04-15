@@ -57,7 +57,7 @@ public class GridImageAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         GlideArms.with(context).load(imageList.get(position))
-                .error(R.mipmap.ic_launcher)
+//                .error(R.mipmap.ic_launcher)
                 .centerCrop()
                 .into(viewHolder.img);
         return convertView;

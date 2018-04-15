@@ -5,6 +5,7 @@ import android.app.Application;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
@@ -37,6 +38,11 @@ public class TabHomeModel extends BaseModel implements TabHomeContract.Model {
         super.onDestroy();
         this.mGson = null;
         this.mApplication = null;
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).banner(positonId);
     }
 
     @Override

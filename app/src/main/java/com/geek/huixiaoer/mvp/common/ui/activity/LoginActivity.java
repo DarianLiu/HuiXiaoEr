@@ -179,6 +179,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
                 break;
             case R.id.tv_forget_password:
+                launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
                 break;
         }
     }

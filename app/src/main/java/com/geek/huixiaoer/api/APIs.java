@@ -64,12 +64,12 @@ public interface APIs {
         /**
          * 轮播图
          */
-        String banner= "member/article/carouselList.jhtml";
+        String banner = "member/article/carouselList.jhtml";
 
         /**
          * 环保热贴
          */
-        String hotspotList ="member/article/hotspotList.jhtml";
+        String hotspotList = "member/article/hotspotList.jhtml";
 
         /**
          * 折扣店和招牌菜爆款
@@ -85,6 +85,11 @@ public interface APIs {
          * 招牌菜列表
          */
         String dish_list = "goods/list/254.jhtml";
+
+        /**
+         * 家政服务类型列表
+         */
+        String service_list = "goods/list/255.jhtml";
 
         /**
          * 登录
@@ -112,7 +117,10 @@ public interface APIs {
         String carouselList = "member/article/carouselList.jhtml";
 
 
-
+        /**
+         * 消息列表
+         */
+        String messageList = "member/message/list.jhtml";
 
         /**
          * 获取所有根节点的货品类别列表
@@ -125,7 +133,6 @@ public interface APIs {
         String goodsList = "goods/list/";
 
         /**
-         *
          * 商品规格检索
          */
         String goodsSpecification = "goods/specification/";

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.integration.AppManager;
@@ -21,6 +22,9 @@ import javax.inject.Inject;
 import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 
 
+/**
+ *
+ */
 @ActivityScope
 public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHomeContract.View> {
     @Inject
@@ -36,14 +40,30 @@ public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHo
     public TabHomePresenter(TabHomeContract.Model model, TabHomeContract.View rootView) {
         super(model, rootView);
     }
+
+    /**
+     * 获取轮播图
+     */
+    public void getBanner() {
+        mModel.banner(1).retryWhen(new RetryWithDelay(2, 1))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mApplication))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
+                        mRootView.updateBanner(bannerBeanBaseArrayData.getPageData());
+                    }
+                });
+    }
+
     /**
      * 环保热帖
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
      */
-    public void hotspotList(int pageNumber, int pageSize){
-        mModel.hotspotList(pageNumber, pageSize).retryWhen(new RetryWithDelay(2,1))
+    public void hotspotList(int pageNumber, int pageSize) {
+        mModel.hotspotList(pageNumber, pageSize).retryWhen(new RetryWithDelay(2, 1))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mApplication))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<ArticleBean>>(mErrorHandler) {
@@ -53,6 +73,7 @@ public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHo
                     }
                 });
     }
+
     /**
      * 折扣店和招牌菜爆款
      *
@@ -60,16 +81,16 @@ public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHo
      * @param pageSize   每页显示数量
      * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款)
      */
-    public void goodsExplosion (int pageNumber, int pageSize, int tagId){
-        mModel.goodsExplosion(pageNumber, pageSize,tagId).retryWhen(new RetryWithDelay(2,1))
+    public void goodsExplosion(int pageNumber, int pageSize, int tagId) {
+        mModel.goodsExplosion(pageNumber, pageSize, tagId).retryWhen(new RetryWithDelay(2, 1))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mApplication))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<GoodsBean>>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull BaseArrayData<GoodsBean> arrayData) {
-                        if (tagId == 2){
+                        if (tagId == 2) {
                             mRootView.updateGoodsExplosion(arrayData.getPageData());
-                        }else {
+                        } else {
                             mRootView.updateDishExplosion(arrayData.getPageData());
                         }
                     }

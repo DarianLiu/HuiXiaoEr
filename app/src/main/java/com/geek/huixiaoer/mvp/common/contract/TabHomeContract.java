@@ -13,6 +13,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 
 public interface TabHomeContract {
@@ -30,6 +31,14 @@ public interface TabHomeContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
+
+        /**
+         * 获取轮播图
+         *
+         * @param positonId 轮播图类型
+         */
+        Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId);
+
         /**
          * 环保热帖
          *

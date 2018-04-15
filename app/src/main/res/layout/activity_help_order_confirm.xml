@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系电话："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_mobile_number"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_receiver_address"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务项目："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家名称："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="家政上门时间："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务价格："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="￥0.00"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -2,7 +2,9 @@ package com.geek.huixiaoer.mvp.housewifery.contract;
 
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
+import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
 
@@ -16,11 +18,20 @@ public interface HomeServicesContract {
     interface View extends IView {
         void endRefresh();
 
-        void updateView(List<HomeServiceBean> homeServices);
+        void updateBanner(List<BannerBean> bannerBean);
+
+        void updateView(List<GoodsBean> homeServices);
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
-        Observable<BaseResponse<BaseArrayData<HomeServiceBean>>> homeServiceList();
+        /**
+         * 获取轮播图
+         *
+         * @param positonId 轮播图类型
+         */
+        Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId);
+
+        Observable<BaseResponse<BaseArrayData<GoodsBean>>> homeServiceList(int pageNumber, int pageSize, String startPrice, String endPrice, String orderType);
     }
 }

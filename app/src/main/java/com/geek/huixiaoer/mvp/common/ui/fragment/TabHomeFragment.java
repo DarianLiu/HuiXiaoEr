@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleHomeActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
@@ -36,15 +39,19 @@ import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
 import com.jess.arms.utils.ArmsUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.Conversation;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -151,24 +158,29 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
         AppComponent mAppComponent = ArmsUtils.obtainAppComponentFromContext(getActivity());
         mImageLoader = mAppComponent.imageLoader();
 
+        setBannerHeight();
+
+        mPresenter.getBanner();
         mPresenter.hotspotList(1, 3);
         mPresenter.goodsExplosion(1, 2, 2);
         mPresenter.goodsExplosion(1, 6, 3);
 
         tvClearDay.setOnClickListener(v -> {
-            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+            RongIM.getInstance().startConversation(getActivity(),
+                    Conversation.ConversationType.PRIVATE, "002", "test");
         });
         tvClearRoom.setOnClickListener(v -> {
-            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+            RongIM.getInstance().startConversation(getActivity(),
+                    Conversation.ConversationType.PRIVATE, "002", "test");
         });
         tvClearDeep.setOnClickListener(v -> {
-            launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
+            RongIM.getInstance().startConversation(getActivity(),
+                    Conversation.ConversationType.PRIVATE, "002", "test");
         });
-        optionHotSport.setRightText("查看更多");
+        optionHotSport.setRightText("更多");
         optionHotSport.setOnClickListener(v ->
                 launchActivity(new Intent(getActivity(), RecycleListActivity.class)));
     }
@@ -179,13 +191,25 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     }
 
     /**
+     * 设置banner控件的高度
+     */
+    private void setBannerHeight() {
+        int screenWidth = ArmsUtils.getScreenWidth(getActivity());
+        int height = (int) (screenWidth * 0.53);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(screenWidth, height);
+        autoScrollViewPager.setLayoutParams(params);
+    }
+
+    /**
      * 更新轮播图
      *
      * @param bannerBean 轮播图列表
      */
     @Override
     public void updateBanner(List<BannerBean> bannerBean) {
-
+        mBannerBeen = bannerBean;
+        addScrollImage(bannerBean.size());
+        initAutoScrollViewPager();
     }
 
     /**
@@ -377,6 +401,111 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         }
     }
 
+    //轮播图底部滑动图片
+    private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
+    //轮播图图片
+    private List<BannerBean> mBannerBeen = new ArrayList<>();
+    /**
+     * 初始化轮播图控件
+     */
+    private void initAutoScrollViewPager() {
+        autoScrollViewPager.setAdapter(mPagerAdapter);
+
+        // viewPagerIndicator.setViewPager(autoScrollViewPager);
+        // viewPagerIndicator.setSnap(true);
+
+        autoScrollViewPager.setScrollFactgor(10); // 控制滑动速度
+//        autoScrollViewPager.setOffscreenPageLimit(6); //设置缓存屏数
+        autoScrollViewPager.startAutoScroll(3000);  //设置间隔时间
+
+        autoScrollViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int arg0) {
+                showSelectScrollImage(arg0);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+
+            }
+        });
+    }
+
+    /**
+     * 当前滑动的轮播图对应底部的标识
+     *
+     * @param position 当前位置
+     */
+    private void showSelectScrollImage(int position) {
+        if (position < 0 || position >= mScrollImageViews.size()) return;
+        if (mScrollImageViews != null) {
+            for (ImageView iv : mScrollImageViews) {
+                iv.setImageResource(R.drawable.icon_indicator_normal);
+            }
+            mScrollImageViews.get(position).setImageResource(R.drawable.icon_indicator_selected);
+        }
+    }
+
+    /**
+     * 轮播图底部的滑动的下划线
+     *
+     * @param size 轮播图数量
+     */
+    private void addScrollImage(int size) {
+        autoScrollIndicator.removeAllViews();
+        mScrollImageViews.clear();
+
+        for (int i = 0; i < size; i++) {
+            ImageView iv = new ImageView(getActivity());
+            iv.setPadding(10, 0, 10, 20);
+            if (i != 0) {
+                iv.setImageResource(R.drawable.icon_indicator_normal);
+            } else {
+                iv.setImageResource(R.drawable.icon_indicator_selected);
+            }
+            iv.setLayoutParams(new ViewGroup.LayoutParams(40, 40));
+            autoScrollIndicator.addView(iv);// 将图片加到一个布局里
+            mScrollImageViews.add(iv);
+        }
+    }
+
+    /**
+     * 轮播图适配器
+     */
+    PagerAdapter mPagerAdapter = new PagerAdapter() {
+        @Override
+        public int getCount() {
+            return mScrollImageViews.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+            return view == object;
+        }
+
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
+            View view = getLayoutInflater().inflate(R.layout.include_image, null);
+            ImageView ivBanner = view.findViewById(R.id.imageView);
+
+            GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
+                    .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
+            container.addView(view);
+            return view;
+        }
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            container.removeView((View) object);
+        }
+    };
+
     @Override
     public void showLoading() {
 
@@ -411,7 +540,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     public void onModuleClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_environment_protect:
-                launchActivity(new Intent(getActivity(), RecycleListActivity.class));
+                launchActivity(new Intent(getActivity(), RecycleHomeActivity.class));
                 break;
             case R.id.tv_help_you:
                 launchActivity(new Intent(getActivity(), HomeServicesActivity.class));
@@ -428,6 +557,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mPagerAdapter = null;
     }
 
 }

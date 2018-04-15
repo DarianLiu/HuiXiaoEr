@@ -56,9 +56,8 @@
         </activity>
         <activity
             android:name=".mvp.common.ui.activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.supermarket.ui.activity.ShopActivity"
             android:screenOrientation="portrait" />
@@ -150,8 +149,14 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".mvp.dinner.ui.activity.DinnerActivity" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleHomeActivity"></activity>
+        <activity
+            android:name=".mvp.dinner.ui.activity.DinnerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.recycle.ui.activity.RecycleHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.person.ui.activity.MessageListActivity" />
+        <activity android:name=".mvp.housewifery.ui.activity.HelpOrderConfirmActivity"></activity>
     </application>
 
 </manifest>

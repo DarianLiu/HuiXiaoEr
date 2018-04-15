@@ -5,7 +5,7 @@ public class BannerBean {
     private String title;//banner标题
     private String path;//banner图片地址
     private String url;//活动网页地址
-    private int linkcategory;//banner类型
+    private String linkcategory;//banner类型
 
     public void setArticleId(String articleId) {
         this.articleId = articleId;
@@ -23,11 +23,11 @@ public class BannerBean {
         return title;
     }
 
-    public void setLinkcategory(int linkcategory) {
+    public void setLinkcategory(String linkcategory) {
         this.linkcategory = linkcategory;
     }
 
-    public int getLinkcategory() {
+    public String getLinkcategory() {
         return linkcategory;
     }
 

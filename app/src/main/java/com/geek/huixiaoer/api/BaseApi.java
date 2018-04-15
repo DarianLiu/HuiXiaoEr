@@ -29,12 +29,20 @@ import retrofit2.http.Query;
 public interface BaseApi {
 
     /**
-     * 环保热帖
+     * banner轮播图
      *
      * @param positonId 轮播图分类（7:帮你忙轮播 8:折扣店轮播 9.招牌菜店铺轮播）
      */
     @GET(APIs.API.banner)
     Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(@Query("positonId") int positonId);
+
+    /**
+     * @param token 登录人token
+     * @param pageNumber 当前页数
+     * @param pageSize 每页显示数量
+     * @return
+     */
+    Observable<BaseResponse<BaseArrayData<BannerBean>>> messageList(@Query("token") String token, @Query("pageNumber") String pageNumber, @Query("pageSize") String pageSize);
 
     /**
      * 环保热帖
@@ -89,6 +97,21 @@ public interface BaseApi {
                                                                 @Query("startPrice") String startPrice,
                                                                 @Query("endPrice") String endPrice,
                                                                 @Query("orderType") String orderType);
+
+
+    /**
+     * @param pageNumber）当前页数
+     * @param pageSize        每页显示数量
+     * @param startPrice      最小价格（可以不加
+     * @param endPrice        最高价格（可以不加）
+     * @param orderType       排序方式（topDesc:置顶降序 priceAsc:价格升序 priceDesc:价格降序 salesDesc:销量降序 dateDesc:日期降序）
+     */
+    @GET(APIs.API.service_list)
+    Observable<BaseResponse<BaseArrayData<GoodsBean>>> serviceList(@Query("pageNumber") int pageNumber,
+                                                                   @Query("pageSize") int pageSize,
+                                                                   @Query("startPrice") String startPrice,
+                                                                   @Query("endPrice") String endPrice,
+                                                                   @Query("orderType") String orderType);
 
     /**
      * ********************** 公 共（ 登 录 注 册 ）模 块 *************************

@@ -16,6 +16,7 @@ import com.geek.huixiaoer.mvp.common.contract.TabMessageContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabMessageComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabMessageModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabMessagePresenter;
+import com.geek.huixiaoer.mvp.person.ui.activity.MessageListActivity;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -54,8 +55,8 @@ public class TabMessageFragment extends BaseFragment<TabMessagePresenter> implem
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-        optionMsg.setRightText("查看更多");
-//        optionMsg.setOnClickListener(v -> );
+//        optionMsg.setRightText("查看更多");
+        optionMsg.setOnClickListener(v -> launchActivity(new Intent(getActivity(), MessageListActivity.class)));
     }
 
     @Override
