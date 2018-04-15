@@ -45,7 +45,7 @@ public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHo
      * 获取轮播图
      */
     public void getBanner() {
-        mModel.banner(1).retryWhen(new RetryWithDelay(2, 1))
+        mModel.banner(11).retryWhen(new RetryWithDelay(2, 1))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mApplication))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {

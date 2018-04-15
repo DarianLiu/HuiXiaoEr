@@ -40,7 +40,7 @@ public class RecycleHomePresenter extends BasePresenter<RecycleHomeContract.Mode
      * 获取轮播图
      */
     public void getBanner() {
-        mModel.banner(2).retryWhen(new RetryWithDelay(2, 1))
+        mModel.banner(10).retryWhen(new RetryWithDelay(2, 1))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mApplication))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {

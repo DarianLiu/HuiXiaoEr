@@ -7,10 +7,6 @@
 
     <include layout="@layout/include_toolbar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="暂无更多消息" />
+    <include layout="@layout/include_recyclerview" />
 
 </LinearLayout>

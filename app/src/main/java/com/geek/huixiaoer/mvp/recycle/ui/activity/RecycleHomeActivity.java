@@ -239,6 +239,18 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     };
 
     @Override
+    public void onResume() {
+        super.onResume();
+        autoScrollViewPager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        autoScrollViewPager.stopAutoScroll();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mPagerAdapter = null;

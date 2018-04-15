@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
@@ -44,6 +45,21 @@ public class DinnerPresenter extends BasePresenter<DinnerContract.Model, DinnerC
     @Inject
     public DinnerPresenter(DinnerContract.Model model, DinnerContract.View rootView) {
         super(model, rootView);
+    }
+
+    /**
+     * 获取轮播图
+     */
+    public void getBanner() {
+        mModel.banner(9).retryWhen(new RetryWithDelay(2, 1))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mApplication))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
+                        mRootView.updateBanner(bannerBeanBaseArrayData.getPageData());
+                    }
+                });
     }
 
     private int page_no;//当前页数

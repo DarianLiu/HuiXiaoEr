@@ -255,6 +255,18 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
     };
 
     @Override
+    public void onResume() {
+        super.onResume();
+        autoScrollViewPager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        autoScrollViewPager.stopAutoScroll();
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -286,7 +298,6 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
     public void killMyself() {
         finish();
     }
-
 
     @Override
     public void endRefresh() {

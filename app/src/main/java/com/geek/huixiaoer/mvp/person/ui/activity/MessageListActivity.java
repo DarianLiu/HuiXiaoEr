@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
@@ -12,11 +14,20 @@ import com.geek.huixiaoer.mvp.person.contract.MessageListContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerMessageListComponent;
 import com.geek.huixiaoer.mvp.person.di.module.MessageListModule;
 import com.geek.huixiaoer.mvp.person.presenter.MessageListPresenter;
+import com.geek.huixiaoer.mvp.person.ui.adapter.MessageAdapter;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -27,6 +38,14 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+
+
+    private MessageAdapter<String> mAdapter;
+    private List<String> mMessages;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -50,6 +69,14 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText("消息列表");
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mMessages = new ArrayList<>();
+        mAdapter = new MessageAdapter<>(mMessages);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
+
+        mPresenter.messageList(50);
     }
 
     @Override
@@ -77,6 +104,12 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
     @Override
     public void killMyself() {
         finish();
+    }
+
+    @Override
+    public void updateList(List<String> datas) {
+        mMessages.addAll(datas);
+        mAdapter.notifyDataSetChanged();
     }
 
 }

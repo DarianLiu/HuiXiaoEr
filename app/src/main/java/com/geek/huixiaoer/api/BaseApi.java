@@ -31,18 +31,20 @@ public interface BaseApi {
     /**
      * banner轮播图
      *
-     * @param positonId 轮播图分类（7:帮你忙轮播 8:折扣店轮播 9.招牌菜店铺轮播）
+     * @param positonId 轮播图分类（7:帮你忙轮播 8:折扣店轮播 9.招牌菜店铺轮播 10.环保轮播 11.分级轮播）
      */
     @GET(APIs.API.banner)
     Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(@Query("positonId") int positonId);
 
     /**
-     * @param token 登录人token
+     * 消息列表
+     *
+     * @param token      登录人token
      * @param pageNumber 当前页数
-     * @param pageSize 每页显示数量
-     * @return
+     * @param pageSize   每页显示数量
      */
-    Observable<BaseResponse<BaseArrayData<BannerBean>>> messageList(@Query("token") String token, @Query("pageNumber") String pageNumber, @Query("pageSize") String pageSize);
+    @GET(APIs.API.messageList)
+    Observable<BaseResponse<BaseArrayData<BannerBean>>> messageList(@Query("token") String token, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
 
     /**
      * 环保热帖
@@ -100,6 +102,7 @@ public interface BaseApi {
 
 
     /**
+     * 家政服务
      * @param pageNumber）当前页数
      * @param pageSize        每页显示数量
      * @param startPrice      最小价格（可以不加

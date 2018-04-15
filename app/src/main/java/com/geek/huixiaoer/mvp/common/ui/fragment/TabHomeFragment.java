@@ -533,6 +533,18 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        autoScrollViewPager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        autoScrollViewPager.stopAutoScroll();
+    }
+
     /**
      * 享环保、帮你忙、折扣店、招牌菜点击事件
      */

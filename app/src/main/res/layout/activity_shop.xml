@@ -7,6 +7,27 @@
 
     <include layout="@layout/include_toolbar" />
 
+    <RelativeLayout
+        android:id="@+id/rl_banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/icon_help_banner_default">
+
+        <com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager
+            android:id="@+id/autoScrollViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/autoScrollIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" />
+
+    </RelativeLayout>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"

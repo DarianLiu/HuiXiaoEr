@@ -5,6 +5,7 @@ import android.app.Application;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
@@ -29,6 +30,11 @@ public class DinnerModel extends BaseModel implements DinnerContract.Model {
     @Inject
     public DinnerModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).banner(positonId);
     }
 
     @Override

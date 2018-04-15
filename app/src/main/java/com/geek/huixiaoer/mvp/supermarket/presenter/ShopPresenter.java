@@ -2,6 +2,7 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
@@ -27,6 +28,21 @@ public class ShopPresenter extends BasePresenter<ShopContract.Model, ShopContrac
         super(model, rootView);
         this.mErrorHandler = handler;
         this.mAppManager = appManager;
+    }
+
+    /**
+     * 获取轮播图
+     */
+    public void getBanner() {
+        mModel.banner(8).retryWhen(new RetryWithDelay(2, 1))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
+                        mRootView.updateBanner(bannerBeanBaseArrayData.getPageData());
+                    }
+                });
     }
 
     public void getGoodsCategorys() {

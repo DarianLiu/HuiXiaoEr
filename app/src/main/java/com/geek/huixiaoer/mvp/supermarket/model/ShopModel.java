@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.model;
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -27,6 +28,11 @@ public class ShopModel extends BaseModel implements ShopContract.Model {
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).banner(positonId);
     }
 
     @Override
