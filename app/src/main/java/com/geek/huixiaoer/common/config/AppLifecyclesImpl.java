@@ -23,8 +23,8 @@ import com.geek.huixiaoer.BuildConfig;
 import com.geek.huixiaoer.mvp.housewifery.ui.plugin.ALiPayModule;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.utils.ArmsUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+//import com.squareup.leakcanary.LeakCanary;
+//import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import io.rong.imkit.RongExtensionManager;
@@ -63,11 +63,11 @@ public class AppLifecyclesImpl implements AppLifecycles {
 
         RongExtensionManager.getInstance().registerExtensionModule(new ALiPayModule());
 
-        if (LeakCanary.isInAnalyzerProcess(application)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
+//        if (LeakCanary.isInAnalyzerProcess(application)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
         if (BuildConfig.LOG_DEBUG) {//Timber初始化
             //Timber 是一个日志框架容器,外部使用统一的Api,内部可以动态的切换成任何日志框架(打印策略)进行日志打印
             //并且支持添加多个日志框架(打印策略),做到外部调用一次 Api,内部却可以做到同时使用多个策略
@@ -84,7 +84,7 @@ public class AppLifecyclesImpl implements AppLifecycles {
             ButterKnife.setDebug(true);
         }
         //leakCanary内存泄露检查
-        ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
+//        ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
         //扩展 AppManager 的远程遥控功能
         ArmsUtils.obtainAppComponentFromContext(application).appManager().setHandleListener((appManager, message) -> {
             switch (message.what) {

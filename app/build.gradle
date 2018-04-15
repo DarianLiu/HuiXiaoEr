@@ -90,9 +90,9 @@ dependencies {
     //    compile rootProject.ext.dependencies["retrofit-url-manager"]
     compile rootProject.ext.dependencies["lifecyclemodel"]
     //test
-    debugCompile rootProject.ext.dependencies["canary-debug"]
-    releaseCompile rootProject.ext.dependencies["canary-release"]
-    testCompile rootProject.ext.dependencies["canary-release"]
+//    debugCompile rootProject.ext.dependencies["canary-debug"]
+//    releaseCompile rootProject.ext.dependencies["canary-release"]
+//    testCompile rootProject.ext.dependencies["canary-release"]
     testCompile rootProject.ext.dependencies["junit"]
     compile files('libs/alipaySdk-20170922.jar')
     //    compile project(':IMKit')
