@@ -88,8 +88,9 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
         toolbar.setNavigationOnClickListener(v -> finish());
         toolbarTitle.setText(R.string.title_shop);
 
+        mPresenter.getBanner();
         mPresenter.getGoodsCategorys();
-
+        setBannerHeight();
     }
 
 //    @Override
