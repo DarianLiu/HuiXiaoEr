@@ -278,6 +278,15 @@ public interface APIs {
          * 购物订单确认收货
          */
         String shopOrderReceive = "member/order/receive.jhtml";
+        /**
+         * 创建家政订单
+         */
+        String createServiceOrder = "mobile/shop/order/createByCustomer.jhtml";
+
+        /**
+         * 创建商家订单（游客）
+         */
+        String createShopOrder = "mobile/shop/order/createByVisitor.jhtml";
 
     }
 }

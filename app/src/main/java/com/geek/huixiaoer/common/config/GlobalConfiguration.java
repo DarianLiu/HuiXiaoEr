@@ -14,7 +14,7 @@ import com.jess.arms.http.RequestInterceptor;
 import com.jess.arms.http.imageloader.glide.GlideImageLoaderStrategy;
 import com.jess.arms.integration.ConfigModule;
 import com.jess.arms.utils.ArmsUtils;
-import com.squareup.leakcanary.RefWatcher;
+//import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -134,11 +134,11 @@ public final class GlobalConfiguration implements ConfigModule {
 
             @Override
             public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-                ((RefWatcher) ArmsUtils
-                        .obtainAppComponentFromContext(f.getActivity())
-                        .extras()
-                        .get(RefWatcher.class.getName()))
-                        .watch(f);
+//                ((RefWatcher) ArmsUtils
+//                        .obtainAppComponentFromContext(f.getActivity())
+//                        .extras()
+//                        .get(RefWatcher.class.getName()))
+//                        .watch(f);
             }
         });
     }

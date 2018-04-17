@@ -11,6 +11,8 @@ import android.view.inputmethod.EditorInfo;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.dialog.SimpleEditDialogFragment;
+import com.geek.huixiaoer.mvp.housewifery.ui.activity.HelpOrderConfirmActivity;
+import com.jess.arms.utils.ArmsUtils;
 
 import io.rong.imkit.RongExtension;
 import io.rong.imkit.plugin.IPluginModule;
@@ -22,8 +24,10 @@ import io.rong.imkit.plugin.IPluginModule;
 
 public class ALiPayPlugin implements IPluginModule{
 
+    Context context;
     @Override
     public Drawable obtainDrawable(Context context) {
+        this.context = context;
         return ContextCompat.getDrawable(context, R.drawable.selector_alipay);
     }
 
@@ -34,16 +38,17 @@ public class ALiPayPlugin implements IPluginModule{
 
     @Override
     public void onClick(Fragment fragment, RongExtension rongExtension) {
-        SimpleEditDialogFragment dialogFragment = new SimpleEditDialogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.INTENT_DIALOG_TITLE,
-                fragment.getActivity().getString(R.string.plugin_title_alipay));
-        bundle.putInt(Constants.INTENT_DIALOG_INPUT_TYPE, EditorInfo.TYPE_CLASS_NUMBER);
-        dialogFragment.setArguments(bundle);
-        dialogFragment.setOnDialogClick(content -> {
-
-        });
-        dialogFragment.show(fragment.getActivity().getSupportFragmentManager(), "dialog_edit");
+        ArmsUtils.startActivity(new Intent(context, HelpOrderConfirmActivity.class));
+//        SimpleEditDialogFragment dialogFragment = new SimpleEditDialogFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putString(Constants.INTENT_DIALOG_TITLE,
+//                fragment.getActivity().getString(R.string.plugin_title_alipay));
+//        bundle.putInt(Constants.INTENT_DIALOG_INPUT_TYPE, EditorInfo.TYPE_CLASS_NUMBER);
+//        dialogFragment.setArguments(bundle);
+//        dialogFragment.setOnDialogClick(content -> {
+//
+//        });
+//        dialogFragment.show(fragment.getActivity().getSupportFragmentManager(), "dialog_edit");
     }
 
     @Override

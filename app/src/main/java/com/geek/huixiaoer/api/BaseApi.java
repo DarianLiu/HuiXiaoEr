@@ -6,6 +6,7 @@ import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
+import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
 import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
@@ -519,4 +520,19 @@ public interface BaseApi {
     Observable<BaseResponse<OrderBean>> shopOrderReceive(@Query("token") String token,
                                                          @Query("sn") String sn);
 
+    /**
+     * 创建家政订单
+     * @param token
+     * @param consignee
+     * @param address
+     * @param zipCode
+     * @param mobile
+     * @param goodsId
+     * @param amount
+     * @param memo
+     * @return
+     */
+    @POST(APIs.API.createServiceOrder)
+    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder (@Query("token") String token, @Query("consignee")String consignee, @Query("address")String address,
+                                                                         @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
 }

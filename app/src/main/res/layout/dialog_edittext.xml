@@ -16,22 +16,15 @@
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/t16" />
 
-    <EditText
-        android:id="@+id/et_content"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/line_top_bottom_bg"
-        android:hint="说点什么..."
-        android:inputType="textMultiLine"
-        android:maxLines="2"
-        android:minLines="2"
-        android:paddingBottom="15dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp"
-        android:textColor="@color/color_text_caption"
-        android:textColorHint="@color/color_hint_text"
-        android:textSize="@dimen/t14" />
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名:"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
