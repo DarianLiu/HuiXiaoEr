@@ -521,8 +521,7 @@ public interface BaseApi {
                                                          @Query("sn") String sn);
 
     /**
-     * 创建家政订单
-     * @param token
+     * 游客创建家政订单
      * @param consignee
      * @param address
      * @param zipCode
@@ -532,7 +531,7 @@ public interface BaseApi {
      * @param memo
      * @return
      */
-    @POST(APIs.API.createServiceOrder)
-    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder (@Query("token") String token, @Query("consignee")String consignee, @Query("address")String address,
+    @POST(APIs.API.createOrderByVisitor)
+    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder (@Query("consignee")String consignee, @Query("address")String address,
                                                                          @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
 }

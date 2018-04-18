@@ -16,6 +16,14 @@ public interface HelpOrderConfirmContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
-        Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String token, String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo );
+//        harmfulconsignee:收货人
+//        harmfuladdress:收货地址
+//        harmfulzipCode:邮编
+//        harmfulmobile:电话
+//        harmfulgoodsId:货品id
+//        harmfulamount:金额
+//        harmfulmemo:附言
+        //
+        Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo );
     }
 }

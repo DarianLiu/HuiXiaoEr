@@ -4,7 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.geek.huixiaoer.common.utils.StringUtils;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
+import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -17,11 +27,26 @@ import com.geek.huixiaoer.mvp.housewifery.presenter.HelpOrderConfirmPresenter;
 import com.geek.huixiaoer.R;
 
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
 public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPresenter> implements HelpOrderConfirmContract.View {
 
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.trueNameEdit)
+    EditText trueNameEdit;
+    @BindView(R.id.mobileEdit)
+    EditText mobileEdit;
+    @BindView(R.id.addressEdit)
+    EditText addressEdit;
+    @BindView(R.id.priceEdit)
+    EditText priceEdit;
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerHelpOrderConfirmComponent //如找不到该类,请编译一下项目
@@ -39,17 +64,57 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
+        tvToolbarTitle.setText("确认订单");
     }
 
+    @OnClick({R.id.submitBtn})
+    public void onViewClicked(View view) {
+        String trueName = trueNameEdit.getText().toString();
+        if (TextUtils.isEmpty(trueName)) {
+            Toast.makeText(this,"姓名不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String mobile = mobileEdit.getText().toString();
+        if (TextUtils.isEmpty(mobile)) {
+            Toast.makeText(this,"手机号不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String address = addressEdit.getText().toString();
+        if (TextUtils.isEmpty(address)) {
+            Toast.makeText(this,"地址不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String price = priceEdit.getText().toString();
+        if (TextUtils.isEmpty(price)) {
+            Toast.makeText(this,"金额不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.submitBtn:
+                //consignee,address,zipCode,mobile,goodsId,amount,memo
+                mPresenter.createServiceOrder(trueName,address,"00000",mobile,"128",price,"2018-04-17");
+                break;
+            case R.id.tv_register:
+//                launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
+                break;
+        }
+    }
+    private CircleProgressDialog loadingDialog;
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
@@ -65,7 +130,21 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+        loadingDialog = null;
+    }
+
+    @Override
     public void killMyself() {
         finish();
+    }
+
+    @Override
+    public void updateView() {
+
     }
 }

@@ -279,14 +279,14 @@ public interface APIs {
          */
         String shopOrderReceive = "member/order/receive.jhtml";
         /**
-         * 创建家政订单
+         * 用户创建订单
          */
-        String createServiceOrder = "mobile/shop/order/createByCustomer.jhtml";
+        String createOrderByCustomer = "shop/order/createByCustomer.jhtml";
 
         /**
-         * 创建商家订单（游客）
+         * 游客创建订单
          */
-        String createShopOrder = "mobile/shop/order/createByVisitor.jhtml";
+        String createOrderByVisitor = "shop/order/createByVisitor.jhtml";
 
     }
 }

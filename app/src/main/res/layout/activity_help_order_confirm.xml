@@ -21,6 +21,7 @@
             android:textSize="@dimen/t14" />
 
         <EditText
+            android:id="@+id/trueNameEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -47,6 +48,7 @@
             android:textSize="@dimen/t14" />
 
         <EditText
+            android:id="@+id/mobileEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -73,6 +75,7 @@
             android:textSize="@dimen/t14" />
 
         <EditText
+            android:id="@+id/addressEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -115,7 +118,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/line_bottom_bg"
-        android:padding="@dimen/all_padding">
+        android:padding="@dimen/all_padding"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -141,7 +145,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/line_bottom_bg"
-        android:padding="@dimen/all_padding">
+        android:padding="@dimen/all_padding"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -177,17 +182,20 @@
             android:textSize="@dimen/t14" />
 
         <EditText
+            android:id="@+id/priceEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:background="@null"
             android:hint="￥0.00"
+            android:inputType="number"
             android:textColor="@color/color_text_caption"
             android:textColorHint="@color/color_hint_text"
             android:textSize="@dimen/t14" />
 
     </LinearLayout>
+
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="match_parent"
