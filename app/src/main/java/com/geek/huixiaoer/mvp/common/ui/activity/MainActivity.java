@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbarTitle.setText(R.string.tab_home);
+        toolbarTitle.setText("智慧生活");
 
         bottom_nav.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         disableShiftMode(bottom_nav);

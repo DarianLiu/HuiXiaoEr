@@ -14,7 +14,7 @@ import com.geek.huixiaoer.mvp.blacklist.di.module.BlacklistActivityModule;
 import com.geek.huixiaoer.mvp.blacklist.contract.BlacklistActivityContract;
 import com.geek.huixiaoer.mvp.blacklist.presenter.BlacklistActivityPresenter;
 
-import com.geek.huixiaoer.mvp.blacklist.R;
+import com.geek.huixiaoer.R;
 
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
