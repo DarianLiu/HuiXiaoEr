@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,19 @@ import com.geek.huixiaoer.api.APIs;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.GoodsListContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerGoodsListComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.GoodsListModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.GoodsListPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailToBuyActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -101,7 +105,13 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
         GoodsAdapter goodsAdapter = (GoodsAdapter) mAdapter;
         goodsAdapter.setOnItemClickListener((view, viewType, data, position) -> {
             GoodsBean goods = (GoodsBean) data;
-            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+            Intent intent = null;
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+            } else {
+                intent = new Intent(getActivity(), GoodsDetailActivity.class);
+            }
             intent.putExtra(Constants.INTENT_GOODS_NAME, goods.getName());
             intent.putExtra(Constants.INTENT_GOODS_SN, goods.getSn());
             intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +

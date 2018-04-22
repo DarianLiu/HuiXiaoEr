@@ -519,7 +519,6 @@ public interface BaseApi {
     @POST(APIs.API.shopOrderReceive)
     Observable<BaseResponse<OrderBean>> shopOrderReceive(@Query("token") String token,
                                                          @Query("sn") String sn);
-
     /**
      * 游客创建家政订单
      * @param consignee
@@ -533,5 +532,19 @@ public interface BaseApi {
      */
     @POST(APIs.API.createOrderByVisitor)
     Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder (@Query("consignee")String consignee, @Query("address")String address,
+                                                                         @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
+    /**
+     * 游客创建商家订单
+     * @param consignee
+     * @param address
+     * @param zipCode
+     * @param mobile
+     * @param goodsId
+     * @param amount
+     * @param memo
+     * @return
+     */
+    @POST(APIs.API.createOrderByVisitor)
+    Observable<BaseResponse<CreateServiceOrderBean>> createShopOrder (@Query("consignee")String consignee, @Query("address")String address,
                                                                          @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
 }

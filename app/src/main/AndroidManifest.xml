@@ -159,7 +159,9 @@
         <activity android:name=".mvp.housewifery.ui.activity.HelpOrderConfirmActivity" />
         <activity android:name=".mvp.ranking.ui.activity.MemberRankingActivity" />
         <activity android:name=".mvp.blacklist.ui.activity.BlacklistActivityActivity" />
-        <activity android:name=".mvp.blacklist.ui.activity.blacklistActivity"></activity>
+        <activity android:name=".mvp.blacklist.ui.activity.blacklistActivity" />
+        <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailToBuyActivity" />
+        <activity android:name=".mvp.supermarket.ui.activity.ReceiptInfoActivity"></activity>
     </application>
 
 </manifest>

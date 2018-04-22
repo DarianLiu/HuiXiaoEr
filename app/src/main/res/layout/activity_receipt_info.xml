@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓      名："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/trueNameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="请输入真实姓名"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手  机 号："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/mobileEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_mobile_number"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_receiver_address"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>
+
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务项目："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14"
+            android:text="深度保洁"/>
+
+    </LinearLayout>-->
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商家名称："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>-->
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="家政上门时间："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="@string/hint_username"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>-->
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_bottom_bg"
+        android:padding="@dimen/all_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务价格："
+            android:textColor="@color/color_text_caption"
+            android:textSize="@dimen/t14" />
+
+        <EditText
+            android:id="@+id/priceEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="￥0.00"
+            android:inputType="number"
+            android:textColor="@color/color_text_caption"
+            android:textColorHint="@color/color_hint_text"
+            android:textSize="@dimen/t14" />
+
+    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_btn_default"
+        android:text="保 存"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/btn_text_size" />
+</LinearLayout>
