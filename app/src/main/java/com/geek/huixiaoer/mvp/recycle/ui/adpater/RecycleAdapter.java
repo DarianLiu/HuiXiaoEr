@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.AndroidUtil;
 import com.geek.huixiaoer.common.utils.DateUtil;
+import com.geek.huixiaoer.common.widget.recyclerview.OnItemClickListener;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.ArmsUtils;
@@ -30,6 +31,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final int TYPE_ONE = 0;
     private final int TYPE_TWO = 1;
     private final int TYPE_THREE = 2;
+    private OnItemClickListener<ArticleBean> onItemClickListener;
 
     public RecycleAdapter(List<ArticleBean> infos, Context context) {
         this.infos = infos;
@@ -172,6 +174,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return infos.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener<ArticleBean> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     private class OneHolder extends RecyclerView.ViewHolder {
 
         ImageView ivUserHead;
@@ -181,12 +187,19 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         OneHolder(View itemView) {
             super(itemView);
+            if (onItemClickListener != null) {
+                itemView.setOnClickListener(v -> {
+                    onItemClickListener.OnItemClick(getAdapterPosition(),infos.get(getAdapterPosition()));
+                });
+            }
+
             ivUserHead = itemView.findViewById(R.id.iv_user_head);
             tvUserNameDate = itemView.findViewById(R.id.tv_user_name_date);
             tvContent = itemView.findViewById(R.id.tv_content);
             imageRecycle = itemView.findViewById(R.id.image_recycle);
         }
     }
+
 
     private class TwoHolder extends RecyclerView.ViewHolder {
 
@@ -198,6 +211,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         TwoHolder(View itemView) {
             super(itemView);
+            if (onItemClickListener != null) {
+                itemView.setOnClickListener(v -> {
+                    onItemClickListener.OnItemClick(getAdapterPosition(),infos.get(getAdapterPosition()));
+                });
+            }
             ivUserHead = itemView.findViewById(R.id.iv_user_head);
             tvUserNameDate = itemView.findViewById(R.id.tv_user_name_date);
             tvContent = itemView.findViewById(R.id.tv_content);
@@ -216,6 +234,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         ThreeHolder(View itemView) {
             super(itemView);
+            if (onItemClickListener != null) {
+                itemView.setOnClickListener(v -> {
+                    onItemClickListener.OnItemClick(getAdapterPosition(),infos.get(getAdapterPosition()));
+                });
+            }
             ivUserHead = itemView.findViewById(R.id.iv_user_head);
             tvUserNameDate = itemView.findViewById(R.id.tv_user_name_date);
             tvContent = itemView.findViewById(R.id.tv_content);

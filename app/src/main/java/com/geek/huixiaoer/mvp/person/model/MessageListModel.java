@@ -6,6 +6,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -39,7 +40,7 @@ public class MessageListModel extends BaseModel implements MessageListContract.M
     }
 
     @Override
-    public Observable<BaseResponse<BaseArrayData<BannerBean>>> messageList(String token, int pageNumber, int pageSize) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(token, pageNumber, pageSize);
+    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize);
     }
 }

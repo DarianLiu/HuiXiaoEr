@@ -4,6 +4,7 @@ import com.geek.huixiaoer.mvp.supermarket.ui.activity.CartEditResultBean;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
@@ -40,12 +41,11 @@ public interface BaseApi {
     /**
      * 消息列表
      *
-     * @param token      登录人token
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
      */
     @GET(APIs.API.messageList)
-    Observable<BaseResponse<BaseArrayData<BannerBean>>> messageList(@Query("token") String token, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
+    Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(@Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
 
     /**
      * 环保热帖

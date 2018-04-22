@@ -7,6 +7,7 @@ import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -49,14 +50,14 @@ public class MessageListPresenter extends BasePresenter<MessageListContract.Mode
      * @param pageSize 每页数量
      */
     public void messageList(int pageSize) {
-        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
-        mModel.messageList(token, pageNumber, pageSize)
+//        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.messageList(pageNumber, pageSize)
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<BannerBean>>(mErrorHandler) {
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {
                     @Override
-                    public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
-                        mRootView.updateList(new ArrayList<>());
+                    public void onNext(@NonNull BaseArrayData<MessageBean> bannerBeanBaseArrayData) {
+                        mRootView.updateList(bannerBeanBaseArrayData);
                     }
                 });
     }

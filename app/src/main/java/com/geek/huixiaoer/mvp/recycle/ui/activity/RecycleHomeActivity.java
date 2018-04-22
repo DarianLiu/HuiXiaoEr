@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
+import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleHomeContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleHomeComponent;
@@ -261,11 +262,15 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
         finish();
     }
 
-    @OnClick({R.id.btn_register, R.id.btn_forum, R.id.btn_integral, R.id.btn_blacklist})
+    @OnClick({R.id.loginBtn, R.id.btn_register, R.id.btn_forum, R.id.btn_integral, R.id.btn_blacklist})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn_register:
+            case R.id.loginBtn:
                 launchActivity(new Intent(RecycleHomeActivity.this,LoginActivity.class));
+                break;
+            case R.id.btn_register:
+//                launchActivity(new Intent(RecycleHomeActivity.this,LoginActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, CaptchaActivity.class));
                 break;
             case R.id.btn_forum:
                 launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));

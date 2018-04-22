@@ -18,6 +18,7 @@ import com.geek.huixiaoer.mvp.common.contract.TabMessageContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabMessageComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabMessageModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabMessagePresenter;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.person.ui.activity.MessageListActivity;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
@@ -60,9 +61,11 @@ public class TabMessageFragment extends BaseFragment<TabMessagePresenter> implem
     public void initData(@Nullable Bundle savedInstanceState) {
 //        optionMsg.setRightText("查看更多");
         optionMsg.setOnClickListener(v -> {
-            if (!TextUtils.isEmpty(DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN))) {
+//            if (!TextUtils.isEmpty(DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN))) {
                 launchActivity(new Intent(getActivity(), MessageListActivity.class));
-            }
+//            }else {
+//                launchActivity(new Intent(getActivity(), LoginActivity.class));
+//            }
         });
     }
 

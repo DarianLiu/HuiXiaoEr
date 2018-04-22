@@ -1,5 +1,6 @@
 package com.geek.huixiaoer.storage.entity.recycle;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Administrator on 2018/2/12.
  */
 
-public class ArticleBean {
+public class ArticleBean implements Serializable{
 
     /**
      * isAttention : 0

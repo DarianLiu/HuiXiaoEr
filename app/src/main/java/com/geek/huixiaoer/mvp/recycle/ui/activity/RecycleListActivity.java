@@ -15,11 +15,13 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.config.EventBusTags;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.widget.recyclerview.OnItemClickListener;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleListContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleListComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleListModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.RecycleListPresenter;
+import com.geek.huixiaoer.mvp.recycle.ui.adpater.RecycleAdapter;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -134,6 +136,15 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(mAdapter);
+        RecycleAdapter adapter = (RecycleAdapter)mAdapter;
+        adapter.setOnItemClickListener(new OnItemClickListener<ArticleBean>() {
+            @Override
+            public void OnItemClick(int position, ArticleBean data) {
+                Intent intent = new Intent(RecycleListActivity.this,RecycleDetailActivity.class);
+                intent.putExtra("recycle",data);
+                launchActivity(intent);
+            }
+        });
     }
 
     @Override

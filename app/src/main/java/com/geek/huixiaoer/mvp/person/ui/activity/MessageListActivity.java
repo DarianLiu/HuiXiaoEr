@@ -15,7 +15,10 @@ import com.geek.huixiaoer.mvp.person.di.component.DaggerMessageListComponent;
 import com.geek.huixiaoer.mvp.person.di.module.MessageListModule;
 import com.geek.huixiaoer.mvp.person.presenter.MessageListPresenter;
 import com.geek.huixiaoer.mvp.person.ui.adapter.MessageAdapter;
+import com.geek.huixiaoer.mvp.person.ui.adapter.MessageListAdapter;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -44,8 +47,9 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
     SmartRefreshLayout refreshLayout;
 
 
-    private MessageAdapter<String> mAdapter;
-    private List<String> mMessages;
+//    private MessageAdapter<String> mAdapter;
+    private MessageListAdapter messageListAdapter;
+    private List<MessageBean> mMessages;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -72,8 +76,15 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMessages = new ArrayList<>();
-        mAdapter = new MessageAdapter<>(mMessages);
-        recyclerView.setAdapter(mAdapter);
+//        mAdapter = new MessageAdapter<>(mMessages);
+//        MessageBean bean = new MessageBean();
+//        for (int i = 0; i <5 ; i++) {
+//            bean.setId(1);
+//            bean.setTitle("test");
+//            mMessages.add(bean);
+//        }
+        messageListAdapter = new MessageListAdapter(mMessages);
+        recyclerView.setAdapter(messageListAdapter);
         recyclerView.setHasFixedSize(true);
 
         mPresenter.messageList(50);
@@ -107,9 +118,11 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
     }
 
     @Override
-    public void updateList(List<String> datas) {
-        mMessages.addAll(datas);
-        mAdapter.notifyDataSetChanged();
+    public void updateList(BaseArrayData<MessageBean> datas) {
+        mMessages.addAll(datas.getPageData());
+        messageListAdapter = new MessageListAdapter(mMessages);
+        recyclerView.setAdapter(messageListAdapter);
+//        messageListAdapter.notifyDataSetChanged();
     }
 
 }

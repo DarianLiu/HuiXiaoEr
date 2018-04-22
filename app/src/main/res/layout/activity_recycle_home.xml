@@ -38,7 +38,19 @@
         android:text="通知：澳洲西拉子干红葡萄酒优惠打折扣"
         android:padding="15dp"
         android:textColor="@color/color_text_caption"/>
-    
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_default"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16"
+        android:text="登 录"
+        />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
@@ -49,6 +61,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/t16"
         android:text="@string/btn_register"
+        android:layout_marginTop="15dp"
         />
 
     <Button

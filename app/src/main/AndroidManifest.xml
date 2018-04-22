@@ -161,7 +161,8 @@
         <activity android:name=".mvp.blacklist.ui.activity.BlacklistActivityActivity" />
         <activity android:name=".mvp.blacklist.ui.activity.blacklistActivity" />
         <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailToBuyActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.ReceiptInfoActivity"></activity>
+        <activity android:name=".mvp.supermarket.ui.activity.ReceiptInfoActivity" />
+        <activity android:name=".mvp.recycle.ui.activity.RecycleDetailActivity"></activity>
     </application>
 
 </manifest>
