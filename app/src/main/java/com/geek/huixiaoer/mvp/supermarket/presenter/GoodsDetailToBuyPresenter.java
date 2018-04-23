@@ -51,7 +51,7 @@ public class GoodsDetailToBuyPresenter extends BasePresenter<GoodsDetailToBuyCon
                     @Override
                     public void onNext(@NonNull CreateServiceOrderBean userBean) {
                         Toast.makeText(mAppManager.getTopActivity(),"创建订单成功,请进入支付...",Toast.LENGTH_SHORT).show();
-                        mRootView.killMyself();
+//                        mRootView.killMyself();
                     }
                 });
     }

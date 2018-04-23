@@ -44,10 +44,10 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.Model, Reg
      * @param dynamicCode 短信验证码
      * @param volunteer   是否志愿者
      */
-    public void registerSubmit(String nickname, String card, String cityCode, String areaCode,
+    public void registerSubmit(String nickname, String card, String cityCode, String areaCode,String communityCode,
                                String address, String mobile, String enPassword, String dynamicCode,
                                boolean volunteer) {
-        mModel.register(nickname, card, cityCode, areaCode, address, mobile, enPassword, dynamicCode, volunteer)
+        mModel.register(nickname, card, cityCode, communityCode,areaCode, address, mobile, enPassword, dynamicCode, volunteer)
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResultShowMessage(mAppManager.getTopActivity()))

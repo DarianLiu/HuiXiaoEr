@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,9 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
+import com.geek.huixiaoer.mvp.person.ui.activity.MessageListActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleHomeContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleHomeComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleHomeModule;
@@ -28,6 +32,7 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +60,8 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     TextView tvNotice;
     @BindView(R.id.btn_register)
     Button btnRegister;
+    @BindView(R.id.loginBtn)
+    Button loginBtn;
     @BindView(R.id.btn_forum)
     Button btnForum;
     @BindView(R.id.btn_integral)
@@ -87,6 +94,10 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
 
         setBannerHeight();
 
+        if (!TextUtils.isEmpty(DataHelper.getStringSF(this, Constants.SP_TOKEN))) {
+            btnRegister.setVisibility(View.GONE);
+            loginBtn.setVisibility(View.GONE);
+        }
         mPresenter.getBanner();
     }
 
@@ -269,8 +280,8 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
                 launchActivity(new Intent(RecycleHomeActivity.this,LoginActivity.class));
                 break;
             case R.id.btn_register:
-//                launchActivity(new Intent(RecycleHomeActivity.this,LoginActivity.class));
-                launchActivity(new Intent(RecycleHomeActivity.this, CaptchaActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this,RegisterActivity.class));
+//                launchActivity(new Intent(RecycleHomeActivity.this, CaptchaActivity.class));
                 break;
             case R.id.btn_forum:
                 launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));

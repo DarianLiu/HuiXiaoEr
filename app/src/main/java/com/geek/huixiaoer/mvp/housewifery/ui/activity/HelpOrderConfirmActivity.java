@@ -64,6 +64,10 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText("确认订单");
     }
 

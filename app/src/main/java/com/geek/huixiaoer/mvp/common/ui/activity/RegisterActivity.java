@@ -7,9 +7,11 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
@@ -72,6 +74,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindView(R.id.btn_register)
     Button btnRegister;
 
+    @BindView(R.id.mobileTil)
+    TextInputLayout mobileTil;
+    @BindView(R.id.mobileEdit)
+    TextInputEditText mobileEdit;
+    @BindView(R.id.veryCodeTil)
+    TextInputLayout veryCodeTil;
+    @BindView(R.id.veryCodeEdit)
+    TextInputEditText veryCodeEdit;
+
     @BindString(R.string.error_nickname_null)
     String error_nickname_null;
     @BindString(R.string.error_nickname)
@@ -89,7 +100,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindString(R.string.error_address_null)
     String error_address_null;
 
-    private String mobile, cityCode ="512", areaCode ="513";
+    private String mobile, cityCode ="512", areaCode ="513",communityCode="514";
     boolean volunteer;//是否志愿者
 
     private CircleProgressDialog loadingDialog;
@@ -180,6 +191,24 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         return true;
     }
 
+    private boolean validateMobile(String mobile) {
+        if (TextUtils.isEmpty(mobile)) {
+            showError(mobileTil, "手机号不能为空");
+            return false;
+        }
+        mobileTil.setErrorEnabled(false);
+        return true;
+    }
+
+    private boolean validateVeryCode(String veryCode) {
+        if (TextUtils.isEmpty(veryCode)) {
+            showError(veryCodeTil, "验证码不能为空");
+            return false;
+        }
+        veryCodeTil.setErrorEnabled(false);
+        return true;
+    }
+
     /**
      * 验证密码
      *
@@ -235,14 +264,27 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         textInputLayout.setError(error);
     }
 
-    @OnClick(R.id.btn_register)
-    public void onViewClicked() {
+    @OnClick({R.id.btn_register,R.id.tvSend})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_register:
+                register();
+                break;
+            case R.id.tvSend:
+                Toast.makeText(this,"默认验证码就123456",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    private void register() {
         String nickname = etNickname.getText().toString();
         String password = etNewPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
         String code = etInvitationCode.getText().toString();
         String cardNo = etCardNo.getText().toString();
         String address = etAddress.getText().toString();
+        String mobile = mobileEdit.getText().toString();
+        String veryCode = veryCodeEdit.getText().toString();
 
         if (rbYes.isChecked()) {
             volunteer = true;
@@ -254,10 +296,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         tilConfirmPassword.setErrorEnabled(true);
         tilCardNo.setErrorEnabled(true);
         tilAddress.setErrorEnabled(true);
+        mobileTil.setErrorEnabled(true);
+        veryCodeTil.setEnabled(true);
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)
-                && validateOther(cardNo, cityCode, areaCode, address)) {
-            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode,
-                    address, mobile, ArmsUtils.encodeToMD5(password), "123456", volunteer);
+                && validateOther(cardNo, cityCode, areaCode, address)&&validateMobile(mobile)&&validateVeryCode(veryCode)) {
+            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode,communityCode,
+                    address, mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer);
         }
     }
 

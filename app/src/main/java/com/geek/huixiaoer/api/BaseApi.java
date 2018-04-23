@@ -155,6 +155,7 @@ public interface BaseApi {
                                                 @Query("card") String card,
                                                 @Query("cityCode") String cityCode,
                                                 @Query("areaCode") String areaCode,
+                                                @Query("communityCode") String communityCode,
                                                 @Query("address") String address,
                                                 @Query("mobile") String mobile,
                                                 @Query("enPassword") String enPassword,

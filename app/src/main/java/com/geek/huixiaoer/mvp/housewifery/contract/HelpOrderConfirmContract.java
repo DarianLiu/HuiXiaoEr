@@ -2,6 +2,7 @@ package com.geek.huixiaoer.mvp.housewifery.contract;
 
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.jess.arms.mvp.IModel;
 import com.jess.arms.mvp.IView;
 
@@ -25,5 +26,7 @@ public interface HelpOrderConfirmContract {
 //        harmfulmemo:附言
         //
         Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo );
+        Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(
+                String token, String paymentPluginId, String outTradeNo, String amount);
     }
 }
