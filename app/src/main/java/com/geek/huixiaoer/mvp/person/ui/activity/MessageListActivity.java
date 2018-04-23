@@ -120,9 +120,9 @@ public class MessageListActivity extends BaseActivity<MessageListPresenter> impl
     @Override
     public void updateList(BaseArrayData<MessageBean> datas) {
         mMessages.addAll(datas.getPageData());
-        messageListAdapter = new MessageListAdapter(mMessages);
-        recyclerView.setAdapter(messageListAdapter);
-//        messageListAdapter.notifyDataSetChanged();
+//        messageListAdapter = new MessageListAdapter(mMessages);
+//        recyclerView.setAdapter(messageListAdapter);
+        messageListAdapter.notifyDataSetChanged();
     }
 
 }
