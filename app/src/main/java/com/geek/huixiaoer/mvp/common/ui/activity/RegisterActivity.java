@@ -15,20 +15,26 @@ import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.utils.JsonUtil;
 import com.geek.huixiaoer.common.utils.RegexUtils;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
+import com.geek.huixiaoer.common.widget.wheelview.street.ChooseStreetWheel;
+import com.geek.huixiaoer.common.widget.wheelview.street.OnStreetChangeListener;
 import com.geek.huixiaoer.mvp.common.contract.RegisterContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerRegisterComponent;
 import com.geek.huixiaoer.mvp.common.di.module.RegisterModule;
 import com.geek.huixiaoer.mvp.common.presenter.RegisterPresenter;
+import com.geek.huixiaoer.storage.entity.street.RegionBean;
+import com.geek.huixiaoer.storage.entity.street.StreetResultBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import java.util.List;
+
 import butterknife.BindString;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -37,7 +43,8 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
 /**
  * 注册页面
  */
-public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View
+        , OnStreetChangeListener {
 
     @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
@@ -63,6 +70,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     TextInputEditText etCardNo;
     @BindView(R.id.til_cardNo)
     TextInputLayout tilCardNo;
+    @BindView(R.id.tv_street)
+    TextView tvStreet;
     @BindView(R.id.et_address)
     TextInputEditText etAddress;
     @BindView(R.id.til_address)
@@ -100,10 +109,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindString(R.string.error_address_null)
     String error_address_null;
 
-    private String mobile, cityCode ="512", areaCode ="513",communityCode="514";
+    private String mobile, cityCode = "512", areaCode = "513", communityCode = "514";
     boolean volunteer;//是否志愿者
 
     private CircleProgressDialog loadingDialog;
+
+    private ChooseStreetWheel chooseStreetWheel;
 
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
@@ -130,6 +141,18 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
         mobile = getIntent().getStringExtra(Constants.INTENT_MOBILE);
         rbNo.setChecked(true);
+        //初始化市行政区/街道/社区选择器
+        initWheel();
+        //获取市行政区列表数据
+        mPresenter.getRegionData();
+    }
+
+    /**
+     * 初始化市行政区/街道/社区选择器
+     */
+    private void initWheel() {
+        chooseStreetWheel = new ChooseStreetWheel(this);
+        chooseStreetWheel.setOnStreetChangeListener(this);
     }
 
     @Override
@@ -155,6 +178,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
+        chooseStreetWheel = null;
     }
 
     @Override
@@ -264,14 +288,17 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         textInputLayout.setError(error);
     }
 
-    @OnClick({R.id.btn_register,R.id.tvSend})
+    @OnClick({R.id.tv_street, R.id.btn_register, R.id.tvSend})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_street:
+                chooseStreetWheel.show(view);
+                break;
             case R.id.btn_register:
                 register();
                 break;
             case R.id.tvSend:
-                Toast.makeText(this,"默认验证码就123456",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "默认验证码就123456", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -299,10 +326,53 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         mobileTil.setErrorEnabled(true);
         veryCodeTil.setEnabled(true);
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)
-                && validateOther(cardNo, cityCode, areaCode, address)&&validateMobile(mobile)&&validateVeryCode(veryCode)) {
-            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode,communityCode,
-                    address, mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer);
+                && validateOther(cardNo, cityCode, areaCode, address) && validateMobile(mobile) && validateVeryCode(veryCode)) {
+            mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode, communityCode,
+                    address, mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer ? 1 : 0);
         }
     }
 
+    @Override
+    public void setRegionWheel(String result) {
+        StreetResultBean model = JsonUtil.parseJson(result, StreetResultBean.class);
+        if (model != null) {
+            List<RegionBean> regionList = model.getArea();
+            if (regionList != null) {
+                chooseStreetWheel.setRegion(regionList);
+                chooseStreetWheel.defaultValue(null, null, null);
+            }
+        }
+    }
+
+    /**
+     * 选择后的结果
+     *
+     * @param regionName    市行政区名
+     * @param streetName    街道名
+     * @param communityName 社区名
+     * @param regionId      市行政区ID
+     * @param streetId      街道ID
+     * @param communityId   社区ID
+     */
+    @Override
+    public void onAddressChange(String regionName, String streetName, String communityName, String regionId, String streetId, String communityId) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (TextUtils.equals(regionName, communityName)) {
+            stringBuilder.append(communityName);
+        } else if (TextUtils.equals(regionName, streetName)) {
+            stringBuilder.append(streetName);
+            stringBuilder.append(communityName);
+        } else if (TextUtils.equals(streetName, communityName)) {
+            stringBuilder.append(regionName);
+            stringBuilder.append(streetName);
+        } else {
+            stringBuilder.append(regionName);
+            stringBuilder.append(streetName);
+            stringBuilder.append(communityName);
+        }
+        cityCode = regionId;
+        areaCode = streetId;
+        communityCode = communityId;
+        tvStreet.setText(stringBuilder.toString());
+    }
 }

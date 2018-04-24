@@ -134,6 +134,84 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     RelativeLayout rlGoodsTwo;
     @BindView(R.id.option_hotSport)
     OptionView optionHotSport;
+    @BindView(R.id.tv_fresh_supply)
+    TextView tvFreshSupply;
+    @BindView(R.id.tv_rose)
+    TextView tvRose;
+    @BindView(R.id.tv_community_competition)
+    TextView tvCommunityCompetition;
+    @BindView(R.id.iv_goods_three)
+    ImageView ivGoodsThree;
+    @BindView(R.id.tv_title_three)
+    TextView tvTitleThree;
+    @BindView(R.id.tv_content_three)
+    TextView tvContentThree;
+    @BindView(R.id.tv_discount_price_three)
+    TextView tvDiscountPriceThree;
+    @BindView(R.id.tv_cost_price_three)
+    TextView tvCostPriceThree;
+    @BindView(R.id.rl_goods_three)
+    RelativeLayout rlGoodsThree;
+    @BindView(R.id.iv_goods_four)
+    ImageView ivGoodsFour;
+    @BindView(R.id.tv_title_four)
+    TextView tvTitleFour;
+    @BindView(R.id.tv_content_four)
+    TextView tvContentFour;
+    @BindView(R.id.tv_discount_price_four)
+    TextView tvDiscountPriceFour;
+    @BindView(R.id.tv_cost_price_four)
+    TextView tvCostPriceFour;
+    @BindView(R.id.rl_goods_four)
+    RelativeLayout rlGoodsFour;
+    @BindView(R.id.iv_goods_five)
+    ImageView ivGoodsFive;
+    @BindView(R.id.tv_title_five)
+    TextView tvTitleFive;
+    @BindView(R.id.tv_content_five)
+    TextView tvContentFive;
+    @BindView(R.id.tv_discount_price_five)
+    TextView tvDiscountPriceFive;
+    @BindView(R.id.tv_cost_price_five)
+    TextView tvCostPriceFive;
+    @BindView(R.id.rl_goods_five)
+    RelativeLayout rlGoodsFive;
+    @BindView(R.id.iv_goods_six)
+    ImageView ivGoodsSix;
+    @BindView(R.id.tv_title_six)
+    TextView tvTitleSix;
+    @BindView(R.id.tv_content_six)
+    TextView tvContentSix;
+    @BindView(R.id.tv_discount_price_six)
+    TextView tvDiscountPriceSix;
+    @BindView(R.id.tv_cost_price_six)
+    TextView tvCostPriceSix;
+    @BindView(R.id.rl_goods_six)
+    RelativeLayout rlGoodsSix;
+    @BindView(R.id.iv_goods_seven)
+    ImageView ivGoodsSeven;
+    @BindView(R.id.tv_title_seven)
+    TextView tvTitleSeven;
+    @BindView(R.id.tv_content_seven)
+    TextView tvContentSeven;
+    @BindView(R.id.tv_discount_price_seven)
+    TextView tvDiscountPriceSeven;
+    @BindView(R.id.tv_cost_price_seven)
+    TextView tvCostPriceSeven;
+    @BindView(R.id.rl_goods_seven)
+    RelativeLayout rlGoodsSeven;
+    @BindView(R.id.iv_goods_eight)
+    ImageView ivGoodsEight;
+    @BindView(R.id.tv_title_eight)
+    TextView tvTitleEight;
+    @BindView(R.id.tv_content_eight)
+    TextView tvContentEight;
+    @BindView(R.id.tv_discount_price_eight)
+    TextView tvDiscountPriceEight;
+    @BindView(R.id.tv_cost_price_eight)
+    TextView tvCostPriceEight;
+    @BindView(R.id.rl_goods_eight)
+    RelativeLayout rlGoodsEight;
 
     private ImageLoader mImageLoader;
 
@@ -165,7 +243,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         mPresenter.getBanner();
         mPresenter.hotspotList(1, 3);
-        mPresenter.goodsExplosion(1, 2, 2);
+        mPresenter.goodsExplosion(1, 8, 2);
         mPresenter.goodsExplosion(1, 6, 3);
 
         tvClearDay.setOnClickListener(v -> {
@@ -239,60 +317,255 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateGoodsExplosion(List<GoodsBean> goodsList) {
-        GoodsBean goodsOne = goodsList.get(0);
-        if (goodsOne.getMediumImage() != null) {
-            mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(goodsOne.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
-                    .transformation(new CenterCrop()).imageView(ivGoodsOne).build());
+        if (goodsList.size() >= 1) {
+            GoodsBean goodsOne = goodsList.get(0);
+            if (goodsOne.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsOne.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsOne).build());
+            }
+            tvTitleOne.setText(goodsOne.getName());
+            tvContentOne.setText(goodsOne.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsOne.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsOne.getUnit())) {
+                priceSB.append("/").append(goodsOne.getUnit());
+            }
+            tvDiscountPriceOne.setText(priceSB.toString());
+            tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsOne.getMarketPrice());
+            tvCostPriceOne.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsOne.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsOne.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsOne.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsOne.getCreateDate()) + "/" + +goodsOne.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsOne.setVisibility(View.GONE);
         }
-        tvTitleOne.setText(goodsOne.getName());
-        tvContentOne.setText(goodsOne.getCaption());
-        StringBuilder priceSB = new StringBuilder();
-        priceSB.append(goodsOne.getPrice()).append("元");
-        if (!TextUtils.isEmpty(goodsOne.getUnit())) {
-            priceSB.append("/").append(goodsOne.getUnit());
+
+        if (goodsList.size() >= 2) {
+            GoodsBean goodsTwo = goodsList.get(1);
+            if (goodsTwo.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsTwo.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsTwo).build());
+            }
+            tvTitleTwo.setText(goodsTwo.getName());
+            tvContentTwo.setText(goodsTwo.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsTwo.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsTwo.getUnit())) {
+                priceSB.append("/").append(goodsTwo.getUnit());
+            }
+            tvDiscountPriceTwo.setText(priceSB.toString());
+            tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsTwo.getMarketPrice() + "元");
+            tvCostPriceTwo.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsTwo.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsTwo.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsTwo.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsTwo.getCreateDate()) + "/" + +goodsTwo.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsTwo.setVisibility(View.GONE);
         }
-        tvDiscountPriceOne.setText(priceSB.toString());
-        tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsOne.getMarketPrice());
-        tvCostPriceOne.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        rlGoodsOne.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-            intent.putExtra(Constants.INTENT_GOODS_NAME, goodsOne.getName());
-            intent.putExtra(Constants.INTENT_GOODS_SN, goodsOne.getSn());
-            intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
-                    DateUtil.getDateYMToString(goodsOne.getCreateDate()) + "/" + +goodsOne.getId()
-                    + ".html");
-            launchActivity(intent);
-        });
+
+        if (goodsList.size() >= 3) {
+            GoodsBean goodsThree = goodsList.get(2);
+            if (goodsThree.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsThree.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsThree).build());
+            }
+            tvTitleThree.setText(goodsThree.getName());
+            tvContentThree.setText(goodsThree.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsThree.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsThree.getUnit())) {
+                priceSB.append("/").append(goodsThree.getUnit());
+            }
+            tvDiscountPriceThree.setText(priceSB.toString());
+            tvCostPriceThree.setText(getString(R.string.cost_price) + "：" + goodsThree.getMarketPrice() + "元");
+            tvCostPriceThree.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsThree.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsThree.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsThree.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsThree.getCreateDate()) + "/" + +goodsThree.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsThree.setVisibility(View.GONE);
+        }
+
+        if (goodsList.size() >= 4) {
+            GoodsBean goodsFour = goodsList.get(3);
+            if (goodsFour.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsFour.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsFour).build());
+            }
+            tvTitleFour.setText(goodsFour.getName());
+            tvContentFour.setText(goodsFour.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsFour.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsFour.getUnit())) {
+                priceSB.append("/").append(goodsFour.getUnit());
+            }
+            tvDiscountPriceFour.setText(priceSB.toString());
+            tvCostPriceFour.setText(getString(R.string.cost_price) + "：" + goodsFour.getMarketPrice() + "元");
+            tvCostPriceFour.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsFour.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsFour.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsFour.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsFour.getCreateDate()) + "/" + +goodsFour.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsFour.setVisibility(View.GONE);
+        }
+
+        if (goodsList.size() >= 5) {
+            GoodsBean goodsFive = goodsList.get(4);
+            if (goodsFive.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsFive.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsFive).build());
+            }
+            tvTitleFive.setText(goodsFive.getName());
+            tvContentFive.setText(goodsFive.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsFive.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsFive.getUnit())) {
+                priceSB.append("/").append(goodsFive.getUnit());
+            }
+            tvDiscountPriceFive.setText(priceSB.toString());
+            tvCostPriceFive.setText(getString(R.string.cost_price) + "：" + goodsFive.getMarketPrice() + "元");
+            tvCostPriceFive.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsFive.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsFive.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsFive.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsFive.getCreateDate()) + "/" + +goodsFive.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsFive.setVisibility(View.GONE);
+        }
+
+        if (goodsList.size() >= 6) {
+            GoodsBean goodsSix = goodsList.get(5);
+            if (goodsSix.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsSix.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsSix).build());
+            }
+            tvTitleSix.setText(goodsSix.getName());
+            tvContentSix.setText(goodsSix.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsSix.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsSix.getUnit())) {
+                priceSB.append("/").append(goodsSix.getUnit());
+            }
+            tvDiscountPriceSix.setText(priceSB.toString());
+            tvCostPriceSix.setText(getString(R.string.cost_price) + "：" + goodsSix.getMarketPrice() + "元");
+            tvCostPriceSix.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsSix.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsSix.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsSix.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsSix.getCreateDate()) + "/" + +goodsSix.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsSix.setVisibility(View.GONE);
+        }
 
 
-        GoodsBean goodsTwo = goodsList.get(1);
-        if (goodsTwo.getMediumImage() != null) {
-            mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(goodsTwo.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
-                    .transformation(new CenterCrop()).imageView(ivGoodsTwo).build());
+        if (goodsList.size() >= 7) {
+            GoodsBean goodsSeven = goodsList.get(6);
+            if (goodsSeven.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsSeven.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsSeven).build());
+            }
+            tvTitleSeven.setText(goodsSeven.getName());
+            tvContentSeven.setText(goodsSeven.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsSeven.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsSeven.getUnit())) {
+                priceSB.append("/").append(goodsSeven.getUnit());
+            }
+            tvDiscountPriceSeven.setText(priceSB.toString());
+            tvCostPriceSeven.setText(getString(R.string.cost_price) + "：" + goodsSeven.getMarketPrice() + "元");
+            tvCostPriceSeven.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsSeven.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsSeven.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsSeven.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsSeven.getCreateDate()) + "/" + +goodsSeven.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsSeven.setVisibility(View.GONE);
         }
-        tvTitleTwo.setText(goodsTwo.getName());
-        tvContentTwo.setText(goodsTwo.getCaption());
-        priceSB = new StringBuilder();
-        priceSB.append(goodsTwo.getPrice()).append("元");
-        if (!TextUtils.isEmpty(goodsTwo.getUnit())) {
-            priceSB.append("/").append(goodsTwo.getUnit());
+
+
+        if (goodsList.size() == 8) {
+            GoodsBean goodsEight = goodsList.get(7);
+            if (goodsEight.getMediumImage() != null) {
+                mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                        .url(goodsEight.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .transformation(new CenterCrop()).imageView(ivGoodsEight).build());
+            }
+            tvTitleEight.setText(goodsEight.getName());
+            tvContentEight.setText(goodsEight.getCaption());
+            StringBuilder priceSB = new StringBuilder();
+            priceSB.append(goodsEight.getPrice()).append("元");
+            if (!TextUtils.isEmpty(goodsEight.getUnit())) {
+                priceSB.append("/").append(goodsEight.getUnit());
+            }
+            tvDiscountPriceEight.setText(priceSB.toString());
+            tvCostPriceEight.setText(getString(R.string.cost_price) + "：" + goodsEight.getMarketPrice() + "元");
+            tvCostPriceEight.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            rlGoodsEight.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra(Constants.INTENT_GOODS_NAME, goodsEight.getName());
+                intent.putExtra(Constants.INTENT_GOODS_SN, goodsEight.getSn());
+                intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
+                        DateUtil.getDateYMToString(goodsEight.getCreateDate()) + "/" + +goodsEight.getId()
+                        + ".html");
+                launchActivity(intent);
+            });
+        } else {
+            rlGoodsEight.setVisibility(View.GONE);
         }
-        tvDiscountPriceTwo.setText(priceSB.toString());
-        tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsTwo.getMarketPrice() + "元");
-        tvCostPriceTwo.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        rlGoodsTwo.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-            intent.putExtra(Constants.INTENT_GOODS_NAME, goodsTwo.getName());
-            intent.putExtra(Constants.INTENT_GOODS_SN, goodsTwo.getSn());
-            intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
-                    DateUtil.getDateYMToString(goodsTwo.getCreateDate()) + "/" + +goodsTwo.getId()
-                    + ".html");
-            launchActivity(intent);
-        });
     }
 
     /**
@@ -405,6 +678,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
     //轮播图图片
     private List<BannerBean> mBannerBeen = new ArrayList<>();
+
     /**
      * 初始化轮播图控件
      */
@@ -546,9 +820,10 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     }
 
     /**
-     * 享环保、帮你忙、折扣店、招牌菜点击事件
+     * 享环保、帮你忙、折扣店、招牌菜、新鲜供、玫瑰约、社区赛点击事件
      */
-    @OnClick({R.id.tv_environment_protect, R.id.tv_help_you, R.id.tv_discount_store, R.id.tv_specialty})
+    @OnClick({R.id.tv_environment_protect, R.id.tv_help_you, R.id.tv_discount_store,
+            R.id.tv_specialty, R.id.tv_fresh_supply, R.id.tv_rose, R.id.tv_community_competition})
     public void onModuleClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_environment_protect:
@@ -563,6 +838,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             case R.id.tv_specialty:
                 launchActivity(new Intent(getActivity(), DinnerActivity.class));
                 break;
+            case R.id.tv_fresh_supply:
+                break;
+            case R.id.tv_rose:
+                break;
+            case R.id.tv_community_competition:
+                break;
+
         }
     }
 

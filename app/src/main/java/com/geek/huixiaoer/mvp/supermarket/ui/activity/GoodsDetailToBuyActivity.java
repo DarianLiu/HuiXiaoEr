@@ -121,7 +121,7 @@ public class GoodsDetailToBuyActivity extends BaseActivity<GoodsDetailToBuyPrese
             String mobile = data.getStringExtra("mobile");
             String address = data.getStringExtra("address");
             SpecificationBean bean  = specificationList.get(0);
-            mPresenter.createShopOrder(trueName,address,"00000",mobile,bean.getId(),"10","2018-04-17");
+            mPresenter.createShopOrder(trueName,address,"00000",mobile,bean.getId(),String.valueOf(bean.getPrice()),"2018-04-17");
         }
         super.onActivityResult(requestCode, resultCode, data);
 

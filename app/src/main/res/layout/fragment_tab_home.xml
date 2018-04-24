@@ -90,6 +90,68 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color_white"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/tv_fresh_supply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/icon_main_fresh_supply"
+                android:gravity="center"
+                android:text="@string/module_fresh_supply"
+                android:textColor="@color/color_text_module"
+                android:textSize="@dimen/t12" />
+
+            <TextView
+                android:id="@+id/tv_rose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/icon_main_rose"
+                android:gravity="center"
+                android:text="@string/module_rose"
+                android:textColor="@color/color_text_module"
+                android:textSize="@dimen/t12" />
+
+            <TextView
+                android:id="@+id/tv_community_competition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/icon_main_community_competition"
+                android:gravity="center"
+                android:text="@string/module_community_competition"
+                android:textColor="@color/color_text_module"
+                android:textSize="@dimen/t12" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_specialty"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:drawablePadding="8dp"-->
+                <!--android:drawableTop="@drawable/icon_main_dish"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/module_specialty"-->
+                <!--android:textColor="@color/color_text_module"-->
+                <!--android:textSize="@dimen/t12" />-->
+
+        </LinearLayout>
+
         <com.geek.huixiaoer.common.widget.OptionView
             android:id="@+id/option_hotSport"
             style="@style/TextCaptionSmall"
@@ -479,7 +541,404 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/rl_goods_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_three"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_three"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_three"
+                android:layout_toRightOf="@+id/iv_goods_three"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_three"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_three"
+                android:layout_toRightOf="@+id/iv_goods_three"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_three"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_three"
+                android:layout_toRightOf="@+id/iv_goods_three"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_three"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_three"
+                android:layout_toRightOf="@+id/tv_discount_price_three"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_four"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_four"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_four"
+                android:layout_toRightOf="@+id/iv_goods_four"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_four"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_four"
+                android:layout_toRightOf="@+id/iv_goods_four"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_four"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_four"
+                android:layout_toRightOf="@+id/iv_goods_four"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_four"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_four"
+                android:layout_toRightOf="@+id/tv_discount_price_four"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_five"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_five"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_five"
+                android:layout_toRightOf="@+id/iv_goods_five"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_five"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_five"
+                android:layout_toRightOf="@+id/iv_goods_five"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_five"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_five"
+                android:layout_toRightOf="@+id/iv_goods_five"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_five"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_five"
+                android:layout_toRightOf="@+id/tv_discount_price_five"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_six"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_six"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_six"
+                android:layout_toRightOf="@+id/iv_goods_six"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_six"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_six"
+                android:layout_toRightOf="@+id/iv_goods_six"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_six"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_six"
+                android:layout_toRightOf="@+id/iv_goods_six"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_six"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_six"
+                android:layout_toRightOf="@+id/tv_discount_price_six"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_seven"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_seven"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_seven"
+                android:layout_toRightOf="@+id/iv_goods_seven"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_seven"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_seven"
+                android:layout_toRightOf="@+id/iv_goods_seven"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_seven"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_seven"
+                android:layout_toRightOf="@+id/iv_goods_seven"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_seven"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_seven"
+                android:layout_toRightOf="@+id/tv_discount_price_seven"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_item_bg"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/iv_goods_eight"
+                android:layout_width="116dp"
+                android:layout_height="76dp"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_title_eight"
+                style="@style/TextGoodsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_eight"
+                android:layout_toRightOf="@+id/iv_goods_eight"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_content_eight"
+                style="@style/TextGoodsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_eight"
+                android:layout_toRightOf="@+id/iv_goods_eight"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_discount_price_eight"
+                style="@style/TextGoodsDiscountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/iv_goods_eight"
+                android:layout_toRightOf="@+id/iv_goods_eight"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_cost_price_eight"
+                style="@style/TextGoodsCostPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_discount_price_eight"
+                android:layout_toRightOf="@+id/tv_discount_price_eight"
+                android:text="" />
+
+        </RelativeLayout>
+
         <TextView
+            android:id="@+id/textView"
             style="@style/TextCaptionSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

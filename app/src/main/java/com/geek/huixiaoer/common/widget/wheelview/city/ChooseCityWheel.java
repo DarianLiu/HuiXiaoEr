@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.common.widget.wheelview;
+package com.geek.huixiaoer.common.widget.wheelview.city;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class ChooseAddressWheel implements MyOnWheelChangedListener {
+public class ChooseCityWheel implements MyOnWheelChangedListener {
 
     @BindView(R.id.province_wheel)
     MyWheelView provinceWheel;
@@ -43,7 +43,7 @@ public class ChooseAddressWheel implements MyOnWheelChangedListener {
 
     private OnAddressChangeListener onAddressChangeListener = null;
 
-    public ChooseAddressWheel(Activity context) {
+    public ChooseCityWheel(Activity context) {
         this.context = context;
         init();
     }

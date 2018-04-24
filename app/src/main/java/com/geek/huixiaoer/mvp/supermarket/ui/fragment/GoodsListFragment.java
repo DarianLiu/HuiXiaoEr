@@ -76,7 +76,7 @@ public class GoodsListFragment extends BaseFragment<GoodsListPresenter> implemen
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
         refreshLayout.setDisableContentWhenRefresh(true);//刷新的时候禁止列表的操作
-        refreshLayout.setDisableContentWhenLoading(true);//加载更多的时候禁止列表的操作
+//        refreshLayout.setDisableContentWhenLoading(true);//加载更多的时候禁止列表的操作
         refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {

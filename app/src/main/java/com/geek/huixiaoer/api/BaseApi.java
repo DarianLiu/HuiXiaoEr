@@ -153,14 +153,14 @@ public interface BaseApi {
     @POST(APIs.API.register)
     Observable<BaseResponse<UserBean>> register(@Query("nickname") String nickname,
                                                 @Query("card") String card,
-                                                @Query("cityCode") String cityCode,
-                                                @Query("areaCode") String areaCode,
+                                                @Query("areaCode") String cityCode,
+                                                @Query("streetCode") String areaCode,
                                                 @Query("communityCode") String communityCode,
                                                 @Query("address") String address,
                                                 @Query("mobile") String mobile,
                                                 @Query("enPassword") String enPassword,
                                                 @Query("dynamicCode") String dynamicCode,
-                                                @Query("volunteer") boolean volunteer);
+                                                @Query("isVolunteer") int volunteer);
 
     /**
      * 登录

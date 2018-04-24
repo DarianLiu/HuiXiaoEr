@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.geek.huixiaoer.common.widget.wheelview;
+package com.geek.huixiaoer.common.widget.wheelview.city;
 
 import android.content.Context;
 

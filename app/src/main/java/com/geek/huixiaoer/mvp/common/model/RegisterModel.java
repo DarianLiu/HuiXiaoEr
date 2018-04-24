@@ -25,7 +25,7 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
     @Override
     public Observable<BaseResponse<UserBean>> register(String nickname, String card, String cityCode, String areaCode,String communityCode,
                                                        String address, String mobile, String enPassword, String dynamicCode,
-                                                       boolean volunteer) {
+                                                       int volunteer) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).register(nickname, card, cityCode, areaCode,communityCode, address, mobile, enPassword, dynamicCode, volunteer);
     }
 

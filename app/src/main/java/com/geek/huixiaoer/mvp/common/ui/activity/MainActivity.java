@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     if (lastShowFragment != 0) {
                         switchFragment(lastShowFragment, 0);
                         lastShowFragment = 0;
-                        toolbarTitle.setText(R.string.tab_home);
+                        toolbarTitle.setText("智慧生活");
                     }
                     return true;
                 case R.id.bottom_nav_message:

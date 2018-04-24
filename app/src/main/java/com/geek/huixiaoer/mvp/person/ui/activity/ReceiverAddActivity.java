@@ -17,8 +17,8 @@ import com.geek.huixiaoer.common.utils.JsonUtil;
 import com.geek.huixiaoer.common.utils.RegexUtils;
 import com.geek.huixiaoer.common.widget.OptionView;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
-import com.geek.huixiaoer.common.widget.wheelview.ChooseAddressWheel;
-import com.geek.huixiaoer.common.widget.wheelview.OnAddressChangeListener;
+import com.geek.huixiaoer.common.widget.wheelview.city.ChooseCityWheel;
+import com.geek.huixiaoer.common.widget.wheelview.city.OnAddressChangeListener;
 import com.geek.huixiaoer.mvp.person.contract.ReceiverAddContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerReceiverAddComponent;
 import com.geek.huixiaoer.mvp.person.di.module.ReceiverAddModule;
@@ -73,7 +73,7 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
     String error_receiver_postal_code;
 
     private CircleProgressDialog loadingDialog;
-    private ChooseAddressWheel chooseAddressWheel;
+    private ChooseCityWheel chooseAddressWheel;
 
     private String type;//保存新的收货地址/更新收货地址
     private String mReceiverId;//收货地址ID（更新时用到）
@@ -134,7 +134,7 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
     }
 
     private void initWheel() {
-        chooseAddressWheel = new ChooseAddressWheel(this);
+        chooseAddressWheel = new ChooseCityWheel(this);
         chooseAddressWheel.setOnAddressChangeListener(this);
     }
 
