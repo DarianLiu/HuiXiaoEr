@@ -288,5 +288,20 @@ public interface APIs {
          */
         String createOrderByVisitor = "shop/order/createByVisitor.jhtml";
 
+        /**
+         * 加入（解除）黑名单
+         */
+        String changeBlackSign = "member/changeBlackSign.jhtml";
+
+        /**
+         * 查询黑名单
+         */
+        String blackList = "member/findAllByBlack.jhtml";
+
+        /**
+         * 查询积分排名
+         */
+        String memberRank = "rubbishRecycle/listAllByPoint.jhtml";
+
     }
 }

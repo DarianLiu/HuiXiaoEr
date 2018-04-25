@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.mvp.ranking.presenter;
+package com.geek.huixiaoer.mvp.recycle.presenter;
 
 import android.app.Application;
 
@@ -11,7 +11,7 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.ranking.contract.MemberRankingContract;
+import com.geek.huixiaoer.mvp.recycle.contract.MemberRankingContract;
 
 
 @ActivityScope

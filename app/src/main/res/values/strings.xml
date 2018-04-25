@@ -34,6 +34,7 @@
     <string name="title_home_service">帮你忙</string>
     <string name="title_my_order">我的订单</string>
     <string name="title_recycle_forum">论坛</string>
+    <string name="title_black_list">黑名单</string>
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>

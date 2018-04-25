@@ -1,12 +1,12 @@
-package com.geek.huixiaoer.mvp.ranking.di.module;
+package com.geek.huixiaoer.mvp.recycle.di.module;
 
 import com.jess.arms.di.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
 
-import com.geek.huixiaoer.mvp.ranking.contract.MemberRankingContract;
-import com.geek.huixiaoer.mvp.ranking.model.MemberRankingModel;
+import com.geek.huixiaoer.mvp.recycle.contract.MemberRankingContract;
+import com.geek.huixiaoer.mvp.recycle.model.MemberRankingModel;
 
 
 @Module

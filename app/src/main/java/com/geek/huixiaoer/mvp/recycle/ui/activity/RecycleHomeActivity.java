@@ -287,8 +287,10 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
                 launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));
                 break;
             case R.id.btn_integral:
+                launchActivity(new Intent(RecycleHomeActivity.this,MemberRankingActivity.class));
                 break;
             case R.id.btn_blacklist:
+                launchActivity(new Intent(RecycleHomeActivity.this,BlackListActivity.class));
                 break;
         }
     }

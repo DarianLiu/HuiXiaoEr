@@ -155,14 +155,28 @@
         <activity
             android:name=".mvp.recycle.ui.activity.RecycleHomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.person.ui.activity.MessageListActivity" />
-        <activity android:name=".mvp.housewifery.ui.activity.HelpOrderConfirmActivity" />
-        <activity android:name=".mvp.ranking.ui.activity.MemberRankingActivity" />
-        <activity android:name=".mvp.blacklist.ui.activity.BlacklistActivityActivity" />
-        <activity android:name=".mvp.blacklist.ui.activity.blacklistActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.GoodsDetailToBuyActivity" />
-        <activity android:name=".mvp.supermarket.ui.activity.ReceiptInfoActivity" />
-        <activity android:name=".mvp.recycle.ui.activity.RecycleDetailActivity"></activity>
+        <activity
+            android:name=".mvp.person.ui.activity.MessageListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.housewifery.ui.activity.HelpOrderConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.recycle.ui.activity.MemberRankingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".mvp.supermarket.ui.activity.GoodsDetailToBuyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.supermarket.ui.activity.ReceiptInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.recycle.ui.activity.RecycleDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.recycle.ui.activity.BlackListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

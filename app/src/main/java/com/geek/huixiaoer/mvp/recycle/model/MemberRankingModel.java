@@ -1,4 +1,4 @@
-package com.geek.huixiaoer.mvp.blacklist.model;
+package com.geek.huixiaoer.mvp.recycle.model;
 
 import android.app.Application;
 
@@ -10,18 +10,18 @@ import com.jess.arms.di.scope.ActivityScope;
 
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.blacklist.contract.BlacklistActivityContract;
+import com.geek.huixiaoer.mvp.recycle.contract.MemberRankingContract;
 
 
 @ActivityScope
-public class BlacklistActivityModel extends BaseModel implements BlacklistActivityContract.Model {
+public class MemberRankingModel extends BaseModel implements MemberRankingContract.Model {
     @Inject
     Gson mGson;
     @Inject
     Application mApplication;
 
     @Inject
-    public BlacklistActivityModel(IRepositoryManager repositoryManager) {
+    public MemberRankingModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 

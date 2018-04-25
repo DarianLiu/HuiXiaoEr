@@ -10,6 +10,7 @@ import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
 import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
+import com.geek.huixiaoer.storage.entity.recycle.BlackBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
@@ -104,6 +105,7 @@ public interface BaseApi {
 
     /**
      * 家政服务
+     *
      * @param pageNumber）当前页数
      * @param pageSize        每页显示数量
      * @param startPrice      最小价格（可以不加
@@ -520,8 +522,10 @@ public interface BaseApi {
     @POST(APIs.API.shopOrderReceive)
     Observable<BaseResponse<OrderBean>> shopOrderReceive(@Query("token") String token,
                                                          @Query("sn") String sn);
+
     /**
      * 游客创建家政订单
+     *
      * @param consignee
      * @param address
      * @param zipCode
@@ -532,10 +536,12 @@ public interface BaseApi {
      * @return
      */
     @POST(APIs.API.createOrderByVisitor)
-    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder (@Query("consignee")String consignee, @Query("address")String address,
-                                                                         @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
+    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("consignee") String consignee, @Query("address") String address,
+                                                                        @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodsId") String goodsId, @Query("amount") String amount, @Query("memo") String memo);
+
     /**
      * 游客创建商家订单
+     *
      * @param consignee
      * @param address
      * @param zipCode
@@ -546,6 +552,36 @@ public interface BaseApi {
      * @return
      */
     @POST(APIs.API.createOrderByVisitor)
-    Observable<BaseResponse<CreateServiceOrderBean>> createShopOrder (@Query("consignee")String consignee, @Query("address")String address,
-                                                                         @Query("zipCode")String zipCode, @Query("mobile")String mobile, @Query("goodsId")String goodsId, @Query("amount")String amount, @Query("memo")String memo);
+    Observable<BaseResponse<CreateServiceOrderBean>> createShopOrder(@Query("consignee") String consignee, @Query("address") String address,
+                                                                     @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodsId") String goodsId, @Query("amount") String amount, @Query("memo") String memo);
+
+
+    /**
+     * 加入（解除）黑名单
+     *
+     * @param memberId 会员id
+     * @param isBlack  操作方式（0：去除  1：添加）
+     * @param reason   添加
+     */
+    @POST(APIs.API.changeBlackSign)
+    Observable<BaseResponse<BlackBean>> changeBlackSign(@Query("memberId") String memberId, @Query("isBlack") int isBlack, @Query("reason") String reason);
+
+    /**
+     * 查询黑名单
+     *
+     * @param pageNumber 当前页数
+     * @param pageSize   每页显示数量
+     */
+    @GET(APIs.API.blackList)
+    Observable<BaseResponse<BaseArrayData<BlackBean>>> blackList(@Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
+
+    /**
+     * 用户享环保积分排名
+     *
+     * @param order      排序方式（0：按重量  1：按积分）
+     * @param pageNumber 查询黑名单
+     * @param pageSize   每页显示数量
+     */
+    @GET(APIs.API.memberRank)
+    Observable<BaseResponse<BaseArrayData<CreateServiceOrderBean>>> memberRank(@Query("order") int order, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
 }

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Administrator on 2018/4/15.
  */
 
-public class MessageAdapter<MessageBean> extends DefaultAdapter<com.geek.huixiaoer.storage.entity.MessageBean> {
+public class MessageAdapter extends DefaultAdapter<MessageBean> {
 
     public MessageAdapter(List<com.geek.huixiaoer.storage.entity.MessageBean> infos) {
         super(infos);

@@ -10,38 +10,35 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.widget.recyclerview.OnItemClickListener;
+import com.geek.huixiaoer.mvp.recycle.contract.BlackListContract;
+import com.geek.huixiaoer.mvp.recycle.di.component.DaggerBlackListComponent;
+import com.geek.huixiaoer.mvp.recycle.di.module.BlackListModule;
+import com.geek.huixiaoer.mvp.recycle.presenter.BlackListPresenter;
+import com.geek.huixiaoer.mvp.recycle.ui.adpater.RecycleAdapter;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
-
-import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleDetailComponent;
-import com.geek.huixiaoer.mvp.recycle.di.module.RecycleDetailModule;
-import com.geek.huixiaoer.mvp.recycle.contract.RecycleDetailContract;
-import com.geek.huixiaoer.mvp.recycle.presenter.RecycleDetailPresenter;
-
-import com.geek.huixiaoer.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
 /**
- * 论坛详情页
+ * 黑名单
  */
-public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> implements RecycleDetailContract.View {
+public class BlackListActivity extends BaseActivity<BlackListPresenter> implements BlackListContract.View {
 
     @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
@@ -49,29 +46,27 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
     Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-//    @BindView(R.id.refreshLayout)
-//    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
     @Inject
     RecyclerView.LayoutManager mLayoutManager;
     @Inject
     RecyclerView.Adapter mAdapter;
-    @Inject
-    List<ArticleBean> mList;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
-        DaggerRecycleDetailComponent //如找不到该类,请编译一下项目
+        DaggerBlackListComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .recycleDetailModule(new RecycleDetailModule(this))
+                .blackListModule(new BlackListModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     public int initView(@Nullable Bundle savedInstanceState) {
-        return R.layout.activity_recycle_detail; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+        return R.layout.activity_black_list; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
     @Override
@@ -80,31 +75,28 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
-        tvToolbarTitle.setText("查看详细");
+        tvToolbarTitle.setText(R.string.title_black_list);
 
         initRecycleView();
-        ArticleBean bean = (ArticleBean) getIntent().getSerializableExtra("recycle");
-        mList.add(bean);
-        mAdapter.notifyDataSetChanged();
+        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
+        refreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
+        refreshLayout.setDisableContentWhenRefresh(true);//刷新的时候禁止列表的操作
+        refreshLayout.setDisableContentWhenLoading(true);//加载更多的时候禁止列表的操作
+        refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                mPresenter.blackList(false);
+            }
 
-//        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
-//        refreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
-//        refreshLayout.setDisableContentWhenRefresh(true);//刷新的时候禁止列表的操作
-//        refreshLayout.setDisableContentWhenLoading(true);//加载更多的时候禁止列表的操作
-//        refreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
-//            @Override
-//            public void onLoadmore(RefreshLayout refreshlayout) {
-////                mPresenter.getRecycleList(false);
-//            }
-//
-//            @Override
-//            public void onRefresh(RefreshLayout refreshlayout) {
-////                mPresenter.getRecycleList(true);
-//            }
-//        });
-//
-//        // 自动刷新
-//        refreshLayout.autoRefresh();
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mPresenter.blackList(true);
+            }
+        });
+
+        // 自动刷新
+        refreshLayout.autoRefresh();
+
     }
 
     /**
@@ -115,6 +107,15 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(mAdapter);
+//        RecycleAdapter adapter = (RecycleAdapter)mAdapter;
+//        adapter.setOnItemClickListener(new OnItemClickListener<ArticleBean>() {
+//            @Override
+//            public void OnItemClick(int position, ArticleBean data) {
+//                Intent intent = new Intent(BlackListActivity.this,RecycleDetailActivity.class);
+//                intent.putExtra("black",data);
+//                launchActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -146,17 +147,17 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
 
     @Override
     public Activity getActivity() {
-        return RecycleDetailActivity.this;
+        return this;
     }
 
     @Override
     public void endRefresh() {
-//        refreshLayout.finishRefresh();
+        refreshLayout.finishRefresh();
     }
 
     @Override
     public void endLoadMore() {
-//        refreshLayout.finishLoadmore();
+        refreshLayout.finishLoadmore();
     }
 
     @Override
@@ -165,4 +166,5 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
         mAdapter = null;
         mLayoutManager = null;
     }
+
 }
