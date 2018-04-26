@@ -6,6 +6,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
@@ -45,6 +46,12 @@ public class GoodsDetailToBuyModel extends BaseModel implements GoodsDetailToBuy
     @Override
     public Observable<BaseResponse<BaseArrayData<SpecificationBean>>> goodsSpecification(String goods_sn) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsSpecification(goods_sn);
+    }
+    @Override
+    public Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(
+            String token, String paymentPluginId, String outTradeNo, String amount) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).paymentSubmitNo(
+                token, paymentPluginId, outTradeNo, amount);
     }
 
 }

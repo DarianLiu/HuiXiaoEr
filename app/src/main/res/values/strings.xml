@@ -11,7 +11,7 @@
     <string name="module_help_you">帮你忙</string>
     <string name="module_discount_store">折扣店</string>
     <string name="module_specialty">招牌菜</string>
-    <string name="module_fresh_supply">新鲜供</string>
+    <string name="module_fresh_supply">生鲜供</string>
     <string name="module_rose">玫瑰约</string>
     <string name="module_community_competition">社区赛</string>
     <string name="module_title_environment_protect">享环保热帖</string>
@@ -35,6 +35,7 @@
     <string name="title_my_order">我的订单</string>
     <string name="title_recycle_forum">论坛</string>
     <string name="title_black_list">黑名单</string>
+    <string name="title_member_rank">积分排行榜</string>
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>

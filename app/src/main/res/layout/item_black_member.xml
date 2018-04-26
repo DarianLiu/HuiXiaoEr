@@ -17,7 +17,8 @@
         android:text=""
         android:background="@drawable/line_bottom_bg"
         android:textColor="@color/color_text_caption"
-        android:textSize="@dimen/t16" />
+        android:textSize="@dimen/t16"
+        android:paddingLeft="10dp" />
 
     <TextView
         android:id="@+id/tv_reason"
@@ -27,8 +28,10 @@
         android:paddingBottom="15dp"
         android:background="@drawable/line_bottom_bg"
         android:paddingTop="15dp"
+        android:paddingLeft="20dp"
         android:text=""
         android:textColor="@color/color_text_caption"
-        android:textSize="@dimen/t16" />
+        android:textSize="@dimen/t16"
+        />
 
 </LinearLayout>

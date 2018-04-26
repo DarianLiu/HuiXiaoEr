@@ -11,6 +11,7 @@ import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
 import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.recycle.BlackBean;
+import com.geek.huixiaoer.storage.entity.recycle.RankBean;
 import com.geek.huixiaoer.storage.entity.shop.CartBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
@@ -537,7 +538,7 @@ public interface BaseApi {
      */
     @POST(APIs.API.createOrderByVisitor)
     Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("consignee") String consignee, @Query("address") String address,
-                                                                        @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodsId") String goodsId, @Query("amount") String amount, @Query("memo") String memo);
+                                                                        @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("productId") String productId, @Query("amount") String amount, @Query("memo") String memo);
 
     /**
      * 游客创建商家订单
@@ -553,7 +554,7 @@ public interface BaseApi {
      */
     @POST(APIs.API.createOrderByVisitor)
     Observable<BaseResponse<CreateServiceOrderBean>> createShopOrder(@Query("consignee") String consignee, @Query("address") String address,
-                                                                     @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodsId") String goodsId, @Query("amount") String amount, @Query("memo") String memo);
+                                                                     @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("productId") String productId, @Query("amount") String amount, @Query("memo") String memo);
 
 
     /**
@@ -583,5 +584,5 @@ public interface BaseApi {
      * @param pageSize   每页显示数量
      */
     @GET(APIs.API.memberRank)
-    Observable<BaseResponse<BaseArrayData<CreateServiceOrderBean>>> memberRank(@Query("order") int order, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
+    Observable<BaseResponse<BaseArrayData<RankBean>>> memberRank(@Query("order") int order, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
 }

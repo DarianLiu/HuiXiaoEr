@@ -96,7 +96,7 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
         switch (view.getId()) {
             case R.id.submitBtn:
                 //consignee,address,zipCode,mobile,goodsId,amount,memo
-                mPresenter.createServiceOrder(trueName,address,"00000",mobile,"128",price,"2018-04-17");
+                mPresenter.createServiceOrder(trueName,address,"00000",mobile,"170",price,"2018-04-17");
                 break;
             case R.id.tv_register:
 //                launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));

@@ -32,6 +32,7 @@ import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleHomeActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
+import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailToBuyActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
@@ -42,6 +43,7 @@ import com.jess.arms.http.imageloader.ImageLoader;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -336,7 +338,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceOne.setText(getString(R.string.cost_price) + "：" + goodsOne.getMarketPrice());
             tvCostPriceOne.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsOne.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsOne.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsOne.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -367,7 +375,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceTwo.setText(getString(R.string.cost_price) + "：" + goodsTwo.getMarketPrice() + "元");
             tvCostPriceTwo.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsTwo.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsTwo.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsTwo.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -398,7 +412,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceThree.setText(getString(R.string.cost_price) + "：" + goodsThree.getMarketPrice() + "元");
             tvCostPriceThree.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsThree.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsThree.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsThree.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -429,7 +449,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceFour.setText(getString(R.string.cost_price) + "：" + goodsFour.getMarketPrice() + "元");
             tvCostPriceFour.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsFour.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsFour.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsFour.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -460,7 +486,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceFive.setText(getString(R.string.cost_price) + "：" + goodsFive.getMarketPrice() + "元");
             tvCostPriceFive.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsFive.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsFive.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsFive.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -491,7 +523,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceSix.setText(getString(R.string.cost_price) + "：" + goodsSix.getMarketPrice() + "元");
             tvCostPriceSix.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsSix.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsSix.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsSix.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -523,7 +561,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceSeven.setText(getString(R.string.cost_price) + "：" + goodsSeven.getMarketPrice() + "元");
             tvCostPriceSeven.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsSeven.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsSeven.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsSeven.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -555,7 +599,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             tvCostPriceEight.setText(getString(R.string.cost_price) + "：" + goodsEight.getMarketPrice() + "元");
             tvCostPriceEight.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             rlGoodsEight.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, goodsEight.getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, goodsEight.getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -581,7 +631,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishOne).build());
             ivDishOne.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(0).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(0).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -598,7 +654,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishTwo).build());
             ivDishTwo.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(1).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(1).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -615,7 +677,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishThree).build());
             ivDishThree.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(2).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(2).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -631,7 +699,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFour).build());
             ivDishFour.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(3).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(3).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -647,7 +721,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFive).build());
             ivDishFive.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(4).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(4).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
@@ -663,7 +743,13 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
                     .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishSix).build());
             ivDishSix.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                Intent intent =null;
+                String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+                if (TextUtils.isEmpty(token)) {
+                    intent = new Intent(getActivity(), GoodsDetailToBuyActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                }
                 intent.putExtra(Constants.INTENT_GOODS_NAME, dishList.get(5).getName());
                 intent.putExtra(Constants.INTENT_GOODS_SN, dishList.get(5).getSn());
                 intent.putExtra(Constants.INTENT_GOODS_URL, APIs.GOODS_URL +
