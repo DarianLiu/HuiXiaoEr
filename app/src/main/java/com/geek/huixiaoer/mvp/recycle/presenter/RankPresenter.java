@@ -56,7 +56,7 @@ public class RankPresenter extends BasePresenter<RankContract.Model, RankContrac
      * @param order     按重量、积分
      */
     public void memberRank(boolean isRefresh, int order) {
-        mModel.memberRank(order,page_no + 1, 2 ).retryWhen(new RetryWithDelay(3, 2))
+        mModel.memberRank(order,page_no + 1, 20 ).retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(() -> {
