@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.config.EventBusTags;
@@ -20,7 +21,6 @@ import com.geek.huixiaoer.mvp.person.di.component.DaggerTabMineComponent;
 import com.geek.huixiaoer.mvp.person.di.module.TabMineModule;
 import com.geek.huixiaoer.mvp.person.presenter.TabMinePresenter;
 import com.geek.huixiaoer.storage.entity.UserBean;
-import com.geek.huixiaoer.storage.entity.UserInfoBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -29,9 +29,7 @@ import com.jess.arms.utils.DataHelper;
 import org.simple.eventbus.Subscriber;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -46,11 +44,11 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
     OptionView optionMobile;
     @BindView(R.id.btn_login_out)
     Button btnLoginOut;
-    Unbinder unbinder;
+    @BindView(R.id.ll_error)
+    LinearLayout llError;
 
     public static TabMineFragment newInstance() {
-        TabMineFragment fragment = new TabMineFragment();
-        return fragment;
+        return new TabMineFragment();
     }
 
     @Override
@@ -97,6 +95,7 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
         optionPassword.setVisibility(View.VISIBLE);
         optionMobile.setVisibility(View.VISIBLE);
         btnLoginOut.setVisibility(View.VISIBLE);
+        llError.setVisibility(View.GONE);
     }
 
     private void hideAllView() {
@@ -104,6 +103,7 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
         optionPassword.setVisibility(View.GONE);
         optionMobile.setVisibility(View.GONE);
         btnLoginOut.setVisibility(View.GONE);
+        llError.setVisibility(View.VISIBLE);
     }
 
     @Override

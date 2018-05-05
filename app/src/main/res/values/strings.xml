@@ -124,6 +124,7 @@
     <string name="prompt_dialog_title">温馨提示</string>
     <string name="prompt_password_rule">密码由6&#8211;12位字母、数字或符号组成</string>
     <string name="prompt_security_password">我们将通过%1$s 给您发送验证码</string>
+    <string name="prompt_login">欢迎来到智慧生活，注册会员\n请到享环保申请会员，享受积分生活</string>
 
     <!--Use-->
     <!--~~~~~~折扣店模块~~~~~~-->

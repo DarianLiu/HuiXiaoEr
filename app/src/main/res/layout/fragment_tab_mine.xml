@@ -38,6 +38,31 @@
         android:background="@drawable/shape_btn_frame_yellow"
         android:text="@string/btn_login_out"
         android:textColor="@color/color_btn_text_primary"
-        android:textSize="@dimen/t16" />
+        android:textSize="@dimen/t16"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_error_notice"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:textSize="@dimen/t12"
+            android:layout_marginTop="30dp"
+            android:text="@string/prompt_login"
+            android:textColor="@color/color_text_prompt"/>
+
+    </LinearLayout>
 
 </LinearLayout>
