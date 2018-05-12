@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.common.contract.CaptchaContract;
+import com.geek.huixiaoer.mvp.common.ui.activity.ForgetPasswordActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.jess.arms.di.scope.ActivityScope;
@@ -94,10 +95,10 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
                 .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull SingleResultBean singleResultBean) {
-                        Intent intent = new Intent(mAppManager.getTopActivity(), RegisterActivity.class);
-                        intent.putExtra(Constants.INTENT_MOBILE, mobile);
-                        mRootView.launchActivity(intent);
-//                        mRootView.killMyself();
+                        Intent it = new Intent(mAppManager.getTopActivity(), ForgetPasswordActivity.class);
+                        it.putExtra(Constants.INTENT_MOBILE, mobile);
+                        mRootView.launchActivity(it);
+                        mRootView.killMyself();
                     }
                 });
     }

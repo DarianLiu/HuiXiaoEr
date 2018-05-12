@@ -65,7 +65,7 @@ ext {
             "paginate"                 : "com.github.markomilos:paginate:0.5.1",
             "vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
             "smartRefreshLayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartRefreshSdkVersion"]}",
-            "pictureSelector"          : "com.github.LuckSiege.PictureSelector:picture_library:v2.1.9",
+            "pictureSelector"          : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3",
 //            "WheelPicker"              : "cn.qqtheme.framework:WheelPicker:${version["wheelPickerSdkVersion"]}",//三级联动选择器
 
             //rx2

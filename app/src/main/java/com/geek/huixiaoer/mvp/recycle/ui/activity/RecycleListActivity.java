@@ -89,7 +89,7 @@ public class RecycleListActivity extends BaseActivity<RecycleListPresenter> impl
             case R.id.action_add:
                 String token = DataHelper.getStringSF(RecycleListActivity.this, Constants.SP_TOKEN);
                 if (!TextUtils.isEmpty(token)){
-                    launchActivity(new Intent(RecycleListActivity.this, RecycleAddActivity.class));
+                    launchActivity(new Intent(RecycleListActivity.this, ForumPostActivity.class));
                 }else {
                     launchActivity(new Intent(RecycleListActivity.this, LoginActivity.class));
                 }

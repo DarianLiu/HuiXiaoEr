@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.LoginContract;
@@ -176,7 +177,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 }
                 break;
             case R.id.tv_register:
-                launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
+                launchActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
             case R.id.tv_forget_password:
                 launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
