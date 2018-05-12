@@ -80,7 +80,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.Model, Reg
     public void registerSubmit(String nickname, String card, String cityCode, String areaCode, String communityCode,
                                String address, String mobile, String enPassword, String dynamicCode,
                                int volunteer) {
-        mModel.register(nickname, card, cityCode, communityCode, areaCode, address, mobile, enPassword, dynamicCode, volunteer)
+        mModel.register(nickname, card, cityCode, areaCode, communityCode, address, mobile, enPassword, dynamicCode, volunteer)
                 .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResultShowMessage(mAppManager.getTopActivity()))

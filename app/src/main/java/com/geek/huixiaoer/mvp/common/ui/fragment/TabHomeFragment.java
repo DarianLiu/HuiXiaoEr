@@ -627,8 +627,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     public void updateDishExplosion(List<GoodsBean> dishList) {
         if (dishList.get(0).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(0).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(0).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishOne).build());
             ivDishOne.setOnClickListener(v -> {
                 Intent intent =null;
@@ -650,8 +651,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         if (dishList.get(1).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(1).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(1).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishTwo).build());
             ivDishTwo.setOnClickListener(v -> {
                 Intent intent =null;
@@ -673,8 +675,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         if (dishList.get(2).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(2).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(2).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishThree).build());
             ivDishThree.setOnClickListener(v -> {
                 Intent intent =null;
@@ -695,8 +698,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         if (dishList.get(3).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(3).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(3).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFour).build());
             ivDishFour.setOnClickListener(v -> {
                 Intent intent =null;
@@ -717,8 +721,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         if (dishList.get(4).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(4).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(4).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishFive).build());
             ivDishFive.setOnClickListener(v -> {
                 Intent intent =null;
@@ -739,8 +744,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         if (dishList.get(5).getMediumImage() != null) {
             mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                    .url(dishList.get(5).getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                    .url(dishList.get(5).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                     .transformation(new CenterCrop()).imageView(ivDishSix).build());
             ivDishSix.setOnClickListener(v -> {
                 Intent intent =null;

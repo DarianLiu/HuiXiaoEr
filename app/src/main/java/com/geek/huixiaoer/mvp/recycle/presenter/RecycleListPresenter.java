@@ -52,7 +52,7 @@ public class RecycleListPresenter extends BasePresenter<RecycleListContract.Mode
      */
     public void getRecycleList(boolean isRefresh) {
         if (isRefresh) page_no = 0;
-        mModel.articleList(page_no + 1, 10, "createDate", "mood").retryWhen(new RetryWithDelay(3, 2))
+        mModel.articleList(page_no + 1, 10, "createDate", "article").retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(() -> {
