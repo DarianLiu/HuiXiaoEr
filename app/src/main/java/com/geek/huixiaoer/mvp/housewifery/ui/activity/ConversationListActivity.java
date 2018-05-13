@@ -20,9 +20,9 @@ public class ConversationListActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation_list);
-        //首先需要构造使用客服者的用户信息
-        CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
-        CSCustomServiceInfo csInfo = csBuilder.nickName("测试用户").build();
+//        //首先需要构造使用客服者的用户信息
+//        CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
+//        CSCustomServiceInfo csInfo = csBuilder.nickName("测试用户").build();
 
         /**
          * 启动客户服聊天界面。
@@ -32,7 +32,7 @@ public class ConversationListActivity extends FragmentActivity {
          * @param title             聊天的标题，开发者可以在聊天界面通过 intent.getData().getQueryParameter("title") 获取该值, 再手动设置为标题。
          * @param customServiceInfo 当前使用客服者的用户信息。{@link io.rong.imlib.model.CSCustomServiceInfo}
          */
-        RongIM.getInstance().startCustomerServiceChat(this, "KEFU151979576246757", "家政客服", csInfo);
+//        RongIM.getInstance().startCustomerServiceChat(this, "KEFU151979576246757", "家政客服", csInfo);
     }
 
 }

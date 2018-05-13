@@ -54,20 +54,22 @@ public class HelpOrderConfirmPresenter extends BasePresenter<HelpOrderConfirmCon
         super(model, rootView);
     }
 
-    public void createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo ) {
-        mModel.createServiceOrder(consignee,address,zipCode,mobile,goodsId,amount,memo)
+    public void createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo,String id) {
+        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.createServiceOrder(token, consignee, address, zipCode, mobile, goodsId, amount, memo,id)
                 .retryWhen(new RetryWithDelay(0, 30))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<CreateServiceOrderBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull CreateServiceOrderBean userBean) {
-                        Toast.makeText(mAppManager.getTopActivity(),"创建订单成功,请进入支付...",Toast.LENGTH_SHORT).show();
-                        paymentSubmitNo(userBean.getOutTradeNo(),amount);
+                        Toast.makeText(mAppManager.getTopActivity(), "创建订单成功,请进入支付...", Toast.LENGTH_SHORT).show();
+                        paymentSubmitNo(userBean.getOutTradeNo(), amount);
 //                        mRootView.killMyself();
                     }
                 });
     }
+
     /**
      * 支付宝支付
      * 支付方式(移动端默认为：alipayMobilePaymentPlugin)

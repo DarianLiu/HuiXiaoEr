@@ -82,7 +82,7 @@
     <string name="hint_street">选择区/镇(街道)/村(社区)</string>
     <string name="hint_address">输入**小区**楼号**门牌号</string>
     <string name="hint_volunteer">志愿者</string>
-    <string name="hint_account">用户名/手机号码</string>
+    <string name="hint_account">手机号码</string>
     <string name="hint_invitation_code">邀请码（选填、区分大小写）</string>
     <string name="hint_say_something">说点什么&#8230;</string>
     <string name="hint_invoice">请输入发票抬头&#8230;</string>

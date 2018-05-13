@@ -1,6 +1,5 @@
 package com.geek.huixiaoer.mvp.common.contract;
 
-import com.geek.huixiaoer.api.APIs;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
@@ -12,8 +11,6 @@ import com.jess.arms.mvp.IModel;
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 
 public interface TabHomeContract {

@@ -39,8 +39,8 @@ public class HelpOrderConfirmModel extends BaseModel implements HelpOrderConfirm
     }
 
     @Override
-    public Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).createServiceOrder(consignee,address,zipCode,mobile,goodsId,amount,memo);
+    public Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String token,String consignee, String address, String zipCode, String mobile, String productId, String amount, String memo,String id) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).createServiceOrder(token,consignee,address,zipCode,mobile,productId,amount,memo,id);
     }
     @Override
     public Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(

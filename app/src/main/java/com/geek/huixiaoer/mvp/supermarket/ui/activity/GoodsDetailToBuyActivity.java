@@ -74,7 +74,7 @@ public class GoodsDetailToBuyActivity extends BaseActivity<GoodsDetailToBuyPrese
         String goods_url = getIntent().getStringExtra(Constants.INTENT_GOODS_URL);
         String goods_sn = getIntent().getStringExtra(Constants.INTENT_GOODS_SN);
 
-        Timber.d("========goods_url：" + goods_url);
+//        Timber.d("========goods_url：" + goods_url);
 
         toolbarTitle.setText(goods_name == null ? "商品详情" : goods_name);
         initWebView(goods_url);

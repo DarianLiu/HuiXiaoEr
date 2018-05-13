@@ -22,9 +22,10 @@ import io.rong.imkit.plugin.IPluginModule;
  * Created by Administrator on 2018/3/8.
  */
 
-public class ALiPayPlugin implements IPluginModule{
+public class ALiPayPlugin implements IPluginModule {
 
     Context context;
+
     @Override
     public Drawable obtainDrawable(Context context) {
         this.context = context;
@@ -38,7 +39,10 @@ public class ALiPayPlugin implements IPluginModule{
 
     @Override
     public void onClick(Fragment fragment, RongExtension rongExtension) {
-        ArmsUtils.startActivity(new Intent(context, HelpOrderConfirmActivity.class));
+        String targetId = rongExtension.getTargetId();
+        Intent intent = new Intent(context, HelpOrderConfirmActivity.class);
+        intent.putExtra("targetId", targetId);
+        ArmsUtils.startActivity(intent);
 //        SimpleEditDialogFragment dialogFragment = new SimpleEditDialogFragment();
 //        Bundle bundle = new Bundle();
 //        bundle.putString(Constants.INTENT_DIALOG_TITLE,

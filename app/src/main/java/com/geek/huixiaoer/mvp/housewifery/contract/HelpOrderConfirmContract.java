@@ -25,7 +25,7 @@ public interface HelpOrderConfirmContract {
 //        harmfulamount:金额
 //        harmfulmemo:附言
         //
-        Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo );
+        Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(String token,String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo ,String id);
         Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitNo(
                 String token, String paymentPluginId, String outTradeNo, String amount);
     }

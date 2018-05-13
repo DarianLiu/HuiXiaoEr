@@ -228,6 +228,29 @@ public interface APIs {
         String homeServiceList = "homeservice/listAll.jhtml";
 
 
+        /**
+         * 获取空闲客服：
+         * http://localhost:8090/shopxx/mobile/service/findService.jhtml?token=7121sdf
+         * token:登录人token
+         */
+        String findService = "service/findService.jhtml";
+
+
+        /**
+         *  设置忙碌客服:
+         http://localhost:8090/shopxx/mobile/service/setServiceB.jhtml?ryToken=cvdsfsdf
+         ryToken:融云id
+         */
+        String setServiceB = "service/setServiceB.jhtml";
+
+//        /**
+//         *  设置空闲客服：
+//         http://localhost:8090/shopxx/mobile/service/setServiceF.jhtml?ryToken=cvdsfsdf
+//         ryToken:融云id
+//         */
+//        String setServiceF = "service/setServiceF.jhtml";
+
+
          /*-----------用户模块--------*/
         /**
          * 收货地址列表
@@ -287,6 +310,11 @@ public interface APIs {
          * 游客创建订单
          */
         String createOrderByVisitor = "shop/order/createByVisitor.jhtml";
+
+        /**
+         * 帮你忙非游客下单
+         */
+        String createServiceByCustomer = "shop/order/createServiceByCustomer.jhtml";
 
         /**
          * 加入（解除）黑名单

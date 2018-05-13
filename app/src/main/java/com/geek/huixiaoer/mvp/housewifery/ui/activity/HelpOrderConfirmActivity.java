@@ -11,10 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geek.huixiaoer.common.utils.StringUtils;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
-import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
-import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
@@ -25,6 +23,7 @@ import com.geek.huixiaoer.mvp.housewifery.contract.HelpOrderConfirmContract;
 import com.geek.huixiaoer.mvp.housewifery.presenter.HelpOrderConfirmPresenter;
 
 import com.geek.huixiaoer.R;
+import com.jess.arms.utils.DataHelper;
 
 
 import butterknife.BindView;
@@ -47,6 +46,8 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
     EditText addressEdit;
     @BindView(R.id.priceEdit)
     EditText priceEdit;
+
+    private String targetId;//融云客服ID
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerHelpOrderConfirmComponent //如找不到该类,请编译一下项目
@@ -69,6 +70,8 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText("确认订单");
+
+        targetId = getIntent().getStringExtra("targetId");
     }
 
     @OnClick({R.id.submitBtn})
@@ -96,10 +99,8 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
         switch (view.getId()) {
             case R.id.submitBtn:
                 //consignee,address,zipCode,mobile,goodsId,amount,memo
-                mPresenter.createServiceOrder(trueName,address,"00000",mobile,"170",price,"2018-04-17");
-                break;
-            case R.id.tv_register:
-//                launchActivity(new Intent(LoginActivity.this, CaptchaActivity.class));
+                String serviceId = DataHelper.getStringSF(this, Constants.CASH_SERVICE_ID);
+                mPresenter.createServiceOrder(trueName,address,"00000",mobile,serviceId,price,String.valueOf(System.currentTimeMillis()),targetId);
                 break;
         }
     }

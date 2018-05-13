@@ -76,7 +76,6 @@ public class Constants {
      * Cash Key
      * ================================================
      */
-    public static final String CASH_COUNTRY = "country";
+    public static final String CASH_SERVICE_ID = "service_id";//服务项目
 
-    public static final String CASH_IDENTITY_TYPE = "identity_type";
 }

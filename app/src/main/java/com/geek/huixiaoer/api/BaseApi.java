@@ -9,6 +9,7 @@ import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
 import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
+import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.recycle.BlackBean;
 import com.geek.huixiaoer.storage.entity.recycle.RankBean;
@@ -437,6 +438,22 @@ public interface BaseApi {
     Observable<BaseResponse<BaseArrayData<HomeServiceBean>>> homeServiceList();
 
     /**
+     * 获取空闲客服
+     *
+     * @param token 登录人token
+     */
+    @GET(APIs.API.findService)
+    Observable<BaseResponse<ServiceBean>> findService(@Query("token") String token);
+
+    /**
+     * 设置忙碌客服
+     *
+     * @param id 融云客服ID
+     */
+    @POST(APIs.API.setServiceB)
+    Observable<BaseResponse<ServiceBean>> setServiceB(@Query("id") String id);
+
+    /**
      * ********************** 用 户 模 块 *************************
      * 收货地址列表
      *
@@ -539,20 +556,22 @@ public interface BaseApi {
                                                          @Query("sn") String sn);
 
     /**
-     * 游客创建家政订单
+     * 帮你忙非游客下单
      *
+     * @param token
      * @param consignee
      * @param address
      * @param zipCode
      * @param mobile
-     * @param goodsId
+     * @param productId
      * @param amount
      * @param memo
-     * @return
+     * @param id 客服融云注册id
      */
-    @POST(APIs.API.createOrderByVisitor)
-    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("consignee") String consignee, @Query("address") String address,
-                                                                        @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("productId") String productId, @Query("amount") String amount, @Query("memo") String memo);
+    @POST(APIs.API.createServiceByCustomer)
+    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("token")String token,@Query("consignee") String consignee, @Query("address") String address,
+                                                                        @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodId") String productId,
+                                                                        @Query("amount") String amount, @Query("memo") String memo, @Query("id") String id);
 
     /**
      * 游客创建商家订单
@@ -561,14 +580,16 @@ public interface BaseApi {
      * @param address
      * @param zipCode
      * @param mobile
-     * @param goodsId
+     * @param productId
      * @param amount
      * @param memo
      * @return
      */
     @POST(APIs.API.createOrderByVisitor)
     Observable<BaseResponse<CreateServiceOrderBean>> createShopOrder(@Query("consignee") String consignee, @Query("address") String address,
-                                                                     @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("productId") String productId, @Query("amount") String amount, @Query("memo") String memo);
+                                                                     @Query("zipCode") String zipCode, @Query("mobile") String mobile,
+                                                                     @Query("productId") String productId, @Query("amount")
+                                                                             String amount, @Query("memo") String memo);
 
 
     /**

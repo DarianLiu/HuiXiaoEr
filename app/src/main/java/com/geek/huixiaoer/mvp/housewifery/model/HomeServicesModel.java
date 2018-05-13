@@ -7,7 +7,7 @@ import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
-import com.geek.huixiaoer.storage.entity.housewifery.HomeServiceBean;
+import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
 import com.jess.arms.di.scope.ActivityScope;
@@ -46,5 +46,15 @@ public class HomeServicesModel extends BaseModel implements HomeServicesContract
     @Override
     public Observable<BaseResponse<BaseArrayData<GoodsBean>>> homeServiceList(int pageNumber, int pageSize, String startPrice, String endPrice, String orderType) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).serviceList(pageNumber, pageSize, startPrice, endPrice, orderType);
+    }
+
+    @Override
+    public Observable<BaseResponse<ServiceBean>> findService(String token) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).findService(token);
+    }
+
+    @Override
+    public Observable<BaseResponse<ServiceBean>> setServiceB(String ryToken) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).setServiceB(ryToken);
     }
 }

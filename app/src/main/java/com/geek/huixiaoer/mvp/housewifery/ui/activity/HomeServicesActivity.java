@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,8 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.mvp.housewifery.di.component.DaggerHomeServicesComponent;
 import com.geek.huixiaoer.mvp.housewifery.di.module.HomeServicesModule;
@@ -29,6 +33,7 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.ArmsUtils;
+import com.jess.arms.utils.DataHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
@@ -66,6 +71,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
     private ServiceAdapter mAdapter;
     private List<GoodsBean> mHomeServices = new ArrayList<>();
 
+    private CircleProgressDialog loadingDialog;
+
     @Override
     public void setupActivityComponent(AppComponent appComponent) {
         DaggerHomeServicesComponent //如找不到该类,请编译一下项目
@@ -90,7 +97,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         tvToolbarTitle.setText(R.string.title_home_service);
 
         setBannerHeight();
-        mPresenter.getBanner();
+//        mPresenter.getBanner();
         initRefreshLayout();
         initRecyclerView();
     }
@@ -133,9 +140,19 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         mHomeServices.clear();
         mHomeServices.addAll(homeServices);
         mAdapter.notifyDataSetChanged();
-        mAdapter.setOnItemClickListener((view, viewType, data, position) ->
-                RongIM.getInstance().startConversation(HomeServicesActivity.this,
-                        Conversation.ConversationType.PRIVATE, "002", String.valueOf(homeServices.get(position).getId())));
+        mAdapter.setOnItemClickListener((view, viewType, data, position) -> {
+            String token = DataHelper.getStringSF(this, Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(this, LoginActivity.class));
+            } else {
+                mPresenter.findService(token, mHomeServices.get(position).getId());
+            }
+        });
+    }
+
+    @Override
+    public void setServiceState(String serviceId, int serverId) {
+        mPresenter.setServiceB(serviceId, serverId);
     }
 
     /**
@@ -268,16 +285,26 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
 
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
     protected void onDestroy() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
         super.onDestroy();
         mAdapter = null;
     }
