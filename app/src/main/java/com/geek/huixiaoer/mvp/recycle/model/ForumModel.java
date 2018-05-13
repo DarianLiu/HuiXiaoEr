@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.recycle.model;
 import android.app.Application;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.google.gson.Gson;
@@ -13,20 +14,20 @@ import com.jess.arms.di.scope.ActivityScope;
 
 import javax.inject.Inject;
 
-import com.geek.huixiaoer.mvp.recycle.contract.ForumPostContract;
+import com.geek.huixiaoer.mvp.recycle.contract.ForumContract;
 
 import io.reactivex.Observable;
 
 
 @ActivityScope
-public class ForumPostModel extends BaseModel implements ForumPostContract.Model {
+public class ForumModel extends BaseModel implements ForumContract.Model {
     @Inject
     Gson mGson;
     @Inject
     Application mApplication;
 
     @Inject
-    public ForumPostModel(IRepositoryManager repositoryManager) {
+    public ForumModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
     }
 
@@ -38,7 +39,8 @@ public class ForumPostModel extends BaseModel implements ForumPostContract.Model
     }
 
     @Override
-    public Observable<BaseResponse<ArticleBean>> forumPost(String token, String title, String category, String content) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).forumPost(token, title, category, content);
+    public Observable<BaseResponse<BaseArrayData<ArticleBean>>> articleList(int pageNumber, int pageSize, String type, String category) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).articleList(pageNumber,
+                pageSize, type, category);
     }
 }

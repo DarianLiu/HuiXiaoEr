@@ -1,6 +1,8 @@
 package com.geek.huixiaoer.storage.entity.recycle;
 
-public class ReviewBean {
+import java.io.Serializable;
+
+public class ReviewBean implements Serializable{
         /**
          * replyId : null
          * reviewId : 149
@@ -13,21 +15,21 @@ public class ReviewBean {
          * createDate : 1492483433000
          */
 
-        private Object replyId;
+        private String replyId;
         private String reviewId;
         private String content;
         private String memberId;
         private String headUrl;
         private String nickName;
-        private Object commentByUserId;
-        private Object commentByUserNickName;
+        private String commentByUserId;
+        private String commentByUserNickName;
         private long createDate;
 
-        public Object getReplyId() {
+        public String getReplyId() {
             return replyId;
         }
 
-        public void setReplyId(Object replyId) {
+        public void setReplyId(String replyId) {
             this.replyId = replyId;
         }
 
@@ -71,19 +73,19 @@ public class ReviewBean {
             this.nickName = nickName;
         }
 
-        public Object getCommentByUserId() {
+        public String getCommentByUserId() {
             return commentByUserId;
         }
 
-        public void setCommentByUserId(Object commentByUserId) {
+        public void setCommentByUserId(String commentByUserId) {
             this.commentByUserId = commentByUserId;
         }
 
-        public Object getCommentByUserNickName() {
+        public String getCommentByUserNickName() {
             return commentByUserNickName;
         }
 
-        public void setCommentByUserNickName(Object commentByUserNickName) {
+        public void setCommentByUserNickName(String commentByUserNickName) {
             this.commentByUserNickName = commentByUserNickName;
         }
 

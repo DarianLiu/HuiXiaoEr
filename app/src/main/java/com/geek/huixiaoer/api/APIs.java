@@ -205,14 +205,14 @@ public interface APIs {
 
 
 
-        /*--------垃圾回收模块---------*/
+        /*--------享环保模块---------*/
         /**
-         * 垃圾回收列表
+         * 论坛
          */
         String articleList = "member/article/list.jhtml";
 
         /**
-         * 垃圾回收列表
+         * 论坛发帖
          */
         String articleAdd = "member/article/appArticle.jhtml";
 

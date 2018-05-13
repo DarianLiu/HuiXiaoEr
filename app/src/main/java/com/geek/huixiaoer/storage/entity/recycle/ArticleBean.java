@@ -1,5 +1,7 @@
 package com.geek.huixiaoer.storage.entity.recycle;
 
+import com.geek.huixiaoer.storage.entity.ImageBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -61,6 +63,24 @@ public class ArticleBean implements Serializable{
     private String latitude;
     private List<ReviewBean> assistantContents;
     private List<String> images;
+    private ImageBean image;
+    private List<ContentBean> contentList;
+
+    public void setContentList(List<ContentBean> contentList) {
+        this.contentList = contentList;
+    }
+
+    public List<ContentBean> getContentList() {
+        return contentList;
+    }
+
+    public ImageBean getImage() {
+        return image;
+    }
+
+    public void setImage(ImageBean image) {
+        this.image = image;
+    }
 
     public String getIsAttention() {
         return isAttention;

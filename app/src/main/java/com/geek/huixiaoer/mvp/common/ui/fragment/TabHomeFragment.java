@@ -299,15 +299,15 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateHotspot(List<ArticleBean> hotspotList) {
-        tvArticleNameFirst.setText(hotspotList.get(0).getContent());
+        tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameSecond.setText(hotspotList.get(1).getContent());
+        tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameThird.setText(hotspotList.get(2).getContent());
+        tvArticleNameThird.setText(hotspotList.get(2).getTitle());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
     }
@@ -323,7 +323,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsOne = goodsList.get(0);
             if (goodsOne.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsOne.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
+//                        .url(goodsOne.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
                         .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsOne).build());
             }
@@ -360,8 +360,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsTwo = goodsList.get(1);
             if (goodsTwo.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsTwo.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsTwo.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsTwo).build());
             }
             tvTitleTwo.setText(goodsTwo.getName());
@@ -397,8 +398,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsThree = goodsList.get(2);
             if (goodsThree.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsThree.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsThree.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsThree).build());
             }
             tvTitleThree.setText(goodsThree.getName());
@@ -434,8 +436,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsFour = goodsList.get(3);
             if (goodsFour.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsFour.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsFour.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsFour).build());
             }
             tvTitleFour.setText(goodsFour.getName());
@@ -471,8 +474,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsFive = goodsList.get(4);
             if (goodsFive.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsFive.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsFive.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsFive).build());
             }
             tvTitleFive.setText(goodsFive.getName());
@@ -508,8 +512,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsSix = goodsList.get(5);
             if (goodsSix.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsSix.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsSix.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsSix).build());
             }
             tvTitleSix.setText(goodsSix.getName());
@@ -546,8 +551,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsSeven = goodsList.get(6);
             if (goodsSeven.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsSeven.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsSeven.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsSeven).build());
             }
             tvTitleSeven.setText(goodsSeven.getName());
@@ -584,8 +590,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GoodsBean goodsEight = goodsList.get(7);
             if (goodsEight.getMediumImage() != null) {
                 mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
-                        .url(goodsEight.getMediumImage().getUrl()).fallback(R.mipmap.ic_launcher)
-                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                        .url(goodsEight.getMediumImage().getUrl())
+//                        .fallback(R.mipmap.ic_launcher)
+//                        .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
                         .transformation(new CenterCrop()).imageView(ivGoodsEight).build());
             }
             tvTitleEight.setText(goodsEight.getName());

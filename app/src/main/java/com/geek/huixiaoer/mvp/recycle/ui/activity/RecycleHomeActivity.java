@@ -19,10 +19,8 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
-import com.geek.huixiaoer.mvp.common.ui.activity.CaptchaActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
-import com.geek.huixiaoer.mvp.person.ui.activity.MessageListActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleHomeContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleHomeComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleHomeModule;
@@ -38,12 +36,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
+/**
+ * 享环保主页
+ */
 public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> implements RecycleHomeContract.View {
 
     @BindView(R.id.tv_toolbar_title)
@@ -284,7 +284,8 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
 //                launchActivity(new Intent(RecycleHomeActivity.this, CaptchaActivity.class));
                 break;
             case R.id.btn_forum:
-                launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));
+//                launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this,ForumActivity.class));
                 break;
             case R.id.btn_integral:
                 launchActivity(new Intent(RecycleHomeActivity.this,MemberRankingActivity.class));

@@ -404,6 +404,20 @@ public interface BaseApi {
                                                      @Field("content") String content);
 
     /**
+     * 论坛发帖
+     *
+     * @param token    token
+     * @param category 文章类型
+     * @param content  内容
+     */
+    @FormUrlEncoded
+    @POST(APIs.API.articleAdd)
+    Observable<BaseResponse<ArticleBean>> forumPost(@Field("token") String token,
+                                                    @Field("title") String title,
+                                                    @Field("category") String category,
+                                                    @Field("content") String content);
+
+    /**
      * 文章添加评论
      *
      * @param token     用户Token

@@ -176,7 +176,9 @@
         <activity
             android:name=".mvp.recycle.ui.activity.BlackListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.recycle.ui.activity.ForumPostActivity"></activity>
+        <activity android:name=".mvp.recycle.ui.activity.ForumPostActivity" />
+        <activity android:name=".mvp.recycle.ui.activity.ForumActivity" />
+        <activity android:name=".mvp.recycle.ui.activity.ForumPostDetailActivity"></activity>
     </application>
 
 </manifest>

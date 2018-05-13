@@ -26,8 +26,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.StringUtils;
+import com.jess.arms.http.imageloader.glide.GlideArms;
 import com.jess.arms.utils.DeviceUtils;
 
 import org.json.JSONArray;
@@ -369,43 +371,44 @@ public class RichTextEditor extends InterceptLinearLayout {
                 LayoutParams.MATCH_PARENT, imageHeight);
         imageView.setLayoutParams(lp);
 
+        bmp.recycle();
         allLayout.addView(imageLayout);
         addEditTextAtIndex(-1, "");
     }
 
-//    /**
-//     * 插入网络图片
-//     *
-//     * @param url
-//     */
-//    public void insertImageByURL(String url, String height, String width, Context context) {
-//        if (url == null)
-//            return;
-//        final RelativeLayout imageLayout = createImageLayout(false);
-//        final DataImageView imageView = (DataImageView) imageLayout
-//                .findViewById(R.id.edit_imageView);
-//
-//        Glide.with(context)
-//                .load(url)
+    /**
+     * 插入网络图片
+     *
+     * @param url
+     */
+    public void insertImageByURL(String url, String height, String width, Context context) {
+        if (url == null)
+            return;
+        final RelativeLayout imageLayout = createImageLayout(false);
+        final DataImageView imageView = (DataImageView) imageLayout
+                .findViewById(R.id.edit_imageView);
+
+        GlideArms.with(context)
+                .load(url)
 //                .placeholder(R.mipmap.ic_loading_img)
 //                .error(R.mipmap.ic_loading_img)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .fitCenter().into(imageView);
-//
-//        // 调整imageView的高度
-//        WindowManager manager = (WindowManager) context
-//                .getSystemService(Context.WINDOW_SERVICE);
-//        Display display = manager.getDefaultDisplay();
-//        int imageHeight = (display.getWidth() - DeviceUtils.dip2px(context, 24))
-//                * Integer.parseInt(height) / Integer.parseInt(width);
-//
-//        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-//                LayoutParams.MATCH_PARENT, imageHeight);
-//        imageView.setLayoutParams(lp);
-//
-//        allLayout.addView(imageLayout);
-//        addEditTextAtIndex(-1, "");
-//    }
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .fitCenter().into(imageView);
+
+        // 调整imageView的高度
+        WindowManager manager = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        int imageHeight = (int) ((display.getWidth() - DeviceUtils.dpToPixel(context, 24))
+                        * Integer.parseInt(height) / Integer.parseInt(width));
+
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT, imageHeight);
+        imageView.setLayoutParams(lp);
+
+        allLayout.addView(imageLayout);
+        addEditTextAtIndex(-1, "");
+    }
 
     /**
      * 根据view的宽度，动态缩放bitmap尺寸
