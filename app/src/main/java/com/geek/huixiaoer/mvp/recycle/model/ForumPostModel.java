@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.recycle.model;
 import android.app.Application;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.google.gson.Gson;
@@ -39,6 +40,6 @@ public class ForumPostModel extends BaseModel implements ForumPostContract.Model
 
     @Override
     public Observable<BaseResponse<ArticleBean>> forumPost(String token, String title, String category, String content) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).forumPost(token, title, category, content);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).forumPost(token,StringUtils.stringUTF8(title), category, StringUtils.stringUTF8(content));
     }
 }

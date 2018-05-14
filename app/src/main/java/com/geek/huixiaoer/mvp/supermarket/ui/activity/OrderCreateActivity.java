@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.alipay.sdk.app.EnvUtils;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.dialog.SimpleEditDialogFragment;
 import com.geek.huixiaoer.mvp.person.ui.activity.MyReceiverActivity;
@@ -208,7 +209,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
         switchBalance.setOnCheckedChangeListener((buttonView, isChecked) -> {
             isUseBalance = isChecked ? "1" : "0";
             mPresenter.orderCalculate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
-                    new Gson().toJson(memoMap));
+                    StringUtils.stringUTF8(new Gson().toJson(memoMap)));
         });
 
         //开具发票
@@ -220,7 +221,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
                 tvInvoice.setVisibility(View.GONE);
             }
             mPresenter.orderCalculate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
-                    new Gson().toJson(memoMap));
+                    StringUtils.stringUTF8(new Gson().toJson(memoMap)));
         });
 
         elvCart.addFooterView(footView);
@@ -259,7 +260,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mCouponCode = mCouponList.get(position).getValue();
                 mPresenter.orderCalculate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
-                        new Gson().toJson(memoMap));
+                        StringUtils.stringUTF8(new Gson().toJson(memoMap)));
             }
 
             @Override
@@ -393,7 +394,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
             showMessage(error_invoice_title_null);
         } else {
             mPresenter.orderCreate(mReceiverId, mCouponCode, mInvoiceTitle, isUseBalance,
-                    new Gson().toJson(memoMap));
+                    StringUtils.stringUTF8(new Gson().toJson(memoMap)));
         }
     }
 

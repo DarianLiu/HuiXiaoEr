@@ -6,6 +6,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -42,4 +43,11 @@ public class RecycleHomeModel extends BaseModel implements RecycleHomeContract.M
     public Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).banner(positonId);
     }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize, messageType);
+    }
+
+
 }

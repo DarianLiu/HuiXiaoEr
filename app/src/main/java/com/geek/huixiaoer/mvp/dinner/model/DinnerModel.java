@@ -6,6 +6,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
 import com.jess.arms.integration.IRepositoryManager;
@@ -40,6 +41,11 @@ public class DinnerModel extends BaseModel implements DinnerContract.Model {
     @Override
     public Observable<BaseResponse<BaseArrayData<GoodsBean>>> dishList(int pageNumber, int pageSize, String startPrice, String endPrice, String orderType) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).dishList(pageNumber, pageSize, startPrice, endPrice, orderType);
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize, messageType);
     }
 
     @Override

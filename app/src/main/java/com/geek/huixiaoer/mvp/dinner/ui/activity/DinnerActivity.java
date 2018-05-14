@@ -28,7 +28,9 @@ import com.geek.huixiaoer.mvp.dinner.di.module.DinnerModule;
 import com.geek.huixiaoer.mvp.dinner.presenter.DinnerPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.adapter.GoodsAdapter;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -46,7 +48,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -72,6 +73,8 @@ public class DinnerActivity extends BaseActivity<DinnerPresenter> implements Din
     LinearLayout autoScrollIndicator;
     @BindView(R.id.rl_banner)
     RelativeLayout rlBanner;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -98,6 +101,7 @@ public class DinnerActivity extends BaseActivity<DinnerPresenter> implements Din
 
         setBannerHeight();
         mPresenter.getBanner();
+        mPresenter.messageList(10);
 
         initRecycleView();
 
@@ -190,6 +194,20 @@ public class DinnerActivity extends BaseActivity<DinnerPresenter> implements Din
         mBannerBeen = bannerBean;
         addScrollImage(bannerBean.size());
         initAutoScrollViewPager();
+    }
+
+    @Override
+    public void setMessageList(BaseArrayData<MessageBean> messageList) {
+        StringBuilder stringBuffer = new StringBuilder();
+        int size = messageList.getPageData().size();
+        for (int i = 0; i < size; i++) {
+            MessageBean message = messageList.getPageData().get(i);
+            stringBuffer.append("【").append(message.getTitle()).append("】").append(message.getContent());
+            if (i < size - 1) {
+                stringBuffer.append("      ");
+            }
+        }
+        tvMessage.setText(stringBuffer.toString());
     }
 
     /**

@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.person.model;
 import android.app.Application;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.person.contract.ReceiverAddContract;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
@@ -37,11 +38,11 @@ public class ReceiverAddModel extends BaseModel implements ReceiverAddContract.M
 
     @Override
     public Observable<BaseResponse<ReceiverBean>> receiverSave(String token, String consignee, String areaName, String address, String zipCode, String phone, boolean isDefault, String areaId) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverSave(token, consignee, areaName, address, zipCode, phone, isDefault, areaId);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverSave(token, StringUtils.stringUTF8(consignee) ,StringUtils.stringUTF8(areaName) ,StringUtils.stringUTF8(address) , zipCode, phone, isDefault, areaId);
     }
 
     @Override
     public Observable<BaseResponse<ReceiverBean>> receiverUpdate(String token, String consignee, String areaName, String address, String zipCode, String phone, boolean isDefault, String areaId, String id, String oId) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverUpdate(token, consignee, areaName, address, zipCode, phone, isDefault, areaId, id, oId);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverUpdate(token,StringUtils.stringUTF8(consignee) ,StringUtils.stringUTF8(areaName) ,StringUtils.stringUTF8(address) , zipCode, phone, isDefault, areaId, id, oId);
     }
 }

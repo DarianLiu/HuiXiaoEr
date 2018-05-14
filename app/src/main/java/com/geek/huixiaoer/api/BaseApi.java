@@ -43,12 +43,18 @@ public interface BaseApi {
 
     /**
      * 消息列表
+     * http://localhost:8090/shopxx/mobile/member/message/list.jhtml?pageNumber=1&pageSize=3& messageType=0
+     * pageNumber:当前页数
+     * pageSize:每页显示数量
+     * messageType:消息分类（0:系统通知 1:折扣店通知 2:招牌菜通知 3:帮你忙通知 4:享环保通知）
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
      */
     @GET(APIs.API.messageList)
-    Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(@Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
+    Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(@Query("pageNumber") int pageNumber,
+                                                                     @Query("pageSize") int pageSize,
+                                                                     @Query("messageType") int messageType);
 
     /**
      * 环保热帖
@@ -443,7 +449,7 @@ public interface BaseApi {
      * @param token 登录人token
      */
     @GET(APIs.API.findService)
-    Observable<BaseResponse<ServiceBean>> findService(@Query("token") String token);
+    Observable<BaseResponse<ServiceBean>> findService(@Query("token") String token, @Query("goodId") String goodId);
 
     /**
      * 设置忙碌客服
@@ -566,10 +572,10 @@ public interface BaseApi {
      * @param productId
      * @param amount
      * @param memo
-     * @param id 客服融云注册id
+     * @param id        客服融云注册id
      */
     @POST(APIs.API.createServiceByCustomer)
-    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("token")String token,@Query("consignee") String consignee, @Query("address") String address,
+    Observable<BaseResponse<CreateServiceOrderBean>> createServiceOrder(@Query("token") String token, @Query("consignee") String consignee, @Query("address") String address,
                                                                         @Query("zipCode") String zipCode, @Query("mobile") String mobile, @Query("goodId") String productId,
                                                                         @Query("amount") String amount, @Query("memo") String memo, @Query("id") String id);
 

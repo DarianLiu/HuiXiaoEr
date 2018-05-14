@@ -5,6 +5,7 @@ import android.app.Application;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -47,6 +48,24 @@ public class RecycleHomePresenter extends BasePresenter<RecycleHomeContract.Mode
                     @Override
                     public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
                         mRootView.updateBanner(bannerBeanBaseArrayData.getPageData());
+                    }
+                });
+    }
+
+    /**
+     * 消息列表
+     *
+     * @param pageSize 每页数量
+     */
+    public void messageList(int pageSize) {
+//        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.messageList(1, 10, 4)
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<MessageBean> bannerBeanBaseArrayData) {
+                        mRootView.setMessageList(bannerBeanBaseArrayData);
                     }
                 });
     }

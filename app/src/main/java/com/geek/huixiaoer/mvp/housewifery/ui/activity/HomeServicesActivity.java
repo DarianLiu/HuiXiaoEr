@@ -27,7 +27,9 @@ import com.geek.huixiaoer.mvp.housewifery.di.component.DaggerHomeServicesCompone
 import com.geek.huixiaoer.mvp.housewifery.di.module.HomeServicesModule;
 import com.geek.huixiaoer.mvp.housewifery.presenter.HomeServicesPresenter;
 import com.geek.huixiaoer.mvp.housewifery.ui.adapter.ServiceAdapter;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -41,9 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -67,6 +66,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
     LinearLayout autoScrollIndicator;
     @BindView(R.id.rl_banner)
     RelativeLayout rlBanner;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
 
     private ServiceAdapter mAdapter;
     private List<GoodsBean> mHomeServices = new ArrayList<>();
@@ -97,7 +98,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         tvToolbarTitle.setText(R.string.title_home_service);
 
         setBannerHeight();
-//        mPresenter.getBanner();
+        mPresenter.getBanner();
+        mPresenter.messageList(10);
         initRefreshLayout();
         initRecyclerView();
     }
@@ -153,6 +155,20 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
     @Override
     public void setServiceState(String serviceId, int serverId) {
         mPresenter.setServiceB(serviceId, serverId);
+    }
+
+    @Override
+    public void setMessageList(BaseArrayData<MessageBean> messageList) {
+        StringBuilder stringBuffer = new StringBuilder();
+        int size = messageList.getPageData().size();
+        for (int i = 0; i < size; i++) {
+            MessageBean message = messageList.getPageData().get(i);
+            stringBuffer.append("【").append(message.getTitle()).append("】").append(message.getContent());
+            if (i < size - 1) {
+                stringBuffer.append("      ");
+            }
+        }
+        tvMessage.setText(stringBuffer.toString());
     }
 
     /**

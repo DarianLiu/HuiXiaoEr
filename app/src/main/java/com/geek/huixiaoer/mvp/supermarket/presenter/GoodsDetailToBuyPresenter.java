@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
@@ -53,7 +54,7 @@ public class GoodsDetailToBuyPresenter extends BasePresenter<GoodsDetailToBuyCon
     }
 
     public void createShopOrder(String consignee, String address, String zipCode, String mobile, String goodsId, String amount, String memo ) {
-        mModel.createShopOrder(consignee,address,zipCode,mobile,goodsId,amount,memo)
+        mModel.createShopOrder(StringUtils.stringUTF8(consignee),StringUtils.stringUTF8(address),zipCode,mobile,goodsId,amount,StringUtils.stringUTF8(memo))
                 .retryWhen(new RetryWithDelay(0, 30))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))

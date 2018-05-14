@@ -35,14 +35,14 @@ public class ServiceItemHolder extends BaseHolder<GoodsBean> {
 
     @Override
     public void setData(GoodsBean data, int position) {
-        float itemWidth = (DeviceUtils.getScreenWidth(goodsImg.getContext()) - 45) / 2;
-        ViewGroup.LayoutParams params = goodsImg.getLayoutParams();
-        int height = (int) Double.parseDouble(data.getMediumImage().getHeight());
-        int width = (int) Double.parseDouble(data.getMediumImage().getWidth());
-//        设置图片的宽高
-        params.width = width;
-        params.height = height;
-        goodsImg.setLayoutParams(params);
+//        float itemWidth = (DeviceUtils.getScreenWidth(goodsImg.getContext()) - 45) / 2;
+//        ViewGroup.LayoutParams params = goodsImg.getLayoutParams();
+//        int height = (int) Double.parseDouble(data.getMediumImage().getHeight());
+//        int width = (int) Double.parseDouble(data.getMediumImage().getWidth());
+////        设置图片的宽高
+//        params.width = width;
+//        params.height = height;
+//        goodsImg.setLayoutParams(params);
 
         GlideArms.with(goodsImg.getContext()).load(data.getMediumImage().getUrl()).override(300,300).into(goodsImg);
         nameTV.setText(data.getName());

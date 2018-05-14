@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -48,6 +49,7 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
     EditText priceEdit;
 
     private String targetId;//融云客服ID
+
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerHelpOrderConfirmComponent //如找不到该类,请编译一下项目
@@ -78,33 +80,36 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
     public void onViewClicked(View view) {
         String trueName = trueNameEdit.getText().toString();
         if (TextUtils.isEmpty(trueName)) {
-            Toast.makeText(this,"姓名不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "姓名不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
         String mobile = mobileEdit.getText().toString();
         if (TextUtils.isEmpty(mobile)) {
-            Toast.makeText(this,"手机号不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
         String address = addressEdit.getText().toString();
         if (TextUtils.isEmpty(address)) {
-            Toast.makeText(this,"地址不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "地址不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
         String price = priceEdit.getText().toString();
         if (TextUtils.isEmpty(price)) {
-            Toast.makeText(this,"金额不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "金额不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
         switch (view.getId()) {
             case R.id.submitBtn:
                 //consignee,address,zipCode,mobile,goodsId,amount,memo
                 String serviceId = DataHelper.getStringSF(this, Constants.CASH_SERVICE_ID);
-                mPresenter.createServiceOrder(trueName,address,"00000",mobile,serviceId,price,String.valueOf(System.currentTimeMillis()),targetId);
+                mPresenter.createServiceOrder(StringUtils.stringUTF8(trueName),
+                        StringUtils.stringUTF8(address), "00000", mobile, serviceId, price, String.valueOf(System.currentTimeMillis()), targetId);
                 break;
         }
     }
+
     private CircleProgressDialog loadingDialog;
+
     @Override
     public void showLoading() {
         if (loadingDialog == null) {

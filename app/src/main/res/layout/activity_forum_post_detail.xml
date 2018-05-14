@@ -11,9 +11,11 @@
         android:layout_height="match_parent">
 
         <com.geek.huixiaoer.common.widget.richEditText.InterceptLinearLayout
+            android:id="@+id/line_intercept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,6 +57,8 @@
 
             <com.geek.huixiaoer.common.widget.richEditText.RichTextEditor
                 android:id="@+id/richText"
+                android:clickable="false"
+                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/bg_color_white"

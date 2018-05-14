@@ -328,7 +328,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)
                 && validateOther(cardNo, cityCode, areaCode, address) && validateMobile(mobile) && validateVeryCode(veryCode)) {
             mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode, communityCode,
-                    address, mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer ? 1 : 0);
+                    StringUtils.stringUTF8(address), mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer ? 1 : 0);
         }
     }
 

@@ -25,7 +25,9 @@ import com.geek.huixiaoer.mvp.recycle.contract.RecycleHomeContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleHomeComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleHomeModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.RecycleHomePresenter;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.http.imageloader.glide.GlideArms;
@@ -56,8 +58,8 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     LinearLayout autoScrollIndicator;
     @BindView(R.id.rl_banner)
     RelativeLayout rlBanner;
-    @BindView(R.id.tv_notice)
-    TextView tvNotice;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
     @BindView(R.id.btn_register)
     Button btnRegister;
     @BindView(R.id.loginBtn)
@@ -99,6 +101,7 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
             loginBtn.setVisibility(View.GONE);
         }
         mPresenter.getBanner();
+        mPresenter.messageList(10);
     }
 
     /**
@@ -121,6 +124,20 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
         mBannerBeen = bannerBean;
         addScrollImage(bannerBean.size());
         initAutoScrollViewPager();
+    }
+
+    @Override
+    public void setMessageList(BaseArrayData<MessageBean> messageList) {
+        StringBuilder stringBuffer = new StringBuilder();
+        int size = messageList.getPageData().size();
+        for (int i = 0; i < size; i++) {
+            MessageBean message = messageList.getPageData().get(i);
+            stringBuffer.append("【").append(message.getTitle()).append("】").append(message.getContent());
+            if (i < size - 1) {
+                stringBuffer.append("      ");
+            }
+        }
+        tvMessage.setText(stringBuffer.toString());
     }
 
     @Override

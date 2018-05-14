@@ -116,7 +116,6 @@ public interface APIs {
          */
         String carouselList = "member/article/carouselList.jhtml";
 
-
         /**
          * 消息列表
          */

@@ -4,6 +4,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -38,5 +39,10 @@ public class ShopModel extends BaseModel implements ShopContract.Model {
     @Override
     public Observable<BaseResponse<BaseArrayData<CategoryBean>>> goodsCategoryRoot() {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsCategoryRoot();
+    }
+
+    @Override
+    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize, messageType);
     }
 }

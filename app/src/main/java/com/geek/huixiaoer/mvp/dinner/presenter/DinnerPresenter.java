@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
@@ -103,6 +104,24 @@ public class DinnerPresenter extends BasePresenter<DinnerContract.Model, DinnerC
                                         goodsBaseArrayData.getPageData().size());
                             }
                         }
+                    }
+                });
+    }
+
+    /**
+     * 消息列表
+     *
+     * @param pageSize 每页数量
+     */
+    public void messageList(int pageSize) {
+//        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.messageList(1, 10, 2)
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<MessageBean> bannerBeanBaseArrayData) {
+                        mRootView.setMessageList(bannerBeanBaseArrayData);
                     }
                 });
     }

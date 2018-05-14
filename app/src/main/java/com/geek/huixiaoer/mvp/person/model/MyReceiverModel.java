@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.person.model;
 import android.app.Application;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.person.contract.MyReceiverContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
@@ -41,7 +42,7 @@ public class MyReceiverModel extends BaseModel implements MyReceiverContract.Mod
 
     @Override
     public Observable<BaseResponse<ReceiverBean>> receiverUpdate(String token, String consignee, String areaName, String address, String zipCode, String phone, boolean isDefault, String areaId, String id, String oId) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverUpdate(token, consignee, areaName, address, zipCode, phone, isDefault, areaId, id, oId);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).receiverUpdate(token, StringUtils.stringUTF8(consignee) ,StringUtils.stringUTF8(areaName) ,StringUtils.stringUTF8(address) , zipCode, phone, isDefault, areaId, id, oId);
     }
 
     @Override

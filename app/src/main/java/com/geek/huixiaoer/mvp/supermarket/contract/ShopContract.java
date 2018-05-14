@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.contract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
@@ -18,6 +19,9 @@ public interface ShopContract {
         void updateBanner(List<BannerBean> bannerBean);
 
         void setViewPager(List<CategoryBean> categoryBeanList);
+
+        void setMessageList(BaseArrayData<MessageBean> messageList);
+
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
@@ -30,5 +34,7 @@ public interface ShopContract {
         Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId);
 
         Observable<BaseResponse<BaseArrayData<CategoryBean>>> goodsCategoryRoot();
+
+        Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType);
     }
 }

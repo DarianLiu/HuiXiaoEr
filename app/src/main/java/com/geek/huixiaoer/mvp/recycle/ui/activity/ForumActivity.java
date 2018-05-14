@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -24,7 +23,6 @@ import com.geek.huixiaoer.mvp.recycle.presenter.ForumPresenter;
 import com.geek.huixiaoer.mvp.recycle.ui.adpater.ForumAdapter;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
-import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;

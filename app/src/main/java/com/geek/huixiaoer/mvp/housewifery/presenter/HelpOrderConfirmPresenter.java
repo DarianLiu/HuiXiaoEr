@@ -7,7 +7,6 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.CreateServiceOrderBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
 import com.jess.arms.integration.AppManager;
@@ -31,11 +30,8 @@ import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.RxLifecycleUtils;
 
-import org.simple.eventbus.EventBus;
 
 import java.util.Map;
-
-import static com.geek.huixiaoer.common.config.EventBusTags.ISLogin;
 
 
 @ActivityScope

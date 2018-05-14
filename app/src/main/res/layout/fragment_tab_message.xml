@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.geek.huixiaoer.common.widget.OptionView
-        android:id="@+id/option_msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:option_title_text="@string/hint_message_system"
-        app:option_title_text_color="@color/color_text_caption" />
+    <!--<com.geek.huixiaoer.common.widget.OptionView-->
+    <!--android:id="@+id/option_msg"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:option_title_text="@string/hint_message_system"-->
+    <!--app:option_title_text_color="@color/color_text_caption" />-->
+
+    <include layout="@layout/include_recyclerview" />
 
 </LinearLayout>

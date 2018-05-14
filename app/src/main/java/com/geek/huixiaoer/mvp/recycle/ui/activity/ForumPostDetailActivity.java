@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.AndroidUtil;
 import com.geek.huixiaoer.common.utils.DateUtil;
+import com.geek.huixiaoer.common.widget.richEditText.InterceptLinearLayout;
 import com.geek.huixiaoer.common.widget.richEditText.RichTextEditor;
 import com.geek.huixiaoer.mvp.recycle.contract.ForumPostDetailContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerForumPostDetailComponent;
@@ -27,7 +28,6 @@ import com.jess.arms.utils.ArmsUtils;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -41,6 +41,8 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.line_intercept)
+    InterceptLinearLayout line_intercept;
     @BindView(R.id.richText)
     RichTextEditor richText;
     @BindView(R.id.iv_user_head)
@@ -73,6 +75,7 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.title_forum_post_detail);
 
+        line_intercept.setIntercept(true);
         richText.setIntercept(true);
 
         ArticleBean articleBean = (ArticleBean) getIntent().getExtras().getSerializable("forum");

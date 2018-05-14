@@ -15,6 +15,7 @@ import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.JsonUtil;
 import com.geek.huixiaoer.common.utils.RegexUtils;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.common.widget.OptionView;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.wheelview.city.ChooseCityWheel;
@@ -211,9 +212,9 @@ public class ReceiverAddActivity extends BaseActivity<ReceiverAddPresenter> impl
         } else if (TextUtils.isEmpty(postal_code) && postal_code.length() != 6) {
             showMessage(error_receiver_postal_code);
         } else if (TextUtils.equals(type, "add")) {
-            mPresenter.receiverSave(name, mAreaName, address, postal_code, phone, isDefault, mAreaId);
+            mPresenter.receiverSave(StringUtils.stringUTF8(name),StringUtils.stringUTF8(mAreaName) ,StringUtils.stringUTF8(address) , postal_code, phone, isDefault, mAreaId);
         } else {
-            mPresenter.receiverUpdate(mPosition, name, mAreaName, address, postal_code, phone, isDefault, mAreaId, mReceiverId, mReceiverId);
+            mPresenter.receiverUpdate(mPosition,StringUtils.stringUTF8(name) ,StringUtils.stringUTF8(mAreaName) ,StringUtils.stringUTF8(address) , postal_code, phone, isDefault, mAreaId, mReceiverId, mReceiverId);
         }
     }
 

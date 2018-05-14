@@ -51,7 +51,7 @@ public class MessageListPresenter extends BasePresenter<MessageListContract.Mode
      */
     public void messageList(int pageSize) {
 //        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
-        mModel.messageList(pageNumber, pageSize)
+        mModel.messageList(pageNumber, pageSize, 0)
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {

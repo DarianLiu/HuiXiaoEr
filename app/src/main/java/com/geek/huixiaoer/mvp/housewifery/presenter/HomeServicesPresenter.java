@@ -7,6 +7,7 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.di.scope.ActivityScope;
@@ -80,7 +81,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      * 查询闲置客服
      */
     public void findService(String token, int serviceId) {
-        mModel.findService(token).retryWhen(new RetryWithDelay(3, 2))
+        mModel.findService(token,String.valueOf(serviceId)).retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
@@ -104,6 +105,24 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                     public void onNext(@NonNull ServiceBean serviceBean) {
                         DataHelper.setStringSF(mApplication, Constants.CASH_SERVICE_ID,String.valueOf(serviceId));
                         RongIM.getInstance().startPrivateChat(mAppManager.getTopActivity(), ryToken, String.valueOf(serviceId));
+                    }
+                });
+    }
+
+    /**
+     * 消息列表
+     *
+     * @param pageSize 每页数量
+     */
+    public void messageList(int pageSize) {
+//        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.messageList(1, 10, 3)
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<MessageBean> bannerBeanBaseArrayData) {
+                        mRootView.setMessageList(bannerBeanBaseArrayData);
                     }
                 });
     }

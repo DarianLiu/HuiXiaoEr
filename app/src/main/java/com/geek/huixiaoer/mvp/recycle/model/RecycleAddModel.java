@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.mvp.recycle.model;
 
 import com.geek.huixiaoer.api.BaseApi;
+import com.geek.huixiaoer.common.utils.StringUtils;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleAddContract;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
@@ -28,6 +29,6 @@ public class RecycleAddModel extends BaseModel implements RecycleAddContract.Mod
 
     @Override
     public Observable<BaseResponse<ArticleBean>> recycleAdd(String token,String category,String content) {
-        return  mRepositoryManager.obtainRetrofitService(BaseApi.class).articleAdd(token, category, content);
+        return  mRepositoryManager.obtainRetrofitService(BaseApi.class).articleAdd(token, category, StringUtils.stringUTF8(content) );
     }
 }

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_color_white">
+    android:background="@color/bg_color_white"
+    android:orientation="vertical">
 
     <include layout="@layout/include_toolbar" />
 
@@ -28,74 +28,75 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_notice"
+        android:id="@+id/tv_message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:textSize="@dimen/t16"
+        android:layout_height="wrap_content"
         android:ellipsize="marquee"
-        android:text="通知：澳洲西拉子干红葡萄酒优惠打折扣"
-        android:padding="15dp"
-        android:textColor="@color/color_text_caption"/>
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="10dp"
+        android:textColor="@color/color_text_caption"
+        android:textSize="@dimen/t14" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_default"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/t16"
+        android:background="@drawable/selector_btn_default"
         android:text="登 录"
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_default"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/t16"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_register"
-        android:layout_marginTop="15dp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16" />
 
     <Button
         android:id="@+id/btn_forum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_default"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/t16"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_forum"
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16" />
 
-    <Button  android:id="@+id/btn_integral"
+    <Button
+        android:id="@+id/btn_integral"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_default"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/t16"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_integral"
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16" />
 
-    <Button  android:id="@+id/btn_blacklist"
+    <Button
+        android:id="@+id/btn_blacklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_default"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/t16"
+        android:background="@drawable/selector_btn_default"
         android:text="@string/btn_blacklist"
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/t16" />
 
 </LinearLayout>

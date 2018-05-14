@@ -27,19 +27,33 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="@color/color_text_caption"
+        android:textSize="@dimen/t14" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         android:background="@color/white"
+        android:visibility="gone"
         app:tabIndicatorColor="@color/color_btn_text_selected"
         app:tabSelectedTextColor="@color/color_btn_text_selected"
-        app:tabTextColor="@color/color_text_caption"
-        android:visibility="gone"/>
+        app:tabTextColor="@color/color_text_caption" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

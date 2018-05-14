@@ -29,8 +29,9 @@ import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumPostDetailActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleHomeActivity;
-import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleListActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailToBuyActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.ShopActivity;
@@ -49,9 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
@@ -214,6 +213,12 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     TextView tvCostPriceEight;
     @BindView(R.id.rl_goods_eight)
     RelativeLayout rlGoodsEight;
+    @BindView(R.id.option_help_you)
+    OptionView optionHelpYou;
+    @BindView(R.id.option_discount_stor)
+    OptionView optionDiscountStor;
+    @BindView(R.id.option_specialty)
+    OptionView optionSpecialty;
 
     private ImageLoader mImageLoader;
 
@@ -262,7 +267,19 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         });
         optionHotSport.setRightText("更多");
         optionHotSport.setOnClickListener(v ->
-                launchActivity(new Intent(getActivity(), RecycleListActivity.class)));
+                launchActivity(new Intent(getActivity(), ForumActivity.class)));
+
+        optionHelpYou.setRightText("更多");
+        optionHelpYou.setOnClickListener(v ->
+                launchActivity(new Intent(getActivity(), HomeServicesActivity.class)));
+
+        optionDiscountStor.setRightText("更多");
+        optionDiscountStor.setOnClickListener(v ->
+                launchActivity(new Intent(getActivity(), ShopActivity.class)));
+
+        optionSpecialty.setRightText("更多");
+        optionSpecialty.setOnClickListener(v ->
+                launchActivity(new Intent(getActivity(), DinnerActivity.class)));
     }
 
     @Override
@@ -301,15 +318,36 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     public void updateHotspot(List<ArticleBean> hotspotList) {
         tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        tvArticleNameFirst.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(0);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
 
         tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        tvArticleNameSecond.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(1);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
 
         tvArticleNameThird.setText(hotspotList.get(2).getTitle());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        tvArticleNameThird.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(2);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
     }
 
     /**

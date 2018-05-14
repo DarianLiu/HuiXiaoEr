@@ -26,6 +26,6 @@ public interface MessageListContract {
          * @param pageNumber 当前页数
          * @param pageSize   每页显示数量
          */
-        Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize);
+        Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType);
     }
 }

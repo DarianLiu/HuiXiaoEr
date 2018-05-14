@@ -29,7 +29,9 @@ import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;
 import com.geek.huixiaoer.mvp.supermarket.presenter.ShopPresenter;
 import com.geek.huixiaoer.mvp.supermarket.ui.fragment.GoodsListFragment;
+import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -41,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -62,6 +63,8 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
     LinearLayout autoScrollIndicator;
     @BindView(R.id.rl_banner)
     RelativeLayout rlBanner;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
 
     private CircleProgressDialog loadingDialog;
 
@@ -90,6 +93,7 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
 
         mPresenter.getBanner();
         mPresenter.getGoodsCategorys();
+        mPresenter.messageList(10);
         setBannerHeight();
     }
 
@@ -323,6 +327,20 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
             //TabLayout加载viewpager
             tabLayout.setupWithViewPager(viewPager);
         }
+    }
+
+    @Override
+    public void setMessageList(BaseArrayData<MessageBean> messageList) {
+        StringBuilder stringBuffer = new StringBuilder();
+        int size = messageList.getPageData().size();
+        for (int i = 0; i < size; i++) {
+            MessageBean message = messageList.getPageData().get(i);
+            stringBuffer.append("【").append(message.getTitle()).append("】").append(message.getContent());
+            if (i < size - 1) {
+                stringBuffer.append("      ");
+            }
+        }
+        tvMessage.setText(stringBuffer.toString());
     }
 
 }

@@ -235,7 +235,6 @@
                     android:id="@+id/et_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="@string/rule_password"
                     android:hint="@string/hint_address"
                     android:inputType="text"
                     android:maxLines="1"

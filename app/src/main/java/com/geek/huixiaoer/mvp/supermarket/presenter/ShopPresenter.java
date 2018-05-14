@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.supermarket.presenter;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.MessageBean;
 import com.geek.huixiaoer.storage.entity.shop.CategoryBean;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
@@ -53,6 +54,24 @@ public class ShopPresenter extends BasePresenter<ShopContract.Model, ShopContrac
                     @Override
                     public void onNext(@NonNull BaseArrayData<CategoryBean> categoryBaseArrayData) {
                         mRootView.setViewPager(categoryBaseArrayData.getPageData());
+                    }
+                });
+    }
+
+    /**
+     * 消息列表
+     *
+     * @param pageSize 每页数量
+     */
+    public void messageList(int pageSize) {
+//        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
+        mModel.messageList(1, 10, 1)
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull BaseArrayData<MessageBean> bannerBeanBaseArrayData) {
+                        mRootView.setMessageList(bannerBeanBaseArrayData);
                     }
                 });
     }

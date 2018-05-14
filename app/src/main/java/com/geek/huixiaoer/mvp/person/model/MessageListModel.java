@@ -40,7 +40,7 @@ public class MessageListModel extends BaseModel implements MessageListContract.M
     }
 
     @Override
-    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize);
+    public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize,int messageType) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize, messageType);
     }
 }

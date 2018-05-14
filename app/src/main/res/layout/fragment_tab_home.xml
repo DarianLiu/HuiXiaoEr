@@ -333,14 +333,15 @@
 
         </RelativeLayout>
 
-        <TextView
+        <com.geek.huixiaoer.common.widget.OptionView
+            android:id="@+id/option_help_you"
             style="@style/TextCaptionSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/line_bottom_bg"
-            android:padding="15dp"
-            android:text="@string/module_title_help_you" />
+            android:text="@string/module_title_help_you"
+            app:option_background="@drawable/line_bottom_bg"
+            app:option_title_text="@string/module_title_help_you" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -399,14 +400,15 @@
 
         </LinearLayout>
 
-        <TextView
+        <com.geek.huixiaoer.common.widget.OptionView
+            android:id="@+id/option_discount_stor"
             style="@style/TextCaptionSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/line_bottom_bg"
-            android:padding="15dp"
-            android:text="@string/module_discount_store" />
+            android:text="@string/module_title_help_you"
+            app:option_background="@drawable/line_bottom_bg"
+            app:option_title_text="@string/module_discount_store" />
 
         <RelativeLayout
             android:id="@+id/rl_goods_one"
@@ -936,15 +938,14 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView"
+        <com.geek.huixiaoer.common.widget.OptionView
+            android:id="@+id/option_specialty"
             style="@style/TextCaptionSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/line_bottom_bg"
-            android:padding="15dp"
-            android:text="@string/module_specialty" />
+            app:option_background="@drawable/line_bottom_bg"
+            app:option_title_text="@string/module_specialty" />
 
         <LinearLayout
             android:layout_width="match_parent"
