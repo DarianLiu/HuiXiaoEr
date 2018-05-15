@@ -90,7 +90,9 @@ public class TabHomePresenter extends BasePresenter<TabHomeContract.Model, TabHo
                     public void onNext(@NonNull BaseArrayData<GoodsBean> arrayData) {
                         if (tagId == 2) {
                             mRootView.updateGoodsExplosion(arrayData.getPageData());
-                        } else {
+                        } else  if (tagId == 3){
+                            mRootView.updateDishExplosion(arrayData.getPageData());
+                        }else {
                             mRootView.updateDishExplosion(arrayData.getPageData());
                         }
                     }
