@@ -32,6 +32,7 @@ import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumActivity;
+import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumPostDetailActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.RecycleHomeActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailActivity;
 import com.geek.huixiaoer.mvp.supermarket.ui.activity.GoodsDetailToBuyActivity;
@@ -323,15 +324,36 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     public void updateHotspot(List<ArticleBean> hotspotList) {
         tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        rlHotSportFirst.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(0);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
 
         tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        rlHotSportSecond.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(1);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
 
         tvArticleNameThird.setText(hotspotList.get(2).getTitle());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
-//        rlHotSportFirst.setOnClickListener(v -> );
+        rlHotSportThird.setOnClickListener(v -> {
+            ArticleBean articleBean = hotspotList.get(2);
+            Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("forum", articleBean);
+            intent.putExtras(bundle);
+            launchActivity(intent);
+        });
     }
 
     /**
