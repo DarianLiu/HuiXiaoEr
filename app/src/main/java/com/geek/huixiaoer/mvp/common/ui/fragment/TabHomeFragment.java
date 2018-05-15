@@ -23,10 +23,12 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.common.widget.OptionView;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumActivity;
@@ -50,8 +52,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -235,7 +235,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     @BindView(R.id.option_specialty)
     OptionView optionSpecialty;
 
-
+    private CircleProgressDialog loadingDialog;
     private ImageLoader mImageLoader;
 
     public static TabHomeFragment newInstance() {
@@ -321,15 +321,15 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
      */
     @Override
     public void updateHotspot(List<ArticleBean> hotspotList) {
-        tvArticleNameFirst.setText(hotspotList.get(0).getContent());
+        tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameSecond.setText(hotspotList.get(1).getContent());
+        tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
 
-        tvArticleNameThird.setText(hotspotList.get(2).getContent());
+        tvArticleNameThird.setText(hotspotList.get(2).getTitle());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
 //        rlHotSportFirst.setOnClickListener(v -> );
     }
@@ -826,16 +826,29 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         tvClearDeep.setText(helpYouList.get(2).getName());
 
         llClearDay.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(0).getId());
+            }
+
         });
         llClearRoom.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(1).getId());
+            }
         });
         llClearDeep.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(2).getId());
+            }
         });
     }
 
@@ -947,12 +960,19 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(getActivity()).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
@@ -1015,7 +1035,11 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     @Override
     public void onDestroy() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
         super.onDestroy();
+        loadingDialog = null;
         mPagerAdapter = null;
     }
 }

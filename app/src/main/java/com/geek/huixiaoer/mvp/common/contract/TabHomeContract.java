@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.common.contract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
@@ -54,5 +55,9 @@ public interface TabHomeContract {
          * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款)
          */
         Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(int pageNumber, int pageSize, int tagId);
+
+        Observable<BaseResponse<ServiceBean>> findService(String token, String serviceId);
+
+        Observable<BaseResponse<ServiceBean>> setServiceB(String ryToken);
     }
 }

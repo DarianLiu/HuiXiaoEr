@@ -354,6 +354,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/bg_color_white"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -362,7 +363,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/icon_clear_daily"
                     android:scaleType="fitXY" />
 
                 <TextView
@@ -371,7 +371,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="8dp"
-                    android:text="@string/clear_daily"
                     android:textColor="@color/color_text_label"
                     android:textSize="@dimen/t14" />
 
@@ -387,6 +386,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/bg_color_white"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -395,7 +395,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/icon_clear_room"
                     android:scaleType="fitXY" />
 
                 <TextView
@@ -404,7 +403,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="8dp"
-                    android:text="@string/clear_room"
                     android:textColor="@color/color_text_label"
                     android:textSize="@dimen/t14" />
 
@@ -420,6 +418,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/bg_color_white"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -428,7 +427,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/icon_clear_deep"
                     android:scaleType="fitXY" />
 
                 <TextView
@@ -437,7 +435,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="8dp"
-                    android:text="@string/clear_deep"
                     android:textColor="@color/color_text_label"
                     android:textSize="@dimen/t14" />
 
