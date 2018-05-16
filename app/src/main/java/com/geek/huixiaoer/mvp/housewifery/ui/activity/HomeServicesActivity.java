@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import com.geek.huixiaoer.mvp.housewifery.ui.adapter.ServiceAdapter;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.MessageBean;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -43,6 +45,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -94,7 +99,9 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v -> {
+            mPresenter.setServiceF();
+        });
         tvToolbarTitle.setText(R.string.title_home_service);
 
         setBannerHeight();
@@ -102,8 +109,51 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         mPresenter.messageList(10);
         initRefreshLayout();
         initRecyclerView();
+
+       String token = DataHelper.getStringSF(this,Constants.SP_TOKEN);
+        if (!TextUtils.isEmpty(token)){
+            UserBean userBean = DataHelper.getDeviceData(this,Constants.SP_USER_INFO);
+            RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
+            if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING){
+                RongIM.connect(userBean.getRyToken()
+                        , new RongIMClient.ConnectCallback() {
+                            @Override
+                            public void onTokenIncorrect() {
+                                Timber.d("=====融云TokenIncorrect");
+                            }
+
+                            @Override
+                            public void onSuccess(String s) {
+                                Timber.d("=====融云Success：" + s);
+                            }
+
+                            @Override
+                            public void onError(RongIMClient.ErrorCode errorCode) {
+                                Timber.d("=====融云errorCode：" + errorCode);
+                            }
+                        });
+            }
+        }
+
     }
 
+    /**
+     * 监听Back键按下事件,方法2:
+     * 注意:
+     * 返回值表示:是否能完全处理该事件
+     * 在此处返回false,所以会继续传播该事件.
+     * 在具体项目中此处的返回值视情况而定.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            mPresenter.setServiceF();
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+
+    }
 
     /**
      * 初始化刷新控件
@@ -154,7 +204,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
 
     @Override
     public void setServiceState(String serviceId, int serverId) {
-        mPresenter.setServiceB(serviceId, serverId);
+//        mPresenter.setServiceB(serviceId, serverId);
     }
 
     @Override

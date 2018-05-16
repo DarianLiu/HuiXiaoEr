@@ -122,7 +122,7 @@
 
         <!-- 会话界面 -->
         <activity
-            android:name=".mvp.housewifery.ui.activity.CustomerServiceActivity"
+            android:name=".mvp.housewifery.ui.activity.ConversationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
@@ -178,7 +178,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".mvp.recycle.ui.activity.ForumPostActivity" />
         <activity android:name=".mvp.recycle.ui.activity.ForumActivity" />
-        <activity android:name=".mvp.recycle.ui.activity.ForumPostDetailActivity"></activity>
+        <activity android:name=".mvp.recycle.ui.activity.ForumPostDetailActivity" />
     </application>
 
 </manifest>

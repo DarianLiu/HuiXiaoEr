@@ -22,17 +22,13 @@ import com.geek.huixiaoer.mvp.common.ui.fragment.TabHomeFragment;
 import com.geek.huixiaoer.mvp.common.ui.fragment.TabMessageFragment;
 import com.geek.huixiaoer.mvp.person.ui.fragment.TabMineFragment;
 import com.geek.huixiaoer.mvp.person.ui.fragment.TabOrderFragment;
-import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import timber.log.Timber;
@@ -48,10 +44,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @BindView(R.id.bottom_nav)
     BottomNavigationView bottom_nav;
 
-    private TabHomeFragment tabHomeFragment;
-    private TabMessageFragment tabMessageFragment;
-    private TabOrderFragment tabOrderFragment;
-    private TabMineFragment tabMineFragment;
     private Fragment[] fragments;
     private int lastShowFragment;
 
@@ -119,7 +111,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         initFragment();
         //获取轮播图
 //        mPresenter.getBanner();
-        connect("n4pjm6smproL+ZqOY85/bjKi7JFx+PONnfOT+/F9EVfelh52VYGy/NVv1Q3UZvA1GayXo7CeB4uGmkX1jBZ5Og==");
+//        connect("n4pjm6smproL+ZqOY85/bjKi7JFx+PONnfOT+/F9EVfelh52VYGy/NVv1Q3UZvA1GayXo7CeB4uGmkX1jBZ5Og==");
     }
 
     private void connect(String token) {
@@ -164,10 +156,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
      * 初始化Fragment
      */
     private void initFragment() {
-        tabHomeFragment = TabHomeFragment.newInstance();
-        tabMessageFragment = TabMessageFragment.newInstance();
-        tabOrderFragment = TabOrderFragment.newInstance();
-        tabMineFragment = TabMineFragment.newInstance();
+        TabHomeFragment tabHomeFragment = TabHomeFragment.newInstance();
+        TabMessageFragment tabMessageFragment = TabMessageFragment.newInstance();
+        TabOrderFragment tabOrderFragment = TabOrderFragment.newInstance();
+        TabMineFragment tabMineFragment = TabMineFragment.newInstance();
         fragments = new Fragment[]{tabHomeFragment, tabMessageFragment, tabOrderFragment,
                 tabMineFragment};
         lastShowFragment = 0;

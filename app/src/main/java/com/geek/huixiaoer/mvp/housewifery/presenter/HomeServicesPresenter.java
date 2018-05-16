@@ -77,18 +77,21 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                 });
     }
 
+    private String ryToken;
+
     /**
      * 查询闲置客服
      */
     public void findService(String token, int serviceId) {
-        mModel.findService(token,String.valueOf(serviceId)).retryWhen(new RetryWithDelay(3, 2))
+        mModel.findService(token, String.valueOf(serviceId)).retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<ServiceBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull ServiceBean serviceBean) {
-                        mRootView.setServiceState(serviceBean.getId(), serviceId);
+                        ryToken = serviceBean.getId();
+                        setServiceB(serviceId);
                     }
                 });
     }
@@ -96,15 +99,36 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
     /**
      * 设置客服忙碌状态
      */
-    public void setServiceB(String ryToken, int serviceId) {
+    public void setServiceB(int serviceId) {
         mModel.setServiceB(ryToken).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<ServiceBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull ServiceBean serviceBean) {
-                        DataHelper.setStringSF(mApplication, Constants.CASH_SERVICE_ID,String.valueOf(serviceId));
+                        DataHelper.setStringSF(mApplication, Constants.CASH_SERVICE_ID, String.valueOf(serviceId));
                         RongIM.getInstance().startPrivateChat(mAppManager.getTopActivity(), ryToken, String.valueOf(serviceId));
+                    }
+                });
+    }
+
+    /**
+     * 设置客服空闲状态
+     */
+    public void setServiceF() {
+        mModel.setServiceF(ryToken).retryWhen(new RetryWithDelay(3, 2))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<ServiceBean>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull ServiceBean serviceBean) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        super.onComplete();
+                        mRootView.killMyself();
                     }
                 });
     }
@@ -116,7 +140,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      */
     public void messageList(int pageSize) {
 //        String token = DataHelper.getStringSF(mApplication, Constants.SP_TOKEN);
-        mModel.messageList(1, 10, 3)
+        mModel.messageList(1, pageSize, 3)
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
                 .subscribeWith(new ErrorHandleSubscriber<BaseArrayData<MessageBean>>(mErrorHandler) {

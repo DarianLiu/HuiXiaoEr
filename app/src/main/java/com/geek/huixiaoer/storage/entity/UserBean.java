@@ -29,6 +29,24 @@ public class UserBean implements Serializable {
     private String referer;
     private String headimgurl;
     private String mobile;
+    private String ryId;
+    private String ryToken;
+
+    public void setRyToken(String ryToken) {
+        this.ryToken = ryToken;
+    }
+
+    public String getRyToken() {
+        return ryToken;
+    }
+
+    public void setRyId(String ryId) {
+        this.ryId = ryId;
+    }
+
+    public String getRyId() {
+        return ryId;
+    }
 
     public String getId() {
         return id;

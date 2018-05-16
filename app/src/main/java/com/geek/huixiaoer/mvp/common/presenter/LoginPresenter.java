@@ -53,28 +53,24 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                         DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
                         DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
                         EventBus.getDefault().post(true,ISLogin);
-                        mRootView.killMyself();
-//                        RongIM.connect("xkvZfF3zvY//gwZCOerYDS/mvXZv/KNkR8ZJyEKI9cfUyZ1DuYjwlfAxq9vCrgF7ND6pM9jyzfw="
-//                                , new RongIMClient.ConnectCallback() {
-//                                    @Override
-//                                    public void onTokenIncorrect() {
-//                                        Timber.d("=====融云TokenIncorrect");
-//                                    }
-//
-//                                    @Override
-//                                    public void onSuccess(String s) {
-//                                        Timber.d("=====融云Success：" + s);
-//                                        DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
-//                                        DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
-//                                        mRootView.killMyself();
-//                                    }
-//
-//                                    @Override
-//                                    public void onError(RongIMClient.ErrorCode errorCode) {
-//                                        Timber.d("=====融云errorCode：" + errorCode);
-//                                    }
-//                                });
+                        RongIM.connect(userBean.getRyToken()
+                                , new RongIMClient.ConnectCallback() {
+                                    @Override
+                                    public void onTokenIncorrect() {
+                                        Timber.d("=====融云TokenIncorrect");
+                                    }
 
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Timber.d("=====融云Success：" + s);
+                                    }
+
+                                    @Override
+                                    public void onError(RongIMClient.ErrorCode errorCode) {
+                                        Timber.d("=====融云errorCode：" + errorCode);
+                                    }
+                                });
+                        mRootView.killMyself();
                     }
                 });
     }

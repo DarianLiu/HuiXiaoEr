@@ -41,7 +41,9 @@ public interface HomeServicesContract {
 
         Observable<BaseResponse<ServiceBean>> findService( String token,String serviceId);
 
-        Observable<BaseResponse<ServiceBean>> setServiceB(String ryToken);
+        Observable<BaseResponse<ServiceBean>> setServiceB(String ryID);
+
+        Observable<BaseResponse<ServiceBean>> setServiceF(String ryID);
 
         Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType);
     }

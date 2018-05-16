@@ -60,6 +60,11 @@ public class HomeServicesModel extends BaseModel implements HomeServicesContract
     }
 
     @Override
+    public Observable<BaseResponse<ServiceBean>> setServiceF(String ryID) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).setServiceF(ryID);
+    }
+
+    @Override
     public Observable<BaseResponse<BaseArrayData<MessageBean>>> messageList(int pageNumber, int pageSize, int messageType) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).messageList(pageNumber, pageSize, messageType);
     }

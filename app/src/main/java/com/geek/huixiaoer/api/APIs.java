@@ -237,17 +237,13 @@ public interface APIs {
 
         /**
          *  设置忙碌客服:
-         http://localhost:8090/shopxx/mobile/service/setServiceB.jhtml?ryToken=cvdsfsdf
-         ryToken:融云id
          */
         String setServiceB = "service/setServiceB.jhtml";
 
-//        /**
-//         *  设置空闲客服：
-//         http://localhost:8090/shopxx/mobile/service/setServiceF.jhtml?ryToken=cvdsfsdf
-//         ryToken:融云id
-//         */
-//        String setServiceF = "service/setServiceF.jhtml";
+        /**
+         *  设置空闲客服：
+         */
+        String setServiceF = "service/setServiceF.jhtml";
 
 
          /*-----------用户模块--------*/

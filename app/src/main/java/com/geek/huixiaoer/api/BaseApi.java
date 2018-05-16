@@ -460,6 +460,14 @@ public interface BaseApi {
     Observable<BaseResponse<ServiceBean>> setServiceB(@Query("id") String id);
 
     /**
+     * 设置空闲客服
+     *
+     * @param id 融云客服ID
+     */
+    @POST(APIs.API.setServiceF)
+    Observable<BaseResponse<ServiceBean>> setServiceF(@Query("id") String id);
+
+    /**
      * ********************** 用 户 模 块 *************************
      * 收货地址列表
      *
