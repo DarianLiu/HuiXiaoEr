@@ -67,11 +67,11 @@ public interface BaseApi {
                                                                      @Query("pageSize") int pageSize);
 
     /**
-     * 折扣店和招牌菜爆款
+     * 折扣店和招牌菜、帮你们爆款
      *
      * @param pageNumber 当前页数
      * @param pageSize   每页显示数量
-     * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款)
+     * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款 4：帮你们爆款)
      */
     @GET(APIs.API.goods_explosion)
     Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(@Query("pageNumber") int pageNumber,

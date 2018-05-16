@@ -3,6 +3,7 @@ package com.geek.huixiaoer.mvp.common.contract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
@@ -24,6 +25,8 @@ public interface TabHomeContract {
         void updateGoodsExplosion(List<GoodsBean> goodsList);
 
         void updateDishExplosion(List<GoodsBean> dishList);
+
+        void updateHelpYouExplosion(List<GoodsBean> dishList);
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
@@ -52,5 +55,9 @@ public interface TabHomeContract {
          * @param tagId      分类（2:折扣店爆款 3:招牌菜爆款)
          */
         Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(int pageNumber, int pageSize, int tagId);
+
+        Observable<BaseResponse<ServiceBean>> findService(String token, String serviceId);
+
+        Observable<BaseResponse<ServiceBean>> setServiceB(String ryToken);
     }
 }

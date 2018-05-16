@@ -6,6 +6,7 @@ import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
+import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
@@ -54,4 +55,15 @@ public class TabHomeModel extends BaseModel implements TabHomeContract.Model {
     public Observable<BaseResponse<BaseArrayData<GoodsBean>>> goodsExplosion(int pageNumber, int pageSize, int tagId) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).goodsExplosion(pageNumber, pageSize, tagId);
     }
+
+    @Override
+    public Observable<BaseResponse<ServiceBean>> findService(String token, String serviceId) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).findService(token, serviceId);
+    }
+
+    @Override
+    public Observable<BaseResponse<ServiceBean>> setServiceB(String ryToken) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).setServiceB(ryToken);
+    }
+
 }

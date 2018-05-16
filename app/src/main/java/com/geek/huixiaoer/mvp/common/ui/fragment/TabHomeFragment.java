@@ -23,10 +23,12 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.common.widget.OptionView;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.contract.TabHomeContract;
 import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumActivity;
@@ -51,8 +53,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -123,22 +123,35 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     RelativeLayout rlHotSportSecond;
     @BindView(R.id.rl_hotSport_third)
     RelativeLayout rlHotSportThird;
+
+    @BindView(R.id.iv_clear_day)
+    ImageView ivClearDay;
+    @BindView(R.id.ll_clear_day)
+    LinearLayout llClearDay;
+    @BindView(R.id.iv_clear_room)
+    ImageView ivClearRoom;
+    @BindView(R.id.ll_clear_room)
+    LinearLayout llClearRoom;
+    @BindView(R.id.iv_clear_deep)
+    ImageView ivClearDeep;
+    @BindView(R.id.ll_clear_deep)
+    LinearLayout llClearDeep;
     @BindView(R.id.tv_clear_day)
     TextView tvClearDay;
     @BindView(R.id.tv_clear_room)
     TextView tvClearRoom;
     @BindView(R.id.tv_clear_deep)
     TextView tvClearDeep;
-    @BindView(R.id.rl_goods_one)
-    RelativeLayout rlGoodsOne;
-    @BindView(R.id.rl_goods_two)
-    RelativeLayout rlGoodsTwo;
-    @BindView(R.id.option_hotSport)
-    OptionView optionHotSport;
+
     @BindView(R.id.tv_fresh_supply)
     TextView tvFreshSupply;
     @BindView(R.id.tv_rose)
     TextView tvRose;
+
+    @BindView(R.id.rl_goods_one)
+    RelativeLayout rlGoodsOne;
+    @BindView(R.id.rl_goods_two)
+    RelativeLayout rlGoodsTwo;
     @BindView(R.id.tv_community_competition)
     TextView tvCommunityCompetition;
     @BindView(R.id.iv_goods_three)
@@ -213,6 +226,9 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     TextView tvCostPriceEight;
     @BindView(R.id.rl_goods_eight)
     RelativeLayout rlGoodsEight;
+
+    @BindView(R.id.option_hotSport)
+    OptionView optionHotSport;
     @BindView(R.id.option_help_you)
     OptionView optionHelpYou;
     @BindView(R.id.option_discount_stor)
@@ -220,6 +236,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     @BindView(R.id.option_specialty)
     OptionView optionSpecialty;
 
+    private CircleProgressDialog loadingDialog;
     private ImageLoader mImageLoader;
 
     public static TabHomeFragment newInstance() {
@@ -252,19 +269,8 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         mPresenter.hotspotList(1, 3);
         mPresenter.goodsExplosion(1, 8, 2);
         mPresenter.goodsExplosion(1, 6, 3);
+        mPresenter.goodsExplosion(1, 3, 4);
 
-        tvClearDay.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
-        });
-        tvClearRoom.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
-        });
-        tvClearDeep.setOnClickListener(v -> {
-            RongIM.getInstance().startConversation(getActivity(),
-                    Conversation.ConversationType.PRIVATE, "002", "test");
-        });
         optionHotSport.setRightText("更多");
         optionHotSport.setOnClickListener(v ->
                 launchActivity(new Intent(getActivity(), ForumActivity.class)));
@@ -318,7 +324,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
     public void updateHotspot(List<ArticleBean> hotspotList) {
         tvArticleNameFirst.setText(hotspotList.get(0).getTitle());
         tvArticleHitsFirst.setText(String.valueOf(hotspotList.get(0).getHits()));
-        tvArticleNameFirst.setOnClickListener(v -> {
+        rlHotSportFirst.setOnClickListener(v -> {
             ArticleBean articleBean = hotspotList.get(0);
             Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
             Bundle bundle = new Bundle();
@@ -329,7 +335,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         tvArticleNameSecond.setText(hotspotList.get(1).getTitle());
         tvArticleHitsSecond.setText(String.valueOf(hotspotList.get(1).getHits()));
-        tvArticleNameSecond.setOnClickListener(v -> {
+        rlHotSportSecond.setOnClickListener(v -> {
             ArticleBean articleBean = hotspotList.get(1);
             Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
             Bundle bundle = new Bundle();
@@ -340,7 +346,7 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
         tvArticleNameThird.setText(hotspotList.get(2).getTitle());
         tvArticleHitsThird.setText(String.valueOf(hotspotList.get(2).getHits()));
-        tvArticleNameThird.setOnClickListener(v -> {
+        rlHotSportThird.setOnClickListener(v -> {
             ArticleBean articleBean = hotspotList.get(2);
             Intent intent = new Intent(getActivity(), ForumPostDetailActivity.class);
             Bundle bundle = new Bundle();
@@ -812,6 +818,62 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
         }
     }
 
+    /**
+     * 帮你忙爆款
+     *
+     * @param helpYouList 帮你忙爆款
+     */
+    @Override
+    public void updateHelpYouExplosion(List<GoodsBean> helpYouList) {
+
+        mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                .url(helpYouList.get(0).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                .imageView(ivClearDay).build());
+        tvClearDay.setText(helpYouList.get(0).getName());
+
+        mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                .url(helpYouList.get(1).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                .imageView(ivClearRoom).build());
+        tvClearRoom.setText(helpYouList.get(1).getName());
+
+        mImageLoader.loadImage(getActivity(), ImageConfigImpl.builder()
+                .url(helpYouList.get(2).getMediumImage().getUrl())
+//                    .fallback(R.mipmap.ic_launcher)
+//                    .errorPic(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher)
+                .imageView(ivClearDeep).build());
+        tvClearDeep.setText(helpYouList.get(2).getName());
+
+        llClearDay.setOnClickListener(v -> {
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(0).getId());
+            }
+
+        });
+        llClearRoom.setOnClickListener(v -> {
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(1).getId());
+            }
+        });
+        llClearDeep.setOnClickListener(v -> {
+            String token = DataHelper.getStringSF(getActivity(), Constants.SP_TOKEN);
+            if (TextUtils.isEmpty(token)) {
+                launchActivity(new Intent(getActivity(), LoginActivity.class));
+            } else {
+                mPresenter.findService(token, helpYouList.get(2).getId());
+            }
+        });
+    }
+
     //轮播图底部滑动图片
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
     //轮播图图片
@@ -920,12 +982,19 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(getActivity()).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override
@@ -988,8 +1057,11 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
 
     @Override
     public void onDestroy() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
         super.onDestroy();
+        loadingDialog = null;
         mPagerAdapter = null;
     }
-
 }
