@@ -35,6 +35,8 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+   private ConversationFragment fragment;
+
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerConversationComponent //如找不到该类,请编译一下项目
@@ -52,16 +54,28 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
+        fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v -> {
+            if (!fragment.onBackPressed()) {
+                String ryId =  fragment.getTargetId();
+                if (TextUtils.isEmpty(ryId)){
+
+                }else {
+                    mPresenter.setServiceF(ryId);
+                }
+            }
+        });
         tvToolbarTitle.setText(R.string.title_home_service);
+
+
     }
 
     @Override
     public void onBackPressed() {
-        ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
         if (!fragment.onBackPressed()) {
             String ryId =  fragment.getTargetId();
             if (TextUtils.isEmpty(ryId)){
