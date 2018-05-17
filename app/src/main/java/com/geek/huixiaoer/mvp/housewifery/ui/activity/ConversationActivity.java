@@ -22,7 +22,6 @@ import com.geek.huixiaoer.R;
 
 
 import butterknife.BindView;
-import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationFragment;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -35,7 +34,7 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-   private ConversationFragment fragment;
+    private ConversationFragment fragment;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -60,13 +59,11 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> {
-            if (!fragment.onBackPressed()) {
-                String ryId =  fragment.getTargetId();
-                if (TextUtils.isEmpty(ryId)){
+            String ryId = fragment.getTargetId();
+            if (TextUtils.isEmpty(ryId)) {
 
-                }else {
-                    mPresenter.setServiceF(ryId);
-                }
+            } else {
+                mPresenter.setServiceF(ryId);
             }
         });
         tvToolbarTitle.setText(R.string.title_home_service);
@@ -77,10 +74,10 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
     @Override
     public void onBackPressed() {
         if (!fragment.onBackPressed()) {
-            String ryId =  fragment.getTargetId();
-            if (TextUtils.isEmpty(ryId)){
+            String ryId = fragment.getTargetId();
+            if (TextUtils.isEmpty(ryId)) {
 
-            }else {
+            } else {
                 mPresenter.setServiceF(ryId);
             }
         }
