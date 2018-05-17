@@ -53,6 +53,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
                         DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
                         DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
                         EventBus.getDefault().post(true,ISLogin);
+
                         RongIM.connect(userBean.getRyToken()
                                 , new RongIMClient.ConnectCallback() {
                                     @Override

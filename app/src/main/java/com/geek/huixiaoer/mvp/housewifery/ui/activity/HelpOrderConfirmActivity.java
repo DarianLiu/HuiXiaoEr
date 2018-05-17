@@ -74,6 +74,7 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
         tvToolbarTitle.setText("确认订单");
 
         targetId = getIntent().getStringExtra("targetId");
+        String title = getIntent().getStringExtra("title");
     }
 
     @OnClick({R.id.submitBtn})

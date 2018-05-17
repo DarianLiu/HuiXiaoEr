@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
@@ -47,6 +48,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
 import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -94,6 +96,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         return R.layout.activity_home_services; //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
     }
 
+    String ryToken = "";
+
     @Override
     public void initData(Bundle savedInstanceState) {
         setSupportActionBar(toolbar);
@@ -110,12 +114,22 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         initRefreshLayout();
         initRecyclerView();
 
-       String token = DataHelper.getStringSF(this,Constants.SP_TOKEN);
-        if (!TextUtils.isEmpty(token)){
-            UserBean userBean = DataHelper.getDeviceData(this,Constants.SP_USER_INFO);
+           /*设置当前用户信息， @param userInfo 当前用户信息*/
+        RongIM.setConnectionStatusListener(new MyConnectionStatusListener());
+
+        String token = DataHelper.getStringSF(this, Constants.SP_TOKEN);
+        if (!TextUtils.isEmpty(token)) {
+            UserBean userBean = DataHelper.getDeviceData(this, Constants.SP_USER_INFO);
+             /*设置当前用户信息， @param userInfo 当前用户信息*/
+            RongIM.getInstance().setCurrentUserInfo(new UserInfo(userBean.getRyId(), userBean.getUserInfo().getNickname(), null));
+
+        /* 设置消息体内是否携带用户信息*/
+            RongIM.getInstance().setMessageAttachedUserInfo(true);
+
+            ryToken = userBean.getRyToken();
             RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
-            if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING){
-                RongIM.connect(userBean.getRyToken()
+            if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING) {
+                RongIM.connect(ryToken
                         , new RongIMClient.ConnectCallback() {
                             @Override
                             public void onTokenIncorrect() {
@@ -135,6 +149,33 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
             }
         }
 
+    }
+
+
+    private class MyConnectionStatusListener implements RongIMClient.ConnectionStatusListener {
+
+        @Override
+        public void onChanged(ConnectionStatus connectionStatus) {
+
+            switch (connectionStatus) {
+
+                case CONNECTED://连接成功。
+
+                    break;
+                case DISCONNECTED://断开连接。
+
+                    break;
+                case CONNECTING://连接中。
+
+                    break;
+                case NETWORK_UNAVAILABLE://网络不可用。
+
+                    break;
+                case KICKED_OFFLINE_BY_OTHER_CLIENT://用户账户在其他设备登录，本机会被踢掉线
+
+                    break;
+            }
+        }
     }
 
     /**
@@ -197,6 +238,28 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
             if (TextUtils.isEmpty(token)) {
                 launchActivity(new Intent(this, LoginActivity.class));
             } else {
+                RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
+                if (status.getValue() != 0) {
+                    RongIM.connect(ryToken
+                            , new RongIMClient.ConnectCallback() {
+                                @Override
+                                public void onTokenIncorrect() {
+                                    Timber.d("=====融云TokenIncorrect");
+                                }
+
+                                @Override
+                                public void onSuccess(String s) {
+                                    Timber.d("=====融云Success：" + s);
+                                }
+
+                                @Override
+                                public void onError(RongIMClient.ErrorCode errorCode) {
+                                    Timber.d("=====融云errorCode：" + errorCode);
+                                }
+                            });
+                    Toast.makeText(HomeServicesActivity.this, "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 mPresenter.findService(token, mHomeServices.get(position).getId());
             }
         });

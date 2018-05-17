@@ -40,7 +40,9 @@ public class ALiPayPlugin implements IPluginModule {
     @Override
     public void onClick(Fragment fragment, RongExtension rongExtension) {
         String targetId = rongExtension.getTargetId();
+        String title = fragment.getActivity().getIntent().getData().getQueryParameter("title");
         Intent intent = new Intent(context, HelpOrderConfirmActivity.class);
+        intent.putExtra("title", title);
         intent.putExtra("targetId", targetId);
         ArmsUtils.startActivity(intent);
 //        SimpleEditDialogFragment dialogFragment = new SimpleEditDialogFragment();

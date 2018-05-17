@@ -1,6 +1,7 @@
 package com.geek.huixiaoer.mvp.housewifery.presenter;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
@@ -79,6 +80,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
 
     private String ryToken;
 
+    public static  String ryUserId = "";
     /**
      * 查询闲置客服
      */
@@ -91,6 +93,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                     @Override
                     public void onNext(@NonNull ServiceBean serviceBean) {
                         ryToken = serviceBean.getId();
+                        ryUserId = ryToken;
                         setServiceB(serviceId);
                     }
                 });
@@ -100,6 +103,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      * 设置客服忙碌状态
      */
     public void setServiceB(int serviceId) {
+        Log.e("=======","===== setServiceB ryToken： "+ryToken);
         mModel.setServiceB(ryToken).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
@@ -116,6 +120,8 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      * 设置客服空闲状态
      */
     public void setServiceF() {
+        Log.e("=======","=====  setServiceF ryToken： "+ryToken);
+        if (ryToken==null&&ryToken.equals("")) return;
         mModel.setServiceF(ryToken).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
