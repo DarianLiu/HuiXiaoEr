@@ -63,7 +63,7 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
     public void onBackPressed() {
         ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
         if (!fragment.onBackPressed()) {
-            String ryId =  RongIM.getInstance().getCurrentUserId();
+            String ryId =  fragment.getTargetId();
             if (TextUtils.isEmpty(ryId)){
 
             }else {
