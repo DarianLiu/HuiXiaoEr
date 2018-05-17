@@ -12,7 +12,6 @@ import com.jess.arms.http.imageloader.ImageLoader;
 import io.reactivex.annotations.NonNull;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 import javax.inject.Inject;
 
