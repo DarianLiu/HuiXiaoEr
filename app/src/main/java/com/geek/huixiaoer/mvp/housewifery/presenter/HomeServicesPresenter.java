@@ -80,11 +80,12 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
 
     private String ryToken;
 
-    public static  String ryUserId = "";
+    public static String ryUserId = "";
+
     /**
      * 查询闲置客服
      */
-    public void findService(String token, int serviceId) {
+    public void findService(String token, int serviceId, String serviceName) {
         mModel.findService(token, String.valueOf(serviceId)).retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .compose(RxUtil.applySchedulers(mRootView))
@@ -94,7 +95,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                     public void onNext(@NonNull ServiceBean serviceBean) {
                         ryToken = serviceBean.getId();
                         ryUserId = ryToken;
-                        setServiceB(serviceId);
+                        setServiceB(serviceId, serviceName);
                     }
                 });
     }
@@ -102,8 +103,8 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
     /**
      * 设置客服忙碌状态
      */
-    public void setServiceB(int serviceId) {
-        Log.e("=======","===== setServiceB ryToken： "+ryToken);
+    public void setServiceB(int serviceId, String serviceName) {
+        Log.e("=======", "===== setServiceB ryToken： " + ryToken);
         mModel.setServiceB(ryToken).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
@@ -111,7 +112,7 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                     @Override
                     public void onNext(@NonNull ServiceBean serviceBean) {
                         DataHelper.setStringSF(mApplication, Constants.CASH_SERVICE_ID, String.valueOf(serviceId));
-                        RongIM.getInstance().startPrivateChat(mAppManager.getTopActivity(), ryToken, String.valueOf(serviceId));
+                        RongIM.getInstance().startPrivateChat(mAppManager.getTopActivity(), ryToken, serviceName);
                     }
                 });
     }
@@ -120,8 +121,8 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      * 设置客服空闲状态
      */
     public void setServiceF() {
-        Log.e("=======","=====  setServiceF ryToken： "+ryToken);
-        if (ryToken==null&&ryToken.equals("")) return;
+        Log.e("=======", "=====  setServiceF ryToken： " + ryToken);
+        if (ryToken == null && ryToken.equals("")) return;
         mModel.setServiceF(ryToken).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))

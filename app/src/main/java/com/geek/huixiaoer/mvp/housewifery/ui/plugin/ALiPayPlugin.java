@@ -3,14 +3,11 @@ package com.geek.huixiaoer.mvp.housewifery.ui.plugin;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.view.inputmethod.EditorInfo;
+import android.util.Log;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.common.utils.Constants;
-import com.geek.huixiaoer.common.widget.dialog.SimpleEditDialogFragment;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HelpOrderConfirmActivity;
 import com.jess.arms.utils.ArmsUtils;
 
@@ -43,6 +40,7 @@ public class ALiPayPlugin implements IPluginModule {
         String title = fragment.getActivity().getIntent().getData().getQueryParameter("title");
         Intent intent = new Intent(context, HelpOrderConfirmActivity.class);
         intent.putExtra("title", title);
+        Log.d("====ALiPayPlugin-title",title);
         intent.putExtra("targetId", targetId);
         ArmsUtils.startActivity(intent);
 //        SimpleEditDialogFragment dialogFragment = new SimpleEditDialogFragment();

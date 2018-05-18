@@ -96,10 +96,6 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
 
         setBannerHeight();
 
-        if (!TextUtils.isEmpty(DataHelper.getStringSF(this, Constants.SP_TOKEN))) {
-            btnRegister.setVisibility(View.GONE);
-            loginBtn.setVisibility(View.GONE);
-        }
         mPresenter.getBanner();
         mPresenter.messageList(10);
     }
@@ -166,6 +162,7 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     private ArrayList<ImageView> mScrollImageViews = new ArrayList<>();
     //轮播图图片
     private List<BannerBean> mBannerBeen = new ArrayList<>();
+
     /**
      * 初始化轮播图控件
      */
@@ -271,6 +268,10 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     public void onResume() {
         super.onResume();
         autoScrollViewPager.startAutoScroll();
+        if (!TextUtils.isEmpty(DataHelper.getStringSF(this, Constants.SP_TOKEN))) {
+            btnRegister.setVisibility(View.GONE);
+            loginBtn.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -294,21 +295,21 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.loginBtn:
-                launchActivity(new Intent(RecycleHomeActivity.this,LoginActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, LoginActivity.class));
                 break;
             case R.id.btn_register:
-                launchActivity(new Intent(RecycleHomeActivity.this,RegisterActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, RegisterActivity.class));
 //                launchActivity(new Intent(RecycleHomeActivity.this, CaptchaActivity.class));
                 break;
             case R.id.btn_forum:
 //                launchActivity(new Intent(RecycleHomeActivity.this,RecycleListActivity.class));
-                launchActivity(new Intent(RecycleHomeActivity.this,ForumActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, ForumActivity.class));
                 break;
             case R.id.btn_integral:
-                launchActivity(new Intent(RecycleHomeActivity.this,MemberRankingActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, MemberRankingActivity.class));
                 break;
             case R.id.btn_blacklist:
-                launchActivity(new Intent(RecycleHomeActivity.this,BlackListActivity.class));
+                launchActivity(new Intent(RecycleHomeActivity.this, BlackListActivity.class));
                 break;
         }
     }
