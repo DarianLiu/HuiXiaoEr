@@ -250,7 +250,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                 @Override
                                 public void onSuccess(String s) {
                                     Timber.d("=====融云Success：" + s);
-                                    mPresenter.findService(token, mHomeServices.get(position).getId(),mHomeServices.get(position).getName());
+
                                 }
 
                                 @Override
@@ -259,6 +259,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                 }
                             });
                     Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
+                    mPresenter.findService(token, mHomeServices.get(position).getId(),mHomeServices.get(position).getName());
                     return;
                 }
 
