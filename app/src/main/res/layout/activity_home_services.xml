@@ -31,18 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:maxLines="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="10dp"
         android:textColor="@color/color_text_caption"
         android:textSize="@dimen/t14" />
 
     <include
         android:id="@+id/refreshLayout"
-        layout="@layout/include_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        layout="@layout/include_recyclerview" />
 
 </LinearLayout>

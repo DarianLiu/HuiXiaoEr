@@ -32,14 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
         android:maxLines="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="10dp"
         android:textColor="@color/color_text_caption"
         android:textSize="@dimen/t14" />
+
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"

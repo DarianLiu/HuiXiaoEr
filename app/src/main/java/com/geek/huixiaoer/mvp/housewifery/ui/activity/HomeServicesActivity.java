@@ -103,9 +103,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> {
-            mPresenter.setServiceF();
-        });
+        toolbar.setNavigationOnClickListener(v -> mPresenter.setServiceF());
         tvToolbarTitle.setText(R.string.title_home_service);
 
         setBannerHeight();
@@ -113,6 +111,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         mPresenter.messageList(10);
         initRefreshLayout();
         initRecyclerView();
+
+        tvMessage.setHorizontallyScrolling(true);
 
            /*设置当前用户信息， @param userInfo 当前用户信息*/
         RongIM.setConnectionStatusListener(new MyConnectionStatusListener());
@@ -259,7 +259,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                 }
                             });
                     Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
-                    mPresenter.findService(token, mHomeServices.get(position).getId(),mHomeServices.get(position).getName());
+                    mPresenter.findService(token, mHomeServices.get(position).getId(), mHomeServices.get(position).getName());
                     return;
                 }
 
@@ -338,7 +338,9 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
      * @param position 当前位置
      */
     private void showSelectScrollImage(int position) {
-        if (position < 0 || position >= mScrollImageViews.size()) return;
+        if (position < 0 || position >= mScrollImageViews.size()) {
+            return;
+        }
         if (mScrollImageViews != null) {
             for (ImageView iv : mScrollImageViews) {
                 iv.setImageResource(R.drawable.icon_indicator_normal);

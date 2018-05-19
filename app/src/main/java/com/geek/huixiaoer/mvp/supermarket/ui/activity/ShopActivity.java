@@ -91,6 +91,9 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
         toolbar.setNavigationOnClickListener(v -> finish());
         toolbarTitle.setText(R.string.title_shop);
 
+        tvMessage.setHorizontallyScrolling(true);
+        tvMessage.setSelected(true);
+
         mPresenter.getBanner();
         mPresenter.getGoodsCategorys();
         mPresenter.messageList(10);

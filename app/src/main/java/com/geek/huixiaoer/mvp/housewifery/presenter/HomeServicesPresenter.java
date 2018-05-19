@@ -1,10 +1,13 @@
 package com.geek.huixiaoer.mvp.housewifery.presenter;
 
 import android.app.Application;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
@@ -121,23 +124,27 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
      * 设置客服空闲状态
      */
     public void setServiceF() {
-        Log.e("=======", "=====  setServiceF ryToken： " + ryToken);
-        if (ryToken == null && ryToken.equals("")) return;
-        mModel.setServiceF(ryToken).retryWhen(new RetryWithDelay(3, 2))
-                .compose(RxUtil.applySchedulers(mRootView))
-                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<ServiceBean>(mErrorHandler) {
-                    @Override
-                    public void onNext(@NonNull ServiceBean serviceBean) {
+//        Log.e("=======", "=====  setServiceF ryToken： " + ryToken);
+        if (TextUtils.isEmpty(ryToken)) {
+            mRootView.killMyself();
+//            mRootView.launchActivity(new Intent(mAppManager.getTopActivity(), LoginActivity.class));
+        }else {
+            mModel.setServiceF(ryToken).retryWhen(new RetryWithDelay(3, 2))
+                    .compose(RxUtil.applySchedulers(mRootView))
+                    .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                    .subscribeWith(new ErrorHandleSubscriber<ServiceBean>(mErrorHandler) {
+                        @Override
+                        public void onNext(@NonNull ServiceBean serviceBean) {
+                            mRootView.killMyself();
+                        }
 
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        super.onComplete();
-                        mRootView.killMyself();
-                    }
-                });
+                        @Override
+                        public void onComplete() {
+                            super.onComplete();
+                            mRootView.killMyself();
+                        }
+                    });
+        }
     }
 
     /**

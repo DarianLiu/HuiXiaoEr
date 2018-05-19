@@ -94,6 +94,7 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.module_environment_protect);
 
+        tvMessage.setHorizontallyScrolling(true);
         setBannerHeight();
 
         mPresenter.getBanner();

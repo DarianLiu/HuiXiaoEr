@@ -99,6 +99,8 @@ public class DinnerActivity extends BaseActivity<DinnerPresenter> implements Din
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.title_dinner);
 
+        tvMessage.setHorizontallyScrolling(true);
+
         setBannerHeight();
         mPresenter.getBanner();
         mPresenter.messageList(10);
