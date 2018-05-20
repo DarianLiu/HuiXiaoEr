@@ -239,7 +239,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                 launchActivity(new Intent(this, LoginActivity.class));
             } else {
                 RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
-                if (status.getValue() != 0) {
+                if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING) {
                     RongIM.connect(ryToken
                             , new RongIMClient.ConnectCallback() {
                                 @Override
@@ -250,7 +250,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                 @Override
                                 public void onSuccess(String s) {
                                     Timber.d("=====融云Success：" + s);
-
+                                    mPresenter.findService(token, mHomeServices.get(position).getId(), mHomeServices.get(position).getName());
                                 }
 
                                 @Override
@@ -259,10 +259,9 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                 }
                             });
                     Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
+                } else {
                     mPresenter.findService(token, mHomeServices.get(position).getId(), mHomeServices.get(position).getName());
-                    return;
                 }
-
             }
         });
     }
