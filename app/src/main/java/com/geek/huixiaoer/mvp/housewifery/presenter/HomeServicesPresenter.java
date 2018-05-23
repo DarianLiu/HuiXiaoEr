@@ -12,6 +12,7 @@ import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.MessageBean;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.di.scope.ActivityScope;
@@ -21,14 +22,21 @@ import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.RxLifecycleUtils;
 
+import org.simple.eventbus.EventBus;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
+import timber.log.Timber;
+
+import static com.geek.huixiaoer.common.config.EventBusTags.ISLogin;
 
 
 @ActivityScope
@@ -58,6 +66,44 @@ public class HomeServicesPresenter extends BasePresenter<HomeServicesContract.Mo
                     @Override
                     public void onNext(@NonNull BaseArrayData<BannerBean> bannerBeanBaseArrayData) {
                         mRootView.updateBanner(bannerBeanBaseArrayData.getPageData());
+                    }
+                });
+    }
+
+    /**
+     * 自动获得用户信息
+     */
+    public void autoGetUserInfo() {
+        mModel.autoGetUserInfo().retryWhen(new RetryWithDelay(0, 30))
+                .compose(RxUtil.applySchedulers(mRootView))
+                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                .subscribeWith(new ErrorHandleSubscriber<UserBean>(mErrorHandler) {
+                    @Override
+                    public void onNext(@NonNull UserBean userBean) {
+                        DataHelper.setStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN, userBean.getToken());
+                        DataHelper.saveDeviceData(mAppManager.getTopActivity(), Constants.SP_USER_INFO, userBean);
+                        EventBus.getDefault().post(true,ISLogin);
+                        /*设置当前用户信息， @param userInfo 当前用户信息*/
+                        RongIM.getInstance().setCurrentUserInfo(new UserInfo(userBean.getRyId(), userBean.getUserInfo().getNickname(), null));
+                         /* 设置消息体内是否携带用户信息*/
+                        RongIM.getInstance().setMessageAttachedUserInfo(true);
+                        RongIM.connect(userBean.getRyToken()
+                                , new RongIMClient.ConnectCallback() {
+                                    @Override
+                                    public void onTokenIncorrect() {
+                                        Timber.d("=====融云TokenIncorrect");
+                                    }
+
+                                    @Override
+                                    public void onSuccess(String s) {
+                                        Timber.d("=====融云Success：" + s);
+                                    }
+
+                                    @Override
+                                    public void onError(RongIMClient.ErrorCode errorCode) {
+                                        Timber.d("=====融云errorCode：" + errorCode);
+                                    }
+                                });
                     }
                 });
     }

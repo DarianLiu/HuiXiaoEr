@@ -8,6 +8,7 @@ import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.MessageBean;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.google.gson.Gson;
@@ -42,6 +43,11 @@ public class HomeServicesModel extends BaseModel implements HomeServicesContract
     @Override
     public Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId) {
         return mRepositoryManager.obtainRetrofitService(BaseApi.class).banner(positonId);
+    }
+
+    @Override
+    public Observable<BaseResponse<UserBean>> autoGetUserInfo() {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).autoGetUserInfo();
     }
 
     @Override

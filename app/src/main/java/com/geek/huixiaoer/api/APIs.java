@@ -96,6 +96,8 @@ public interface APIs {
          */
         String login = "login/submit.jhtml";
 
+        String autoGetUserInfo = "register/autoSubmit.jhtml";
+
         /**
          * 注册
          */

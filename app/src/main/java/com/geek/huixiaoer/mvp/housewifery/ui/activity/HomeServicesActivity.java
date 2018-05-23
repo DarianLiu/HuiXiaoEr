@@ -147,6 +147,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                             }
                         });
             }
+        } else {
+            mPresenter.autoGetUserInfo();
         }
 
     }
@@ -236,7 +238,8 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         mAdapter.setOnItemClickListener((view, viewType, data, position) -> {
             String token = DataHelper.getStringSF(this, Constants.SP_TOKEN);
             if (TextUtils.isEmpty(token)) {
-                launchActivity(new Intent(this, LoginActivity.class));
+                mPresenter.autoGetUserInfo();
+//                launchActivity(new Intent(this, LoginActivity.class));
             } else {
                 RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
                 if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING) {
@@ -258,7 +261,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                     Timber.d("=====融云errorCode：" + errorCode);
                                 }
                             });
-                    Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
                 } else {
                     mPresenter.findService(token, mHomeServices.get(position).getId(), mHomeServices.get(position).getName());
                 }

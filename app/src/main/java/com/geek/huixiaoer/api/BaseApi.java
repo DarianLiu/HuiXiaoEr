@@ -183,7 +183,8 @@ public interface BaseApi {
     Observable<BaseResponse<UserBean>> login(@Query("memberType") String memberType,
                                              @Query("nickname") String mobile,
                                              @Query("enPassword") String md5Password);
-
+    @POST(APIs.API.autoGetUserInfo)
+    Observable<BaseResponse<UserBean>> autoGetUserInfo();
     /**
      * 文章轮播图列表
      */

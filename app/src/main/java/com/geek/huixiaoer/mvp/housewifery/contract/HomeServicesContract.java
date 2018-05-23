@@ -4,6 +4,7 @@ import com.geek.huixiaoer.storage.BaseArrayData;
 import com.geek.huixiaoer.storage.BaseResponse;
 import com.geek.huixiaoer.storage.entity.BannerBean;
 import com.geek.huixiaoer.storage.entity.MessageBean;
+import com.geek.huixiaoer.storage.entity.UserBean;
 import com.geek.huixiaoer.storage.entity.housewifery.ServiceBean;
 import com.geek.huixiaoer.storage.entity.shop.GoodsBean;
 import com.jess.arms.mvp.IView;
@@ -36,6 +37,8 @@ public interface HomeServicesContract {
          * @param positonId 轮播图类型
          */
         Observable<BaseResponse<BaseArrayData<BannerBean>>> banner(int positonId);
+
+        Observable<BaseResponse<UserBean>> autoGetUserInfo();
 
         Observable<BaseResponse<BaseArrayData<GoodsBean>>> homeServiceList(int pageNumber, int pageSize, String startPrice, String endPrice, String orderType);
 
