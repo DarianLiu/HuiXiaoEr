@@ -118,8 +118,9 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
         RongIM.setConnectionStatusListener(new MyConnectionStatusListener());
 
         String token = DataHelper.getStringSF(this, Constants.SP_TOKEN);
-        if (!TextUtils.isEmpty(token)) {
-            UserBean userBean = DataHelper.getDeviceData(this, Constants.SP_USER_INFO);
+        UserBean userBean = DataHelper.getDeviceData(this, Constants.SP_USER_INFO);
+        if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(userBean.getRyId())) {
+
              /*设置当前用户信息， @param userInfo 当前用户信息*/
             RongIM.getInstance().setCurrentUserInfo(new UserInfo(userBean.getRyId(), userBean.getUserInfo().getNickname(), null));
 
@@ -261,7 +262,7 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
                                     Timber.d("=====融云errorCode：" + errorCode);
                                 }
                             });
-                        Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "正在建立客服连接，请稍后10秒...", Toast.LENGTH_LONG).show();
                 } else {
                     mPresenter.findService(token, mHomeServices.get(position).getId(), mHomeServices.get(position).getName());
                 }

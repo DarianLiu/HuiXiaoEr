@@ -87,7 +87,7 @@ public class ReceiverAddPresenter extends BasePresenter<ReceiverAddContract.Mode
                 .subscribeWith(new ErrorHandleSubscriber<ReceiverBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull ReceiverBean receiverBean) {
-                        EventBus.getDefault().post(new ReceiverEvent(2, -1, isDefault, receiverBean));
+                        EventBus.getDefault().post(new ReceiverEvent(0, -1, isDefault, receiverBean));
                         mRootView.killMyself();
                     }
                 });

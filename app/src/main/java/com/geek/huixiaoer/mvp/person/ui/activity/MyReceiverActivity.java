@@ -96,6 +96,7 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
     private void onReceiveUpdate(ReceiverEvent event) {
         switch (event.getEventType()) {
             case 0://保存
+                refreshLayout.autoRefresh();
                 break;
             case 1://设为默认地址
                 if (event.isChange()) {
