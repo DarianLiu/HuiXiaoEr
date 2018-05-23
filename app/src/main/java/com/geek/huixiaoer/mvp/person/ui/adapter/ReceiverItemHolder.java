@@ -6,7 +6,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.person.ui.activity.MyReceiverActivity;
 import com.geek.huixiaoer.mvp.person.ui.activity.MyShopOrderActivity;
+import com.geek.huixiaoer.mvp.person.ui.activity.ReceiverAddActivity;
 import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
 import com.geek.huixiaoer.storage.event.ReceiverEvent;
 import com.jess.arms.base.BaseHolder;
@@ -57,7 +60,10 @@ public class ReceiverItemHolder extends BaseHolder<ReceiverBean> {
         });
 
         tvEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(tvEdit.getContext(), MyShopOrderActivity.class);
+            Intent intent = new Intent(tvEdit.getContext(), ReceiverAddActivity.class);
+            intent.putExtra(Constants.INTENT_TYPE, "update");
+            intent.putExtra(Constants.INTENT_LIST_POSITION, position);
+            intent.putExtra(Constants.INTENT_RECEIVER, data);
             tvEdit.getContext().startActivity(intent);
         });
 
