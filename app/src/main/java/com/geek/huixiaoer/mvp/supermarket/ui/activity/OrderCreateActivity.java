@@ -126,7 +126,7 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         super.onCreate(savedInstanceState);
     }
 

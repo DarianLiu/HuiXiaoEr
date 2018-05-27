@@ -2,10 +2,8 @@ package com.geek.huixiaoer.mvp.person.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +23,7 @@ import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -36,10 +32,10 @@ public class TabOrderFragment extends BaseFragment<TabOrderPresenter> implements
 
     @BindView(R.id.option_order_discount_store)
     OptionView optionOrderDiscountStore;
-    @BindView(R.id.option_order_specialty)
-    OptionView optionOrderSpecialty;
-    @BindView(R.id.option_order_help_you)
-    OptionView optionOrderHelpYou;
+//    @BindView(R.id.option_order_specialty)
+//    OptionView optionOrderSpecialty;
+//    @BindView(R.id.option_order_help_you)
+//    OptionView optionOrderHelpYou;
 
     public static TabOrderFragment newInstance() {
         return new TabOrderFragment();
@@ -97,19 +93,19 @@ public class TabOrderFragment extends BaseFragment<TabOrderPresenter> implements
 
     }
 
-    @OnClick({R.id.option_order_discount_store, R.id.option_order_specialty, R.id.option_order_help_you})
+    @OnClick({R.id.option_order_discount_store})
     public void onViewClicked(View view) {
         if (checkToken()){
             switch (view.getId()) {
                 case R.id.option_order_discount_store:
                     launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
                     break;
-                case R.id.option_order_specialty:
-                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
-                    break;
-                case R.id.option_order_help_you:
-                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
-                    break;
+//                case R.id.option_order_specialty:
+//                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
+//                    break;
+//                case R.id.option_order_help_you:
+//                    launchActivity(new Intent(getActivity(), MyShopOrderActivity.class));
+//                    break;
             }
         }
     }

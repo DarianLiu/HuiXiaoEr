@@ -9,23 +9,23 @@
         android:id="@+id/option_order_discount_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:option_title_text="折扣店订单"
+        app:option_title_text="我的订单"
         app:option_title_text_color="@color/color_text_caption" />
 
-    <com.geek.huixiaoer.common.widget.OptionView
-        android:id="@+id/option_order_specialty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:option_title_text="招牌菜订单"
-        app:option_title_text_color="@color/color_text_caption"/>
+    <!--<com.geek.huixiaoer.common.widget.OptionView-->
+        <!--android:id="@+id/option_order_specialty"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--app:option_title_text="招牌菜订单"-->
+        <!--app:option_title_text_color="@color/color_text_caption"/>-->
 
-    <com.geek.huixiaoer.common.widget.OptionView
-        android:id="@+id/option_order_help_you"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:option_title_text="帮你忙订单"
-        android:layout_marginTop="5dp"
-        app:option_title_text_color="@color/color_text_caption"/>
+    <!--<com.geek.huixiaoer.common.widget.OptionView-->
+        <!--android:id="@+id/option_order_help_you"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:option_title_text="帮你忙订单"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--app:option_title_text_color="@color/color_text_caption"/>-->
 
 </LinearLayout>
