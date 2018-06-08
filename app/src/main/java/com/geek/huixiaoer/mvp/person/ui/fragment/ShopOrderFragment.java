@@ -14,6 +14,7 @@ import com.geek.huixiaoer.mvp.person.contract.ShopOrderContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerShopOrderComponent;
 import com.geek.huixiaoer.mvp.person.di.module.ShopOrderModule;
 import com.geek.huixiaoer.mvp.person.presenter.ShopOrderPresenter;
+import com.geek.huixiaoer.mvp.person.ui.activity.ShopOrderDetailActivity;
 import com.geek.huixiaoer.mvp.person.ui.adapter.ShopOrderAdapter;
 import com.geek.huixiaoer.storage.entity.shop.OrderBean;
 import com.jess.arms.base.BaseFragment;
@@ -96,10 +97,24 @@ public class ShopOrderFragment extends BaseFragment<ShopOrderPresenter> implemen
     public void initExpandableListView() {
         expendableListView.setGroupIndicator(null);
         //点击group不收缩
-        expendableListView.setOnGroupClickListener((parent, v, groupPosition, id) -> true);
+        expendableListView.setOnGroupClickListener((parent, v, groupPosition, id) -> {
+            Intent intent = new Intent();
+            intent.putExtra("orderSn",mOrderList.get(groupPosition).getOrder_sn());
+            intent.setClass(getActivity(), ShopOrderDetailActivity.class);
+            launchActivity(intent);
+            return true;
+        });
+        expendableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+            Intent intent = new Intent();
+            intent.putExtra("orderSn",mOrderList.get(groupPosition).getOrder_sn());
+            intent.setClass(getActivity(), ShopOrderDetailActivity.class);
+            launchActivity(intent);
+            return false;
+        });
         mOrderList = new ArrayList<>();
         mAdapter = new ShopOrderAdapter(getActivity(), mOrderList);
         expendableListView.setAdapter(mAdapter);
+
     }
 
     @Override

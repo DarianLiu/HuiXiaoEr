@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/goLayout" />
+
+        <LinearLayout
+            android:id="@+id/goLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/line_top_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/cancelText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消订单"
+                android:textColor="@color/color_text_caption"
+                android:textSize="@dimen/t18" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:id="@+id/payText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="去支付"
+                android:textColor="@color/color_text_caption"
+                android:textSize="@dimen/t18" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

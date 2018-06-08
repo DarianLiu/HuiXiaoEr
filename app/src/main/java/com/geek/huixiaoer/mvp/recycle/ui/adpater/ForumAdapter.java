@@ -3,7 +3,6 @@ package com.geek.huixiaoer.mvp.recycle.ui.adpater;
 import android.view.View;
 
 import com.geek.huixiaoer.R;
-import com.geek.huixiaoer.common.widget.recyclerview.OnItemClickListener;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseHolder;
 import com.jess.arms.base.DefaultAdapter;

@@ -88,24 +88,33 @@ public class ShopOrderAdapter extends BaseExpandableListAdapter {
         OrderBean orderBean = modelList.get(groupPosition);
         if (orderBean.getStatus().equals("pendingPayment")) {
             groupViewHolder.tvOrderStatus.setText("待付款");
-        } else if (orderBean.getStatus().equals("pendingReview")) {
-//                                model.setOrderStatus("待审核");
-            groupViewHolder.tvOrderStatus.setText("待发货");
-        } else if (orderBean.getStatus().equals("pendingShipment")) {
-            groupViewHolder.tvOrderStatus.setText("待发货");
-        } else if (orderBean.getStatus().equals("shipped")) {
-            groupViewHolder.tvOrderStatus.setText("待收货");
+            groupViewHolder.tvOrderStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         } else if (orderBean.getStatus().equals("completed")) {
             groupViewHolder.tvOrderStatus.setText("已完成");
         } else if (orderBean.getStatus().equals("failed")) {
-            groupViewHolder.tvOrderStatus.setText("已失败");
+            groupViewHolder.tvOrderStatus.setText("已失效");
         } else if (orderBean.getStatus().equals("canceled")) {
             groupViewHolder.tvOrderStatus.setText("已取消");
-        } else if (orderBean.getStatus().equals("denied")) {
-            groupViewHolder.tvOrderStatus.setText("已拒绝");
-        } else if (orderBean.getStatus().equals("received")) {
-            groupViewHolder.tvOrderStatus.setText("已收货");
+        } else {
+            groupViewHolder.tvOrderStatus.setText("已付款");
         }
+//            if (orderBean.getStatus().equals("pendingReview")) {
+////                                model.setOrderStatus("待审核");
+//            groupViewHolder.tvOrderStatus.setText("待审核");
+//        } else if (orderBean.getStatus().equals("pendingShipment")) {
+//            groupViewHolder.tvOrderStatus.setText("待发货");
+//        } else if (orderBean.getStatus().equals("shipped")) {
+//            groupViewHolder.tvOrderStatus.setText("待收货");
+//        }
+// else if (orderBean.getStatus().equals("denied")) {
+//            groupViewHolder.tvOrderStatus.setText("已拒绝");
+//        } else if (orderBean.getStatus().equals("received"))
+
 
         groupViewHolder.tvShopName.setText(modelList.get(groupPosition).getMerchantName());
         GlideArms.with(mContext).load(modelList.get(groupPosition).getMerchantHeadURL()).circleCrop()

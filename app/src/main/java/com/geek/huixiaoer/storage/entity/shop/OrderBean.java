@@ -1,5 +1,7 @@
 package com.geek.huixiaoer.storage.entity.shop;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -23,17 +25,30 @@ public class OrderBean {
      * createDate : 1522208611000
      */
 
+    private String id;
     private double amount;
+    @SerializedName(value = "merchantHeadURL", alternate = {"merchant_headUrl"})
     private String merchantHeadURL;
     private String address;
     private String status;
     private String consignee;
+    @SerializedName(value = "merchantName", alternate = {"merchant_name"})
     private String merchantName;
+    @SerializedName(value = "order_sn", alternate = {"sn"})
     private String order_sn;
     private String outTradeNo;
     private long createDate;
+    @SerializedName(value = "items", alternate = {"orderItems"})
     private List<OrderItemBean> items;
     private String memo;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public double getAmount() {
         return amount;

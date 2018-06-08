@@ -25,6 +25,8 @@ public class ForumItemHolder extends BaseHolder<ArticleBean> {
     TextView tvTitle;
     @BindView(R.id.iv_cover)
     ImageView ivCover;
+    @BindView(R.id.tv_view_count)
+    TextView tvViewCount;
 
     public ForumItemHolder(View itemView) {
         super(itemView);
@@ -33,6 +35,7 @@ public class ForumItemHolder extends BaseHolder<ArticleBean> {
     @Override
     public void setData(ArticleBean data, int position) {
         tvTitle.setText(TextUtils.isEmpty(data.getTitle()) ? "" : data.getTitle());
+        tvViewCount.setText("点击量：" + data.getHits());
         GlideArms.with(ivCover.getContext()).load(data.getImage().getUrl()).centerCrop().into(ivCover);
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/icon_receive_address_bg"
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:id="@+id/consigneeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_receive_user"
+            android:drawablePadding="8dp"
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t12" />
+
+        <TextView
+            android:id="@+id/phoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/icon_receive_phone"
+            android:drawablePadding="8dp"
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t12" />
+
+        <TextView
+            android:id="@+id/addressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:drawableLeft="@drawable/icon_receive_address"
+            android:drawablePadding="8dp"
+            android:textColor="@color/color_text_label"
+            android:textSize="@dimen/t12" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/bg_color_white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp">
+
+        <ImageView
+            android:id="@+id/shopImg"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/shopNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/shopImg"
+            android:layout_alignTop="@+id/shopImg"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/shopImg"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/t16" />
+
+        <TextView
+            android:id="@+id/orderStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/btn_bg_normal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/bg_color_white"
+            android:textSize="@dimen/t14" />
+
+    </RelativeLayout>
+
+</LinearLayout>

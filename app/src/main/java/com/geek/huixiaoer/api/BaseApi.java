@@ -20,6 +20,7 @@ import com.geek.huixiaoer.storage.entity.shop.OrderBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCreateResultBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderDetailBean;
 import com.geek.huixiaoer.storage.entity.shop.ReceiverBean;
 import com.geek.huixiaoer.storage.entity.shop.SpecificationBean;
 
@@ -569,6 +570,16 @@ public interface BaseApi {
     @POST(APIs.API.shopOrderReceive)
     Observable<BaseResponse<OrderBean>> shopOrderReceive(@Query("token") String token,
                                                          @Query("sn") String sn);
+
+    /**
+     * 订单详情
+     *
+     * @param token token
+     * @param sn    订单SN号
+     */
+    @GET(APIs.API.shopOrderViewSn)
+    Observable<BaseResponse<OrderDetailBean>> orderDetail(@Query("token") String token,
+                                                          @Query("sn") String sn);
 
     /**
      * 帮你忙非游客下单

@@ -33,6 +33,7 @@
     <string name="title_receiver_update">更新收货地址</string>
     <string name="title_home_service">帮你忙</string>
     <string name="title_my_order">我的订单</string>
+    <string name="title_order_detail">订单详情</string>
     <string name="title_recycle_forum">论坛</string>
     <string name="title_black_list">黑名单</string>
     <string name="title_forum_post">论坛发帖</string>
