@@ -91,13 +91,13 @@ public class MyReceiverPresenter extends BasePresenter<MyReceiverContract.Model,
                                         arrayData.getPageData().size());
                             }
 
-                            ((ReceiverAdapter) mAdapter).setOnItemClickListener((view, viewType, data, position) -> {
-                                Intent intent = new Intent(mAppManager.getTopActivity(), ReceiverAddActivity.class);
-                                intent.putExtra(Constants.INTENT_TYPE, "update");
-                                intent.putExtra(Constants.INTENT_LIST_POSITION, position);
-                                intent.putExtra(Constants.INTENT_RECEIVER, mList.get(position));
-                                mRootView.launchActivity(intent);
-                            });
+//                            ((ReceiverAdapter) mAdapter).setOnItemClickListener((view, viewType, data, position) -> {
+//                                Intent intent = new Intent(mAppManager.getTopActivity(), ReceiverAddActivity.class);
+//                                intent.putExtra(Constants.INTENT_TYPE, "update");
+//                                intent.putExtra(Constants.INTENT_LIST_POSITION, position);
+//                                intent.putExtra(Constants.INTENT_RECEIVER, mList.get(position));
+//                                mRootView.launchActivity(intent);
+//                            });
                         }
                     }
                 });
