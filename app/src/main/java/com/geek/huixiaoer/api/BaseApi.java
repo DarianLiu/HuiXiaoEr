@@ -149,6 +149,15 @@ public interface BaseApi {
     Observable<BaseResponse<SingleResultBean>> checkCode(@Query("code") String code);
 
     /**
+     * 重置密码
+     *
+     * @param mobile     手机号码
+     * @param enPassword 密码
+     */
+    @GET(APIs.API.check_code)
+    Observable<BaseResponse<SingleResultBean>> resetPassword(@Query("mobile") String mobile, @Query("enPassword") String enPassword);
+
+    /**
      * 注册
      *
      * @param nickname    昵称
@@ -184,8 +193,10 @@ public interface BaseApi {
     Observable<BaseResponse<UserBean>> login(@Query("memberType") String memberType,
                                              @Query("nickname") String mobile,
                                              @Query("enPassword") String md5Password);
+
     @POST(APIs.API.autoGetUserInfo)
     Observable<BaseResponse<UserBean>> autoGetUserInfo();
+
     /**
      * 文章轮播图列表
      */

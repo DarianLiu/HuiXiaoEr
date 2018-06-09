@@ -114,6 +114,11 @@ public interface APIs {
         String check_code = "common/check_code.jhtml";
 
         /**
+         * 重置密码
+         */
+        String reset_password = "password/submit.jhtml";
+
+        /**
          * 文章轮播图列表
          */
         String carouselList = "member/article/carouselList.jhtml";

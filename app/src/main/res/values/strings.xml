@@ -39,6 +39,7 @@
     <string name="title_forum_post">论坛发帖</string>
     <string name="title_forum_post_detail">详情</string>
     <string name="title_member_rank">积分排行榜</string>
+    <string name="title_setNewPassword">重置密码</string>
 
     <string name="dialog_title_memo">订单附言</string>
     <string name="dialog_title_invoice">发票抬头</string>

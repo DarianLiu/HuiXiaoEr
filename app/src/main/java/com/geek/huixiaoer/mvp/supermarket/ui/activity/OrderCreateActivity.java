@@ -39,6 +39,8 @@ import com.jess.arms.utils.ArmsUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
+import org.simple.eventbus.Subscriber;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -310,6 +312,11 @@ public class OrderCreateActivity extends BaseActivity<OrderCreatePresenter> impl
             tvRate.setText(tip_invoice + "（" + tip_rate + resultBean.getTaxRate()
                     + "%  " + tip_tax + resultBean.getTax() + "元）");
         }
+    }
+
+    @Subscriber
+    public void receiveMyReceiver(ReceiverBean receiverBean) {
+        updateReceiver(receiverBean);
     }
 
     /**

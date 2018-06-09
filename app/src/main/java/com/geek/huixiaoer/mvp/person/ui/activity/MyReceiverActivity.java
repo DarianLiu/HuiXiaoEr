@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
@@ -18,9 +19,11 @@ import com.geek.huixiaoer.mvp.person.contract.MyReceiverContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerMyReceiverComponent;
 import com.geek.huixiaoer.mvp.person.di.module.MyReceiverModule;
 import com.geek.huixiaoer.mvp.person.presenter.MyReceiverPresenter;
+import com.geek.huixiaoer.mvp.person.ui.adapter.ReceiverAdapter;
 import com.geek.huixiaoer.mvp.person.ui.adapter.ReceiverItemHolder;
 import com.geek.huixiaoer.storage.event.ReceiverEvent;
 import com.jess.arms.base.BaseActivity;
+import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -29,6 +32,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
+import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 
 import javax.inject.Inject;
@@ -106,8 +110,8 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
                 }
                 break;
             case 2://收货地址更新
-                mPresenter.updateItem(event.getSelectedPos(),event.getReceiverBean());
-                    break;
+                mPresenter.updateItem(event.getSelectedPos(), event.getReceiverBean());
+                break;
             case 3://删除
                 mPresenter.receiverDelete(event.getSelectedPos());
                 break;
@@ -155,6 +159,10 @@ public class MyReceiverActivity extends BaseActivity<MyReceiverPresenter> implem
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(false);
         recyclerView.setAdapter(mAdapter);
+        ((ReceiverAdapter) mAdapter).setOnItemClickListener((view, viewType, data, position) -> {
+            EventBus.getDefault().post(((ReceiverAdapter) mAdapter).getItem(position));
+            killMyself();
+        });
     }
 
     @Override
