@@ -38,8 +38,8 @@ public class ShopOrderModel extends BaseModel implements ShopOrderContract.Model
     }
 
     @Override
-    public Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).shopOrderCancel(token, sn);
+    public Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn, String outTradeNo) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).shopOrderCancel(token, sn, outTradeNo);
     }
 
     @Override

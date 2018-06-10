@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.mvp.common.contract.MainContract;
@@ -123,7 +124,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
              */
             @Override
             public void onTokenIncorrect() {
-                Log.e(TAG,"====== onTokenIncorrect");
+                Log.e(TAG, "====== onTokenIncorrect");
             }
 
             /**
@@ -132,7 +133,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
              */
             @Override
             public void onSuccess(String userid) {
-                Log.e(TAG,"====== onSuccess userid: "+userid);
+                Log.e(TAG, "====== onSuccess userid: " + userid);
             }
 
             /**
@@ -141,7 +142,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
              */
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                Log.e(TAG,"====== onError errorCode: "+errorCode);
+                Log.e(TAG, "====== onError errorCode: " + errorCode);
             }
         });
 //        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
@@ -150,8 +151,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //                return null;
 //            }
 //        },true);
-        Log.e(TAG,"======userid: "+RongIM.getInstance().getCurrentUserId());
+        Log.e(TAG, "======userid: " + RongIM.getInstance().getCurrentUserId());
     }
+
     /**
      * 初始化Fragment
      */
@@ -172,7 +174,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     /**
      * @param lastIndex 最後選中項目
-     * @param index 当前选中项
+     * @param index     当前选中项
      */
     private void switchFragment(int lastIndex, int index) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -205,10 +207,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         ArmsUtils.startActivity(intent);
     }
 
+    //记录用户首次点击返回键的时间
+    private long firstTime = 0;
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            firstTime = secondTime;
+        } else {
+            mPresenter.exitApp();
+        }
     }
+
 
     @Override
     public void killMyself() {
@@ -217,6 +229,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     /**
      * 取消底部动画移动
+     *
      * @param view BottomNavigationView
      */
     public void disableShiftMode(BottomNavigationView view) {

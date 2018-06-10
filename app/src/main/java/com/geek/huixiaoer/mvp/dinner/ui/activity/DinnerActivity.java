@@ -22,6 +22,7 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
+import com.geek.huixiaoer.mvp.common.ui.activity.WebViewActivity;
 import com.geek.huixiaoer.mvp.dinner.contract.DinnerContract;
 import com.geek.huixiaoer.mvp.dinner.di.component.DaggerDinnerComponent;
 import com.geek.huixiaoer.mvp.dinner.di.module.DinnerModule;
@@ -319,6 +320,12 @@ public class DinnerActivity extends BaseActivity<DinnerPresenter> implements Din
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(DinnerActivity.this, WebViewActivity.class);
+                intent.putExtra("title", mBannerBeen.get(position).getTitle());
+                intent.putExtra("url", mBannerBeen.get(position).getUrl());
+                startActivity(intent);
+            });
             return view;
         }
 

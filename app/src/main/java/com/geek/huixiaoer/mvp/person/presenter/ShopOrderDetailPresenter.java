@@ -99,11 +99,12 @@ public class ShopOrderDetailPresenter extends BasePresenter<ShopOrderDetailContr
      * 支付宝支付
      * 支付方式(移动端默认为：alipayMobilePaymentPlugin)
      *
+     * @param orderSn 订单号
      * @param orderSn 交易流水号
      */
-    public void cancelOrder(String orderSn) {
+    public void cancelOrder(String orderSn, String outTradeNo) {
         String token = DataHelper.getStringSF(mAppManager.getTopActivity(), Constants.SP_TOKEN);
-        mModel.shopOrderCancel(token, orderSn)
+        mModel.shopOrderCancel(token, orderSn, outTradeNo)
                 .retryWhen(new RetryWithDelay(0, 30))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))

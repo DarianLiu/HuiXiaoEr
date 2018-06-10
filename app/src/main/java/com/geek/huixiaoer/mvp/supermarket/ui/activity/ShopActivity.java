@@ -24,6 +24,7 @@ import com.geek.huixiaoer.common.widget.adapter.DefaultStatePagerAdapter;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.WebViewActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.ShopContract;
 import com.geek.huixiaoer.mvp.supermarket.di.component.DaggerShopComponent;
 import com.geek.huixiaoer.mvp.supermarket.di.module.ShopModule;
@@ -234,6 +235,12 @@ public class ShopActivity extends BaseActivity<ShopPresenter> implements ShopCon
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(ShopActivity.this, WebViewActivity.class);
+                intent.putExtra("title", mBannerBeen.get(position).getTitle());
+                intent.putExtra("url", mBannerBeen.get(position).getUrl());
+                startActivity(intent);
+            });
             return view;
         }
 

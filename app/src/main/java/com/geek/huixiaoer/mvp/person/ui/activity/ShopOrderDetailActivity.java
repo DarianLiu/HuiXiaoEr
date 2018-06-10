@@ -18,12 +18,14 @@ import com.geek.huixiaoer.mvp.person.di.module.ShopOrderDetailModule;
 import com.geek.huixiaoer.mvp.person.presenter.ShopOrderDetailPresenter;
 import com.geek.huixiaoer.mvp.person.ui.adapter.OrderDetailAdapter;
 import com.geek.huixiaoer.storage.entity.shop.OrderDetailBean;
+import com.geek.huixiaoer.storage.entity.shop.OrderItemBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import java.util.List;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -42,7 +44,7 @@ public class ShopOrderDetailActivity extends BaseActivity<ShopOrderDetailPresent
     @BindView(R.id.goLayout)
     LinearLayout goLayout;
 
-    private String orderSn, amount;
+    private String orderSn, amount, outTradeNo;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
@@ -68,10 +70,11 @@ public class ShopOrderDetailActivity extends BaseActivity<ShopOrderDetailPresent
         tvToolbarTitle.setText(R.string.title_order_detail);
 
         orderSn = getIntent().getStringExtra("orderSn");
+        outTradeNo = getIntent().getStringExtra("outTradeNo");
         mPresenter.orderDetail(orderSn);
 
         payText.setOnClickListener(v -> mPresenter.paymentSubmitNo(orderSn, amount));
-        cancelText.setOnClickListener(v -> mPresenter.cancelOrder(orderSn));
+        cancelText.setOnClickListener(v -> mPresenter.cancelOrder(orderSn, outTradeNo));
     }
 
     @Override
@@ -103,12 +106,20 @@ public class ShopOrderDetailActivity extends BaseActivity<ShopOrderDetailPresent
 
     @Override
     public void updateView(OrderDetailBean orderDetail) {
-        amount = String.valueOf(orderDetail.getMerchantCash());
+        List<OrderItemBean> orders = orderDetail.getOrders().get(0).getItems();
+        double totalAmount = 0;
+        for (int i = 0; i < orders.size(); i++) {
+            OrderItemBean orderItem = orders.get(i);
+            totalAmount = orderItem.getPrice() * orderItem.getQuantity() + totalAmount;
+        }
+        amount = String.valueOf(orderDetail.getAmount());
         listView.setAdapter(new OrderDetailAdapter(this, orderDetail));
         if (TextUtils.equals(orderDetail.getOrderStatus(), "支付成功")) {
             goLayout.setVisibility(View.GONE);
         } else if (TextUtils.equals(orderDetail.getOrderStatus(), "等待付款")) {
             goLayout.setVisibility(View.VISIBLE);
+        } else {
+            goLayout.setVisibility(View.GONE);
         }
     }
 

@@ -31,6 +31,7 @@ import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationFragment;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.UserInfo;
+import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -88,7 +89,7 @@ public class ConversationActivity extends BaseActivity<ConversationPresenter> im
             ryId = HomeServicesPresenter.ryUserId;
         }
         if (!TextUtils.isEmpty(ryId)) {
-            Log.e("=======", "=====  conversation setServiceF ryId： " + ryId);
+            Timber.e("=======", "=====  conversation setServiceF ryId： " + ryId);
             mPresenter.setServiceF(ryId);
         }
     }

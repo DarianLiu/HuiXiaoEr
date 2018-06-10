@@ -63,8 +63,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.supermarket.ui.activity.GoodsDetailActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.common.ui.activity.RegisterActivity"
             android:screenOrientation="portrait" />
@@ -180,7 +180,8 @@
         <activity android:name=".mvp.recycle.ui.activity.ForumPostActivity" />
         <activity android:name=".mvp.recycle.ui.activity.ForumActivity" />
         <activity android:name=".mvp.recycle.ui.activity.ForumPostDetailActivity" />
-        <activity android:name=".mvp.person.ui.activity.ShopOrderDetailActivity"></activity>
+        <activity android:name=".mvp.person.ui.activity.ShopOrderDetailActivity" />
+        <activity android:name=".mvp.common.ui.activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

@@ -86,7 +86,7 @@ public class CaptchaActivity extends BaseActivity<CaptchaPresenter> implements C
         toolbar.setNavigationOnClickListener(v -> finish());
         tvToolbarTitle.setText(R.string.title_get_captcha);
 
-        type = getIntent().getIntExtra(Constants.INTENT_TYPE, 0);
+        type = getIntent().getIntExtra(Constants.INTENT_TYPE, 1);
     }
 
     @Override

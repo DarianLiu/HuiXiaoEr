@@ -31,7 +31,7 @@ public interface ShopOrderContract {
     interface Model extends IModel {
         Observable<BaseResponse<BaseArrayData<OrderBean>>> shopOrderList(String token, int pageNumber, int pageSize, String status, String type);
 
-        Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn);
+        Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn, String outTradeNo);
 
         Observable<BaseResponse<OrderBean>> shopOrderReceive(String token, String sn);
 

@@ -411,6 +411,18 @@ public interface BaseApi {
                                                                      @Query("category") String category);
 
     /**
+     * @param pageNumber 页数
+     * @param pageSize   每页数量
+     * @param type       文章类型
+     * @param articleId  文章ID
+     */
+    @GET(APIs.API.articleDetail)
+    Observable<BaseResponse<ArticleBean>> articleDetail(@Query("pageNumber") int pageNumber,
+                                                        @Query("pageSize") int pageSize,
+                                                        @Query("type") String type,
+                                                        @Query("articleId") String articleId);
+
+    /**
      * 垃圾回收添加
      *
      * @param token    token
@@ -565,12 +577,14 @@ public interface BaseApi {
     /**
      * 购物订单（取消）
      *
-     * @param token token
-     * @param sn    订单SN号
+     * @param token      token
+     * @param sn         订单SN号
+     * @param outTradeNo 交易流水号
      */
     @POST(APIs.API.shopOrderCancel)
     Observable<BaseResponse<OrderBean>> shopOrderCancel(@Query("token") String token,
-                                                        @Query("sn") String sn);
+                                                        @Query("sn") String sn,
+                                                        @Query("outTradeNo") String outTradeNo);
 
     /**
      * 购物订单（用户确认收货）

@@ -30,6 +30,7 @@ import org.simple.eventbus.Subscriber;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.rong.imkit.RongIM;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -152,6 +153,7 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
                 break;
             case R.id.btn_login_out:
                 DataHelper.clearShareprefrence(getActivity());
+                RongIM.getInstance().disconnect();
                 hideAllView();
                 break;
         }

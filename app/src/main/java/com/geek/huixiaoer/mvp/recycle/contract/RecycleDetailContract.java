@@ -2,8 +2,13 @@ package com.geek.huixiaoer.mvp.recycle.contract;
 
 import android.app.Activity;
 
+import com.geek.huixiaoer.storage.BaseArrayData;
+import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
+
+import io.reactivex.Observable;
 
 
 public interface RecycleDetailContract {
@@ -18,6 +23,6 @@ public interface RecycleDetailContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model extends IModel {
-
+        Observable<BaseResponse<ArticleBean>> articleDetail(int pageNumber, int pageSize, String type, String articleId);
     }
 }

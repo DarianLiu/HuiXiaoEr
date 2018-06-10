@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.AndroidUtil;
 import com.geek.huixiaoer.common.utils.DateUtil;
+import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.richEditText.InterceptLinearLayout;
 import com.geek.huixiaoer.common.widget.richEditText.RichTextEditor;
 import com.geek.huixiaoer.mvp.recycle.contract.ForumPostDetailContract;
@@ -52,6 +53,8 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
     @BindView(R.id.tv_title)
     TextView tvTitle;
 
+    private CircleProgressDialog loadingDialog;
+
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerForumPostDetailComponent //如找不到该类,请编译一下项目
@@ -79,9 +82,10 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
         richText.setIntercept(true);
 
         ArticleBean articleBean = (ArticleBean) getIntent().getExtras().getSerializable("forum");
-        if (articleBean != null) {
-            updateView(articleBean);
-        }
+        assert articleBean != null;
+        mPresenter.articleDetail(articleBean.getId());
+        updateView(articleBean);
+
     }
 
     /**
@@ -89,7 +93,8 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
      *
      * @param articleBean 文章详情
      */
-    private void updateView(ArticleBean articleBean) {
+    @Override
+    public void updateView(ArticleBean articleBean) {
         GlideArms.with(this).load(articleBean.getMember_headUrl()).circleCrop().into(ivUserHead);
         String name = articleBean.getMember_nickname() == null ? articleBean.getMember_username() : articleBean.getMember_nickname();
         String date = DateUtil.getTime(String.valueOf(articleBean.getCreateDate()), DateUtil.getCurrentDate());
@@ -111,16 +116,31 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
         }
     }
 
+
     @Override
     public void showLoading() {
-
+        if (loadingDialog == null) {
+            loadingDialog = new CircleProgressDialog.Builder(this).create();
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
     @Override
     public void showMessage(@NonNull String message) {
         checkNotNull(message);

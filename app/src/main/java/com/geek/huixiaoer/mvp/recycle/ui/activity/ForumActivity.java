@@ -21,6 +21,7 @@ import com.geek.huixiaoer.mvp.recycle.di.component.DaggerForumComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.ForumModule;
 import com.geek.huixiaoer.mvp.recycle.presenter.ForumPresenter;
 import com.geek.huixiaoer.mvp.recycle.ui.adpater.ForumAdapter;
+import com.geek.huixiaoer.mvp.recycle.ui.adpater.ForumItemHolder;
 import com.geek.huixiaoer.storage.entity.recycle.ArticleBean;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -136,6 +137,10 @@ public class ForumActivity extends BaseActivity<ForumPresenter> implements Forum
         ForumAdapter adapter = (ForumAdapter) mAdapter;
         adapter.setOnItemClickListener((view, viewType, data, position) -> {
             ArticleBean articleBean = (ArticleBean) data;
+            int hits = Integer.parseInt(articleBean.getHits()) + 1;
+            articleBean.setHits(String.valueOf(hits));
+            adapter.getHolder(view, viewType).setData(articleBean, position);
+            adapter.notifyItemChanged(position);
             Intent intent = new Intent(ForumActivity.this, ForumPostDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("forum", articleBean);

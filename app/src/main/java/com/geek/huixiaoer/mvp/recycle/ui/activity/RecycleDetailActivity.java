@@ -84,6 +84,7 @@ public class RecycleDetailActivity extends BaseActivity<RecycleDetailPresenter> 
 
         initRecycleView();
         ArticleBean bean = (ArticleBean) getIntent().getSerializableExtra("recycle");
+        mPresenter.articleDetail(bean.getId());
         mList.add(bean);
         mAdapter.notifyDataSetChanged();
 

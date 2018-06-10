@@ -23,7 +23,7 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.common.widget.dialog.CircleProgressDialog;
 import com.geek.huixiaoer.common.widget.recyclerview.GridSpacingItemDecoration;
-import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.WebViewActivity;
 import com.geek.huixiaoer.mvp.housewifery.contract.HomeServicesContract;
 import com.geek.huixiaoer.mvp.housewifery.di.component.DaggerHomeServicesComponent;
 import com.geek.huixiaoer.mvp.housewifery.di.module.HomeServicesModule;
@@ -130,23 +130,22 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
             ryToken = userBean.getRyToken();
             RongIMClient.ConnectionStatusListener.ConnectionStatus status = RongIM.getInstance().getCurrentConnectionStatus();
             if (status != RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTING) {
-                RongIM.connect(ryToken
-                        , new RongIMClient.ConnectCallback() {
-                            @Override
-                            public void onTokenIncorrect() {
-                                Timber.d("=====融云TokenIncorrect");
-                            }
+                RongIM.connect(ryToken, new RongIMClient.ConnectCallback() {
+                    @Override
+                    public void onTokenIncorrect() {
+                        Timber.d("=====融云TokenIncorrect");
+                    }
 
-                            @Override
-                            public void onSuccess(String s) {
-                                Timber.d("=====融云Success：" + s);
-                            }
+                    @Override
+                    public void onSuccess(String s) {
+                        Timber.d("=====融云Success：" + s);
+                    }
 
-                            @Override
-                            public void onError(RongIMClient.ErrorCode errorCode) {
-                                Timber.d("=====融云errorCode：" + errorCode);
-                            }
-                        });
+                    @Override
+                    public void onError(RongIMClient.ErrorCode errorCode) {
+                        Timber.d("=====融云errorCode：" + errorCode);
+                    }
+                });
             }
         } else {
             mPresenter.autoGetUserInfo();
@@ -398,6 +397,12 @@ public class HomeServicesActivity extends BaseActivity<HomeServicesPresenter> im
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(HomeServicesActivity.this, WebViewActivity.class);
+                intent.putExtra("title", mBannerBeen.get(position).getTitle());
+                intent.putExtra("url", mBannerBeen.get(position).getUrl());
+                startActivity(intent);
+            });
             return view;
         }
 

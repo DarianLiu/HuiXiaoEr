@@ -29,6 +29,7 @@ import com.geek.huixiaoer.mvp.common.di.component.DaggerTabHomeComponent;
 import com.geek.huixiaoer.mvp.common.di.module.TabHomeModule;
 import com.geek.huixiaoer.mvp.common.presenter.TabHomePresenter;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.WebViewActivity;
 import com.geek.huixiaoer.mvp.dinner.ui.activity.DinnerActivity;
 import com.geek.huixiaoer.mvp.housewifery.ui.activity.HomeServicesActivity;
 import com.geek.huixiaoer.mvp.recycle.ui.activity.ForumActivity;
@@ -971,6 +972,12 @@ public class TabHomeFragment extends BaseFragment<TabHomePresenter> implements T
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra("title", mBannerBeen.get(position).getTitle());
+                intent.putExtra("url", mBannerBeen.get(position).getUrl());
+                startActivity(intent);
+            });
             return view;
         }
 

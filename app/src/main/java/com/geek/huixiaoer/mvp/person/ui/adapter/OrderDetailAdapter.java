@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.storage.entity.shop.OrderDetailBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderItemBean;
 import com.jess.arms.http.imageloader.glide.GlideArms;
@@ -136,6 +137,7 @@ public class OrderDetailAdapter extends BaseAdapter {
                         "(" + productInfo.getSpecifications() + ")");
             }
             double total = productInfo.getPrice() * productInfo.getQuantity();
+            viewHolderTwo.tvCreateData.setText(DateUtil.getDateTimeToString(orderInfo.getOrders().get(0).getCreateDate()));
             viewHolderTwo.tvTotalAmount.setText("共" + productInfo.getQuantity() + "件商品，合计" + total + "元");
             viewHolderTwo.tvProductPrice.setText("￥" + productInfo.getPrice());
             viewHolderTwo.tvQuantity.setText("x" + productInfo.getQuantity());

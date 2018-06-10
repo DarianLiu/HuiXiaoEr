@@ -21,6 +21,7 @@ import com.geek.huixiaoer.common.utils.Constants;
 import com.geek.huixiaoer.common.widget.autoviewpager.AutoScrollViewPager;
 import com.geek.huixiaoer.mvp.common.ui.activity.LoginActivity;
 import com.geek.huixiaoer.mvp.common.ui.activity.RegisterActivity;
+import com.geek.huixiaoer.mvp.common.ui.activity.WebViewActivity;
 import com.geek.huixiaoer.mvp.recycle.contract.RecycleHomeContract;
 import com.geek.huixiaoer.mvp.recycle.di.component.DaggerRecycleHomeComponent;
 import com.geek.huixiaoer.mvp.recycle.di.module.RecycleHomeModule;
@@ -256,6 +257,12 @@ public class RecycleHomeActivity extends BaseActivity<RecycleHomePresenter> impl
             GlideArms.with(ivBanner.getContext()).load(mBannerBeen.get(position).getPath())
                     .centerCrop().error(R.drawable.icon_banner_default).into(ivBanner);
             container.addView(view);
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(RecycleHomeActivity.this, WebViewActivity.class);
+                intent.putExtra("title", mBannerBeen.get(position).getTitle());
+                intent.putExtra("url", mBannerBeen.get(position).getUrl());
+                startActivity(intent);
+            });
             return view;
         }
 

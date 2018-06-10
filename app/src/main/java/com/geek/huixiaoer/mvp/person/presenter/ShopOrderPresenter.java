@@ -83,8 +83,8 @@ public class ShopOrderPresenter extends BasePresenter<ShopOrderContract.Model, S
      *
      * @param order_sn 订单SN号
      */
-    public void orderCancel(String order_sn) {
-        mModel.shopOrderCancel(getToken(), order_sn).retryWhen(new RetryWithDelay(3, 2))
+    public void orderCancel(String order_sn, String outTradeNo) {
+        mModel.shopOrderCancel(getToken(), order_sn, outTradeNo).retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtil.applySchedulers(mRootView))
                 .compose(RxUtil.handleBaseResult(mApplication))
                 .subscribeWith(new ErrorHandleSubscriber<OrderBean>(mErrorHandler) {

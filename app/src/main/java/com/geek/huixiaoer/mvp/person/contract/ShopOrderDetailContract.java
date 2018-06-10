@@ -23,7 +23,7 @@ public interface ShopOrderDetailContract {
         Observable<BaseResponse<OrderDetailBean>> orderDetail(String token, String sn);
 
 
-        Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn);
+        Observable<BaseResponse<OrderBean>> shopOrderCancel(String token, String sn,String outTradeNo);
 
         Observable<BaseResponse<OrderCreateResultBean>> paymentSubmitSn(String token, String paymentPluginId, String sn, String amount);
     }

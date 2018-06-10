@@ -90,7 +90,6 @@ public class ShopOrderFragment extends BaseFragment<ShopOrderPresenter> implemen
             }
         });
 
-        // 自动刷新
         refreshLayout.autoRefresh();
     }
 
@@ -99,14 +98,16 @@ public class ShopOrderFragment extends BaseFragment<ShopOrderPresenter> implemen
         //点击group不收缩
         expendableListView.setOnGroupClickListener((parent, v, groupPosition, id) -> {
             Intent intent = new Intent();
-            intent.putExtra("orderSn",mOrderList.get(groupPosition).getOrder_sn());
+            intent.putExtra("orderSn", mOrderList.get(groupPosition).getOrder_sn());
+            intent.putExtra("outTradeNo", mOrderList.get(groupPosition).getOutTradeNo());
             intent.setClass(getActivity(), ShopOrderDetailActivity.class);
             launchActivity(intent);
             return true;
         });
         expendableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             Intent intent = new Intent();
-            intent.putExtra("orderSn",mOrderList.get(groupPosition).getOrder_sn());
+            intent.putExtra("orderSn", mOrderList.get(groupPosition).getOrder_sn());
+            intent.putExtra("outTradeNo", mOrderList.get(groupPosition).getOutTradeNo());
             intent.setClass(getActivity(), ShopOrderDetailActivity.class);
             launchActivity(intent);
             return false;
@@ -115,6 +116,13 @@ public class ShopOrderFragment extends BaseFragment<ShopOrderPresenter> implemen
         mAdapter = new ShopOrderAdapter(getActivity(), mOrderList);
         expendableListView.setAdapter(mAdapter);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 自动刷新
+        refreshLayout.autoRefresh();
     }
 
     @Override

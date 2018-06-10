@@ -218,6 +218,11 @@ public interface APIs {
         String articleList = "member/article/list.jhtml";
 
         /**
+         * 文章详情
+         */
+        String articleDetail = "member/article/detail.jhtml";
+
+        /**
          * 论坛发帖
          */
         String articleAdd = "member/article/appArticle.jhtml";
@@ -243,12 +248,12 @@ public interface APIs {
 
 
         /**
-         *  设置忙碌客服:
+         * 设置忙碌客服:
          */
         String setServiceB = "service/setServiceB.jhtml";
 
         /**
-         *  设置空闲客服：
+         * 设置空闲客服：
          */
         String setServiceF = "service/setServiceF.jhtml";
 
