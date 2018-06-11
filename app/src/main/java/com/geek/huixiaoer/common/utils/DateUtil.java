@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import timber.log.Timber;
+
 /**
  * 时间戳转换工具类
  */
@@ -117,6 +119,17 @@ public class DateUtil {
         return dif / 60000;
     }
 
+    /**
+     * 是否超过24小时失效
+     *
+     * @param start_time 开始时间
+     * @param end_time   结束时间
+     */
+    public static boolean invalid(long start_time, long end_time) {
+        long time = end_time - start_time;
+        Timber.d("========当前时间差：" + time);
+        return time >= (1000 * 60 * 60 * 24);
+    }
 
     /**
      * 获取当前文字时间

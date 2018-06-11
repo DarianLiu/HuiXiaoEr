@@ -24,6 +24,7 @@ import com.jess.arms.utils.ArmsUtils;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -87,6 +88,7 @@ public class ForgetPasswordActivity extends BaseActivity<ForgetPasswordPresenter
             String password = etNewPassword.getText().toString();
             String confirmPassword = etConfirmPassword.getText().toString();
             if (validatePassword(password, confirmPassword)) {
+                Timber.d("==============encodeToMD5 password: " + ArmsUtils.encodeToMD5(password));
                 mPresenter.resetPassword(mobile, ArmsUtils.encodeToMD5(password));
             }
         });

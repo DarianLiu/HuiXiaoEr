@@ -133,13 +133,14 @@ public interface BaseApi {
      * <p>
      * 获取短信验证码
      *
-     * @param mobile 手机号码
-     * @param type   0：注册/1：重置密码
+//     * @param mobile 手机号码
+//     * @param type   0：注册/1：重置密码
      */
+//    @GET(APIs.API.verification_code)
+//    Observable<BaseResponse<SingleResultBean>> verificationCode(@Query("mobileNum") String mobile,
+//                                                                @Query("type") int type);
     @GET(APIs.API.verification_code)
-    Observable<BaseResponse<SingleResultBean>> verificationCode(@Query("mobile") String mobile,
-                                                                @Query("type") int type);
-
+    Observable<BaseResponse<SingleResultBean>> verificationCode(@Query("mobileNum") String mobileNum);
     /**
      * 检查短信验证码
      *
@@ -154,7 +155,7 @@ public interface BaseApi {
      * @param mobile     手机号码
      * @param enPassword 密码
      */
-    @GET(APIs.API.check_code)
+    @POST(APIs.API.reset_password)
     Observable<BaseResponse<SingleResultBean>> resetPassword(@Query("mobile") String mobile, @Query("enPassword") String enPassword);
 
     /**

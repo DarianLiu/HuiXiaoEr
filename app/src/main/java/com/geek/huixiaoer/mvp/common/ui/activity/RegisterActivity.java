@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.geek.huixiaoer.R;
 import com.geek.huixiaoer.common.utils.Constants;
@@ -31,6 +30,7 @@ import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import butterknife.BindString;
@@ -108,6 +108,20 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     String error_cardNo_null;
     @BindString(R.string.error_address_null)
     String error_address_null;
+
+    @BindView(R.id.tvSend)
+    TextView tvSend;
+    @BindString(R.string.error_captcha_null)
+    String error_captcha_null;
+    @BindString(R.string.error_captcha)
+    String error_captcha;
+    @BindString(R.string.error_mobile_null)
+    String error_mobile_null;
+    @BindString(R.string.error_mobile_regex)
+    String error_mobile_regex;
+
+    @BindString(R.string.btn_count_down)
+    String count_down;
 
     private String mobile, cityCode = "512", areaCode = "513", communityCode = "514";
     boolean volunteer;//是否志愿者
@@ -215,6 +229,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         return true;
     }
 
+
     private boolean validateMobile(String mobile) {
         if (TextUtils.isEmpty(mobile)) {
             showError(mobileTil, "手机号不能为空");
@@ -298,10 +313,30 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                 register();
                 break;
             case R.id.tvSend:
-                Toast.makeText(this, "默认验证码就123456", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "默认验证码就123456", Toast.LENGTH_SHORT).show();
+                String mobile = mobileEdit.getText().toString();
+                if (TextUtils.isEmpty(mobile)) {
+                    showMessage(error_mobile_null);
+                } else if (!RegexUtils.isMobileSimple(mobile)) {
+                    showMessage(error_mobile_regex);
+                } else {
+                    mPresenter.sendCaptcha(mobile, 0);
+                }
                 break;
         }
     }
+
+    @Override
+    public void countDown(Long time) {
+        if (time != 0) {
+            tvSend.setEnabled(false);
+            tvSend.setText(MessageFormat.format("{0}{1}", time, count_down));
+        } else {
+            tvSend.setEnabled(true);
+            tvSend.setText(R.string.btn_resend);
+        }
+    }
+
 
     private void register() {
         String nickname = etNickname.getText().toString();
@@ -327,6 +362,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         veryCodeTil.setEnabled(true);
         if (validateNickname(nickname) && validatePassword(password, confirmPassword)
                 && validateOther(cardNo, cityCode, areaCode, address) && validateMobile(mobile) && validateVeryCode(veryCode)) {
+            if (!veryCode.equals(mPresenter.veryCode)) {
+                showMessage("请输入正确的验证码");
+                return;
+            }
             mPresenter.registerSubmit(StringUtils.stringUTF8(nickname), cardNo, cityCode, areaCode, communityCode,
                     StringUtils.stringUTF8(address), mobile, ArmsUtils.encodeToMD5(password), veryCode, volunteer ? 1 : 0);
         }

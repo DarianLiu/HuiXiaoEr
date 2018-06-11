@@ -25,7 +25,7 @@ public class CaptchaModel extends BaseModel implements CaptchaContract.Model {
 
     @Override
     public Observable<BaseResponse<SingleResultBean>> verificationCode(String mobile, int type) {
-        return mRepositoryManager.obtainRetrofitService(BaseApi.class).verificationCode(mobile, type);
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).verificationCode(mobile);
     }
 
     @Override

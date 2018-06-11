@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.geek.huixiaoer.R;
+import com.geek.huixiaoer.common.utils.DateUtil;
 import com.geek.huixiaoer.mvp.person.contract.ShopOrderDetailContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerShopOrderDetailComponent;
 import com.geek.huixiaoer.mvp.person.di.module.ShopOrderDetailModule;
@@ -114,9 +115,13 @@ public class ShopOrderDetailActivity extends BaseActivity<ShopOrderDetailPresent
         }
         amount = String.valueOf(orderDetail.getAmount());
         listView.setAdapter(new OrderDetailAdapter(this, orderDetail));
+
+        long orderCreateData = orderDetail.getOrders().get(0).getCreateDate();
+        long nowData = System.currentTimeMillis();
+
         if (TextUtils.equals(orderDetail.getOrderStatus(), "支付成功")) {
             goLayout.setVisibility(View.GONE);
-        } else if (TextUtils.equals(orderDetail.getOrderStatus(), "等待付款")) {
+        } else if (TextUtils.equals(orderDetail.getOrderStatus(), "等待付款") && !DateUtil.invalid(orderCreateData, nowData)) {
             goLayout.setVisibility(View.VISIBLE);
         } else {
             goLayout.setVisibility(View.GONE);

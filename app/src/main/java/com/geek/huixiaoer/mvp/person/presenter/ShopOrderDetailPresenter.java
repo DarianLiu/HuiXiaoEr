@@ -28,11 +28,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
-import timber.log.Timber;
 
 
 @ActivityScope
@@ -129,17 +129,30 @@ public class ShopOrderDetailPresenter extends BasePresenter<ShopOrderDetailContr
             PayTask aLiPayTask = new PayTask(mAppManager.getTopActivity());
             Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
             emitter.onNext(resultMap);
-            emitter.onComplete();
+//            emitter.onComplete();
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(RxLifecycleUtils.bindToLifecycle(mRootView))
-                .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {
+                .subscribe(new Consumer<Map<String, String>>() {
                     @Override
-                    public void onNext(@NonNull Map<String, String> resultMap) {
-                        if (TextUtils.equals(resultMap.get("resultStatus"), "9000")) {
-                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
+                    public void accept(Map<String, String> resultMap) throws Exception  {
+                        String resultStatus = resultMap.get("resultStatus");
+                        if (TextUtils.equals(resultStatus, "9000")) {
+                            ArmsUtils.makeText(mApplication, "支付成功");
+                            mRootView.killMyself();
+                        } else if (resultStatus.equals("4000")) {
+                            ArmsUtils.makeText(mApplication, "支付失败");
+                            // 4000为支付失败，包括用户主动取消支付，或者系统返回的错误
+                        } else if (resultStatus.equals("6001")) {
+                            // 6001为取消支付，或者系统返回的错误
+                            ArmsUtils.makeText(mApplication, "取消支付");
+                        } else if (resultStatus.equals("8000")) {
+                            // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
+                            ArmsUtils.makeText(mApplication, "支付结果确认中");
+                            mRootView.killMyself();
                         } else {
-                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
+                            // 其他为系统返回的错误
+                            ArmsUtils.makeText(mApplication, "支付错误");
                         }
                     }
                 });

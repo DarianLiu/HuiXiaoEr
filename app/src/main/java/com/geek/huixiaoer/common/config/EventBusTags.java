@@ -34,4 +34,6 @@ public interface EventBusTags {
      * {@link com.geek.huixiaoer.storage.entity.recycle.ArticleBean}
      */
     String ISLogin = "isLogin";
+
+    String IsHit = "isHit";
 }

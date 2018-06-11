@@ -103,6 +103,11 @@ public class ShopOrderAdapter extends BaseExpandableListAdapter {
         } else {
             groupViewHolder.tvOrderStatus.setText("已付款");
         }
+        long orderCreateData = modelList.get(groupPosition).getCreateDate();
+        long nowData = System.currentTimeMillis();
+        if (DateUtil.invalid(orderCreateData, nowData)) {
+            groupViewHolder.tvOrderStatus.setText("已失效");
+        }
 //            if (orderBean.getStatus().equals("pendingReview")) {
 ////                                model.setOrderStatus("待审核");
 //            groupViewHolder.tvOrderStatus.setText("待审核");

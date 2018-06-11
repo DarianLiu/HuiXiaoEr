@@ -26,6 +26,7 @@ import com.jess.arms.utils.ArmsUtils;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
@@ -173,6 +174,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         switch (view.getId()) {
             case R.id.btn_login:
                 if (validateAccount(account) && validatePassword(password)) {
+                    Timber.d("==============encodeToMD5 password: " + ArmsUtils.encodeToMD5(password));
                     mPresenter.login(StringUtils.stringUTF8(account), ArmsUtils.encodeToMD5(password));
                 }
                 break;

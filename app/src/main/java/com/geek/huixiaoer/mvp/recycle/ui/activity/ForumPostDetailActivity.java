@@ -84,7 +84,7 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
         ArticleBean articleBean = (ArticleBean) getIntent().getExtras().getSerializable("forum");
         assert articleBean != null;
         mPresenter.articleDetail(articleBean.getId());
-        updateView(articleBean);
+//        updateView(articleBean);
 
     }
 
@@ -141,6 +141,7 @@ public class ForumPostDetailActivity extends BaseActivity<ForumPostDetailPresent
             loadingDialog.dismiss();
         }
     }
+
     @Override
     public void showMessage(@NonNull String message) {
         checkNotNull(message);

@@ -121,7 +121,14 @@ public class OrderDetailAdapter extends BaseAdapter {
             viewHolderOne.addressText.setText(orderInfo.getAddress());
             viewHolderOne.shopNameText.setText(orderInfo.getOrders().get(0).getMerchantName());
 //            Log.e("======商户名=====", orderInfo.getMerchantName());
-            viewHolderOne.orderStatusText.setText(orderInfo.getOrderStatus());
+            long orderCreateData = orderInfo.getOrders().get(0).getCreateDate();
+            long nowData = System.currentTimeMillis();
+            if (DateUtil.invalid(orderCreateData, nowData)) {
+                viewHolderOne.orderStatusText.setText("已失效");
+            }else {
+                viewHolderOne.orderStatusText.setText(orderInfo.getOrderStatus());
+            }
+
             GlideArms.with(context).load(orderInfo.getOrders().get(0).getMerchantHeadURL())
                     .circleCrop().error(R.drawable.icon_head_default)
                     .into(viewHolderOne.shopImg);

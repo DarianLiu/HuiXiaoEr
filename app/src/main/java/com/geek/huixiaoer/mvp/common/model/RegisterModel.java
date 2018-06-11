@@ -2,6 +2,7 @@ package com.geek.huixiaoer.mvp.common.model;
 
 import com.geek.huixiaoer.api.BaseApi;
 import com.geek.huixiaoer.storage.BaseResponse;
+import com.geek.huixiaoer.storage.entity.SingleResultBean;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.jess.arms.integration.IRepositoryManager;
 import com.jess.arms.mvp.BaseModel;
@@ -20,6 +21,11 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
     @Inject
     RegisterModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
+    }
+
+    @Override
+    public Observable<BaseResponse<SingleResultBean>> verificationCode(String mobile, int type) {
+        return mRepositoryManager.obtainRetrofitService(BaseApi.class).verificationCode(mobile);
     }
 
     @Override

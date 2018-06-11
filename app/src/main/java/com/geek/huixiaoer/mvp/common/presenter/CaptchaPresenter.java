@@ -33,6 +33,8 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
 
+    public String veryCode = "";
+
     @Inject
     CaptchaPresenter(CaptchaContract.Model model, CaptchaContract.View rootView
             , RxErrorHandler handler, AppManager appManager) {
@@ -52,6 +54,7 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
                 .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull SingleResultBean singleResultBean) {
+                        veryCode = singleResultBean.getResult();
                         Observable.interval(1, TimeUnit.SECONDS, Schedulers.io())
                                 .take(Constants.SMS_MAX_TIME)
                                 .map(aLong -> Constants.SMS_MAX_TIME - (aLong + 1))
@@ -89,18 +92,22 @@ public class CaptchaPresenter extends BasePresenter<CaptchaContract.Model, Captc
      * @param captcha 短信验证码
      */
     public void checkCaptcha(String mobile, String captcha) {
-        mModel.checkCode(captcha).retryWhen(new RetryWithDelay(3, 2))
-                .compose(RxUtil.applySchedulers(mRootView))
-                .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
-                .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
-                    @Override
-                    public void onNext(@NonNull SingleResultBean singleResultBean) {
-                        Intent it = new Intent(mAppManager.getTopActivity(), ForgetPasswordActivity.class);
-                        it.putExtra(Constants.INTENT_MOBILE, mobile);
-                        mRootView.launchActivity(it);
-                        mRootView.killMyself();
-                    }
-                });
+        if (!captcha.equals(veryCode)) {
+            mRootView.showMessage("请输入正确的验证码");
+        }else {
+            mModel.checkCode(captcha).retryWhen(new RetryWithDelay(3, 2))
+                    .compose(RxUtil.applySchedulers(mRootView))
+                    .compose(RxUtil.handleBaseResult(mAppManager.getTopActivity()))
+                    .subscribeWith(new ErrorHandleSubscriber<SingleResultBean>(mErrorHandler) {
+                        @Override
+                        public void onNext(@NonNull SingleResultBean singleResultBean) {
+                            Intent it = new Intent(mAppManager.getTopActivity(), ForgetPasswordActivity.class);
+                            it.putExtra(Constants.INTENT_MOBILE, mobile);
+                            mRootView.launchActivity(it);
+                            mRootView.killMyself();
+                        }
+                    });
+        }
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.geek.huixiaoer.mvp.supermarket.presenter;
 
 import android.app.Application;
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.alipay.sdk.app.PayTask;
 import com.geek.huixiaoer.api.utils.RxUtil;
 import com.geek.huixiaoer.common.utils.Constants;
+import com.geek.huixiaoer.mvp.common.ui.activity.MainActivity;
 import com.geek.huixiaoer.mvp.supermarket.contract.OrderCreateContract;
 import com.geek.huixiaoer.storage.entity.shop.OrderCalculateResultBean;
 import com.geek.huixiaoer.storage.entity.shop.OrderCheckResultBean;
@@ -16,15 +18,18 @@ import com.jess.arms.mvp.BasePresenter;
 import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.RxLifecycleUtils;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
@@ -144,24 +149,44 @@ public class OrderCreatePresenter extends BasePresenter<OrderCreateContract.Mode
      * @param orderStr 支付宝支付所需字符串
      */
     private void toALiPay(String orderStr) {
-        Observable.create((ObservableOnSubscribe<Map<String, String>>) emitter -> {
-            PayTask aLiPayTask = new PayTask(mAppManager.getTopActivity());
-            Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
-            emitter.onNext(resultMap);
-            emitter.onComplete();
+        Observable.create(new ObservableOnSubscribe<Map<String, String>>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Map<String, String>> emitter) throws Exception {
+                PayTask aLiPayTask = new PayTask(mAppManager.getTopActivity());
+                Map<String, String> resultMap = aLiPayTask.payV2(orderStr, true);
+                emitter.onNext(resultMap);
+            }
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(RxLifecycleUtils.bindToLifecycle(mRootView))
-                .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {
+                .compose(RxLifecycleUtils.bindUntilEvent(mRootView, ActivityEvent.DESTROY))
+                .subscribe(new Consumer<Map<String, String>>() {
                     @Override
-                    public void onNext(@NonNull Map<String, String> resultMap) {
-                        if (TextUtils.equals(resultMap.get("resultStatus"), "9000")) {
-                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
+                    public void accept(Map<String, String> resultMap) throws Exception {
+                        String resultStatus = resultMap.get("resultStatus");
+                        if (TextUtils.equals(resultStatus, "9000")) {
+                            ArmsUtils.makeText(mApplication, "支付成功");
+                        } else if (resultStatus.equals("4000")) {
+                            ArmsUtils.makeText(mApplication, "支付失败");
+                            // 4000为支付失败，包括用户主动取消支付，或者系统返回的错误
+                        } else if (resultStatus.equals("6001")) {
+                            // 6001为取消支付，或者系统返回的错误
+                            ArmsUtils.makeText(mApplication, "取消支付");
+                        } else if (resultStatus.equals("8000")) {
+                            // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
+                            ArmsUtils.makeText(mApplication, "支付结果确认中");
                         } else {
-                            ArmsUtils.makeText(mApplication, resultMap.get("memo"));
+                            // 其他为系统返回的错误
+                            ArmsUtils.makeText(mApplication, "支付错误");
                         }
+                        mRootView.launchActivity(new Intent(mAppManager.getTopActivity(), MainActivity.class));
                     }
                 });
+//                .subscribeWith(new ErrorHandleSubscriber<Map<String, String>>(mErrorHandler) {
+//                    @Override
+//                    public void onNext(@NonNull Map<String, String> resultMap) {
+//
+//                    }
+//                });
     }
 
     @Override
