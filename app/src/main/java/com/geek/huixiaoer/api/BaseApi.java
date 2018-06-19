@@ -132,15 +132,16 @@ public interface BaseApi {
      * ********************** 公 共（ 登 录 注 册 ）模 块 *************************
      * <p>
      * 获取短信验证码
-     *
-//     * @param mobile 手机号码
-//     * @param type   0：注册/1：重置密码
+     * <p>
+     * //     * @param mobile 手机号码
+     * //     * @param type   0：注册/1：重置密码
      */
 //    @GET(APIs.API.verification_code)
 //    Observable<BaseResponse<SingleResultBean>> verificationCode(@Query("mobileNum") String mobile,
 //                                                                @Query("type") int type);
     @GET(APIs.API.verification_code)
     Observable<BaseResponse<SingleResultBean>> verificationCode(@Query("mobileNum") String mobileNum);
+
     /**
      * 检查短信验证码
      *
@@ -672,4 +673,13 @@ public interface BaseApi {
      */
     @GET(APIs.API.memberRank)
     Observable<BaseResponse<BaseArrayData<RankBean>>> memberRank(@Query("order") int order, @Query("pageNumber") int pageNumber, @Query("pageSize") int pageSize);
+
+    /**
+     * 用户享环保积分排名
+     *
+     * @param token  登录人token
+     * @param mobile 手机号
+     */
+    @POST(APIs.API.mobileUpdate)
+    Observable<BaseResponse<BaseArrayData<RankBean>>> mobileUpdate(@Query("token") String token, @Query("mobile") String mobile);
 }

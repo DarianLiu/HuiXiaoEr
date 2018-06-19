@@ -181,7 +181,8 @@
         <activity android:name=".mvp.recycle.ui.activity.ForumActivity" />
         <activity android:name=".mvp.recycle.ui.activity.ForumPostDetailActivity" />
         <activity android:name=".mvp.person.ui.activity.ShopOrderDetailActivity" />
-        <activity android:name=".mvp.common.ui.activity.WebViewActivity"></activity>
+        <activity android:name=".mvp.common.ui.activity.WebViewActivity" />
+        <activity android:name=".mvp.person.ui.activity.UpdateMobileActivity"></activity>
     </application>
 
 </manifest>

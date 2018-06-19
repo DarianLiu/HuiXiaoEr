@@ -338,5 +338,9 @@ public interface APIs {
          */
         String memberRank = "rubbishRecycle/listAllByPoint.jhtml";
 
+        /**
+         * 手机号修改
+         */
+        String mobileUpdate = "member/mobileUpdate.jhtml";
     }
 }

@@ -35,5 +35,5 @@ public interface EventBusTags {
      */
     String ISLogin = "isLogin";
 
-    String IsHit = "isHit";
+    String mobileUpdate = "mobile_update";
 }

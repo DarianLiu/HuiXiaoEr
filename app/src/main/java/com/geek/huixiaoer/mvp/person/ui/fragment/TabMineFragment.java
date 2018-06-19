@@ -20,6 +20,7 @@ import com.geek.huixiaoer.mvp.person.contract.TabMineContract;
 import com.geek.huixiaoer.mvp.person.di.component.DaggerTabMineComponent;
 import com.geek.huixiaoer.mvp.person.di.module.TabMineModule;
 import com.geek.huixiaoer.mvp.person.presenter.TabMinePresenter;
+import com.geek.huixiaoer.mvp.person.ui.activity.UpdateMobileActivity;
 import com.geek.huixiaoer.storage.entity.UserBean;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
@@ -73,6 +74,13 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
             updateView();
         } else {
             hideAllView();
+        }
+    }
+
+    @Subscriber(tag = EventBusTags.mobileUpdate)
+    public void updateMobile(String mobile) {
+        if (!TextUtils.isEmpty(mobile)) {
+            optionMobile.setRightText(mobile);
         }
     }
 
@@ -143,13 +151,13 @@ public class TabMineFragment extends BaseFragment<TabMinePresenter> implements T
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.option_nickname:
-                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
+//                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
                 break;
             case R.id.option_password:
                 launchActivity(new Intent(getActivity(), CaptchaActivity.class));
                 break;
             case R.id.option_mobile:
-                launchActivity(new Intent(getActivity(), CaptchaActivity.class));
+                launchActivity(new Intent(getActivity(), UpdateMobileActivity.class));
                 break;
             case R.id.btn_login_out:
                 DataHelper.clearShareprefrence(getActivity());
