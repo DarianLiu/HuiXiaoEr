@@ -59,7 +59,7 @@ public class HelpOrderConfirmPresenter extends BasePresenter<HelpOrderConfirmCon
                 .subscribeWith(new ErrorHandleSubscriber<CreateServiceOrderBean>(mErrorHandler) {
                     @Override
                     public void onNext(@NonNull CreateServiceOrderBean userBean) {
-                        Toast.makeText(mAppManager.getTopActivity(), "创建订单成功,请进入支付...", Toast.LENGTH_SHORT).show();
+                        mRootView.showMessage( "创建订单成功,请进入支付...");
                         paymentSubmitNo(userBean.getOutTradeNo(), amount);
 //                        mRootView.killMyself();
                     }

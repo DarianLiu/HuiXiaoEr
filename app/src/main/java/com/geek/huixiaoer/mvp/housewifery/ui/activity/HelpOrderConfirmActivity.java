@@ -79,7 +79,7 @@ public class HelpOrderConfirmActivity extends BaseActivity<HelpOrderConfirmPrese
         targetId = getIntent().getStringExtra("targetId");
         String title = getIntent().getStringExtra("title");
         tvServiceName.setText(title);
-        Log.d("====OrderConfirm-title",title);
+//        Log.d("====OrderConfirm-title",title);
     }
 
     @OnClick({R.id.submitBtn})
